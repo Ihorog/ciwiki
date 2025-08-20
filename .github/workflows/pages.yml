@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Якщо потрібна збірка через Node — розкоментуй ↓
+      # Якщо у проєкті є Node-білд (npm run build), розкоментуй ↓
       # - uses: actions/setup-node@v4
       #   with:
       #     node-version: '20'
@@ -31,7 +31,7 @@ jobs:
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          # Якщо є папка білду (напр. "dist" або "build") — вкажи її тут
+          # Якщо у тебе є папка "dist" або "build", вкажи її тут
           path: .
 
   deploy:
@@ -42,4 +42,4 @@ jobs:
     needs: build
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4 
+        uses: actions/deploy-pages@v4
