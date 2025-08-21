@@ -9,5 +9,13 @@ nav:
       - Overview: research/index.md
   - Playbooks:
       - Overview: playbooks/index.md
+  - PoDija:
+      - Overview: podija/index.md
+  - Malya:
+      - Overview: malya/index.md
+  - Nastrij:
+      - Overview: nastrij/index.md
+  - Ci:
+      - Overview: ci/index.md
 theme:
   name: material
