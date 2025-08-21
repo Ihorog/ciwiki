@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"No tests yet\""
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.5",
+    "jest": "^30.0.5",
     "typescript": "^5.7.3"
   }
 }
