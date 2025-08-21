@@ -1,5 +1,5 @@
-﻿site_name: Cimeika Knowledge
-site_url: https://example.org/
+site_name: Cimeika Knowledge
+site_url: https://www.cimeika.com.ua/
 nav:
   - Home: index.md
   - CiWiki: ciwiki.md
@@ -19,3 +19,5 @@ nav:
       - Overview: ci/index.md
 theme:
   name: material
+  logo: media/logo/ci_logo.svg
+  favicon: media/logo/favicon.png
