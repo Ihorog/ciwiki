@@ -24,6 +24,12 @@ jobs:
     - name: Install dependencies
       run: |
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install pyyaml
+
+    - name: Run docs tests
+      run: |
+        python scripts/lint_frontmatter.py
+        python scripts/validate_media_links.py
 
     - name: Run tests
       run: npm test
