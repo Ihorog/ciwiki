@@ -1,3 +1,4 @@
+codex/document-ciwiki-installation-and-usage-instructions
 # CiWiki
 
 CiWiki is the knowledge base for the Cimeika ecosystem—an interactive platform for organizing time, creativity, emotional state and communication.
