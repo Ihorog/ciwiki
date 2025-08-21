@@ -1,4 +1,3 @@
-codex/document-ciwiki-installation-and-usage-instructions
 # CiWiki
 
 CiWiki is the knowledge base for the Cimeika ecosystem—an interactive platform for organizing time, creativity, emotional state and communication.
@@ -30,7 +29,7 @@ CiWiki is the knowledge base for the Cimeika ecosystem—an interactive platform
 
 - Documentation: see [docs/](docs/)
 - Tests: see [tests/](tests/) and execute with `npm test`
-- Deployment: GitHub Actions workflow in [workflows/integration.yml](workflows/integration.yml); this copies docs into the `cimeika` repository.
+- Deployment: GitHub Actions workflow in [.github/workflows/integration.yml](.github/workflows/integration.yml); this copies docs into the `cimeika` repository.
 
 ## Project Structure
 
@@ -38,7 +37,7 @@ CiWiki is the knowledge base for the Cimeika ecosystem—an interactive platform
 .
 ├── docs/         # Documentation markdown sources
 ├── tests/        # Jest test suite
-├── workflows/    # CI/CD configuration
+├── .github/workflows/    # CI/CD configuration
 ├── mkdocs.yml    # MkDocs configuration
 ├── package.json  # Node.js project metadata
 └── README.md
