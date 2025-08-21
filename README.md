@@ -36,10 +36,10 @@ CiWiki is the knowledge base for the Cimeika ecosystem—an interactive platform
 
 ```
 .
-├── docs/               # Documentation markdown sources
-├── tests/              # Jest test suite
-├── workflows/          # CI/CD configuration
-├── mkdocs.yml          # MkDocs configuration
-├── package.json        # Node.js project metadata
+├── docs/         # Documentation markdown sources
+├── tests/        # Jest test suite
+├── workflows/    # CI/CD configuration
+├── mkdocs.yml    # MkDocs configuration
+├── package.json  # Node.js project metadata
 └── README.md
 ```
