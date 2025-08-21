@@ -1,10 +1,10 @@
 ---
 id: concepts
 title: "Concepts (Концепції)"
-tags: []
+tags: [concepts, cimeika, core-concepts]
 updated: 2025-08-21
 summary: Overview of core concepts for Cimeika.
-cover: ''
+cover: /media/concepts/cover.jpg
 ---
 # Concepts (Концепції)
 

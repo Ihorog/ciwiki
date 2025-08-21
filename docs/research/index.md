@@ -1,10 +1,10 @@
 ---
 id: research
 title: "Research (Дослідження)"
-tags: []
+tags: [research]
 updated: 2025-08-21
 summary: Research notes and documentation.
-cover: ''
+cover: /media/research/cover.jpg
 ---
 # Research (Дослідження)
 

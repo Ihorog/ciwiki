@@ -4,6 +4,7 @@ title: "Легенди"
 tags: []
 updated: 2025-08-21
 summary: "Збірка легенд у Всесвіті Cimeika."
+codex/create-knowledge-index-builder-script
 ---
 
 # 🧙‍♂️ Легенди
