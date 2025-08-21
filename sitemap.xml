@@ -9,6 +9,10 @@
          <lastmod>2025-08-21</lastmod>
     </url>
     <url>
+         <loc>https://example.org/ci/</loc>
+         <lastmod>2025-08-21</lastmod>
+    </url>
+    <url>
          <loc>https://example.org/concepts/</loc>
          <lastmod>2025-08-21</lastmod>
     </url>
@@ -21,7 +25,19 @@
          <lastmod>2025-08-21</lastmod>
     </url>
     <url>
+         <loc>https://example.org/malya/</loc>
+         <lastmod>2025-08-21</lastmod>
+    </url>
+    <url>
+         <loc>https://example.org/nastrij/</loc>
+         <lastmod>2025-08-21</lastmod>
+    </url>
+    <url>
          <loc>https://example.org/playbooks/</loc>
+         <lastmod>2025-08-21</lastmod>
+    </url>
+    <url>
+         <loc>https://example.org/podija/</loc>
          <lastmod>2025-08-21</lastmod>
     </url>
     <url>
