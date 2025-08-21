@@ -30,7 +30,7 @@ CiWiki is the knowledge base for the Cimeika ecosystem—an interactive platform
 
 - Documentation: see [docs/](docs/)
 - Tests: see [tests/](tests/) and execute with `npm test`
-- Deployment: GitHub Actions workflow in [workflows/integration.yml](workflows/integration.yml); publish docs with `mkdocs gh-deploy`
+- Deployment: GitHub Actions workflow in [workflows/integration.yml](workflows/integration.yml); this copies docs into the `cimeika` repository.
 
 ## Project Structure
 
