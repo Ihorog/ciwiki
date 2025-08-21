@@ -2,6 +2,7 @@
 site_url: https://example.org/
 nav:
   - Home: index.md
+  - CiWiki: ciwiki.md
   - Concepts:
       - Overview: concepts/index.md
   - Research:
