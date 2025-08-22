@@ -1,5 +1,3 @@
----awk 'BEGIN{p=1} /^---[[:space:]]*$/{c++} c<2 && p{print} c==1 && /^---[[:space:]]*$/{p=0; exit}' docs/kazkar/legends/index.md >/dev/null 2>&1 || true
-cat > docs/kazkar/legends/index.md <<'MD'
 ---
 id: kazkar-legends
 title: "Легенди"
