@@ -4,13 +4,10 @@ theme:
 plugins:
   - search
   - minify
-
 markdown_extensions:
   - admonition
   - toc
-
 strict: true
-
 nav:
   - Головна: index.md
   - Ci: ci/index.md
