@@ -1,13 +1,16 @@
 site_name: CiWiki
+site_url: https://www.cimeika.com.ua/
 theme:
   name: material
+  logo: media/logo/ci_logo.svg
+  favicon: media/logo/favicon.png
 nav:
-  - Головна: docs/index.md
-  - Концепти: docs/concepts/index.md
-  - Казкар: docs/kazkar/index.md
-  - Ігрові легенди: docs/kazkar/legends/index.md
-  - Плейбуки: docs/playbooks/index.md
-  - Дослідження: docs/research/index.md
-  - Nastrij: docs/nastrij/index.md
-  - Malya: docs/malya/index.md
-  - Podija: docs/podija/index.md
+  - Головна: index.md
+  - Концепти: concepts/index.md
+  - Казкар: kazkar/index.md
+  - Ігрові легенди: kazkar/legends/index.md
+  - Плейбуки: playbooks/index.md
+  - Дослідження: research/index.md
+  - Nastrij: nastrij/index.md
+  - Malya: malya/index.md
+  - Podija: podija/index.md
