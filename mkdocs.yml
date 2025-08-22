@@ -1,14 +1,13 @@
 site_name: CiWiki
 theme:
   name: material
-
 nav:
-  - Головна: index.md
-  - Концепти: concepts/index.md
-  - Казкар:
-      - Огляд: kazkar/index.md
-      - Легенди: kazkar/legends/index.md
-  - Playbooks: playbooks/index.md
-  - Research: research/index.md
-  - Події: podija/index.md
-  - Ci: ci/index.md
+  - Головна: docs/index.md
+  - Концепти: docs/concepts/index.md
+  - Казкар: docs/kazkar/index.md
+  - Ігрові легенди: docs/kazkar/legends/index.md
+  - Плейбуки: docs/playbooks/index.md
+  - Дослідження: docs/research/index.md
+  - Nastrij: docs/nastrij/index.md
+  - Malya: docs/malya/index.md
+  - Podija: docs/podija/index.md
