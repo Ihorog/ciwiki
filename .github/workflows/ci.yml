@@ -17,23 +17,19 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: pip
 
-      - name: Install dependencies (if any)
-        run: |
-          if [ -f requirements.txt ]; then
-            python -m pip install --upgrade pip
-            pip install -r requirements.txt
-          fi
+      # Цей крок видалено, бо немає requirements.txt
+      # - name: Install dependencies
+      #   run: |
+      #     if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Run tests
         run: |
           echo "Running tests..."
-          # put your test commands here, e.g.:
-          # pytest -q
+          # pytest -q  (додаси пізніше якщо зʼявляться тести)
 
   security:
-    name: CodeQL (JS + conditional PY)
+    name: CodeQL (JS + optional PY)
     runs-on: ubuntu-latest
     permissions:
       security-events: write
@@ -46,26 +42,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Skip Python analysis if there is no Python code
-      - name: Decide if Python is present
-        id: pycheck
-        run: |
-          if [ -n "$(git ls-files '*.py')" ]; then
-            echo "has_py=true" >> $GITHUB_OUTPUT
-          else
-            echo "has_py=false" >> $GITHUB_OUTPUT
-          fi
-
       - name: Initialize CodeQL
-        if: ${{ matrix.language != 'python' || steps.pycheck.outputs.has_py == 'true' }}
         uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
 
-      - name: Autobuild (for JS/TS; Python usually N/A)
-        if: ${{ matrix.language != 'python' || steps.pycheck.outputs.has_py == 'true' }}
+      - name: Autobuild
         uses: github/codeql-action/autobuild@v3
 
-      - name: Perform CodeQL Analysis
-        if: ${{ matrix.language != 'python' || steps.pycheck.outputs.has_py == 'true' }}
+      - name: Analyze
         uses: github/codeql-action/analyze@v3
