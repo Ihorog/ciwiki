@@ -21,16 +21,19 @@ jobs:
       - name: Run tests
         run: |
           echo "Running tests..."
-          # pytest -q  (додаси пізніше якщо зʼявляться тести)
+          # pytest -q  # додаси тести пізніше
 
       - name: Generate knowledge index
         run: |
           python - <<'PY'
           import json, re, subprocess
           from pathlib import Path
-          docs = Path("docs"); out = Path("docs/assets/knowledge.index.json")
+
+          docs = Path("docs")
+          out = Path("docs/assets/knowledge.index.json")
           out.parent.mkdir(parents=True, exist_ok=True)
-          def last_commit_date(p):
+
+          def last_commit_date(p: Path):
               try:
                   return subprocess.check_output(
                       ["git","log","-1","--format=%cs","--",str(p)],
@@ -38,17 +41,19 @@ jobs:
                   ).strip() or None
               except Exception:
                   return None
-          items=[]
+
+          items = []
           for p in sorted(docs.rglob("*.md")):
-              text=p.read_text(encoding="utf-8",errors="ignore")
-              m=re.search(r'^\s*#\s+(.+?)\s*$', text, flags=re.MULTILINE)
-              title=m.group(1).strip() if m else p.stem.replace("-", " ").title()
+              text = p.read_text(encoding="utf-8", errors="ignore")
+              m = re.search(r'^\s*#\s+(.+?)\s*$', text, flags=re.MULTILINE)
+              title = m.group(1).strip() if m else p.stem.replace("-", " ").title()
               items.append({
                   "path": str(p.relative_to(docs)).replace("\\","/"),
                   "title": title,
                   "tags": [],
                   "updated": last_commit_date(p)
               })
+
           out.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
           print(f"[ok] {out} -> {len(items)} items")
           PY
