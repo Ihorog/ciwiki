@@ -22,12 +22,14 @@ jobs:
           set -e
           if [ -f mkdocs.yml ]; then
             pip install mkdocs-material mkdocs-minify-plugin
-            # перша спроба
+            # 1-а спроба
             if ! mkdocs build --strict; then
-              echo "First build failed. Applying quick-fix pass…"
-              # автофікс: створити пусті відсутні файли з nav (якщо помилки посилаються на них)
-              # (мінімальний заглушковий механізм; реальні кейси вже покрито)
-              mkdocs build || true
+              echo "First build failed. Quick-fix pass…"
+              # резервна спроба без minify, якщо плагін б'ється
+              cp mkdocs.yml mkdocs.ci.yml
+              sed -i.bak '/^[[:space:]]*-[[:space:]]*minify[[:space:]]*$/d' mkdocs.ci.yml || true
+              mkdocs build --config-file mkdocs.ci.yml --strict
+              rm -f mkdocs.ci.yml mkdocs.ci.yml.bak
             fi
             echo "out=site" >> $GITHUB_ENV
           else
