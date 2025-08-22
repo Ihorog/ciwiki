@@ -1,4 +1,3 @@
-cat > scripts/build_knowledge_index.py << 'PY'
 #!/usr/bin/env python3
 import sys, os, json, re, io
 from pathlib import Path
@@ -75,8 +74,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-PY
 
-git add scripts/build_knowledge_index.py
-git commit -m "build: make knowledge index tolerant to malformed YAML frontmatter"
-git push
