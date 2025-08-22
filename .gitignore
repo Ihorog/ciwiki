@@ -1,2 +1,11 @@
 node_modules
 dist
+sdfghj/
+site/
+.vscode/
+cd/
+curl/
+git/
+python/
+*.DS_Store
+Thumbs.db
