@@ -16,11 +16,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-      cache: "pip"
           python-version: '3.11'
+          cache: 'pip'
 
       - name: Run tests
         run: |
@@ -36,16 +36,23 @@ jobs:
           out.parent.mkdir(parents=True, exist_ok=True)
           def last_commit_date(p):
               try:
-                  return subprocess.check_output(["git","log","-1","--format=%cs","--",str(p)], text=True).strip() or None
+                  return subprocess.check_output(
+                      ["git","log","-1","--format=%cs","--",str(p)],
+                      text=True
+                  ).strip() or None
               except Exception:
                   return None
-          items=[]
+          items = []
           for p in sorted(docs.rglob("*.md")):
-              text=p.read_text(encoding="utf-8",errors="ignore")
-              m=re.search(r'^\s*#\s+(.+?)\s*$', text, flags=re.MULTILINE)
-              title=m.group(1).strip() if m else p.stem.replace("-", " ").title()
-              items.append({"path":str(p.relative_to(docs)).replace("\\","/"),
-                            "title":title,"tags":[], "updated":last_commit_date(p)})
+              text = p.read_text(encoding="utf-8", errors="ignore")
+              m = re.search(r'^\s*#\s+(.+?)\s*$', text, flags=re.MULTILINE)
+              title = m.group(1).strip() if m else p.stem.replace("-", " ").title()
+              items.append({
+                  "path": str(p.relative_to(docs)).replace("\\","/"),
+                  "title": title,
+                  "tags": [],
+                  "updated": last_commit_date(p)
+              })
           out.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
           print(f"[ok] {out} -> {len(items)} items")
           PY
@@ -56,30 +63,29 @@ jobs:
           import json, pathlib
           p = pathlib.Path("docs/assets/knowledge.index.json")
           data = json.loads(p.read_text(encoding="utf-8"))
-          assert isinstance(data, list) and data, "index must be non-empty list"
-          for i,item in enumerate(data):
+          assert isinstance(data, list) and data, "index must be a non-empty list"
+          for i, item in enumerate(data):
               for k in ("path","title","tags","updated"):
                   assert k in item, f"missing {k} in #{i}"
-              assert isinstance(item["path"],str) and item["path"].endswith(".md")
-              assert isinstance(item["title"],str) and item["title"]
-              assert isinstance(item["tags"],list)
-          print("[ok] knowledge.index.json validated:", len(data),"items")
+              assert isinstance(item["path"], str) and item["path"].endswith(".md")
+              assert isinstance(item["title"], str) and item["title"]
+              assert isinstance(item["tags"], list)
+          print("[ok] knowledge.index.json verified:", len(data), "items")
           PY
 
   deploy:
-    if: github.event_name == "push" && github.ref == "refs/heads/main"
-    needs: build
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-      cache: "pip"
           python-version: '3.11'
+          cache: 'pip'
 
       - name: Install MkDocs
         run: |
@@ -116,6 +122,13 @@ jobs:
         uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+
+      - name: Analyze
+        uses: github/codeql-action/analyze@v3
+
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@v3
