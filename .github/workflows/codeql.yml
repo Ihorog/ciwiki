@@ -3,26 +3,46 @@ name: CodeQL
 on:
   push:
     branches: [ "main" ]
-    paths:
-      - '**/*.py'
   pull_request:
     branches: [ "main" ]
-    paths:
-      - '**/*.py'
   schedule:
-    - cron: '0 3 * * 1'  # щотижневий прогін на main (буде скіп, якщо немає .py)
+    - cron: '0 3 * * 1' # щотижневий прогін
 
 jobs:
+  precheck:
+    runs-on: ubuntu-latest
+    outputs:
+      has_code: ${{ steps.scan.outputs.has_code }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: scan
+        shell: bash
+        run: |
+          PY_COUNT=$(git ls-files '*.py' | wc -l)
+          JS_COUNT=$(git ls-files '*.js' '*.mjs' '*.cjs' '*.ts' '*.tsx' 2>/dev/null | wc -l)
+          if [ "$PY_COUNT" -gt 0 ] || [ "$JS_COUNT" -gt 0 ]; then
+            echo "has_code=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_code=false" >> "$GITHUB_OUTPUT"
+          fi
+          echo "Found: py=$PY_COUNT, js/ts=$JS_COUNT"
+
   analyze:
+    needs: precheck
+    if: needs.precheck.outputs.has_code == 'true'
     permissions:
       actions: read
       contents: read
       security-events: write
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        language: [ "python", "javascript-typescript" ]
     steps:
       - uses: actions/checkout@v4
       - uses: github/codeql-action/init@v3
         with:
-          languages: python
-      # Python не потребує build-кроку
+          languages: ${{ matrix.language }}
+      # Автобілд для js/ts; для md-only нічого не відбувається
+      - uses: github/codeql-action/autobuild@v3
       - uses: github/codeql-action/analyze@v3
