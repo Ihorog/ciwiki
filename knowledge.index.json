@@ -1,0 +1,99 @@
+[
+  {
+    "id": "ciwiki",
+    "title": "CiWiki",
+    "tags": [],
+    "updated": "2025-08-21",
+    "summary": "Overview of the Cimeika ecosystem.",
+    "path": "ciwiki.md"
+  },
+  {
+    "id": "home",
+    "title": "Cimeika Knowledge Base",
+    "tags": [],
+    "updated": "2025-08-21",
+    "summary": "Overview of the Cimeika knowledge base.",
+    "cover": "",
+    "path": "index.md"
+  },
+  {
+    "id": "research",
+    "title": "Research (Дослідження)",
+    "tags": [],
+    "updated": "2025-08-21",
+    "summary": "Research notes and documentation.",
+    "cover": "",
+    "path": "research/index.md"
+  },
+  {
+    "id": "malya",
+    "title": "Malya (Маля)",
+    "tags": [],
+    "updated": "2025-08-21",
+    "summary": "Creative space for children and adults.",
+    "cover": "",
+    "path": "malya/index.md"
+  },
+  {
+    "id": "concepts",
+    "title": "Concepts (Концепції)",
+    "tags": [],
+    "updated": "2025-08-21",
+    "summary": "Overview of core concepts for Cimeika.",
+    "cover": "",
+    "path": "concepts/index.md"
+  },
+  {
+    "id": "kazkar",
+    "title": "📚 Бібліотека Казкаря",
+    "tags": [],
+    "updated": "2025-08-21",
+    "summary": "Collection of legends, tales, songs, poems, treatises and stories in collaboration with Ci.",
+    "cover": "",
+    "path": "kazkar/index.md"
+  },
+  {
+    "id": "ci",
+    "title": "Ci (Центральний Інтелектуальний асистент)",
+    "tags": [],
+    "updated": "2025-08-21",
+    "summary": "Central assistant coordinating platform features.",
+    "cover": "",
+    "path": "ci/index.md"
+  },
+  {
+    "id": "podija",
+    "title": "PoDija (ПоДія)",
+    "tags": [],
+    "updated": "2025-08-21",
+    "summary": "Tool for organizing events and tasks.",
+    "cover": "",
+    "path": "podija/index.md"
+  },
+  {
+    "id": "playbooks",
+    "title": "Playbooks (Процедури)",
+    "tags": [],
+    "updated": "2025-08-21",
+    "summary": "Operational procedures and playbooks.",
+    "cover": "",
+    "path": "playbooks/index.md"
+  },
+  {
+    "id": "nastrij",
+    "title": "Nastrij (Настрій)",
+    "tags": [],
+    "updated": "2025-08-21",
+    "summary": "Support for emotional well-being and mood tracking.",
+    "cover": "",
+    "path": "nastrij/index.md"
+  },
+  {
+    "id": "kazkar-legends",
+    "title": "Легенди",
+    "tags": [],
+    "updated": "2025-08-21",
+    "summary": "Збірка легенд у Всесвіті Cimeika.",
+    "path": "kazkar/legends/index.md"
+  }
+]

@@ -1,12 +1,9 @@
 site_name: Cimeika
-
 theme:
   name: material
   language: uk
-
 plugins:
   - search
-
 nav:
   - Ci: ci/index.md
   - ПоДія: podija/index.md
