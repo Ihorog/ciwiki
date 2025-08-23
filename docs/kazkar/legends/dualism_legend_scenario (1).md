@@ -1,6 +1,13 @@
-# Легенда Ci
-
 ---
+id: legend-ci
+title: "Легенда Ci"
+summary: "Філософська легенда про дуальність у Всесвіті Cimeika."
+updated: 2025-08-21
+tags: [kazkar, legend]
+cover: /media/kazkar/legend-ci-cover.jpg
+---
+
+# Легенда Ci
 
 ## 1. Початок у тиші
 

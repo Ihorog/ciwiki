@@ -1,3 +1,12 @@
+---
+id: obraz-kazkarya
+title: "Образ Казкаря"
+summary: "Опис образу Казкаря як прояву Ci."
+updated: 2025-08-21
+tags: [kazkar, legend]
+cover: /media/kazkar/obraz-kazkarya-cover.jpg
+---
+
 # Образ Казкаря (як Ci)
 
 ## 1. Сутність

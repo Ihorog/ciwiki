@@ -1,9 +1,10 @@
 ---
 id: ciwiki
 title: CiWiki
-tags: []
+tags: [ciwiki]
 updated: 2025-08-21
 summary: Overview of the Cimeika ecosystem.
+cover: /media/ciwiki/cover.jpg
 ---
 
 # CiWiki

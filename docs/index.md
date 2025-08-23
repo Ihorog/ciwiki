@@ -1,10 +1,10 @@
 ---
 id: home
 title: Cimeika Knowledge Base
-tags: []
+tags: [cimeika]
 updated: 2025-08-21
 summary: Overview of the Cimeika knowledge base.
-cover: ''
+cover: /media/home/cover.jpg
 ---
 # Cimeika Knowledge Base
 

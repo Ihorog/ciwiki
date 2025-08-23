@@ -1,10 +1,10 @@
 ---
 id: kazkar-legends
 title: "Легенди"
-tags: []
+tags: [kazkar, legends]
 updated: 2025-08-21
 summary: "Збірка легенд у Всесвіті Cimeika."
-codex/create-knowledge-index-builder-script
+cover: /media/kazkar/legends/cover.jpg
 ---
 
 # 🧙‍♂️ Легенди
