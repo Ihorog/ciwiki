@@ -1,21 +1,96 @@
 :root {
-  --ci-navy: #0B2340;
-  --ci-azure: #1FA4FF;
-  --ci-sky: #87D3FF;
-  --ci-gold: #FFC34D;
-  --ci-amber: #FFA72B;
-  --ci-cream: #FFE6B3;
-  --ci-graphite: #1F2937;
-  --ci-silver: #94A3B8;
+  --ci-navy:#0B2340;
+  --ci-azure:#1FA4FF;
+  --ci-sky:#87D3FF;
+  --ci-gold:#FFC34D;
+  --ci-amber:#FFA72B;
+  --ci-cream:#FFE6B3;
+  --ci-graphite:#1F2937;
+  --ci-silver:#94A3B8;
+  --ci-grad: linear-gradient(35deg,#87D3FF 0%,#1FA4FF 40%,#FFC34D 100%);
 }
 
-/* Apply color scheme to header and nav */
-.md-header {
+/* Header and nav */
+.md-header, .md-tabs {
   background-color: var(--ci-navy);
 }
-.md-header__title, .md-header .md-header__title, .md-nav__item--active > a {
-  color: var(--ci-cream) !important;
+.md-header__title, .md-tabs__link, .md-nav__link {
+  color: var(--ci-cream);
 }
-.md-nav__link:hover {
-  color: var(--ci-gold) !important;
+.md-nav__link--active, .md-tabs__link--active {
+  color: var(--ci-gold);
+}
+
+/* Content */
+.md-content {
+  color: var(--ci-graphite);
+}
+.md-typeset a {
+  color: var(--ci-azure);
+}
+.md-typeset a:hover {
+  color: var(--ci-gold);
+}
+
+/* Cards */
+.ci-card {
+  border: 1px solid rgba(15,23,42,.12);
+  border-radius: 14px;
+  padding: 16px;
+  text-decoration: none;
+  display: block;
+  background: #fff;
+}
+.ci-card:hover {
+  box-shadow: 0 10px 28px rgba(0,0,0,.08);
+}
+
+/* Buttons */
+.ci-btn {
+  background: var(--ci-grad);
+  color: #0B2340;
+  border-radius: 16px;
+  padding: 10px 16px;
+  box-shadow: 0 6px 18px rgba(31,164,255,.25);
+}
+.ci-btn:focus {
+  outline: 2px solid var(--ci-sky);
+  outline-offset: 2px;
+}
+
+/* Hero section */
+.ci-hero {
+  background:
+    radial-gradient(80% 120% at 70% 30%, rgba(31,164,255,.15), transparent),
+    var(--ci-navy);
+  color: var(--ci-cream);
+  border-radius: 18px;
+  padding: 28px;
+}
+
+/* Floating Action Button */
+.ci-fab {
+  position: fixed;
+  bottom: 20px;
+  right: 24px;
+  z-index: 99;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  border: 0;
+  background: var(--ci-grad);
+  box-shadow: 0 12px 28px rgba(0,0,0,.25);
+}
+.ci-fab:focus {
+  outline: 2px solid var(--ci-sky);
+  outline-offset: 2px;
+}
+.ci-fab:hover {
+  filter: brightness(1.08);
+}
+
+/* Accessibility */
+*:focus-visible {
+  outline: 2px solid var(--ci-sky);
+  outline-offset: 2px;
 }
