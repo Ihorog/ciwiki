@@ -1,3 +1,9 @@
+---
+title: "Cimeika — Головна"
+tags: [cimeika, docs, index]
+cover: assets/covers/home.jpg
+description: "Інтерактивна бібліотека знань Cimeika"
+---
 # Cimeika
 Ласкаво просимо до **Cimeika** — інтерактивної екосистеми сенсів, подій і сімейної взаємодії.
 
