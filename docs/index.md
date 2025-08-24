@@ -1,10 +1,9 @@
----
-id: home
-title: Cimeika Knowledge Base
-tags: []
-updated: 2025-08-21
-summary: Overview of the Cimeika knowledge base.
-cover: ''
----
-# Cimeika Knowledge Base
+# Cimeika
+Ласкаво просимо до **Cimeika** — інтерактивної екосистеми сенсів, подій і сімейної взаємодії.
 
+- Kazkar → описи, легенди, міфи
+- Podija → події та часові вузли
+- Nastrij → настрій і резонансні стани
+- Malya → творчість дітей
+- Gallery → візуальні історії
+- Calendar → календар сім'ї

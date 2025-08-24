@@ -1,9 +1,2 @@
-sdfghj/
-site/
-.vscode/
-cd/
-curl/
-git/
-python/
-*.DS_Store
-Thumbs.db
+# editor/backup artifacts
+*.ba
