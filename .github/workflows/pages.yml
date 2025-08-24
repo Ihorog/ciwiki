@@ -1,0 +1,54 @@
+name: Pages
+on:
+  push:
+    branches: [ main ]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install mkdocs mkdocs-material mkdocs-minify-plugin pyyaml
+      - name: Build MkDocs
+        run: |
+          set -e
+          if [ -f mkdocs.yml ]; then
+            if ! mkdocs build --strict; then
+              echo "First build failed. Retrying without minify…"
+              cp mkdocs.yml mkdocs.ci.yml
+              sed -i.bak '/^[[:space:]]*-[[:space:]]*minify[[:space:]]*$/d' mkdocs.ci.yml || true
+              mkdocs build --config-file mkdocs.ci.yml --strict
+              rm -f mkdocs.ci.yml mkdocs.ci.yml.bak
+            fi
+            echo "out=site" >> $GITHUB_ENV
+          else
+            mkdir -p site
+            echo "<h1>ciwiki</h1><p>Placeholder build</p>" > site/index.html
+            echo "out=site" >> $GITHUB_ENV
+          fi
+      - uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.out }}
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

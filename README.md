@@ -1,16 +1,16 @@
-# CiWiki
+# Cimeika Nav Pack
 
-[![CI](https://github.com/Ihorog/ciwiki/actions/workflows/ci.yml/badge.svg)](https://github.com/Ihorog/ciwiki/actions/workflows/ci.yml)
+Призначення: застосувати 7 розділів головного меню і повну структуру «Легенда CI» у розділі Казкар.
 
-- Прод: https://ihorog.github.io/ciwiki/
-- Індекс знань: https://ihorog.github.io/ciwiki/assets/knowledge.index.json
+## Вміст
+- `mkdocs.yml` — готова конфігурація навігації.
+- `apply_cimeika_nav.sh` — Git Bash-скрипт, що створює гілку, додає заглушки і замінює mkdocs.yml.
 
-
-# CiWiki
-
-[![CI](https://github.com/Ihorog/ciwiki/actions/workflows/ci.yml/badge.svg)](https://github.com/Ihorog/ciwiki/actions/workflows/ci.yml)
-**Prod:** https://ihorog.github.io/ciwiki/
-
-- Knowledge index: `/assets/knowledge.index.json`
-- Stack: MkDocs + Material, GitHub Pages, CodeQL
-
+## Як використати (Windows, Git Bash)
+```bash
+cd /c/Users/simei/ciwiki
+# Розпакуйте архів сюди (у корінь репозиторію)
+chmod +x ./apply_cimeika_nav.sh
+./apply_cimeika_nav.sh
+```
+Потім створіть Pull Request з гілки `content/cimeika-7-sections`.
