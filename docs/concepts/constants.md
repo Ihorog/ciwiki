@@ -1,4 +1,36 @@
+---
+title: Константи
+description: Базові сталі Cimeika (+, -, 0, 1, =, ×, §) — еталон маркування та сенсової логіки.
+tags:
+  - core
+  - concepts
+  - constants
+  - ci-marker
+---
 
+# Константи
+
+!!! abstract "Що це таке?"
+    Цей документ — **еталонне джерело сталих** системи **Cimeika**.  
+    Використовується усіма модулями (Ci, Казкар, ПоДія, Настрій, Маля) як **якірні символи** для маркування, логіки й навігації.
+
+???+ info "Швидкі переходи"
+    - ⟵ **Головна Cimeika:** [/ciwiki/](https://ihorog.github.io/ciwiki/)
+    - 🧭 **Концепти (огляд):** [/ciwiki/concepts/](https://ihorog.github.io/ciwiki/concepts/)
+    - 🧩 **Ci (ядро):** [/ciwiki/ci/](https://ihorog.github.io/ciwiki/ci/)
+    - 🗂 **Проєкт:** [/ciwiki/project/](https://ihorog.github.io/ciwiki/project/)
+    - 🏷 **Маркер-система:** [/ciwiki/marker/](https://ihorog.github.io/ciwiki/marker/)
+    - 🗓 **Календар:** [/ciwiki/calendar/](https://ihorog.github.io/ciwiki/calendar/)
+    - 🖼 **Галерея:** [/ciwiki/gallery/](https://ihorog.github.io/ciwiki/gallery/)
+
+??? note "Як посилатись сюди з інших сторінок"
+    Використовуй **абсолютний шлях** у межах GitHub Pages:
+    ```markdown
+    Див. **Концепти → [Константи](https://ihorog.github.io/ciwiki/concepts/constants/)**.
+    ```
+    > Абсолютні URL стабільно працюють з меню та індексацією.
+
+---
 ---
 
 cimeika_manifest: version: "1.0" uid: "ci-const-001" date: "2025-08-24" type: "base-const" description: "Cimeika Base Structure: Ci + Kazkar + PoDija + Nastrij + Malya + Gallery + Calendar + SEO" links: repo: "https://github.com/Ihorog/ciwiki" site: "https://cimeika.com.ua" anchors: ci: "#ci-center" kazkar: "#kazkar-earth" podiya: "#podiya-fire" nastrij: "#nastrij-water" malya: "#malya-air" gallery: "#gallery" calendar: "#calendar" seo_matrix_ref: "seo-matrix-7x7" status: "immutable"
