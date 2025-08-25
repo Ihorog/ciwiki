@@ -1,25 +1,12 @@
-site_name: ciwiki
+﻿site_name: Cimeika Knowledge
+site_url: https://example.org/
+nav:
+  - Home: docs/index.md
+  - Concepts:
+      - Overview: docs/concepts/index.md
+  - Research:
+      - Overview: docs/research/index.md
+  - Playbooks:
+      - Overview: docs/playbooks/index.md
 theme:
   name: material
-  logo: assets/logo.svg
-plugins:
-  - search
-  - minify
-markdown_extensions:
-  - admonition
-  - toc
-strict: true
-
-nav:
-  - Ci: ci/index.md
-  - Казкар:
-      - Легенда CI: kazkar/legend.md
-  - ПоДія: podiya/index.md
-  - Настрій: nastrij/index.md
-  - Маля: malya/index.md
-  - Галерея: gallery/index.md
-  - Календар: calendar/index.md
-  - Концепти:
-      - Константи: concepts/constants.md
-extra_css:
-  - assets/extra.css
