@@ -1,0 +1,21 @@
+:root {
+  --ci-navy: #0B2340;
+  --ci-azure: #1FA4FF;
+  --ci-sky: #87D3FF;
+  --ci-gold: #FFC34D;
+  --ci-amber: #FFA72B;
+  --ci-cream: #FFE6B3;
+  --ci-graphite: #1F2937;
+  --ci-silver: #94A3B8;
+}
+
+/* Apply color scheme to header and nav */
+.md-header {
+  background-color: var(--ci-navy);
+}
+.md-header__title, .md-header .md-header__title, .md-nav__item--active > a {
+  color: var(--ci-cream) !important;
+}
+.md-nav__link:hover {
+  color: var(--ci-gold) !important;
+}
