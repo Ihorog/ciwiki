@@ -1,14 +1,13 @@
 {
   "name": "cimeika",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "test": "jest"
+    "test": "echo \"No tests yet\""
   },
   "keywords": [],
   "author": "",
-  "license": "MIT",
+  "license": "ISC",
   "description": "",
   "dependencies": {
     "axios": "^1.7.9",
@@ -25,9 +24,6 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.5",
-    "jest": "^30.0.5",
-    "ts-jest": "^29.4.1",
-    "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   }
 }
