@@ -1,0 +1,101 @@
+name: ciwiki • full pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  security-events: write
+
+concurrency:
+  group: ciwiki-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Build site (placeholder if no mkdocs.yml)
+        run: |
+          if [ -f mkdocs.yml ]; then
+            pip install mkdocs-material mkdocs-minify-plugin
+            mkdocs build --strict
+            echo "out=site" >> $GITHUB_ENV
+          else
+            mkdir -p site
+            echo "<h1>ciwiki</h1><p>Placeholder build</p>" > site/index.html
+            echo "out=site" >> $GITHUB_ENV
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.out }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Smoke test
+        env:
+          URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          echo "Deployed: $URL"
+          for i in 1 2 3 4 5; do
+            code=$(curl -Is -m 10 "$URL" | head -n1 | awk '{print $2}')
+            if [ "$code" = "200" ]; then echo "OK 200"; exit 0; fi
+            echo "Attempt $i: got $code; retry..."; sleep 3
+          done
+          echo "::error::Smoke test failed"; exit 1
+
+  security:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Has Python?
+        id: py
+        run: |
+          if [ -n "$(git ls-files '*.py')" ]; then
+            echo "has=true" >> $GITHUB_OUTPUT
+          else
+            echo "has=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript${{ steps.py.outputs.has == 'true' && ',python' || '' }}
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+
+      - name: Analyze
+        uses: github/codeql-action/analyze@v3

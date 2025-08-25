@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Легенда ci ✨</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Thematic Palettes per Section -->
+    <!-- Application Structure Plan: A multi-page application simulated within a single HTML file. The main view is a tile-based menu representing the 7 components. Clicking a tile hides the menu and reveals a full-screen 'page' dedicated to that component. Each page has a unique, thematic color scheme and visual elements (e.g., dark/glowing for 'Source', high-contrast for 'Division', earthy for 'Matter'). This structure provides a more immersive, focused, and visually distinct experience for each philosophical concept, enhancing user engagement and memory. -->
+    <!-- Visualization & Content Choices: The core visualizations (Canvas animations, Chart.js) are retained but are now placed within their thematic page containers. The visual design of each page (colors, backgrounds, typography) is now a primary method of conveying the theme of the content, reinforcing the information architecture. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: #FDFBF8; color: #403A35; }
+        .page { display: none; animation: pageFadeIn 0.8s ease-in-out; }
+        .page.active { display: block; }
+        @keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .tile { transition: all 0.3s ease-in-out; }
+        .tile:hover { transform: translateY(-10px) scale(1.03); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .back-button { transition: all 0.2s ease; }
+        .back-button:hover { background-color: rgba(255,255,255,0.2); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Головне меню (Плитки) -->
+    <div id="home-page" class="page active">
+        <header class="text-center py-16 px-4">
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-stone-800">✨ Легенда ci ✨</h1>
+            <p class="mt-6 max-w-3xl mx-auto text-lg text-stone-600">
+                Архітектура Єдиного. Сім компонентів, сім шляхів до розуміння. Оберіть свій шлях, щоб почати подорож.
+            </p>
+        </header>
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Плитка 1 -->
+                <div class="tile cursor-pointer bg-gray-900 text-white p-8 rounded-2xl shadow-lg h-80 flex flex-col justify-between" data-page="page1">
+                    <div>
+                        <div class="text-5xl font-bold text-gray-500">1</div>
+                        <h2 class="text-3xl font-bold mt-4">Першоджерело</h2>
+                    </div>
+                    <p class="text-gray-400">Єдність до Початку. Квантовий вакуум, Хаос, Уцзі.</p>
+                </div>
+                <!-- Плитка 2 -->
+                <div class="tile cursor-pointer bg-gradient-to-br from-stone-200 to-stone-50 text-black p-8 rounded-2xl shadow-lg h-80 flex flex-col justify-between" data-page="page2">
+                    <div>
+                        <div class="text-5xl font-bold text-amber-700">2</div>
+                        <h2 class="text-3xl font-bold mt-4">Перший Поділ</h2>
+                    </div>
+                    <p class="text-stone-600">Народження Двох. Великий Вибух, мітоз, Інь та Ян.</p>
+                </div>
+                <!-- Плитка 3 -->
+                <div class="tile cursor-pointer bg-green-900 text-white p-8 rounded-2xl shadow-lg h-80 flex flex-col justify-between" data-page="page3">
+                    <div>
+                        <div class="text-5xl font-bold text-green-400">3</div>
+                        <h2 class="text-3xl font-bold mt-4">Дзеркало Матерії</h2>
+                    </div>
+                    <p class="text-green-200">Світ фізичних форм. Симетрія, Сонце-Місяць, Вогонь-Вода.</p>
+                </div>
+                <!-- Плитка 4 -->
+                <div class="tile cursor-pointer bg-blue-900 text-white p-8 rounded-2xl shadow-lg h-80 flex flex-col justify-between" data-page="page4">
+                    <div>
+                        <div class="text-5xl font-bold text-blue-400">4</div>
+                        <h2 class="text-3xl font-bold mt-4">Дзеркало Свідомості</h2>
+                    </div>
+                    <p class="text-blue-200">Внутрішній космос. Півкулі мозку, логіка та інтуїція.</p>
+                </div>
+                <!-- Плитка 5 -->
+                <div class="tile cursor-pointer bg-red-900 text-white p-8 rounded-2xl shadow-lg h-80 flex flex-col justify-between" data-page="page5">
+                    <div>
+                        <div class="text-5xl font-bold text-red-400">5</div>
+                        <h2 class="text-3xl font-bold mt-4">Танець Протилежностей</h2>
+                    </div>
+                    <p class="text-red-200">Динаміка взаємодії. Порядок-Хаос, Добро-Зло, архетипи Юнга.</p>
+                </div>
+                <!-- Плитка 6 -->
+                <div class="tile cursor-pointer bg-amber-600 text-white p-8 rounded-2xl shadow-lg h-80 flex flex-col justify-between" data-page="page6">
+                    <div>
+                        <div class="text-5xl font-bold text-amber-200">6</div>
+                        <h2 class="text-3xl font-bold mt-4">Мости Єдності</h2>
+                    </div>
+                    <p class="text-amber-100">Символи інтеграції. Інь-Ян, Хрест, Rebis.</p>
+                </div>
+                <!-- Плитка 7 -->
+                <div class="tile cursor-pointer bg-white text-black p-8 rounded-2xl shadow-lg h-80 flex flex-col justify-between border" data-page="page7">
+                    <div>
+                        <div class="text-5xl font-bold text-teal-600">7</div>
+                        <h2 class="text-3xl font-bold mt-4">Прояв Ci</h2>
+                    </div>
+                    <p class="text-stone-600">Акт свідомого творення. Намір, вибір, дія.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Сторінка Компонента 1 -->
+    <div id="page1" class="page bg-gray-900 text-gray-300 min-h-screen">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <button class="back-button text-white font-bold py-2 px-4 rounded-lg mb-8 border border-gray-600">← Назад до меню</button>
+            <h1 class="text-5xl font-bold text-white">[ 1 ] Першоджерело</h1>
+            <p class="mt-4 text-lg text-gray-400">Дослідження стану первісної тиші, потенціалу, з якого все виникає.</p>
+            <div class="mt-12 space-y-8">
+                <h3 class="text-2xl font-bold text-white">🔬 Квантовий вакуум</h3>
+                <canvas id="quantumFoam" class="w-full h-80 rounded-lg border border-gray-700"></canvas>
+                <p>Сучасна фізика описує цей стан як **квантовий вакуум**. Це не абсолютна порожнеча, а "кипляча" безодня, наповнена енергією, де постійно народжуються і зникають віртуальні пари **частинка-античастинка**.</p>
+                <h3 class="text-2xl font-bold text-white">📜 Хаос, Уцзі, Космічне Яйце</h3>
+                <p>Давні культури описували цей первісний стан мовою потужних метафор: **Уцзі** ("Безмежне") у даосизмі, **Хаос** у греків, **Космічне Яйце** у світових міфах.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Сторінка Компонента 2 -->
+    <div id="page2" class="page bg-stone-50 text-stone-800 min-h-screen">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <button class="back-button text-stone-800 font-bold py-2 px-4 rounded-lg mb-8 border border-stone-300">← Назад до меню</button>
+            <h1 class="text-5xl font-bold text-amber-800">[ 2 ] Перший Поділ</h1>
+            <p class="mt-4 text-lg text-stone-600">Аналіз акту творення через розщеплення. Єдність розколюється, даючи початок двоїстості.</p>
+            <div class="mt-12 text-center">
+                 <div id="division-container" class="relative w-64 h-64 mx-auto transition-all duration-1000 ease-in-out">
+                    <div id="unity-circle" class="absolute w-full h-full bg-stone-800 rounded-full shadow-inner"></div>
+                    <div id="yin-part" class="absolute w-1/2 h-full bg-black rounded-l-full transform origin-right" style="transition: transform 1s ease-in-out; transform: translateX(0%);"></div>
+                    <div id="yang-part" class="absolute w-1/2 h-full bg-white border border-stone-200 rounded-r-full right-0 transform origin-left" style="transition: transform 1s ease-in-out; transform: translateX(0%);"></div>
+                </div>
+                <button id="spark-button" class="mt-8 bg-amber-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-amber-700 transition">Запалити іскру</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Інші сторінки (3, 4, 5, 6, 7) будуть тут за аналогічною структурою -->
+    <div id="page3" class="page bg-green-50 text-green-900 min-h-screen">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <button class="back-button text-green-900 font-bold py-2 px-4 rounded-lg mb-8 border border-green-300">← Назад до меню</button>
+            <h1 class="text-5xl font-bold text-green-800">[ 3 ] Дзеркало Матерії</h1>
+            <p class="mt-4 text-lg text-green-700">Як дуальність проявляється у фізичному світі.</p>
+        </div>
+    </div>
+    <div id="page4" class="page bg-blue-50 text-blue-900 min-h-screen">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <button class="back-button text-blue-900 font-bold py-2 px-4 rounded-lg mb-8 border border-blue-300">← Назад до меню</button>
+            <h1 class="text-5xl font-bold text-blue-800">[ 4 ] Дзеркало Свідомості</h1>
+            <p class="mt-4 text-lg text-blue-700">Відображення двійковості у структурі розуму.</p>
+            <div class="mt-12 bg-white/50 p-6 rounded-xl">
+                 <h3 class="text-2xl font-bold text-blue-800 mb-4">Дві півкулі — одна команда</h3>
+                 <div class="chart-container relative h-96 w-full max-w-2xl mx-auto">
+                    <canvas id="brainChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="page5" class="page bg-red-900 text-red-100 min-h-screen">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <button class="back-button text-white font-bold py-2 px-4 rounded-lg mb-8 border border-red-400">← Назад до меню</button>
+            <h1 class="text-5xl font-bold text-white">[ 5 ] Танець Протилежностей</h1>
+            <p class="mt-4 text-lg text-red-200">Дослідження вічної взаємодії дуальних сил.</p>
+        </div>
+    </div>
+    <div id="page6" class="page bg-amber-50 text-amber-900 min-h-screen">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <button class="back-button text-amber-900 font-bold py-2 px-4 rounded-lg mb-8 border border-amber-300">← Назад до меню</button>
+            <h1 class="text-5xl font-bold text-amber-800">[ 6 ] Мости Єдності</h1>
+            <p class="mt-4 text-lg text-amber-700">Аналіз інструментів, створених людством для гармонізації протилежностей.</p>
+        </div>
+    </div>
+    <div id="page7" class="page bg-white text-stone-800 min-h-screen">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <button class="back-button text-stone-800 font-bold py-2 px-4 rounded-lg mb-8 border border-stone-300">← Назад до меню</button>
+            <h1 class="text-5xl font-bold text-teal-700">[ 7 ] Прояв Ci</h1>
+            <p class="mt-4 text-lg text-stone-600">Синтез усіх компонентів. Перехід від знання до дії.</p>
+            <div class="mt-12 text-center max-w-2xl mx-auto">
+                 <div class="border-t-4 border-teal-600 pt-8">
+                    <h3 class="text-3xl font-bold text-stone-800 mb-4">Сила Наміру</h3>
+                    <p class="text-stone-700 mb-6">У простому акті "Я зараз встану" прихована вся магія творення. Ви поєднуєте свій внутрішній світ (думку) із зовнішнім (дією). Це і є прояв **Ci**.</p>
+                    <div id="manifestation-result" class="text-3xl font-bold text-teal-600 h-12 transition-opacity duration-500 opacity-0"></div>
+                    <button id="manifest-button" class="mt-4 bg-teal-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-teal-800 transition text-lg">💠 Проявити Намір</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const pages = document.querySelectorAll('.page');
+            const tiles = document.querySelectorAll('.tile');
+            const backButtons = document.querySelectorAll('.back-button');
+
+            function showPage(pageId) {
+                pages.forEach(page => {
+                    if (page.id === pageId) {
+                        page.classList.add('active');
+                    } else {
+                        page.classList.remove('active');
+                    }
+                });
+                window.scrollTo(0, 0);
+            }
+
+            tiles.forEach(tile => {
+                tile.addEventListener('click', () => {
+                    const pageId = tile.dataset.page;
+                    showPage(pageId);
+                });
+            });
+
+            backButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    showPage('home-page');
+                });
+            });
+
+            // --- Canvas Animation for Page 1 ---
+            const canvas1 = document.getElementById('quantumFoam');
+            if(canvas1) {
+                const ctx1 = canvas1.getContext('2d');
+                let particles = [];
+                
+                function resizeCanvas1() {
+                    canvas1.width = canvas1.offsetWidth;
+                    canvas1.height = canvas1.offsetHeight;
+                }
+                resizeCanvas1();
+                window.addEventListener('resize', resizeCanvas1);
+
+                class Particle {
+                    constructor() {
+                        this.x = Math.random() * canvas1.width;
+                        this.y = Math.random() * canvas1.height;
+                        this.size = Math.random() * 1.5 + 0.5;
+                        this.speedX = Math.random() * 0.4 - 0.2;
+                        this.speedY = Math.random() * 0.4 - 0.2;
+                        this.opacity = Math.random() * 0.5 + 0.1;
+                    }
+                    update() {
+                        this.x += this.speedX;
+                        this.y += this.speedY;
+                        if (this.x > canvas1.width || this.x < 0) this.speedX *= -1;
+                        if (this.y > canvas1.height || this.y < 0) this.speedY *= -1;
+                    }
+                    draw() {
+                        ctx1.fillStyle = `rgba(200, 220, 220, ${this.opacity})`;
+                        ctx1.beginPath();
+                        ctx1.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                        ctx1.fill();
+                    }
+                }
+
+                function initParticles() {
+                    particles = [];
+                    for (let i = 0; i < 150; i++) {
+                        particles.push(new Particle());
+                    }
+                }
+                initParticles();
+
+                function animateQuantumFoam() {
+                    ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+                    particles.forEach(p => { p.update(); p.draw(); });
+                    requestAnimationFrame(animateQuantumFoam);
+                }
+                animateQuantumFoam();
+            }
+
+            // --- Interactive Division for Page 2 ---
+            const sparkButton = document.getElementById('spark-button');
+            const yinPart = document.getElementById('yin-part');
+            const yangPart = document.getElementById('yang-part');
+            let divided = false;
+            if(sparkButton) {
+                sparkButton.addEventListener('click', () => {
+                    if (!divided) {
+                        yinPart.style.transform = 'translateX(-50%) scale(0.95)';
+                        yangPart.style.transform = 'translateX(50%) scale(0.95)';
+                        sparkButton.textContent = 'Об\'єднати';
+                    } else {
+                        yinPart.style.transform = 'translateX(0%) scale(1)';
+                        yangPart.style.transform = 'translateX(0%) scale(1)';
+                        sparkButton.textContent = 'Запалити іскру';
+                    }
+                    divided = !divided;
+                });
+            }
+
+            // --- Chart for Page 4 ---
+            const brainCtx = document.getElementById('brainChart');
+            if(brainCtx) {
+                new Chart(brainCtx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Мова', 'Логіка', 'Аналіз', 'Образи', 'Інтуїція', 'Творчість'],
+                        datasets: [{
+                            label: 'Ліва півкуля ("Аналітик")',
+                            data: [90, 85, 80, 20, 25, 30],
+                            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }, {
+                            label: 'Права півкуля ("Поет")',
+                            data: [25, 30, 20, 90, 85, 80],
+                            backgroundColor: 'rgba(153, 102, 255, 0.6)',
+                            borderColor: 'rgba(153, 102, 255, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+                        scales: { x: { stacked: true, ticks: { color: '#1E3A8A' } }, y: { stacked: true, ticks: { color: '#1E3A8A' } } },
+                        plugins: { legend: { labels: { color: '#1E3A8A' } } }
+                    }
+                });
+            }
+            
+            // --- Manifestation for Page 7 ---
+            const manifestButton = document.getElementById('manifest-button');
+            const manifestationResult = document.getElementById('manifestation-result');
+            if(manifestButton) {
+                manifestButton.addEventListener('click', () => {
+                    manifestationResult.textContent = 'Думка стає дією...';
+                    manifestationResult.classList.remove('opacity-0');
+                    setTimeout(() => { manifestationResult.classList.add('opacity-0'); }, 2000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
