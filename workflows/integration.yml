@@ -1,0 +1,30 @@
+name: Integrate with Cimeika
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-to-cimeika:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout ciwiki repository
+      uses: actions/checkout@v3
+
+    - name: Clone cimeika repository
+      run: |
+        git clone https://github.com/Ihorog/cimeika.git
+        cd cimeika
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+
+    - name: Copy files from ciwiki
+      run: |
+        cp -r ../ciwiki/* ./docs/
+        git add .
+        git commit -m "Автоматичне оновлення з ciwiki"
+        git push https://<YOUR_TOKEN>@github.com/Ihorog/cimeika.git main
+      env:
+        YOUR_TOKEN: ${{ secrets.CIMEIKA_TOKEN }}

@@ -1,15 +1,2 @@
----
-title: "Cimeika — Головна"
-tags: [cimeika, docs, index]
-cover: assets/covers/home.jpg
-description: "Інтерактивна бібліотека знань Cimeika"
----
-# Cimeika
-Ласкаво просимо до **Cimeika** — інтерактивної екосистеми сенсів, подій і сімейної взаємодії.
+﻿# Cimeika Knowledge Base
 
-- Kazkar → описи, легенди, міфи
-- Podija → події та часові вузли
-- Nastrij → настрій і резонансні стани
-- Malya → творчість дітей
-- Gallery → візуальні історії
-- Calendar → календар сім'ї
