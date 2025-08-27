@@ -1,12 +1,14 @@
-﻿site_name: Cimeika Knowledge
-site_url: https://example.org/
-nav:
-  - Home: docs/index.md
-  - Concepts:
-      - Overview: docs/concepts/index.md
-  - Research:
-      - Overview: docs/research/index.md
-  - Playbooks:
-      - Overview: docs/playbooks/index.md
+site_name: CiWiki
 theme:
   name: material
+
+nav:
+  - Головна: index.md
+  - Концепти:
+      - Огляд: concepts/index.md
+  - Казкар:
+      - Огляд: kazkar/index.md
+  - Плейбуки:
+      - Огляд: playbooks/index.md
+  - Дослідження:
+      - Огляд: research/index.md
