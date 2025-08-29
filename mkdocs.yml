@@ -1,14 +1,39 @@
 site_name: CiWiki
+site_url: https://ihorog.github.io/ciwiki
+repo_url: https://github.com/Ihorog/ciwiki
+
 theme:
   name: material
+  language: uk
+  features:
+    - navigation.expand
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - search.suggest
+    - search.highlight
+
+plugins:
+  - search
 
 nav:
   - Головна: index.md
-  - Концепти:
-      - Огляд: concepts/index.md
-  - Казкар:
-      - Огляд: kazkar/index.md
-  - Плейбуки:
-      - Огляд: playbooks/index.md
-  - Дослідження:
-      - Огляд: research/index.md
+  - Cimeika:
+      - Ci: Cimeika/Ci/index.md
+      - ПоДія: Cimeika/ПоДія/index.md
+      - Настрій: Cimeika/Настрій/index.md
+      - Маля: Cimeika/Маля/index.md
+      - Казкар:
+          - Огляд: Cimeika/Казкар/index.md
+          - Легенда Ci: Cimeika/Казкар/Легенда-ci/index.md
+      - Календар: Cimeika/Календар/index.md
+      - Галерея: Cimeika/Галерея/index.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.superfences
