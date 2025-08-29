@@ -1,19 +1,15 @@
 name: pages
-
 on:
   push:
-    branches: [ codex/add-tags-and-cover-to-files ]
-  workflow_dispatch:
-
+    branches: [ main ]
+  workflow_dispatch: {}
 permissions:
   contents: read
   pages: write
   id-token: write
-
 concurrency:
   group: "pages"
   cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,21 +19,13 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-      - run: npm ci
-      # на випадок застарілого lockfile
+      - run: npm ci || npm install
       - run: npm i -D webpack-cli@^5 --no-audit --no-fund
       - run: npm run build
-      # якщо index.html не генерується вебпаком — створимо простий
-      - name: Ensure index.html
-        run: |
-          if [ ! -f dist/index.html ]; then
-            echo '<!doctype html><html><head><meta charset="utf-8"><title>Cimeika</title></head><body><div id="root"></div><script src="bundle.js"></script></body></html>' > dist/index.html
-          fi
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
-
   deploy:
     needs: build
     environment:
