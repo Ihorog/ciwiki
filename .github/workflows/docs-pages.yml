@@ -1,4 +1,15 @@
-﻿name: Build & Deploy Docs
+# 0) У репозиторій
+cd ~/ciwiki
+
+# 1) Перемикаємось на main і підтягнемо віддалені зміни (щоб не було "fetch first")
+git checkout main
+git fetch origin
+git pull --rebase origin main
+
+# 2) Записуємо ПРАВИЛЬНИЙ workflow для MkDocs → gh-pages
+mkdir -p .github/workflows
+cat > .github/workflows/docs-pages.yml <<'YAML'
+name: Створення та розгортання документів
 on:
   push:
     branches: [ "main" ]
@@ -6,25 +17,37 @@ on:
       - "docs/**"
       - "mkdocs.yml"
       - ".github/workflows/docs-pages.yml"
+
 permissions:
   contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Python
+
+      - name: Налаштування Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.x"
-      - name: Install MkDocs
+
+      - name: Встановити MkDocs та плагіни
         run: |
           python -m pip install --upgrade pip
           pip install mkdocs mkdocs-material
-      - name: Build site
+
+      - name: Зібрати сайт
         run: mkdocs build --site-dir site
-      - name: Deploy to gh-pages
+
+      - name: Розгорнути на gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
+YAML
+
+# 3) Комітимо і пушимо в main
+git add .github/workflows/docs-pages.yml
+git commit -m "ci(docs): build & deploy MkDocs to gh-pages"
+git push origin main
