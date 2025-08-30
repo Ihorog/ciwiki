@@ -1,38 +1,76 @@
 name: pages
+name: pages
+on:
 on:
   push:
+  push:
+    branches: [ main ]
     branches: [ main ]
   workflow_dispatch: {}
+  workflow_dispatch: {}
+permissions:
 permissions:
   contents: read
+  contents: read
+  pages: write
   pages: write
   id-token: write
+  id-token: write
+concurrency:
 concurrency:
   group: "pages"
+  group: "pages"
+  cancel-in-progress: true
   cancel-in-progress: true
 jobs:
+jobs:
+  build:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - run: npm ci || npm install
-      - run: npm i -D webpack-cli@^5 --no-audit --no-fund
-      - run: npm run build
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-  deploy:
-    needs: build
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
+        with:
+        with:
+          node-version: '20'
+          node-version: '20'
+          cache: 'npm'
+          cache: 'npm'
+      - run: npm ci || npm install
+      - run: npm ci || npm install
+      - run: npm i -D webpack-cli@^5 --no-audit --no-fund
+      - run: npm i -D webpack-cli@^5 --no-audit --no-fund
+      - run: npm run build
+      - run: npm run build
+      - name: Upload artifact
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v3
+        with:
+        with:
+          path: dist
+          path: dist
+  deploy:
+  deploy:
+    needs: build
+    needs: build
+    environment:
+    environment:
+      name: github-pages
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
+    steps:
+    steps:
+      - name: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
+        id: deployment
+        uses: actions/deploy-pages@v4
         uses: actions/deploy-pages@v4
