@@ -21,4 +21,18 @@ if bad:
     print("\n".join(bad))
     sys.exit(1)
 print("OK: no invalid filenames")
+
+  - name: Fail on excessive Windows path length
+    run: |
+      python3 - <<'PY'
+import os, sys
+bad=[]
+for r,_,fs in os.walk("."):
+  for f in fs:
+    p=os.path.join(r,f)
+    if len(os.path.abspath(p))>240: bad.append(p)
+if bad:
+  print("Too long paths:\n"+"\n".join(bad)); sys.exit(1)
+print("OK: path lengths within limits")
+PY
 PY
