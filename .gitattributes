@@ -3,3 +3,10 @@
 *.yml text eol=lf
 *.yaml text eol=lf
 *.md text eol=lf
+
+# binaries
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
