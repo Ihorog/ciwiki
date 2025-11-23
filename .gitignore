@@ -7,3 +7,6 @@ git/
 python/
 *.DS_Store
 Thumbs.db
+node_modules/
+test-results/
+src/UNKNOWN.egg-info/
