@@ -8,11 +8,11 @@ export default function VoiceChat({ voice, title }) {
 
   const sendMessage = async (e) => {
     e.preventDefault();
-    if (!input.trim()) return;
-    const prompt = input;
+    const trimmedInput = input.trim();
+    if (!trimmedInput) return;
     setInput('');
-    setMessages((prev) => [...prev, { from: 'user', text: prompt }]);
-    const res = await fetchVoice(voice, prompt);
+    setMessages((prev) => [...prev, { from: 'user', text: trimmedInput }]);
+    const res = await fetchVoice(voice, trimmedInput);
     setMessages((prev) => [...prev, { from: voice, text: res.message }]);
   };
 
