@@ -45,8 +45,8 @@ graph TD
     A --> F
     A --> G
 
-    classDef core fill:#58a6ff,stroke:#1f2937,stroke-width:2px,color:#fff;
-    classDef branch fill:#16181d,stroke:#2a2e35,color:#e9ecf1;
+    classDef core fill:#58a6ff,stroke:#30363d,stroke-width:2px,color:#fff;
+    classDef branch fill:#22272e,stroke:#444c56,color:#adbac7;
 
 ## CI
 ![validate-paths](https://github.com/Ihorog/ciwiki/actions/workflows/validate-paths.yml/badge.svg)
