@@ -1,2 +1,0 @@
-# ciwiki
-Cimeika documentation
