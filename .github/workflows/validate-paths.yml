@@ -1,0 +1,38 @@
+name: validate-paths
+on: [push, pull_request]
+jobs:
+  paths:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Fail on control chars in paths
+        run: |
+          git ls-tree -rz --name-only HEAD | python3 - <<'PY'
+import sys
+bad=[]
+data=sys.stdin.buffer.read().split(b'\0')
+for p in data:
+    if any(c in p for c in (b'\n', b'\r', b'\t')):
+        bad.append(p.decode('utf-8','ignore'))
+if bad:
+    print("Invalid filenames detected:")
+    print("\n".join(bad))
+    sys.exit(1)
+print("OK: no invalid filenames")
+
+  - name: Fail on excessive Windows path length
+    run: |
+      python3 - <<'PY'
+import os, sys
+bad=[]
+for r,_,fs in os.walk("."):
+  for f in fs:
+    p=os.path.join(r,f)
+    if len(os.path.abspath(p))>240: bad.append(p)
+if bad:
+  print("Too long paths:\n"+"\n".join(bad)); sys.exit(1)
+print("OK: path lengths within limits")
+PY
+PY
