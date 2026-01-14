@@ -2,20 +2,32 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+The following versions of CiWiki are currently being supported with security updates:
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| 1.x.x   | :white_check_mark: |
+| < 1.0   | :x:                |
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+If you discover a security vulnerability in CiWiki, please report it by:
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+1. **DO NOT** open a public issue
+2. Email the maintainers or use GitHub's private security advisory feature
+3. Include detailed information about the vulnerability:
+   - Description of the issue
+   - Steps to reproduce
+   - Potential impact
+   - Suggested fix (if available)
+
+### Response Timeline
+
+- **Initial Response**: Within 48 hours of report submission
+- **Status Updates**: Every 7 days until resolution
+- **Resolution**: Security patches will be released as soon as possible after verification
+
+### What to Expect
+
+- **Accepted Vulnerabilities**: Will be patched in the next security release with credit given to the reporter (unless anonymity is requested)
+- **Declined Reports**: Will receive an explanation of why the report was not accepted as a security issue
