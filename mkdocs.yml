@@ -3,3 +3,14 @@ theme:
   name: material
 nav:
   - Головна: index.md
+  - Cimeika:
+    - Ci:
+      - Ci: Cimeika/Ci/index.md
+      - ПоДія: Cimeika/ПоДія/index.md
+      - Казкар: 
+        - Казкар: Cimeika/Казкар/index.md
+        - Легенда Ci: Cimeika/Казкар/Легенда-ci/index.md
+      - Настрій: Cimeika/Настрій/index.md
+      - Маля: Cimeika/Маля/index.md
+    - Календар: Cimeika/Календар/index.md
+    - Галерея: Cimeika/Галерея/index.md
