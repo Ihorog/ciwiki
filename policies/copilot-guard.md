@@ -29,7 +29,7 @@ The following patterns are flagged as potential secrets:
 
 1. **OpenAI API Keys**: `sk-[A-Za-z0-9]{20,}`
    - Pattern: Strings starting with `sk-` followed by 20+ alphanumeric characters
-   - Example (INVALID): `sk-proj-abc123def456...`
+   - Example (INVALID): `sk-fake123example456789abc`
    - Example (VALID): `YOUR_OPENAI_API_KEY`
 
 2. **HuggingFace Tokens**: `hf_[A-Za-z0-9]{20,}`
@@ -46,7 +46,7 @@ The following patterns are flagged as potential secrets:
 
 ### File Type Exclusions
 The following file types are excluded from scanning:
-- `*.md` - Markdown documentation files
+- `*.md` - Markdown documentation files (Note: Policy and security documentation should still follow placeholder rules)
 - `*.example` - Example configuration files
 - `*.template` - Template files
 
