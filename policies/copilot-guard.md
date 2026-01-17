@@ -29,13 +29,13 @@ The following patterns are flagged as potential secrets:
 
 1. **OpenAI API Keys**: `sk-[A-Za-z0-9]{20,}`
    - Pattern: Strings starting with `sk-` followed by 20+ alphanumeric characters
-   - Example (INVALID): `sk-fake123example456789abc`
-   - Example (VALID): `YOUR_OPENAI_API_KEY`
+   - Example (INVALID - would be detected): `sk-1234567890abcdefghij` (20 chars)
+   - Example (VALID - placeholder): `YOUR_OPENAI_API_KEY`
 
 2. **HuggingFace Tokens**: `hf_[A-Za-z0-9]{20,}`
    - Pattern: Strings starting with `hf_` followed by 20+ alphanumeric characters
-   - Example (INVALID): `hf_AbCdEfGhIjKlMnOpQrStUvWxYz123456`
-   - Example (VALID): `YOUR_HUGGINGFACE_TOKEN`
+   - Example (INVALID - would be detected): `hf_abcdefghijklmnopqrst` (20 chars)
+   - Example (VALID - placeholder): `YOUR_HUGGINGFACE_TOKEN`
 
 3. **Masked Tokens**: `******` with length >= 32 characters
    - Pattern: Consecutive asterisks of 32 or more characters
@@ -45,8 +45,10 @@ The following patterns are flagged as potential secrets:
 ## Exclusions
 
 ### File Type Exclusions
-The following file types are excluded from scanning:
-- `*.md` - Markdown documentation files (Note: Policy and security documentation should still follow placeholder rules)
+The following file types MAY be excluded from automated scanning:
+- `*.md` - Markdown documentation files
+  - Note: Even if excluded from automated scans, all documentation MUST follow placeholder rules
+  - Policy and security documentation should be manually reviewed
 - `*.example` - Example configuration files
 - `*.template` - Template files
 
