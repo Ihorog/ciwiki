@@ -1,61 +1,18 @@
-# ciwiki
+## System Node
 
-## Повідомлення
+| Field         | Description                                                                          |
+|---------------|--------------------------------------------------------------------------------------|
+| Node Role     | Documentation, rules, and the canonical source of truth for all Cimeika nodes.       |
+| Inputs        | Change requests (PRs), documentation updates, API traces.                            |
+| Outputs       | Canonical instructions, standard contracts/rules, procedural approvals.               |
+| Dependencies  | All other nodes depend on ciwiki for system-wide rules and documentation.             |
 
-Цей репозиторій є бібліотекою сенсів та знань проекту **Cimeika**.  
-Тут формується теоретична база, яка підживлює усі модулі системи.  
-Це місце для щоденних досліджень, публікацій і структурування матеріалів.  
+## Copilot & Canon Reference
 
----
+- Global rules: [ciwiki/.github/copilot-instructions.md](https://github.com/Ihorog/ciwiki/blob/main/.github/copilot-instructions.md)
+- Canon updated: [ciwiki audit history](https://github.com/Ihorog/ciwiki/commits/main/.github/copilot-instructions.md)
+- All functional changes must pass anti-repeat and intent review.
 
-## Завдання
+## Audit Log
 
-1. Збирати та зберігати матеріали, що стосуються Легенди Ci та інших розділів.  
-2. Давати логічну основу для розвитку Cimeika через науково підтверджені факти, емоційні образи та інтерактивні активності.  
-3. Створювати просту, зрозумілу для кожного форму подачі, яка одночасно цікава і практична.  
-4. Поступово структурувати простір у 7 основних розділів (Казкар, ПоДія, Маля, Настрій, Галерея, Календар, Ci).
-
----
-
-## Результат
-
-- **Теоретичний каркас**: чітко визначені розділи та їхня логіка.  
-- **Практичні приклади**: експерименти, спостереження, ігри.  
-- **Емоційне наповнення**: метафори, образи, гумор.  
-- **Візуальна карта**: дерево 7 розділів як основа для навігації.  
-
----
-
-## Структура (Mermaid)
-
-```mermaid
-graph TD
-    A(Ci):::core
-    B(Казкар<br/>Легенда Ci):::branch
-    C(ПоДія<br/>Події):::branch
-    D(Маля<br/>Творчість):::branch
-    E(Настрій<br/>Емоції):::branch
-    F(Галерея<br/>Візуал):::branch
-    G(Календар<br/>Час):::branch
-
-    A --> B
-    A --> C
-    A --> D
-    A --> E
-    A --> F
-    A --> G
-
-    classDef core fill:#58a6ff,stroke:#30363d,stroke-width:2px,color:#fff;
-    classDef branch fill:#22272e,stroke:#444c56,color:#adbac7;
-```
-
----
-
-## Легенда Ci
-
-Детальніше про **Легенду Ci** можна дізнатись тут: [Legend ci/readme.md](Legend%20ci/readme.md)
-
----
-
-## CI
-![validate-paths](https://github.com/Ihorog/ciwiki/actions/workflows/validate-paths.yml/badge.svg)
+_Last documentation update based on canon: 2026-01-17 — Copilot Stage 2 Optimization_.
