@@ -1,0 +1,2831 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../release-process/">
+      
+      
+        <link rel="next" href="../secrets-management/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Testing Guide - Ciwiki Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#testing-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Ciwiki Docs" class="md-header__button md-logo" aria-label="Ciwiki Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ciwiki Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Testing Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Головна
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Процеси
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Cimeika/Ci/" class="md-tabs__link">
+          
+  
+  
+  Cimeika
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Ciwiki Docs" class="md-nav__button md-logo" aria-label="Ciwiki Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Ciwiki Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Головна
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Процеси
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Процеси
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Огляд
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pr-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Загальні принципи
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Philosophy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Philosophy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing-pyramid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Pyramid
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-unit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Unit Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Integration Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-end-to-end-e2e-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. End-to-End (E2E) Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Organization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Organization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directory Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#naming-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Naming Conventions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-writing-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Writing Guidelines
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Writing Guidelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aaa-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AAA Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Coverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-to-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mocking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mocking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Коли використовувати mocks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mocking_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Приклад mocking
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Environments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Environments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Development
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-driven-development-tdd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test-Driven Development (TDD)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test-Driven Development (TDD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#red-green-refactor-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Red-Green-Refactor Cycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debugging Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#failed-test-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failed Test Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flaky-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flaky Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flaky Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#avoiding-flakiness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Avoiding Flakiness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixing-flaky-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixing Flaky Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#input-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Do's
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#donts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Don'ts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Reporting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Reporting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coverage-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage Reports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools-frameworks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools &amp; Frameworks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools &amp; Frameworks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#javascripttypescript" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JavaScript/TypeScript
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ci-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continuous-improvement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Continuous Improvement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Додаткові ресурси
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Питання?
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secrets-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../commit-conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commit Conventions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../master-issue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Master Issue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ci-cd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cimeika
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cimeika
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ci
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ci
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cimeika/Ci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ci
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cimeika/%D0%9F%D0%BE%D0%94%D1%96%D1%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ПоДія
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_3" id="__nav_3_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Казкар
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Казкар
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cimeika/%D0%9A%D0%B0%D0%B7%D0%BA%D0%B0%D1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Казкар
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cimeika/%D0%9A%D0%B0%D0%B7%D0%BA%D0%B0%D1%80/%D0%9B%D0%B5%D0%B3%D0%B5%D0%BD%D0%B4%D0%B0-ci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Легенда Ci
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cimeika/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D1%96%D0%B9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Настрій
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cimeika/%D0%9C%D0%B0%D0%BB%D1%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Маля
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cimeika/%D0%9A%D0%B0%D0%BB%D0%B5%D0%BD%D0%B4%D0%B0%D1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Календар
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cimeika/%D0%93%D0%B0%D0%BB%D0%B5%D1%80%D0%B5%D1%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Галерея
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Загальні принципи
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Philosophy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Philosophy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing-pyramid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Pyramid
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-unit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Unit Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Integration Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-end-to-end-e2e-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. End-to-End (E2E) Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Organization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Organization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directory Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#naming-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Naming Conventions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-writing-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Writing Guidelines
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Writing Guidelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aaa-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AAA Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Coverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-to-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mocking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mocking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Коли використовувати mocks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mocking_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Приклад mocking
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Environments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Environments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Development
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-driven-development-tdd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test-Driven Development (TDD)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test-Driven Development (TDD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#red-green-refactor-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Red-Green-Refactor Cycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debugging Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#failed-test-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failed Test Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flaky-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flaky Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flaky Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#avoiding-flakiness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Avoiding Flakiness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixing-flaky-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixing Flaky Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#input-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Do's
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#donts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Don'ts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Reporting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Reporting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coverage-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coverage Reports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools-frameworks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools &amp; Frameworks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools &amp; Frameworks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#javascripttypescript" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JavaScript/TypeScript
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ci-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continuous-improvement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Continuous Improvement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Додаткові ресурси
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Питання?
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="testing-guide">Testing Guide</h1>
+<h2 id="_1">Загальні принципи</h2>
+<p>Тестування є обов'язковою частиною розробки в екосистемі Cimeika. Всі зміни коду повинні супроводжуватись відповідними тестами.</p>
+<h2 id="testing-philosophy">Testing Philosophy</h2>
+<h3 id="testing-pyramid">Testing Pyramid</h3>
+<pre><code>        /\
+       /E2E\        ← Мало, але критичні
+      /------\
+     /Integration\  ← Середня кількість
+    /------------\
+   /  Unit Tests  \ ← Багато, швидкі
+  /________________\
+</code></pre>
+<ul>
+<li><strong>Unit Tests</strong> (70-80%) — тестують окремі функції/методи</li>
+<li><strong>Integration Tests</strong> (15-25%) — тестують взаємодію компонентів</li>
+<li><strong>E2E Tests</strong> (5-10%) — тестують повні user flows</li>
+</ul>
+<h2 id="test-types">Test Types</h2>
+<h3 id="1-unit-tests">1. Unit Tests</h3>
+<p><strong>Мета</strong>: Тестувати ізольовані units of code</p>
+<p><strong>Характеристики</strong>:
+- Швидкі (&lt; 10ms)
+- Ізольовані (без external dependencies)
+- Deterministic (завжди той самий результат)
+- Focussed (один аспект за раз)</p>
+<p><strong>Приклад</strong>:</p>
+<pre><code class="language-javascript">// utils/math.js
+export function add(a, b) {
+  return a + b;
+}
+
+// utils/math.test.js
+import { add } from './math';
+
+describe('add', () =&gt; {
+  it('should add two positive numbers', () =&gt; {
+    expect(add(2, 3)).toBe(5);
+  });
+
+  it('should handle negative numbers', () =&gt; {
+    expect(add(-2, 3)).toBe(1);
+  });
+
+  it('should handle zero', () =&gt; {
+    expect(add(0, 5)).toBe(5);
+  });
+});
+</code></pre>
+<p><strong>Коли писати</strong>:
+- Для всіх utility functions
+- Для business logic
+- Для pure functions
+- Для класів та методів</p>
+<h3 id="2-integration-tests">2. Integration Tests</h3>
+<p><strong>Мета</strong>: Тестувати взаємодію між компонентами</p>
+<p><strong>Характеристики</strong>:
+- Повільніші ніж unit tests (&lt; 1s)
+- Можуть використовувати реальні або mock dependencies
+- Тестують взаємодію</p>
+<p><strong>Приклад</strong>:</p>
+<pre><code class="language-javascript">// api/users.integration.test.js
+import request from 'supertest';
+import app from '../app';
+import { db } from '../database';
+
+describe('Users API', () =&gt; {
+  beforeAll(async () =&gt; {
+    await db.connect();
+  });
+
+  afterAll(async () =&gt; {
+    await db.disconnect();
+  });
+
+  it('should create a new user', async () =&gt; {
+    const response = await request(app)
+      .post('/api/users')
+      .send({
+        name: 'Test User',
+        email: 'test@example.com'
+      });
+
+    expect(response.status).toBe(201);
+    expect(response.body).toHaveProperty('id');
+  });
+});
+</code></pre>
+<p><strong>Коли писати</strong>:
+- Для API endpoints
+- Для database operations
+- Для service integrations
+- Для workflow tests</p>
+<h3 id="3-end-to-end-e2e-tests">3. End-to-End (E2E) Tests</h3>
+<p><strong>Мета</strong>: Тестувати повні user scenarios</p>
+<p><strong>Характеристики</strong>:
+- Найповільніші (seconds to minutes)
+- Використовують реальне середовище
+- Тестують критичні user flows</p>
+<p><strong>Приклад</strong> (з Playwright):</p>
+<pre><code class="language-javascript">// e2e/login.spec.js
+import { test, expect } from '@playwright/test';
+
+test('user can login successfully', async ({ page }) =&gt; {
+  await page.goto('https://example.com/login');
+
+  await page.fill('input[name=&quot;email&quot;]', 'user@example.com');
+  await page.fill('input[name=&quot;password&quot;]', 'password123');
+  await page.click('button[type=&quot;submit&quot;]');
+
+  await expect(page).toHaveURL('https://example.com/dashboard');
+  await expect(page.locator('.welcome-message')).toBeVisible();
+});
+</code></pre>
+<p><strong>Коли писати</strong>:
+- Для критичних user flows
+- Для authentication/authorization
+- Для payment processes
+- Для multi-step workflows</p>
+<h2 id="test-organization">Test Organization</h2>
+<h3 id="directory-structure">Directory Structure</h3>
+<pre><code>src/
+├── components/
+│   ├── Button/
+│   │   ├── Button.tsx
+│   │   ├── Button.test.tsx      ← Unit test
+│   │   └── Button.stories.tsx
+│   └── ...
+├── services/
+│   ├── auth/
+│   │   ├── auth.ts
+│   │   ├── auth.test.ts         ← Unit test
+│   │   └── auth.integration.test.ts ← Integration test
+│   └── ...
+└── utils/
+    ├── validation.ts
+    └── validation.test.ts
+
+tests/
+├── e2e/
+│   ├── login.spec.ts
+│   ├── checkout.spec.ts
+│   └── ...
+├── integration/
+│   └── api.test.ts
+└── fixtures/
+    └── test-data.json
+</code></pre>
+<h3 id="naming-conventions">Naming Conventions</h3>
+<ul>
+<li>Unit tests: <code>*.test.ts</code> або <code>*.spec.ts</code></li>
+<li>Integration tests: <code>*.integration.test.ts</code></li>
+<li>E2E tests: <code>*.e2e.test.ts</code> або <code>*.spec.ts</code> в <code>/e2e/</code></li>
+</ul>
+<h2 id="test-writing-guidelines">Test Writing Guidelines</h2>
+<h3 id="aaa-pattern">AAA Pattern</h3>
+<p>Arrange, Act, Assert:</p>
+<pre><code class="language-javascript">test('should calculate discount correctly', () =&gt; {
+  // Arrange - підготовка
+  const price = 100;
+  const discountPercent = 10;
+
+  // Act - виконання
+  const result = calculateDiscount(price, discountPercent);
+
+  // Assert - перевірка
+  expect(result).toBe(90);
+});
+</code></pre>
+<h3 id="test-coverage">Test Coverage</h3>
+<p><strong>Мінімальні вимоги</strong>:
+- Overall coverage: &gt;= 80%
+- Branch coverage: &gt;= 75%
+- Function coverage: &gt;= 85%
+- Line coverage: &gt;= 80%</p>
+<p><strong>Перевірка coverage</strong>:</p>
+<pre><code class="language-bash">npm test -- --coverage
+</code></pre>
+<h3 id="what-to-test">What to Test</h3>
+<p><strong>DO</strong> test:
+- ✅ Public APIs
+- ✅ Business logic
+- ✅ Edge cases
+- ✅ Error handling
+- ✅ Critical paths
+- ✅ User interactions</p>
+<p><strong>DON'T</strong> test:
+- ❌ Third-party libraries
+- ❌ Framework internals
+- ❌ Trivial getters/setters
+- ❌ Generated code</p>
+<h3 id="test-quality">Test Quality</h3>
+<p><strong>Good test characteristics</strong>:
+1. <strong>Fast</strong> — швидко виконується
+2. <strong>Isolated</strong> — не залежить від інших tests
+3. <strong>Repeatable</strong> — детермінований результат
+4. <strong>Self-validating</strong> — чіткий pass/fail
+5. <strong>Timely</strong> — написаний вчасно (TDD/BDD)</p>
+<h2 id="mocking">Mocking</h2>
+<h3 id="mocks">Коли використовувати mocks</h3>
+<ul>
+<li>External API calls</li>
+<li>Database operations (для unit tests)</li>
+<li>Time-dependent functions</li>
+<li>Random number generators</li>
+<li>File system operations</li>
+</ul>
+<h3 id="mocking_1">Приклад mocking</h3>
+<pre><code class="language-javascript">// Using Jest
+import { fetchUserData } from './api';
+import axios from 'axios';
+
+jest.mock('axios');
+
+test('should fetch user data', async () =&gt; {
+  // Mock axios response
+  axios.get.mockResolvedValue({
+    data: { id: 1, name: 'Test User' }
+  });
+
+  const user = await fetchUserData(1);
+
+  expect(user.name).toBe('Test User');
+  expect(axios.get).toHaveBeenCalledWith('/api/users/1');
+});
+</code></pre>
+<h2 id="testing-environments">Testing Environments</h2>
+<h3 id="local-development">Local Development</h3>
+<pre><code class="language-bash"># Run all tests
+npm test
+
+# Watch mode (re-run on changes)
+npm test -- --watch
+
+# Run specific test file
+npm test -- path/to/test.ts
+
+# Run with coverage
+npm test -- --coverage
+</code></pre>
+<h3 id="cicd">CI/CD</h3>
+<p>Tests автоматично запускаються на CI при:
+- Push до будь-якої гілки
+- Створенні PR
+- Merge до main</p>
+<p><strong>Конфігурація</strong> (<code>.github/workflows/test.yml</code>):</p>
+<pre><code class="language-yaml">name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: npm ci
+      - run: npm test -- --coverage
+      - uses: codecov/codecov-action@v3
+</code></pre>
+<h2 id="test-driven-development-tdd">Test-Driven Development (TDD)</h2>
+<h3 id="red-green-refactor-cycle">Red-Green-Refactor Cycle</h3>
+<ol>
+<li><strong>Red</strong> — напишіть failing test</li>
+<li><strong>Green</strong> — напишіть мінімальний код щоб test passed</li>
+<li><strong>Refactor</strong> — покращте код, tests залишаються green</li>
+</ol>
+<pre><code class="language-javascript">// 1. RED - напишіть test
+test('should validate email format', () =&gt; {
+  expect(isValidEmail('test@example.com')).toBe(true);
+  expect(isValidEmail('invalid-email')).toBe(false);
+});
+
+// 2. GREEN - мінімальна реалізація
+function isValidEmail(email) {
+  return email.includes('@');
+}
+
+// 3. REFACTOR - покращення
+function isValidEmail(email) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+}
+</code></pre>
+<h2 id="debugging-tests">Debugging Tests</h2>
+<h3 id="failed-test-analysis">Failed Test Analysis</h3>
+<ol>
+<li><strong>Read error message</strong> уважно</li>
+<li><strong>Check test assumptions</strong> — чи правильні очікування?</li>
+<li><strong>Add console.log</strong> для debug output</li>
+<li><strong>Run in isolation</strong> — виключіть вплив інших tests</li>
+<li><strong>Check test data</strong> — чи правильні fixtures?</li>
+</ol>
+<h3 id="debug-commands">Debug Commands</h3>
+<pre><code class="language-bash"># Run single test
+npm test -- -t &quot;test name&quot;
+
+# Run with verbose output
+npm test -- --verbose
+
+# Debug with Node inspector
+node --inspect-brk node_modules/.bin/jest --runInBand
+
+# Run only failed tests
+npm test -- --onlyFailures
+</code></pre>
+<h2 id="performance-testing">Performance Testing</h2>
+<h3 id="load-testing">Load Testing</h3>
+<p>Для API endpoints:</p>
+<pre><code class="language-javascript">import autocannon from 'autocannon';
+
+test('API performance', async () =&gt; {
+  const result = await autocannon({
+    url: 'http://localhost:3000/api/users',
+    connections: 10,
+    duration: 10
+  });
+
+  expect(result.requests.mean).toBeGreaterThan(100); // RPS
+  expect(result.latency.p99).toBeLessThan(1000); // ms
+});
+</code></pre>
+<h2 id="flaky-tests">Flaky Tests</h2>
+<h3 id="avoiding-flakiness">Avoiding Flakiness</h3>
+<ul>
+<li>❌ Не використовуйте <code>setTimeout</code> без причини</li>
+<li>✅ Використовуйте <code>waitFor</code> functions</li>
+<li>❌ Не покладайтесь на execution order (якщо не explicit)</li>
+<li>✅ Очищайте state між tests</li>
+<li>❌ Не використовуйте hardcoded dates</li>
+<li>✅ Mock time functions</li>
+</ul>
+<h3 id="fixing-flaky-tests">Fixing Flaky Tests</h3>
+<pre><code class="language-javascript">// BAD - flaky
+test('should update after delay', () =&gt; {
+  updateAsync();
+  setTimeout(() =&gt; {
+    expect(getData()).toBe('updated');
+  }, 100); // Може бути недостатньо часу
+});
+
+// GOOD - stable
+test('should update after delay', async () =&gt; {
+  await updateAsync();
+  await waitFor(() =&gt; {
+    expect(getData()).toBe('updated');
+  });
+});
+</code></pre>
+<h2 id="security-testing">Security Testing</h2>
+<h3 id="input-validation">Input Validation</h3>
+<pre><code class="language-javascript">test('should reject SQL injection attempts', () =&gt; {
+  const maliciousInput = &quot;'; DROP TABLE users; --&quot;;
+  expect(() =&gt; {
+    queryUser(maliciousInput);
+  }).toThrow('Invalid input');
+});
+</code></pre>
+<h3 id="authentication-tests">Authentication Tests</h3>
+<pre><code class="language-javascript">test('should reject unauthorized requests', async () =&gt; {
+  const response = await request(app)
+    .get('/api/admin/users')
+    .set('Authorization', 'Bearer invalid-token');
+
+  expect(response.status).toBe(401);
+});
+</code></pre>
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="dos">Do's</h3>
+<ol>
+<li>✅ Пишіть tests для всіх нових features</li>
+<li>✅ Тестуйте edge cases та error paths</li>
+<li>✅ Використовуйте descriptive test names</li>
+<li>✅ Keep tests simple та readable</li>
+<li>✅ Isolate tests from each other</li>
+<li>✅ Run tests locally перед push</li>
+<li>✅ Maintain test coverage</li>
+</ol>
+<h3 id="donts">Don'ts</h3>
+<ol>
+<li>❌ Не skip tests без причини</li>
+<li>❌ Не пишіть flaky tests</li>
+<li>❌ Не тестуйте implementation details</li>
+<li>❌ Не використовуйте production data</li>
+<li>❌ Не ігноруйте failed tests</li>
+<li>❌ Не пишіть over-complicated tests</li>
+</ol>
+<h2 id="test-reporting">Test Reporting</h2>
+<h3 id="coverage-reports">Coverage Reports</h3>
+<p>Генеруються автоматично при запуску:</p>
+<pre><code class="language-bash">npm test -- --coverage
+</code></pre>
+<p>Звіти доступні в:
+- Console output
+- <code>coverage/lcov-report/index.html</code>
+- CI/CD (Codecov, Coveralls)</p>
+<h3 id="test-results">Test Results</h3>
+<pre><code>Test Suites: 5 passed, 5 total
+Tests:       45 passed, 45 total
+Snapshots:   0 total
+Time:        5.234 s
+Coverage:    85.3%
+</code></pre>
+<h2 id="tools-frameworks">Tools &amp; Frameworks</h2>
+<h3 id="javascripttypescript">JavaScript/TypeScript</h3>
+<ul>
+<li><strong>Jest</strong> — universal test framework</li>
+<li><strong>Mocha + Chai</strong> — alternative framework</li>
+<li><strong>Vitest</strong> — fast, modern test runner</li>
+<li><strong>Playwright</strong> — E2E testing</li>
+<li><strong>Testing Library</strong> — UI component testing</li>
+</ul>
+<h3 id="ci-integration">CI Integration</h3>
+<ul>
+<li>GitHub Actions</li>
+<li>CircleCI</li>
+<li>Travis CI</li>
+<li>Jenkins</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-issues">Common Issues</h3>
+<p><strong>Tests timeout</strong>:</p>
+<pre><code class="language-javascript">// Збільште timeout
+test('long operation', async () =&gt; {
+  // ...
+}, 10000); // 10 seconds
+</code></pre>
+<p><strong>Module not found</strong>:
+- Перевірте <code>jest.config.js</code> moduleNameMapper
+- Встановіть missing dependencies</p>
+<p><strong>Snapshot mismatches</strong>:</p>
+<pre><code class="language-bash"># Update snapshots
+npm test -- -u
+</code></pre>
+<h2 id="continuous-improvement">Continuous Improvement</h2>
+<ol>
+<li><strong>Review test failures</strong> регулярно</li>
+<li><strong>Refactor tests</strong> коли рефакторите код</li>
+<li><strong>Monitor coverage trends</strong> — не дозволяйте падати</li>
+<li><strong>Share knowledge</strong> — code reviews для tests</li>
+<li><strong>Update practices</strong> — документуйте lessons learned</li>
+</ol>
+<h2 id="_2">Додаткові ресурси</h2>
+<ul>
+<li><a href="../pr-process/">PR Process</a></li>
+<li><a href="../commit-conventions/">Commit Conventions</a></li>
+<li><a href="../ci-cd/">CI/CD Guide</a></li>
+<li><a href="../../SECURITY.md">Security Policy</a></li>
+</ul>
+<h2 id="_3">Питання?</h2>
+<p>Створіть issue з label "testing" або звертайтесь до testing guild.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

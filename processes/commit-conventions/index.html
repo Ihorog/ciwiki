@@ -1,0 +1,2970 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../secrets-management/">
+      
+      
+        <link rel="next" href="../master-issue/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Commit Conventions - Ciwiki Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#commit-conventions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Ciwiki Docs" class="md-header__button md-logo" aria-label="Ciwiki Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ciwiki Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Commit Conventions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Головна
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Процеси
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Cimeika/Ci/" class="md-tabs__link">
+          
+  
+  
+  Cimeika
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Ciwiki Docs" class="md-nav__button md-logo" aria-label="Ciwiki Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Ciwiki Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Головна
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Процеси
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Процеси
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Огляд
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pr-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secrets-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commit Conventions
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commit Conventions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Загальні принципи
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commit-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Формат Commit Message
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Формат Commit Message">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Базова структура
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Приклад
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type (обов'язковий)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Type (обов&#39;язковий)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Приклади types
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope (опціональний)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subject" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subject (обов'язковий)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subject (обов&#39;язковий)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Правила
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#good-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Good examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bad-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Bad examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#body" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Body (опціональний)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Body (опціональний)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#body_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Коли потрібен body
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Правила
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Приклад
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#footer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Footer (опціональний)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Footer (опціональний)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Breaking Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue References
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Спеціальні випадки
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Спеціальні випадки">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#revert-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revert Commits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merge-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Merge Commits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflow Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feature-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feature Development
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bug-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bug Fix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refactoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Refactoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commit-frequency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commit Frequency
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commit Frequency">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Коли комітити
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atomic-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Atomic Commits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wip-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WIP Commits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commit-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commit Hooks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commit Hooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-commit-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-commit checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#commitizen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commitizen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conventional-changelog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conventional Changelog
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reviewing-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reviewing Commits
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reviewing Commits">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git Log
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ammending-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ammending Commits
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ammending Commits">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#last-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Last Commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-commits-interactive-rebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple Commits (Interactive Rebase)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Do's ✅
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#donts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Don'ts ❌
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples Library
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples Library">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wrong-commit-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wrong Commit Message
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#committed-to-wrong-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Committed to Wrong Branch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Додаткові ресурси
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Питання?
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../master-issue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Master Issue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ci-cd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cimeika
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cimeika
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ci
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ci
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cimeika/Ci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ci
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cimeika/%D0%9F%D0%BE%D0%94%D1%96%D1%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ПоДія
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_3" id="__nav_3_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Казкар
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Казкар
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cimeika/%D0%9A%D0%B0%D0%B7%D0%BA%D0%B0%D1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Казкар
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cimeika/%D0%9A%D0%B0%D0%B7%D0%BA%D0%B0%D1%80/%D0%9B%D0%B5%D0%B3%D0%B5%D0%BD%D0%B4%D0%B0-ci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Легенда Ci
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cimeika/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D1%96%D0%B9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Настрій
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cimeika/%D0%9C%D0%B0%D0%BB%D1%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Маля
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cimeika/%D0%9A%D0%B0%D0%BB%D0%B5%D0%BD%D0%B4%D0%B0%D1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Календар
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cimeika/%D0%93%D0%B0%D0%BB%D0%B5%D1%80%D0%B5%D1%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Галерея
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Загальні принципи
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commit-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Формат Commit Message
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Формат Commit Message">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Базова структура
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Приклад
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type (обов'язковий)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Type (обов&#39;язковий)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Приклади types
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope (опціональний)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subject" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subject (обов'язковий)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subject (обов&#39;язковий)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Правила
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#good-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Good examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bad-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Bad examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#body" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Body (опціональний)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Body (опціональний)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#body_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Коли потрібен body
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Правила
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Приклад
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#footer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Footer (опціональний)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Footer (опціональний)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Breaking Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue References
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Спеціальні випадки
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Спеціальні випадки">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#revert-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revert Commits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merge-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Merge Commits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflow Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feature-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feature Development
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bug-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bug Fix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refactoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Refactoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commit-frequency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commit Frequency
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commit Frequency">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Коли комітити
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atomic-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Atomic Commits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wip-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WIP Commits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commit-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commit Hooks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commit Hooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-commit-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-commit checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#commitizen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commitizen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conventional-changelog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conventional Changelog
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reviewing-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reviewing Commits
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reviewing Commits">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git Log
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ammending-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ammending Commits
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ammending Commits">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#last-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Last Commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-commits-interactive-rebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple Commits (Interactive Rebase)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Do's ✅
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#donts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Don'ts ❌
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples Library
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples Library">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wrong-commit-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wrong Commit Message
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#committed-to-wrong-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Committed to Wrong Branch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Додаткові ресурси
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Питання?
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="commit-conventions">Commit Conventions</h1>
+<h2 id="_1">Загальні принципи</h2>
+<p>Чіткі та структуровані commit messages допомагають:
+- 📖 Розуміти історію змін
+- 🔍 Знаходити конкретні зміни
+- 📝 Генерувати CHANGELOG автоматично
+- 🔄 Робити revert безпечно</p>
+<h2 id="commit-message">Формат Commit Message</h2>
+<h3 id="_2">Базова структура</h3>
+<pre><code>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
+
+&lt;body&gt;
+
+&lt;footer&gt;
+</code></pre>
+<h3 id="_3">Приклад</h3>
+<pre><code>feat(auth): add JWT authentication
+
+Implement JWT-based authentication system with refresh tokens.
+Uses HS256 algorithm with secret from environment variables.
+
+Closes #123
+</code></pre>
+<h2 id="type">Type (обов'язковий)</h2>
+<p>Тип commit вказує на характер змін:</p>
+<ul>
+<li><strong>feat</strong> — нова функціональність</li>
+<li><strong>fix</strong> — виправлення bug</li>
+<li><strong>docs</strong> — зміни в документації</li>
+<li><strong>style</strong> — форматування, missing semi colons, etc (не впливає на код)</li>
+<li><strong>refactor</strong> — рефакторинг коду (без нової функціональності або fixes)</li>
+<li><strong>perf</strong> — покращення performance</li>
+<li><strong>test</strong> — додавання або виправлення tests</li>
+<li><strong>build</strong> — зміни в build system або external dependencies</li>
+<li><strong>ci</strong> — зміни в CI конфігурації та scripts</li>
+<li><strong>chore</strong> — інші зміни що не модифікують src або test files</li>
+<li><strong>revert</strong> — revert попереднього commit</li>
+</ul>
+<h3 id="types">Приклади types</h3>
+<pre><code class="language-bash">feat: add user authentication
+fix: correct validation error in login form
+docs: update API documentation
+style: format code with prettier
+refactor: extract validation logic to separate module
+perf: optimize database queries
+test: add unit tests for auth service
+build: update webpack configuration
+ci: add codecov integration
+chore: update dependencies
+revert: revert &quot;feat: add user authentication&quot;
+</code></pre>
+<h2 id="scope">Scope (опціональний)</h2>
+<p>Scope вказує на частину проєкту що змінюється:</p>
+<p><strong>Приклади scope</strong>:
+- <code>auth</code> — authentication/authorization
+- <code>api</code> — API endpoints
+- <code>db</code> — database
+- <code>ui</code> — user interface
+- <code>config</code> — configuration
+- <code>deps</code> — dependencies</p>
+<pre><code class="language-bash">feat(auth): add password reset
+fix(api): handle null response
+docs(readme): update installation steps
+</code></pre>
+<p><strong>Можна пропустити</strong> якщо зміни стосуються всього проєкту:</p>
+<pre><code class="language-bash">docs: update contributing guidelines
+chore: update all dependencies
+</code></pre>
+<h2 id="subject">Subject (обов'язковий)</h2>
+<p>Коротке описання зміни:</p>
+<h3 id="_4">Правила</h3>
+<ol>
+<li><strong>Imperative mood</strong> — "add" не "added" чи "adds"</li>
+<li><strong>No capitalization</strong> — lowercase first letter</li>
+<li><strong>No period</strong> — без крапки в кінці</li>
+<li><strong>Max 50 characters</strong> — коротко та ясно</li>
+</ol>
+<h3 id="good-examples">✅ Good examples</h3>
+<pre><code>add user authentication
+fix memory leak in cache
+update installation docs
+remove deprecated API
+</code></pre>
+<h3 id="bad-examples">❌ Bad examples</h3>
+<pre><code>Added user authentication  ❌ (past tense)
+Fix Memory Leak           ❌ (capitalized)
+update docs.              ❌ (period at end)
+This commit updates the documentation for the new API endpoints ❌ (too long)
+</code></pre>
+<h2 id="body">Body (опціональний)</h2>
+<p>Детальний опис змін:</p>
+<h3 id="body_1">Коли потрібен body</h3>
+<ul>
+<li>Складні зміни що потребують пояснення</li>
+<li>Breaking changes</li>
+<li>Архітектурні рішення</li>
+<li>Технічні деталі</li>
+</ul>
+<h3 id="_5">Правила</h3>
+<ol>
+<li>Відокремлений <strong>пустим рядком</strong> від subject</li>
+<li><strong>Wrap at 72 characters</strong> для читабельності</li>
+<li>Пояснює <strong>"що" та "чому"</strong>, не "як"</li>
+<li>Може містити декілька параграфів</li>
+</ol>
+<h3 id="_6">Приклад</h3>
+<pre><code>feat(auth): implement OAuth2 flow
+
+Add OAuth2 authentication with support for Google and GitHub
+providers. Users can now login using their social accounts.
+
+This change improves user experience by reducing friction during
+signup process. Implementation follows OAuth2 RFC 6749 standard.
+
+Technical details:
+- Using passport.js for OAuth strategies
+- Tokens stored in secure HTTP-only cookies
+- Added refresh token rotation for security
+</code></pre>
+<h2 id="footer">Footer (опціональний)</h2>
+<p>Metadata про commit:</p>
+<h3 id="breaking-changes">Breaking Changes</h3>
+<p>Для breaking changes використовуйте <code>BREAKING CHANGE:</code>:</p>
+<pre><code>feat(api): change authentication endpoint
+
+BREAKING CHANGE: Authentication endpoint moved from /auth to /api/v2/auth.
+All clients must update their API calls.
+
+Migration guide:
+- Update API_URL from `/auth` to `/api/v2/auth`
+- Add API version header: `X-API-Version: 2`
+</code></pre>
+<h3 id="issue-references">Issue References</h3>
+<p>Link до issues або PR:</p>
+<pre><code>fix(api): handle timeout errors
+
+Properly handle timeout errors and return 408 status code.
+
+Fixes #123
+Closes #456
+Related to #789
+</code></pre>
+<p><strong>Keywords</strong>:
+- <code>Fixes #123</code> — closes issue automatically
+- <code>Closes #123</code> — closes issue automatically
+- <code>Resolves #123</code> — closes issue automatically
+- <code>Related to #123</code> — створює reference (не закриває)</p>
+<h2 id="_7">Спеціальні випадки</h2>
+<h3 id="revert-commits">Revert Commits</h3>
+<pre><code>revert: feat(auth): add JWT authentication
+
+This reverts commit 1234567890abcdef.
+
+Reason: JWT implementation caused performance issues in production.
+</code></pre>
+<h3 id="merge-commits">Merge Commits</h3>
+<p>GitHub автоматично створює merge commits. Якщо робите manual merge:</p>
+<pre><code>Merge branch 'feature/user-auth' into main
+
+Merged PR #123: Add user authentication
+</code></pre>
+<h3 id="multiple-changes">Multiple Changes</h3>
+<p><strong>Не робіть це</strong> — розділіть на кілька commits:</p>
+<pre><code>❌ feat: add login, fix logout, update docs
+</code></pre>
+<p><strong>Робіть окремі commits</strong>:</p>
+<pre><code>✅ feat(auth): add login functionality
+✅ fix(auth): correct logout redirect
+✅ docs(auth): update authentication guide
+</code></pre>
+<h2 id="workflow-examples">Workflow Examples</h2>
+<h3 id="feature-development">Feature Development</h3>
+<pre><code class="language-bash"># Створення нової функціональності
+git commit -m &quot;feat(user): add user profile page&quot;
+git commit -m &quot;test(user): add tests for profile page&quot;
+git commit -m &quot;docs(user): document profile page API&quot;
+</code></pre>
+<h3 id="bug-fix">Bug Fix</h3>
+<pre><code class="language-bash"># Simple bug fix
+git commit -m &quot;fix(api): handle null user response&quot;
+
+# Complex bug fix з body
+git commit -m &quot;fix(api): prevent race condition in user creation
+
+Add mutex lock to prevent concurrent user creation with same email.
+This fixes intermittent duplicate user errors in production.
+
+Fixes #456&quot;
+</code></pre>
+<h3 id="refactoring">Refactoring</h3>
+<pre><code class="language-bash">git commit -m &quot;refactor(auth): extract validation logic
+
+Move validation from controller to separate validator class.
+Improves testability and code organization.&quot;
+</code></pre>
+<h3 id="documentation">Documentation</h3>
+<pre><code class="language-bash">git commit -m &quot;docs(readme): update installation instructions&quot;
+git commit -m &quot;docs(api): add examples for authentication endpoints&quot;
+</code></pre>
+<h2 id="commit-frequency">Commit Frequency</h2>
+<h3 id="_8">Коли комітити</h3>
+<ul>
+<li>✅ Після завершення логічної зміни</li>
+<li>✅ Коли код компілюється і tests проходять</li>
+<li>✅ Перед переключенням на іншу задачу</li>
+<li>✅ В кінці робочого дня (WIP commits)</li>
+</ul>
+<h3 id="atomic-commits">Atomic Commits</h3>
+<p>Кожен commit повинен бути <strong>atomic</strong> — одна логічна зміна:</p>
+<pre><code class="language-bash"># ✅ GOOD - atomic commits
+git commit -m &quot;feat(auth): add login form&quot;
+git commit -m &quot;feat(auth): add login API endpoint&quot;
+git commit -m &quot;test(auth): add login tests&quot;
+
+# ❌ BAD - non-atomic
+git commit -m &quot;add complete authentication system with tests and docs&quot;
+</code></pre>
+<h2 id="wip-commits">WIP Commits</h2>
+<p>Для незавершеної роботи:</p>
+<pre><code class="language-bash"># Save work in progress
+git commit -m &quot;wip: implement user profile (incomplete)&quot;
+
+# Continue next day
+# ...make changes...
+
+# Squash WIP commits before PR
+git rebase -i HEAD~3
+# Squash WIP commits into meaningful commit
+</code></pre>
+<h2 id="commit-hooks">Commit Hooks</h2>
+<h3 id="pre-commit">Pre-commit</h3>
+<p>Автоматично перевіряє commit message:</p>
+<pre><code class="language-bash"># Install commitlint
+npm install --save-dev @commitlint/{cli,config-conventional}
+
+# Configure
+echo &quot;module.exports = {extends: ['@commitlint/config-conventional']}&quot; &gt; commitlint.config.js
+
+# Setup hook
+npx husky add .husky/commit-msg 'npx --no -- commitlint --edit &quot;$1&quot;'
+</code></pre>
+<h3 id="pre-commit-checks">Pre-commit checks</h3>
+<pre><code class="language-bash"># .husky/pre-commit
+npm run lint
+npm test
+</code></pre>
+<h2 id="tools">Tools</h2>
+<h3 id="commitizen">Commitizen</h3>
+<p>Interactive tool для створення commits:</p>
+<pre><code class="language-bash"># Install
+npm install -g commitizen cz-conventional-changelog
+
+# Use
+git cz
+</code></pre>
+<p>Output:</p>
+<pre><code>? Select the type of change: (Use arrow keys)
+❯ feat:     A new feature
+  fix:      A bug fix
+  docs:     Documentation only changes
+  style:    Changes that don't affect code meaning
+  refactor: A code change that neither fixes a bug nor adds a feature
+  perf:     A code change that improves performance
+  test:     Adding missing tests
+</code></pre>
+<h3 id="conventional-changelog">Conventional Changelog</h3>
+<p>Автоматична генерація CHANGELOG:</p>
+<pre><code class="language-bash">npm install -g conventional-changelog-cli
+conventional-changelog -p angular -i CHANGELOG.md -s
+</code></pre>
+<h2 id="reviewing-commits">Reviewing Commits</h2>
+<h3 id="git-log">Git Log</h3>
+<pre><code class="language-bash"># Readable log
+git log --oneline --graph --decorate
+
+# Filter by type
+git log --oneline --grep=&quot;^feat&quot;
+git log --oneline --grep=&quot;^fix&quot;
+
+# Show commits for specific file
+git log --oneline -- path/to/file
+
+# Show commits by author
+git log --author=&quot;username&quot;
+</code></pre>
+<h3 id="finding-changes">Finding Changes</h3>
+<pre><code class="language-bash"># Find when bug was introduced
+git log --grep=&quot;fix.*login&quot;
+
+# Find all breaking changes
+git log --grep=&quot;BREAKING CHANGE&quot;
+
+# Find commits affecting specific feature
+git log --grep=&quot;feat.*auth&quot;
+</code></pre>
+<h2 id="ammending-commits">Ammending Commits</h2>
+<h3 id="last-commit">Last Commit</h3>
+<pre><code class="language-bash"># Change last commit message
+git commit --amend -m &quot;fix(auth): correct typo in validation&quot;
+
+# Add forgotten files to last commit
+git add forgotten-file.js
+git commit --amend --no-edit
+</code></pre>
+<h3 id="multiple-commits-interactive-rebase">Multiple Commits (Interactive Rebase)</h3>
+<pre><code class="language-bash"># Edit last 3 commits
+git rebase -i HEAD~3
+
+# Options:
+# pick = keep commit
+# reword = keep commit but edit message
+# edit = pause to amend commit
+# squash = merge into previous commit
+# fixup = like squash but discard message
+# drop = remove commit
+</code></pre>
+<p><strong>Важливо</strong>: Не rebase commits що вже в main або shared branch!</p>
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="dos">Do's ✅</h3>
+<ol>
+<li>✅ Write clear, concise messages</li>
+<li>✅ Use conventional format</li>
+<li>✅ Reference issues</li>
+<li>✅ Explain "why" not "what"</li>
+<li>✅ Make atomic commits</li>
+<li>✅ Test before commit</li>
+<li>✅ Proofread messages</li>
+</ol>
+<h3 id="donts">Don'ts ❌</h3>
+<ol>
+<li>❌ Vague messages ("fix bug", "update code")</li>
+<li>❌ Too long subject lines</li>
+<li>❌ Mix multiple changes</li>
+<li>❌ Commit broken code</li>
+<li>❌ Commit secrets or credentials</li>
+<li>❌ Use past tense</li>
+<li>❌ Skip type prefix</li>
+</ol>
+<h2 id="examples-library">Examples Library</h2>
+<h3 id="features">Features</h3>
+<pre><code>feat(search): add fuzzy search capability
+feat(ui): implement dark mode
+feat(api): add pagination to user list
+feat(export): support CSV export
+</code></pre>
+<h3 id="fixes">Fixes</h3>
+<pre><code>fix(login): prevent double form submission
+fix(api): handle timeout gracefully
+fix(ui): correct button alignment on mobile
+fix(validation): accept international phone numbers
+</code></pre>
+<h3 id="documentation_1">Documentation</h3>
+<pre><code>docs(readme): add quick start guide
+docs(api): document error responses
+docs(contributing): update PR process
+docs(changelog): add version 2.0.0 notes
+</code></pre>
+<h3 id="performance">Performance</h3>
+<pre><code>perf(db): optimize user query with indexes
+perf(api): add caching layer
+perf(ui): lazy load images
+</code></pre>
+<h3 id="tests">Tests</h3>
+<pre><code>test(auth): add integration tests
+test(api): increase coverage to 90%
+test(ui): add e2e tests for checkout
+</code></pre>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="wrong-commit-message">Wrong Commit Message</h3>
+<pre><code class="language-bash"># Change last commit message
+git commit --amend
+
+# Change older commit
+git rebase -i HEAD~5  # go back 5 commits
+# Change 'pick' to 'reword' for commits to edit
+</code></pre>
+<h3 id="committed-to-wrong-branch">Committed to Wrong Branch</h3>
+<pre><code class="language-bash"># Move last commit to another branch
+git checkout correct-branch
+git cherry-pick wrong-branch
+git checkout wrong-branch
+git reset --hard HEAD~1
+</code></pre>
+<h2 id="_9">Додаткові ресурси</h2>
+<ul>
+<li><a href="https://www.conventionalcommits.org/">Conventional Commits</a></li>
+<li><a href="https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit">Angular Commit Guidelines</a></li>
+<li><a href="../pr-process/">PR Process</a></li>
+<li><a href="https://git-scm.com/book/en/v2">Git Best Practices</a></li>
+</ul>
+<h2 id="_10">Питання?</h2>
+<p>Створіть issue з label "documentation" якщо щось незрозуміло.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
