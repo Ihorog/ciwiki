@@ -1,0 +1,4 @@
+# Python dependencies for MkDocs documentation
+mkdocs-material
+mkdocs-minify-plugin
+mkdocs-redirects
