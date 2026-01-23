@@ -1,8 +1,23 @@
 site_name: Ciwiki Docs
 theme:
   name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - search.suggest
+    - search.highlight
 nav:
   - Головна: index.md
+  - Процеси:
+    - Огляд: processes/index.md
+    - PR Process: processes/pr-process.md
+    - Release Process: processes/release-process.md
+    - Testing Guide: processes/testing.md
+    - Secrets Management: processes/secrets-management.md
+    - Commit Conventions: processes/commit-conventions.md
+    - Master Issue: processes/master-issue.md
+    - CI/CD: processes/ci-cd.md
   - Cimeika:
     - Ci:
       - Ci: Cimeika/Ci/index.md
