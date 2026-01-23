@@ -120,6 +120,17 @@ If behavior, process, or contract is unclear:
 - update documentation in `ciwiki` first,
 - only then proceed to implementation.
 
+All process documentation is in `/docs/processes/`:
+- PR Process — how to create and handle Pull Requests
+- Release Process — versioning and release procedures
+- Testing — testing standards and practices
+- Secrets Management — working with credentials securely
+- Commit Conventions — commit message standards
+- Master Issue — coordinating large initiatives
+- CI/CD — continuous integration and deployment
+
+Before any action, check the relevant process guide.
+
 ---
 
 ## SECURITY & SAFETY

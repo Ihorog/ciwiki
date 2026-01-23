@@ -1,0 +1,183 @@
+name: Validate Documentation
+
+on:
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
+      - 'README.md'
+      - 'COPILOT_CANON.md'
+      - 'SECURITY.md'
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
+
+jobs:
+  validate-mkdocs:
+    name: Validate MkDocs Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+
+      - name: Install MkDocs and dependencies
+        run: |
+          pip install mkdocs-material
+          pip install mkdocs-minify-plugin
+          pip install mkdocs-redirects
+
+      - name: Validate MkDocs config
+        run: |
+          echo "Validating mkdocs.yml configuration..."
+          mkdocs build --verbose
+
+      - name: Check for broken links (basic)
+        run: |
+          echo "Checking for common broken link patterns..."
+          # Check for common broken internal links
+          find docs -name "*.md" -type f -exec grep -H "](\.\./" {} \; || true
+          # Check for absolute GitHub links that should be relative
+          find docs -name "*.md" -type f -exec grep -H "](https://github.com/Ihorog/ciwiki/blob/main/" {} \; || true
+
+  validate-markdown:
+    name: Validate Markdown
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install markdownlint
+        run: npm install -g markdownlint-cli
+
+      - name: Lint markdown files
+        run: |
+          # Create markdownlint config
+          cat > .markdownlint.json << 'EOF'
+          {
+            "default": true,
+            "MD013": false,
+            "MD033": false,
+            "MD041": false
+          }
+          EOF
+          
+          # Lint all markdown files
+          markdownlint 'docs/**/*.md' 'README.md' 'COPILOT_CANON.md' 'SECURITY.md' || true
+
+  validate-structure:
+    name: Validate Documentation Structure
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Check required files exist
+        run: |
+          echo "Checking required documentation files..."
+          
+          required_files=(
+            "README.md"
+            "COPILOT_CANON.md"
+            "SECURITY.md"
+            "docs/index.md"
+            "docs/processes/index.md"
+            "docs/processes/pr-process.md"
+            "docs/processes/release-process.md"
+            "docs/processes/testing.md"
+            "docs/processes/secrets-management.md"
+            "docs/processes/commit-conventions.md"
+            "docs/processes/master-issue.md"
+            "docs/processes/ci-cd.md"
+            "templates/change-template.md"
+            "policies/copilot-guard.md"
+            ".github/pull_request_template.md"
+          )
+          
+          missing_files=()
+          for file in "${required_files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "❌ Missing: $file"
+              missing_files+=("$file")
+            else
+              echo "✅ Found: $file"
+            fi
+          done
+          
+          if [ ${#missing_files[@]} -gt 0 ]; then
+            echo ""
+            echo "Error: ${#missing_files[@]} required file(s) missing!"
+            exit 1
+          fi
+          
+          echo ""
+          echo "✅ All required documentation files present!"
+
+      - name: Validate mkdocs nav structure
+        run: |
+          echo "Validating mkdocs navigation..."
+          
+          # Check that all files in nav exist
+          python3 << 'EOF'
+          import yaml
+          import os
+          import sys
+          
+          with open('mkdocs.yml', 'r') as f:
+              config = yaml.safe_load(f)
+          
+          def check_nav_item(item, path=[]):
+              if isinstance(item, dict):
+                  for key, value in item.items():
+                      check_nav_item(value, path + [key])
+              elif isinstance(item, list):
+                  for subitem in item:
+                      check_nav_item(subitem, path)
+              elif isinstance(item, str):
+                  file_path = os.path.join('docs', item)
+                  if not os.path.exists(file_path):
+                      print(f"❌ File referenced in nav but not found: {file_path}")
+                      return False
+                  print(f"✅ Nav file exists: {file_path}")
+              return True
+          
+          if 'nav' in config:
+              all_valid = check_nav_item(config['nav'])
+              if not all_valid:
+                  sys.exit(1)
+          
+          print("\n✅ All navigation files exist!")
+          EOF
+
+  check-documentation-freshness:
+    name: Check Documentation Freshness
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Check for outdated documentation
+        run: |
+          echo "Checking for documentation that might be outdated..."
+          
+          # Find docs not updated in last 6 months (180 days)
+          echo "Files not updated in last 180 days:"
+          find docs -name "*.md" -type f -mtime +180 -exec ls -lh {} \; || echo "All docs are recent"
+          
+          # This is informational only, not a failure
+          exit 0
