@@ -69,6 +69,15 @@ Continuous Integration та Continuous Deployment процеси та workflows.
 - Deployment strategies
 - Monitoring
 
+### 🌐 [Web Publishing](./web-publishing.md)
+Процес публікації документації на GitHub Pages з використанням MkDocs.
+
+**Ключові теми**:
+- MkDocs configuration
+- GitHub Pages deployment
+- Documentation structure
+- Local development
+
 ## Швидкий доступ
 
 ### Для нових розробників

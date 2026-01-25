@@ -18,6 +18,7 @@ nav:
     - Commit Conventions: processes/commit-conventions.md
     - Master Issue: processes/master-issue.md
     - CI/CD: processes/ci-cd.md
+    - Web Publishing: processes/web-publishing.md
   - Легенда Ci:
     - Огляд: Legend-ci/README.md
     - Підсумок: Legend-ci/00-summary.md
