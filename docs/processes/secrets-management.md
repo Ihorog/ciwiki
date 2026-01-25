@@ -202,7 +202,7 @@ GitHub автоматично сканує на patterns:
 
 ### Copilot Guard
 
-Політика [Copilot Guard](../../policies/copilot-guard.md) блокує:
+Політика [Copilot Guard](../policies/copilot-guard.md) блокує:
 
 1. Реальні API keys в коді/документації
 2. Tokens у будь-якому форматі
@@ -424,11 +424,11 @@ External: Якщо customer data compromised:
 
 ## Додаткові ресурси
 
-- [SECURITY.md](../../SECURITY.md) — Security Policy
-- [Copilot Guard](../../policies/copilot-guard.md) — Secret Detection Rules
+- [SECURITY.md](../SECURITY.md) — Security Policy
+- [Copilot Guard](../policies/copilot-guard.md) — Secret Detection Rules
 - [OWASP Secrets Management](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html)
 - [GitHub Secret Scanning](https://docs.github.com/en/code-security/secret-scanning)
 
 ## Контакти
 
-Security issues: Дивіться [SECURITY.md](../../SECURITY.md) для reporting instructions.
+Security issues: Дивіться [SECURITY.md](../SECURITY.md) для reporting instructions.

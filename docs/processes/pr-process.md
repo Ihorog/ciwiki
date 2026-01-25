@@ -35,7 +35,7 @@ Pull Request (PR) є основним механізмом внесення зм
 
 ### PR Template
 
-Використовуйте [PR template](./.github/pull_request_template.md) який автоматично додається при створенні PR.
+Використовуйте [PR template](../.github/pull_request_template.md) який автоматично додається при створенні PR.
 
 ## Процес створення PR
 
@@ -245,5 +245,5 @@ git push --force-with-lease
 
 - [Commit Conventions](./commit-conventions.md)
 - [Testing Guide](./testing.md)
-- [Security Policy](../../SECURITY.md)
-- [COPILOT_CANON.md](../../COPILOT_CANON.md)
+- [Security Policy](../SECURITY.md)
+- [COPILOT_CANON.md](../COPILOT_CANON.md)
