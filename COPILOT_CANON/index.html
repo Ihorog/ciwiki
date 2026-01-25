@@ -19,7 +19,7 @@
     
     
       
-        <title>Research (Дослідження) - Ciwiki Docs</title>
+        <title>Cimeika — Global GitHub Copilot Instructions - Ciwiki Docs</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#research" class="md-skip">
+        <a href="#cimeika-global-github-copilot-instructions" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Research (Дослідження)
+              Cimeika — Global GitHub Copilot Instructions
             
           </span>
         </div>
@@ -1423,6 +1423,146 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PURPOSE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-of-truth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SOURCE OF TRUTH
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope-repositories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SCOPE (REPOSITORIES)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hard-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HARD CONSTRAINTS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anti-repeat-principle-core-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ANTI-REPEAT PRINCIPLE (CORE RULE)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standard-intent-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STANDARD INTENT CLASSES
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execution-flow-single-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EXECUTION FLOW (SINGLE PATH)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pull-request-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PULL REQUEST REQUIREMENTS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DOCUMENTATION FIRST
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SECURITY &amp; SAFETY
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimalism-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MINIMALISM RULE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-authority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FINAL AUTHORITY
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1438,7 +1578,132 @@
 
 
 
-<h1 id="research">Research (Дослідження)</h1>
+<h1 id="cimeika-global-github-copilot-instructions">Cimeika — Global GitHub Copilot Instructions</h1>
+<h2 id="purpose">PURPOSE</h2>
+<p>These instructions define the mandatory rules for GitHub Copilot across the entire Cimeika ecosystem.</p>
+<p>Goal:
+- eliminate repeated actions,
+- enforce a single execution path,
+- ensure all changes flow through PR → verification → human approval.</p>
+<p>Copilot acts as a controlled execution agent, not an autonomous decision-maker.</p>
+<hr />
+<h2 id="source-of-truth">SOURCE OF TRUTH</h2>
+<ul>
+<li>Repository: <code>ciwiki</code></li>
+<li>This file is the canonical reference.</li>
+<li>Any uncertainty MUST be resolved by documentation updates in <code>ciwiki</code> first.</li>
+</ul>
+<p>If something is not defined here:
+- do NOT guess,
+- create a documentation PR in <code>ciwiki</code>,
+- wait for approval.</p>
+<hr />
+<h2 id="scope-repositories">SCOPE (REPOSITORIES)</h2>
+<p>Copilot instructions apply to:
+- <code>ciwiki</code>
+- <code>cit</code>
+- <code>cimeika-unified</code>
+- <code>citt</code>
+- <code>media</code> (restricted: docs only)</p>
+<p>Repository <code>cit_versel</code>:
+- strictly frozen,
+- no changes,
+- no deployment,
+- no workflows.</p>
+<hr />
+<h2 id="hard-constraints">HARD CONSTRAINTS</h2>
+<ul>
+<li>No direct commits to <code>main</code>.</li>
+<li>All changes go through branches and Pull Requests.</li>
+<li>No deployment, no production actions.</li>
+<li>No secrets committed to repository.</li>
+<li>No architectural rewrites unless explicitly authorized.</li>
+</ul>
+<hr />
+<h2 id="anti-repeat-principle-core-rule">ANTI-REPEAT PRINCIPLE (CORE RULE)</h2>
+<p>Any repeated action is a system failure.</p>
+<p>A repeat includes:
+- the same manual command executed more than once,
+- the same error occurring more than once,
+- the same sequence of steps repeated to achieve a standard outcome.</p>
+<p>When a repeat is detected, Copilot MUST:
+1. identify the root cause,
+2. introduce a mechanism that prevents repetition,
+3. document the resolution,
+4. ensure the issue cannot reoccur under the same conditions.</p>
+<p>Repeats must be eliminated permanently unless system conditions change.</p>
+<hr />
+<h2 id="standard-intent-classes">STANDARD INTENT CLASSES</h2>
+<p>Copilot MUST use only standard intent categories.
+No custom magic words or invented markers.</p>
+<p>Allowed intents:
+- status
+- health
+- analyze
+- fix
+- refactor
+- document
+- sync
+- run_tests
+- make_pr</p>
+<p>Each intent must have:
+- clear trigger condition,
+- deterministic outcome,
+- explicit approval boundary.</p>
+<hr />
+<h2 id="execution-flow-single-path">EXECUTION FLOW (SINGLE PATH)</h2>
+<p>All work must follow this sequence:</p>
+<ol>
+<li>Plan (what and why).</li>
+<li>Implement in a branch.</li>
+<li>Verify (tests / checks / validation).</li>
+<li>Create Pull Request.</li>
+<li>Await human approval.</li>
+<li>Merge.</li>
+</ol>
+<p>There are no alternative paths.</p>
+<hr />
+<h2 id="pull-request-requirements">PULL REQUEST REQUIREMENTS</h2>
+<p>Each PR must include:
+- What changed
+- Why it changed (root cause)
+- How it was verified
+- Risk assessment
+- Rollback plan</p>
+<p>PRs without verification or explanation are invalid.</p>
+<hr />
+<h2 id="documentation-first">DOCUMENTATION FIRST</h2>
+<p>If behavior, process, or contract is unclear:
+- update documentation in <code>ciwiki</code> first,
+- only then proceed to implementation.</p>
+<p>All process documentation is in <code>/docs/processes/</code>:
+- PR Process — how to create and handle Pull Requests
+- Release Process — versioning and release procedures
+- Testing — testing standards and practices
+- Secrets Management — working with credentials securely
+- Commit Conventions — commit message standards
+- Master Issue — coordinating large initiatives
+- CI/CD — continuous integration and deployment</p>
+<p>Before any action, check the relevant process guide.</p>
+<hr />
+<h2 id="security-safety">SECURITY &amp; SAFETY</h2>
+<ul>
+<li>Principle of least privilege.</li>
+<li>Secrets only via GitHub Secrets or environment configuration.</li>
+<li>No credentials in code or markdown.</li>
+</ul>
+<hr />
+<h2 id="minimalism-rule">MINIMALISM RULE</h2>
+<p>Change only what is necessary.
+Do not refactor broadly.
+Do not rewrite systems without explicit authorization.</p>
+<p>But: always eliminate repetition when found.</p>
+<hr />
+<h2 id="final-authority">FINAL AUTHORITY</h2>
+<p>Human approval is mandatory before any merge.</p>
+<p>Copilot prepares.
+Human decides.</p>
+<p>END OF INSTRUCTIONS</p>
 
 
 

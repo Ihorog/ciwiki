@@ -19,7 +19,7 @@
     
     
       
-        <title>Research (Дослідження) - Ciwiki Docs</title>
+        <title>Security Policy - Ciwiki Docs</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#research" class="md-skip">
+        <a href="#security-policy" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Research (Дослідження)
+              Security Policy
             
           </span>
         </div>
@@ -1423,6 +1423,342 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#supported-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported Versions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reporting-a-vulnerability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reporting a Vulnerability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reporting a Vulnerability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#response-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response Timeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-to-expect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to Expect
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secrets-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secrets Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automated-security-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automated Security Scanning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-review-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code Review Requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-vulnerabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Vulnerabilities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Vulnerabilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disclosure-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disclosure Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-developers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For Developers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Checklist
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        After Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#incident-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incident Response
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Incident Response">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#if-security-breach-detected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If Security Breach Detected
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contact-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contact Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compliance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compliance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regular-audits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regular Audits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Training
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updates-to-this-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updates to This Policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1438,7 +1774,252 @@
 
 
 
-<h1 id="research">Research (Дослідження)</h1>
+<h1 id="security-policy">Security Policy</h1>
+<h2 id="supported-versions">Supported Versions</h2>
+<p>The following versions of CiWiki are currently being supported with security updates:</p>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.x.x</td>
+<td>:white_check_mark:</td>
+</tr>
+<tr>
+<td>&lt; 1.0</td>
+<td>:x:</td>
+</tr>
+</tbody>
+</table>
+<h2 id="reporting-a-vulnerability">Reporting a Vulnerability</h2>
+<p>If you discover a security vulnerability in CiWiki or any Cimeika ecosystem repository, please report it by:</p>
+<ol>
+<li><strong>DO NOT</strong> open a public issue</li>
+<li>Use GitHub's private security advisory feature:</li>
+<li>Go to the repository</li>
+<li>Click "Security" tab</li>
+<li>Click "Report a vulnerability"</li>
+<li>Or email the maintainers at: security@cimeika.example.com (якщо налаштовано)</li>
+<li>Include detailed information about the vulnerability:</li>
+<li>Description of the issue</li>
+<li>Steps to reproduce</li>
+<li>Potential impact</li>
+<li>Affected versions</li>
+<li>Suggested fix (if available)</li>
+</ol>
+<h3 id="response-timeline">Response Timeline</h3>
+<ul>
+<li><strong>Initial Response</strong>: Within 48 hours of report submission</li>
+<li><strong>Status Updates</strong>: Every 7 days until resolution</li>
+<li><strong>Resolution</strong>: Security patches will be released as soon as possible after verification</li>
+</ul>
+<h3 id="what-to-expect">What to Expect</h3>
+<ul>
+<li><strong>Accepted Vulnerabilities</strong>: Will be patched in the next security release with credit given to the reporter (unless anonymity is requested)</li>
+<li><strong>Declined Reports</strong>: Will receive an explanation of why the report was not accepted as a security issue</li>
+</ul>
+<h2 id="security-practices">Security Practices</h2>
+<h3 id="secrets-management">Secrets Management</h3>
+<p><strong>CRITICAL</strong>: Never commit secrets to the repository.</p>
+<ul>
+<li>All secrets must be in environment variables or GitHub Secrets</li>
+<li>Use <code>.env</code> files locally (add to <code>.gitignore</code>)</li>
+<li>Follow <a href="./docs/processes/secrets-management.md">Secrets Management Guide</a></li>
+</ul>
+<h3 id="automated-security-scanning">Automated Security Scanning</h3>
+<p>All repositories have automated security scanning:</p>
+<ul>
+<li><strong>Dependabot</strong> — dependency vulnerability scanning</li>
+<li><strong>CodeQL</strong> — static code analysis</li>
+<li><strong>Secret Scanning</strong> — detects leaked credentials</li>
+<li><strong>Copilot Guard</strong> — prevents secrets in documentation</li>
+</ul>
+<p>See <a href="../policies/copilot-guard/">policies/copilot-guard.md</a> for details.</p>
+<h3 id="code-review-requirements">Code Review Requirements</h3>
+<p>Security-related changes require:
+- [ ] Review by security team member
+- [ ] Security testing completed
+- [ ] Documentation updated
+- [ ] Approval from 2+ reviewers</p>
+<h2 id="security-vulnerabilities">Security Vulnerabilities</h2>
+<h3 id="classification">Classification</h3>
+<p><strong>Critical</strong> 🔴
+- Remote code execution
+- Authentication bypass
+- Data breach potential
+- <strong>Action</strong>: Immediate patch and deployment</p>
+<p><strong>High</strong> 🟠
+- Privilege escalation
+- Sensitive data exposure
+- SQL injection
+- <strong>Action</strong>: Patch within 7 days</p>
+<p><strong>Medium</strong> 🟡
+- XSS vulnerabilities
+- CSRF issues
+- Information disclosure
+- <strong>Action</strong>: Patch within 30 days</p>
+<p><strong>Low</strong> 🟢
+- Minor information disclosure
+- Low-impact DoS
+- <strong>Action</strong>: Patch in next release</p>
+<h3 id="disclosure-policy">Disclosure Policy</h3>
+<p><strong>Coordinated Disclosure</strong>:
+1. Vulnerability reported privately
+2. Fix developed and tested
+3. Security advisory created
+4. Patch released
+5. Public disclosure after 90 days or patch availability</p>
+<p><strong>CVE Assignment</strong>: For significant vulnerabilities affecting multiple users</p>
+<h2 id="security-best-practices">Security Best Practices</h2>
+<h3 id="for-developers">For Developers</h3>
+<ol>
+<li><strong>Input Validation</strong> ✅</li>
+<li>Validate all user inputs</li>
+<li>Sanitize data before database queries</li>
+<li>
+<p>Use parameterized queries</p>
+</li>
+<li>
+<p><strong>Authentication &amp; Authorization</strong> ✅</p>
+</li>
+<li>Use strong password policies</li>
+<li>Implement MFA where possible</li>
+<li>
+<p>Follow principle of least privilege</p>
+</li>
+<li>
+<p><strong>Cryptography</strong> ✅</p>
+</li>
+<li>Use established libraries (no custom crypto)</li>
+<li>Keep encryption keys secure</li>
+<li>
+<p>Use TLS/HTTPS for all connections</p>
+</li>
+<li>
+<p><strong>Dependencies</strong> ✅</p>
+</li>
+<li>Keep dependencies up to date</li>
+<li>Review dependency security advisories</li>
+<li>
+<p>Use <code>npm audit</code> or equivalent regularly</p>
+</li>
+<li>
+<p><strong>Logging &amp; Monitoring</strong> ✅</p>
+</li>
+<li>Log security events</li>
+<li>Don't log sensitive data</li>
+<li>Monitor for suspicious activity</li>
+</ol>
+<h3 id="for-operations">For Operations</h3>
+<ol>
+<li><strong>Infrastructure Security</strong> ✅</li>
+<li>Use firewalls and network segmentation</li>
+<li>Enable encryption at rest and in transit</li>
+<li>
+<p>Regular security patches</p>
+</li>
+<li>
+<p><strong>Access Control</strong> ✅</p>
+</li>
+<li>Implement RBAC (Role-Based Access Control)</li>
+<li>Regular access reviews</li>
+<li>
+<p>Revoke access promptly when needed</p>
+</li>
+<li>
+<p><strong>Backup &amp; Recovery</strong> ✅</p>
+</li>
+<li>Regular automated backups</li>
+<li>Test recovery procedures</li>
+<li>Secure backup storage</li>
+</ol>
+<h2 id="security-checklist">Security Checklist</h2>
+<h3 id="before-deployment">Before Deployment</h3>
+<ul>
+<li>[ ] All dependencies updated and audited</li>
+<li>[ ] Security tests passing</li>
+<li>[ ] No secrets in code or configuration</li>
+<li>[ ] Authentication/authorization tested</li>
+<li>[ ] Input validation implemented</li>
+<li>[ ] HTTPS enabled</li>
+<li>[ ] Security headers configured</li>
+<li>[ ] Monitoring and logging enabled</li>
+</ul>
+<h3 id="after-deployment">After Deployment</h3>
+<ul>
+<li>[ ] Monitor logs for anomalies</li>
+<li>[ ] Verify security configurations</li>
+<li>[ ] Test incident response procedures</li>
+<li>[ ] Review access controls</li>
+</ul>
+<h2 id="incident-response">Incident Response</h2>
+<h3 id="if-security-breach-detected">If Security Breach Detected</h3>
+<ol>
+<li><strong>Immediate</strong> (Hour 0)</li>
+<li>Contain the breach</li>
+<li>Preserve evidence</li>
+<li>
+<p>Notify security team</p>
+</li>
+<li>
+<p><strong>Short-term</strong> (Hours 1-24)</p>
+</li>
+<li>Assess impact</li>
+<li>Identify root cause</li>
+<li>Begin remediation</li>
+<li>
+<p>Notify stakeholders</p>
+</li>
+<li>
+<p><strong>Long-term</strong> (Days 1-30)</p>
+</li>
+<li>Complete remediation</li>
+<li>Update security measures</li>
+<li>Post-mortem analysis</li>
+<li>Update documentation</li>
+</ol>
+<h3 id="contact-information">Contact Information</h3>
+<p><strong>Security Team</strong>: #security-incidents (Slack)<br />
+<strong>Emergency Contact</strong>: security-emergency@example.com<br />
+<strong>PGP Key</strong>: [Link to public key if available]</p>
+<h2 id="compliance">Compliance</h2>
+<h3 id="standards">Standards</h3>
+<p>Cimeika ecosystem follows:
+- OWASP Top 10 guidelines
+- GitHub Security Best Practices
+- Industry-standard security practices</p>
+<h3 id="regular-audits">Regular Audits</h3>
+<ul>
+<li><strong>Code security reviews</strong>: Quarterly</li>
+<li><strong>Dependency audits</strong>: Monthly  </li>
+<li><strong>Infrastructure reviews</strong>: Quarterly</li>
+<li><strong>Penetration testing</strong>: Annually</li>
+</ul>
+<h2 id="security-training">Security Training</h2>
+<p>All team members must complete:
+- Security awareness training (onboarding)
+- Annual security refresher
+- Secure coding practices workshop</p>
+<h2 id="updates-to-this-policy">Updates to This Policy</h2>
+<p>This security policy is reviewed and updated:
+- Quarterly by security team
+- After major security incidents
+- When new threats emerge</p>
+<p><strong>Last Updated</strong>: 2026-01-23<br />
+<strong>Next Review</strong>: 2026-04-23</p>
+<h2 id="additional-resources">Additional Resources</h2>
+<ul>
+<li><a href="./docs/processes/secrets-management.md">Secrets Management Guide</a></li>
+<li><a href="../policies/copilot-guard/">Copilot Guard Policy</a></li>
+<li><a href="https://owasp.org/www-project-top-ten/">OWASP Top 10</a></li>
+<li><a href="https://docs.github.com/en/code-security">GitHub Security Best Practices</a></li>
+</ul>
+<hr />
+<p><strong>Remember</strong>: Security is everyone's responsibility. If you see something, say something.</p>
 
 
 

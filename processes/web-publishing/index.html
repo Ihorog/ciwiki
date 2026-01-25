@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../pr-process/">
+        <link rel="prev" href="../ci-cd/">
       
       
-        <link rel="next" href="../testing/">
+        <link rel="next" href="../../Legend-ci/">
       
       
         
@@ -23,7 +23,7 @@
     
     
       
-        <title>Release Process - Ciwiki Docs</title>
+        <title>Web Publishing - Ciwiki Docs</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#release-process" class="md-skip">
+        <a href="#web-publishing-process" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Release Process
+              Web Publishing
             
           </span>
         </div>
@@ -435,37 +435,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Release Process
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../release-process/" class="md-nav__link">
         
   
   
@@ -481,475 +454,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Загальні принципи
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#versioning" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Versioning
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Versioning">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pre-release-versions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pre-release versions
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#release-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Release Types
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Release Types">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-patch-release-xxx" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Patch Release (x.x.X)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-minor-release-xxx" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Minor Release (x.X.x)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-major-release-xxx" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Major Release (X.x.x)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#pre-release-checklist" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pre-Release Checklist
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Pre-Release Checklist">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#code-quality" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Code Quality
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Documentation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#testing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Testing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Infrastructure
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#release-workflow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Release Workflow
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Release Workflow">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Підготовка
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-version-bump" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Version Bump
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-changelogmd" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Оновлення CHANGELOG.md
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-release-pr" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Release PR
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-review-approval" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Review &amp; Approval
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-merge-tag" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. Merge &amp; Tag
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7-github-release" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7. GitHub Release
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#8-post-release" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8. Post-Release
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#changelog-guidelines" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CHANGELOG Guidelines
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="CHANGELOG Guidelines">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Формат
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Категорії
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#release-notes-template" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Release Notes Template
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#hotfix-process" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Hotfix Process
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rollback-procedure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rollback Procedure
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Rollback Procedure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-immediate-rollback" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Immediate Rollback
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-communication" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Communication
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-post-mortem" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Post-Mortem
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Автоматизація
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Автоматизація">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#github-actions-releases" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GitHub Actions для Releases
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Best Practices
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#security-releases" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Security Releases
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Заборонено
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Контакти
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Додаткові ресурси
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1099,10 +603,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../web-publishing/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Publishing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1118,6 +649,599 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Огляд
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Архітектура публікації
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Архітектура публікації">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Компоненти
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Основні файли
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-actions-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Actions Workflow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GitHub Actions Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Тригери
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Процес деплою
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Структура документації
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Структура документації">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Навігація
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Організація файлів
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Локальна розробка
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Локальна розробка">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Попередній перегляд
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Збірка локально
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Валідація
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Конфігурація MkDocs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Конфігурація MkDocs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Тема
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Плагіни
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Управління посиланнями
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Управління посиланнями">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Внутрішні посилання
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Посилання на файли поза docs/
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Pages налаштування
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GitHub Pages налаштування">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Domain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#https" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTPS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Branch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Помилки збірки
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Деплой не працює
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broken-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Broken links після деплою
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow конфлікти
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflow конфлікти">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Проблема дублікатів
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Do's ✅
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#donts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Don'ts ❌
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Підтримка копій файлів
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Підтримка копій файлів">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Процес оновлення
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Автоматизація (майбутнє покращення)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Моніторинг
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Моніторинг">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Перевірка деплою
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Логи
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Додаткові ресурси
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changelog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changelog
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Майбутні покращення
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Майбутні покращення">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Автоматична синхронізація дублікатів файлів
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Уніфікація мовної структури
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Покращена валідація при збірці
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1938,7 +2062,7 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Загальні принципи
+        Огляд
       
     </span>
   </a>
@@ -1946,327 +2070,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#versioning" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Versioning
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Versioning">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pre-release-versions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pre-release versions
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#release-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Release Types
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Release Types">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-patch-release-xxx" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Patch Release (x.x.X)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-minor-release-xxx" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Minor Release (x.X.x)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-major-release-xxx" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Major Release (X.x.x)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#pre-release-checklist" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pre-Release Checklist
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Pre-Release Checklist">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#code-quality" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Code Quality
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Documentation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#testing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Testing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#infrastructure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Infrastructure
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#release-workflow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Release Workflow
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Release Workflow">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Підготовка
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-version-bump" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Version Bump
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-changelogmd" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Оновлення CHANGELOG.md
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-release-pr" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Release PR
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-review-approval" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Review &amp; Approval
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-merge-tag" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. Merge &amp; Tag
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7-github-release" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7. GitHub Release
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#8-post-release" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8. Post-Release
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#changelog-guidelines" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CHANGELOG Guidelines
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="CHANGELOG Guidelines">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Формат
+        Архітектура публікації
       
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Архітектура публікації">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Категорії
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#release-notes-template" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Release Notes Template
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#hotfix-process" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Hotfix Process
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rollback-procedure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rollback Procedure
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Rollback Procedure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-immediate-rollback" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Immediate Rollback
+        Компоненти
       
     </span>
   </a>
@@ -2274,49 +2093,344 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-communication" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Communication
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-post-mortem" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Post-Mortem
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Автоматизація
+        Основні файли
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Автоматизація">
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-actions-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Actions Workflow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GitHub Actions Workflow">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#github-actions-releases" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GitHub Actions для Releases
+        Тригери
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Процес деплою
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Структура документації
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Структура документації">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Навігація
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Організація файлів
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Локальна розробка
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Локальна розробка">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Попередній перегляд
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Збірка локально
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Валідація
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Конфігурація MkDocs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Конфігурація MkDocs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Тема
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Плагіни
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Управління посиланнями
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Управління посиланнями">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Внутрішні посилання
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Посилання на файли поза docs/
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Pages налаштування
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GitHub Pages налаштування">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Domain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#https" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTPS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Branch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Помилки збірки
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Деплой не працює
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broken-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Broken links після деплою
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow конфлікти
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflow конфлікти">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Проблема дублікатів
       
     </span>
   </a>
@@ -2337,49 +2451,183 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#security-releases" class="md-nav__link">
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dos" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Security Releases
+        Do's ✅
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#donts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Заборонено
+        Don'ts ❌
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_21" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Контакти
+        Підтримка копій файлів
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Підтримка копій файлів">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Процес оновлення
       
     </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Автоматизація (майбутнє покращення)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Моніторинг
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Моніторинг">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Перевірка деплою
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Логи
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
     <span class="md-ellipsis">
       
         Додаткові ресурси
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changelog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changelog
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Майбутні покращення
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Майбутні покращення">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Автоматична синхронізація дублікатів файлів
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Уніфікація мовної структури
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Покращена валідація при збірці
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2400,371 +2648,349 @@
 
 
 
-<h1 id="release-process">Release Process</h1>
-<h2 id="_1">Загальні принципи</h2>
-<p>Release process визначає як нові версії коду випускаються в production або публічно доступними. Всі releases проходять через строгу процедуру верифікації.</p>
-<h2 id="versioning">Versioning</h2>
-<p>Використовуємо <a href="https://semver.org/">Semantic Versioning</a> (SemVer):</p>
-<pre><code>MAJOR.MINOR.PATCH (наприклад: 2.1.3)
+<h1 id="web-publishing-process">Web Publishing Process</h1>
+<h2 id="_1">Огляд</h2>
+<p>Документація CiWiki автоматично публікується на GitHub Pages за допомогою MkDocs. Це створює зручний та доступний веб-сайт для всієї документації екосистеми Cimeika.</p>
+<h2 id="_2">Архітектура публікації</h2>
+<h3 id="_3">Компоненти</h3>
+<pre><code>┌─────────────────┐
+│   Repository    │
+│   docs/         │ ← Вихідні файли Markdown
+└────────┬────────┘
+         │
+         v
+┌─────────────────┐
+│    MkDocs       │
+│    Builder      │ ← Генератор статичного сайту
+└────────┬────────┘
+         │
+         v
+┌─────────────────┐
+│   gh-pages      │
+│   branch        │ ← Розгорнутий сайт
+└────────┬────────┘
+         │
+         v
+┌─────────────────┐
+│  GitHub Pages   │
+│ www.cimeika.    │ ← Публічний URL
+│  com.ua         │
+└─────────────────┘
 </code></pre>
+<h3 id="_4">Основні файли</h3>
 <ul>
-<li><strong>MAJOR</strong> — breaking changes (несумісні API зміни)</li>
-<li><strong>MINOR</strong> — нова функціональність (backward compatible)</li>
-<li><strong>PATCH</strong> — bug fixes (backward compatible)</li>
+<li><strong>mkdocs.yml</strong> - конфігурація MkDocs</li>
+<li><strong>docs/</strong> - директорія з документацією</li>
+<li><strong>.github/workflows/ciwiki-pages.yml</strong> - GitHub Actions workflow для деплою</li>
 </ul>
-<h3 id="pre-release-versions">Pre-release versions</h3>
-<ul>
-<li><strong>alpha</strong> — <code>1.0.0-alpha.1</code> — ранній етап розробки</li>
-<li><strong>beta</strong> — <code>1.0.0-beta.1</code> — feature complete, тестування</li>
-<li><strong>rc</strong> — <code>1.0.0-rc.1</code> — release candidate</li>
-</ul>
-<h2 id="release-types">Release Types</h2>
-<h3 id="1-patch-release-xxx">1. Patch Release (x.x.X)</h3>
-<p><strong>Коли</strong>: Bug fixes, маленькі покращення, документація</p>
-<p><strong>Процес</strong>:</p>
-<pre><code class="language-bash"># Створіть hotfix branch від main
-git checkout -b hotfix/v1.2.3 main
-
-# Зробіть зміни
-# ... fix bugs ...
-
-# Оновіть версію
-npm version patch -m &quot;Release v%s&quot;
-
-# Оновіть CHANGELOG.md
-# ... додайте зміни ...
-
-# Створіть PR
-git push origin hotfix/v1.2.3
-</code></pre>
-<h3 id="2-minor-release-xxx">2. Minor Release (x.X.x)</h3>
-<p><strong>Коли</strong>: Нова функціональність, покращення, backward compatible</p>
-<p><strong>Процес</strong>:</p>
-<pre><code class="language-bash"># Створіть release branch
-git checkout -b release/v1.3.0 develop
-
-# Freeze feature commits, тільки bug fixes
-# Оновіть версію
-npm version minor -m &quot;Release v%s&quot;
-
-# Оновіть CHANGELOG.md
-# Тестування та верифікація
-
-# Створіть PR до main
-git push origin release/v1.3.0
-</code></pre>
-<h3 id="3-major-release-xxx">3. Major Release (X.x.x)</h3>
-<p><strong>Коли</strong>: Breaking changes, архітектурні зміни</p>
-<p><strong>Процес</strong>:
-- Створіть детальний migration guide
-- Проведіть extensive testing
-- Notify всіх stakeholders заздалегідь
-- Створіть backup plan</p>
-<pre><code class="language-bash">git checkout -b release/v2.0.0 develop
-npm version major -m &quot;Release v%s&quot;
-# ... решта процесу ...
-</code></pre>
-<h2 id="pre-release-checklist">Pre-Release Checklist</h2>
-<h3 id="code-quality">Code Quality</h3>
-<ul>
-<li>[ ] Всі tests проходять</li>
-<li>[ ] Code coverage &gt;= 80%</li>
-<li>[ ] Немає критичних security vulnerabilities</li>
-<li>[ ] Linting проходить без warnings</li>
-<li>[ ] Code review completed</li>
-</ul>
-<h3 id="documentation">Documentation</h3>
-<ul>
-<li>[ ] CHANGELOG.md оновлений</li>
-<li>[ ] README.md актуальний</li>
-<li>[ ] API documentation оновлена</li>
-<li>[ ] Migration guide (для major releases)</li>
-<li>[ ] Release notes підготовлені</li>
-</ul>
-<h3 id="testing">Testing</h3>
-<ul>
-<li>[ ] Unit tests проходять</li>
-<li>[ ] Integration tests проходять</li>
-<li>[ ] E2E tests проходять (якщо є)</li>
-<li>[ ] Manual testing завершено</li>
-<li>[ ] Performance testing (для major/minor)</li>
-</ul>
-<h3 id="infrastructure">Infrastructure</h3>
-<ul>
-<li>[ ] Build успішний</li>
-<li>[ ] Dependencies оновлені</li>
-<li>[ ] Security audit пройдений</li>
-<li>[ ] Deployment scripts перевірені</li>
-<li>[ ] Rollback procedure documented</li>
-</ul>
-<h2 id="release-workflow">Release Workflow</h2>
-<h3 id="1">1. Підготовка</h3>
-<pre><code class="language-bash"># Переконайтесь що local repo clean
-git status
-
-# Переключіться на appropriate branch
-git checkout main  # для hotfix
-# або
-git checkout develop  # для features
-git pull origin main
-</code></pre>
-<h3 id="2-version-bump">2. Version Bump</h3>
-<pre><code class="language-bash"># Automatic version bump
-npm version patch|minor|major -m &quot;Release v%s&quot;
-
-# Або manual в package.json
-# Не забудьте commit!
-</code></pre>
-<h3 id="3-changelogmd">3. Оновлення CHANGELOG.md</h3>
-<pre><code class="language-markdown">## [1.2.3] - 2026-01-23
-
-### Added
-- New feature X
-- New feature Y
-
-### Changed
-- Updated component Z
-
-### Fixed
-- Bug fix A (#123)
-- Bug fix B (#456)
-
-### Security
-- Security patch for vulnerability C
-</code></pre>
-<h3 id="4-release-pr">4. Release PR</h3>
-<p>Створіть PR з:
-- Version bump
-- CHANGELOG updates
-- Документація updates</p>
-<p><strong>Title</strong>: <code>Release v1.2.3</code></p>
-<p><strong>Description</strong>: Використайте release notes template</p>
-<h3 id="5-review-approval">5. Review &amp; Approval</h3>
-<ul>
-<li>Automatic checks повинні пройти</li>
-<li>Мінімум 2 approvals для production releases</li>
-<li>Security team review для major releases</li>
-</ul>
-<h3 id="6-merge-tag">6. Merge &amp; Tag</h3>
-<pre><code class="language-bash"># Після merge PR
-git checkout main
-git pull origin main
-
-# Створіть git tag
-git tag -a v1.2.3 -m &quot;Release version 1.2.3&quot;
-git push origin v1.2.3
-
-# Tag triggers release workflow
-</code></pre>
-<h3 id="7-github-release">7. GitHub Release</h3>
-<ol>
-<li>Перейдіть на GitHub → Releases</li>
-<li>Натисніть "Draft a new release"</li>
-<li>Виберіть tag (v1.2.3)</li>
-<li>Згенеруйте release notes (або напишіть вручну)</li>
-<li>Додайте artifacts якщо потрібно</li>
-<li>Publish release</li>
-</ol>
-<h3 id="8-post-release">8. Post-Release</h3>
-<pre><code class="language-bash"># Merge main назад в develop (якщо використовується)
-git checkout develop
-git merge main
-git push origin develop
-
-# Повідомте команду
-# Моніторте production після deployment
-</code></pre>
-<h2 id="changelog-guidelines">CHANGELOG Guidelines</h2>
-<h3 id="_2">Формат</h3>
-<pre><code class="language-markdown"># Changelog
-
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/),
-and this project adheres to [Semantic Versioning](https://semver.org/).
-
-## [Unreleased]
-
-### Added
-- Features in development
-
-## [1.2.3] - 2026-01-23
-
-### Added
-- New features
-
-### Changed
-- Changes in existing functionality
-
-### Deprecated
-- Soon-to-be removed features
-
-### Removed
-- Removed features
-
-### Fixed
-- Bug fixes
-
-### Security
-- Security fixes
-</code></pre>
-<h3 id="_3">Категорії</h3>
-<ul>
-<li><strong>Added</strong> — нова функціональність</li>
-<li><strong>Changed</strong> — зміни в існуючій функціональності</li>
-<li><strong>Deprecated</strong> — функції що скоро будуть видалені</li>
-<li><strong>Removed</strong> — видалені функції</li>
-<li><strong>Fixed</strong> — bug fixes</li>
-<li><strong>Security</strong> — security patches</li>
-</ul>
-<h2 id="release-notes-template">Release Notes Template</h2>
-<pre><code class="language-markdown"># Release v1.2.3
-
-## 🎉 Highlights
-
-Brief summary of most important changes.
-
-## 🚀 Features
-
-- Feature A: Description
-- Feature B: Description
-
-## 🐛 Bug Fixes
-
-- Fix for issue X (#123)
-- Fix for issue Y (#456)
-
-## 📝 Documentation
-
-- Updated guide Z
-- New tutorial W
-
-## ⚠️ Breaking Changes
-
-(тільки для major releases)
-
-- Breaking change 1
-- Migration steps
-
-## 🔒 Security
-
-- Security patch for CVE-XXXX-YYYY
-
-## 📦 Dependencies
-
-- Updated dependency A to v2.0
-- Added dependency B v1.5
-
-## 🙏 Contributors
-
-Thanks to @user1, @user2 for contributions!
-
-## 📚 Full Changelog
-
-[View full changelog](link-to-compare)
-</code></pre>
-<h2 id="hotfix-process">Hotfix Process</h2>
-<p>Для критичних bug fixes в production:</p>
-<pre><code class="language-bash"># 1. Створіть hotfix від main
-git checkout -b hotfix/critical-bug main
-
-# 2. Зробіть мінімальний fix
-# ... coding ...
-
-# 3. Version bump (patch)
-npm version patch
-
-# 4. Створіть PR з label &quot;hotfix&quot;
-# 5. Expedited review (скорочений review process)
-# 6. Merge і deploy негайно після approval
-# 7. Backport до develop
-</code></pre>
-<h2 id="rollback-procedure">Rollback Procedure</h2>
-<p>Якщо release містить критичну проблему:</p>
-<h3 id="1-immediate-rollback">1. Immediate Rollback</h3>
-<pre><code class="language-bash"># Revert до попередньої версії
-git revert &lt;release-commit-sha&gt;
-git push origin main
-
-# Або deploy попередній tag
-git checkout v1.2.2
-# ... deploy ...
-</code></pre>
-<h3 id="2-communication">2. Communication</h3>
-<ul>
-<li>Повідомте команду про rollback</li>
-<li>Створіть incident report</li>
-<li>Документуйте причину</li>
-</ul>
-<h3 id="3-post-mortem">3. Post-Mortem</h3>
-<ul>
-<li>Проаналізуйте що пішло не так</li>
-<li>Оновіть release checklist</li>
-<li>Впровадьте додаткові safeguards</li>
-</ul>
-<h2 id="_4">Автоматизація</h2>
-<h3 id="github-actions-releases">GitHub Actions для Releases</h3>
-<p>Автоматично створює release коли tag pushed:</p>
-<pre><code class="language-yaml">name: Release
-
-on:
+<h2 id="github-actions-workflow">GitHub Actions Workflow</h2>
+<h3 id="_5">Тригери</h3>
+<p>Workflow запускається при:</p>
+<pre><code class="language-yaml">on:
   push:
-    tags:
-      - 'v*.*.*'
-
-jobs:
-  release:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Create Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
+    branches: [ main ]  # При пуші до main
+  workflow_dispatch:    # Ручний запуск
 </code></pre>
+<h3 id="_6">Процес деплою</h3>
+<ol>
+<li><strong>Checkout коду</strong>
+   ```yaml</li>
+<li>
+<p>uses: actions/checkout@v6
+   ```</p>
+</li>
+<li>
+<p><strong>Налаштування Python</strong>
+   ```yaml</p>
+</li>
+<li>
+<p>uses: actions/setup-python@v6
+     with:
+       python-version: '3.x'
+   ```</p>
+</li>
+<li>
+<p><strong>Встановлення залежностей</strong>
+   ```yaml</p>
+</li>
+<li>
+<p>run: pip install mkdocs mkdocs-material
+   ```</p>
+</li>
+<li>
+<p><strong>Копіювання динамічних файлів</strong>
+   Workflow копіює файли що часто змінюються:</p>
+</li>
+<li><code>SECURITY.md</code> → <code>docs/SECURITY.md</code> (оновлюється при кожній збірці)</li>
+</ol>
+<p><strong>Примітка</strong>: Інші файли (COPILOT_CANON.md, Legend-ci/, templates/, policies/, .github/) 
+   вже знаходяться в <code>docs/</code> і комітяться разом з іншою документацією для простоти підтримки.</p>
+<ol>
+<li><strong>Збірка сайту</strong>
+   ```yaml</li>
+<li>
+<p>run: mkdocs build
+   <code>``
+   Генерує статичний сайт у директорії</code>site/`</p>
+</li>
+<li>
+<p><strong>Деплой на GitHub Pages</strong>
+   ```yaml</p>
+</li>
+<li>uses: peaceiris/actions-gh-pages@v4
+     with:
+       github_token: ${{ secrets.GITHUB_TOKEN }}
+       publish_dir: ./site
+       publish_branch: gh-pages
+   ```</li>
+</ol>
+<h2 id="_7">Структура документації</h2>
+<h3 id="_8">Навігація</h3>
+<p>Структура навігації визначена в <code>mkdocs.yml</code>:</p>
+<pre><code class="language-yaml">nav:
+  - Головна: index.md
+  - Процеси:
+    - Огляд: processes/index.md
+    - PR Process: processes/pr-process.md
+    - ...
+  - Легенда Ci:
+    - Огляд: Legend-ci/README.md
+    - ...
+  - Cimeika:
+    - Ci:
+      - ...
+</code></pre>
+<h3 id="_9">Організація файлів</h3>
+<pre><code>docs/
+├── index.md                     # Головна сторінка
+├── COPILOT_CANON.md            # Копія з кореня репозиторію
+├── SECURITY.md                 # Копіюється при збірці з кореня
+├── processes/                  # Процеси та інструкції
+│   ├── index.md
+│   ├── pr-process.md
+│   ├── release-process.md
+│   ├── testing.md
+│   ├── ci-cd.md
+│   ├── web-publishing.md       # Цей файл
+│   └── ...
+├── Legend-ci/                  # Легенда Ci документація (копія з &quot;Legend ci/&quot;)
+│   ├── README.md
+│   ├── 00-summary.md
+│   └── ...
+├── Cimeika/                    # Документація проєкту
+│   ├── Ci/
+│   ├── Казкар/
+│   └── ...
+├── templates/                  # Шаблони (копія з кореня)
+├── policies/                   # Політики (копія з кореня)
+└── .github/                    # GitHub конфігурація (копія з кореня)
+</code></pre>
+<p><strong>Примітка про дублікати</strong>: 
+- Файли в <code>docs/Legend-ci/</code>, <code>docs/templates/</code>, <code>docs/policies/</code>, <code>docs/.github/</code> та <code>docs/COPILOT_CANON.md</code> є копіями з кореневої директорії
+- <code>docs/SECURITY.md</code> автоматично оновлюється при кожній збірці
+- Оригінальні файли в <code>Legend ci/</code>, <code>templates/</code>, <code>policies/</code>, <code>.github/</code> залишаються джерелом правди
+- При оновленні цих файлів потрібно також оновити їх копії в <code>docs/</code></p>
+<h2 id="_10">Локальна розробка</h2>
+<h3 id="_11">Попередній перегляд</h3>
+<p>Для перегляду сайту локально:</p>
+<pre><code class="language-bash"># Встановити MkDocs
+pip install mkdocs mkdocs-material
+
+# Запустити dev-сервер
+mkdocs serve
+</code></pre>
+<p>Сайт буде доступний за адресою: http://127.0.0.1:8000</p>
+<h3 id="_12">Збірка локально</h3>
+<pre><code class="language-bash"># Зібрати сайт
+mkdocs build
+
+# Сайт буде згенеровано в директорії site/
+</code></pre>
+<h3 id="_13">Валідація</h3>
+<pre><code class="language-bash"># Збірка з strict mode (помилка при warnings)
+mkdocs build --strict
+</code></pre>
+<h2 id="mkdocs">Конфігурація MkDocs</h2>
+<h3 id="_14">Тема</h3>
+<p>Використовується Material for MkDocs:</p>
+<pre><code class="language-yaml">theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - search.suggest
+    - search.highlight
+</code></pre>
+<h3 id="_15">Плагіни</h3>
+<p>Базові плагіни включені в <code>mkdocs-material</code>:
+- <strong>search</strong> - повнотекстовий пошук
+- <strong>navigation</strong> - покращена навігація</p>
+<h2 id="_16">Управління посиланнями</h2>
+<h3 id="_17">Внутрішні посилання</h3>
+<p>Використовуйте відносні шляхи:</p>
+<pre><code class="language-markdown"># З processes/ci-cd.md до processes/testing.md
+[Testing Guide](./testing.md)
+
+# З processes/ до Legend-ci/
+[Legend Ci](../Legend-ci/README.md)
+
+# З Cimeika/Ci/ до Legend-ci/
+[Definition](../../Legend-ci/01-definition.md)
+</code></pre>
+<h3 id="docs">Посилання на файли поза docs/</h3>
+<p>Файли з кореня репозиторію копіюються при збірці:
+- <code>SECURITY.md</code> → <code>docs/SECURITY.md</code>
+- <code>COPILOT_CANON.md</code> → <code>docs/COPILOT_CANON.md</code></p>
+<p>Посилання:</p>
+<pre><code class="language-markdown">[Security Policy](../SECURITY.md)
+[Copilot Canon](../COPILOT_CANON.md)
+</code></pre>
+<h2 id="github-pages">GitHub Pages налаштування</h2>
+<h3 id="custom-domain">Custom Domain</h3>
+<p>Домен налаштовано через файл <code>CNAME</code>:</p>
+<pre><code>www.cimeika.com.ua
+</code></pre>
+<h3 id="https">HTTPS</h3>
+<p>GitHub Pages автоматично підтримує HTTPS для custom domains.</p>
+<h3 id="branch">Branch</h3>
+<p>Сайт публікується з гілки <code>gh-pages</code>.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="_18">Помилки збірки</h3>
+<p><strong>Проблема</strong>: <code>WARNING - Doc file contains a link to X which is not found</code></p>
+<p><strong>Рішення</strong>: Перевірте, чи:
+1. Файл існує в <code>docs/</code>
+2. Шлях правильний (регістр важливий!)
+3. Розширення <code>.md</code> вказане</p>
+<p><strong>Проблема</strong>: <code>Aborted with X warnings in strict mode</code></p>
+<p><strong>Рішення</strong>: Виправте всі warnings або уберіть <code>--strict</code> з команди збірки.</p>
+<h3 id="_19">Деплой не працює</h3>
+<p><strong>Проблема</strong>: Workflow запускається, але сайт не оновлюється</p>
+<p><strong>Рішення</strong>:
+1. Перевірте статус workflow у GitHub Actions
+2. Перевірте, чи гілка <code>gh-pages</code> оновилась
+3. Перевірте Settings → Pages → Source (має бути <code>gh-pages</code>)
+4. Очистіть кеш браузера</p>
+<h3 id="broken-links">Broken links після деплою</h3>
+<p><strong>Проблема</strong>: Посилання працюють локально, але не на GitHub Pages</p>
+<p><strong>Рішення</strong>: 
+- GitHub Pages case-sensitive, локальна FS може бути ні
+- Перевірте регістр імен файлів і посилань</p>
+<h2 id="workflow">Workflow конфлікти</h2>
+<h3 id="_20">Проблема дублікатів</h3>
+<p>Якщо є кілька workflows, що намагаються публікувати на GitHub Pages, це створює конфлікти.</p>
+<p><strong>Рішення</strong>: Відключіть зайві workflows:</p>
+<pre><code class="language-bash">mv .github/workflows/duplicate.yml .github/workflows/duplicate.yml.disabled
+</code></pre>
+<p>Активний workflow: <code>ciwiki-pages.yml</code></p>
+<p>Відключені workflows:
+- <code>docs-pages.yml.disabled</code> - дублікат
+- <code>pages.yml.disabled</code> - webpack build (не потрібен)
+- <code>static.yml.disabled</code> - публікує весь repo (небезпечно)</p>
 <h2 id="best-practices">Best Practices</h2>
+<h3 id="dos">Do's ✅</h3>
 <ol>
-<li><strong>Regular releases</strong> — не накопичуйте зміни</li>
-<li><strong>Test thoroughly</strong> — краще late ніж broken</li>
-<li><strong>Communicate clearly</strong> — повідомляйте про зміни</li>
-<li><strong>Document everything</strong> — CHANGELOG + release notes</li>
-<li><strong>Automate when possible</strong> — менше manual steps</li>
-<li><strong>Have rollback plan</strong> — завжди</li>
+<li>✅ Пишіть документацію в Markdown</li>
+<li>✅ Використовуйте відносні посилання</li>
+<li>✅ Тестуйте локально перед commit: <code>mkdocs serve</code></li>
+<li>✅ Перевіряйте build warnings</li>
+<li>✅ Організуйте файли логічно</li>
+<li>✅ Оновлюйте навігацію в <code>mkdocs.yml</code></li>
+<li>✅ При оновленні файлів в <code>Legend ci/</code>, <code>templates/</code>, <code>policies/</code> — також оновіть копії в <code>docs/</code></li>
 </ol>
-<h2 id="security-releases">Security Releases</h2>
-<p>Для security vulnerabilities:</p>
+<h3 id="donts">Don'ts ❌</h3>
 <ol>
-<li><strong>Private disclosure</strong> — не публічні discussions</li>
-<li><strong>Expedited process</strong> — priority review</li>
-<li><strong>Security advisory</strong> — GitHub Security Advisory</li>
-<li><strong>CVE assignment</strong> — якщо applicable</li>
-<li><strong>Coordinated disclosure</strong> — after patch available</li>
+<li>❌ Не комітьте директорію <code>site/</code> (вона генерується)</li>
+<li>❌ Не хардкодте абсолютні URL</li>
+<li>❌ Не створюйте дублікати workflows</li>
+<li>❌ Не пушіть напряму до <code>gh-pages</code> branch</li>
+<li>❌ Не змінюйте <code>docs/SECURITY.md</code> напряму (воно автоматично оновлюється з кореня)</li>
+<li>❌ Не використовуйте різні регістри для файлів</li>
+<li>❌ Не оновлюйте копії в <code>docs/</code> без оновлення оригіналів</li>
 </ol>
-<h2 id="_5">Заборонено</h2>
+<h2 id="_21">Підтримка копій файлів</h2>
+<h3 id="_22">Процес оновлення</h3>
+<p>Коли оновлюєте файли що існують і в кореневій директорії і в <code>docs/</code>:</p>
+<ol>
+<li>
+<p><strong>Оновіть оригінал</strong> в кореневій директорії
+   <code>bash
+   # Приклад: оновлення Legend ci файлу
+   vim "Legend ci/README.md"</code></p>
+</li>
+<li>
+<p><strong>Скопіюйте в docs/</strong>
+   <code>bash
+   cp "Legend ci/README.md" docs/Legend-ci/README.md</code></p>
+</li>
+<li>
+<p><strong>Закомітьте обидва</strong>
+   <code>bash
+   git add "Legend ci/README.md" docs/Legend-ci/README.md
+   git commit -m "Update Legend ci README"</code></p>
+</li>
+</ol>
+<h3 id="_23">Автоматизація (майбутнє покращення)</h3>
+<p>Це можна автоматизувати через:
+- Pre-commit hook
+- GitHub Action
+- Makefile команда</p>
+<p><strong>TODO</strong>: Додати автоматичну синхронізацію при коміті</p>
+<h2 id="_24">Моніторинг</h2>
+<h3 id="_25">Перевірка деплою</h3>
+<ol>
+<li>Перегляньте Actions: https://github.com/Ihorog/ciwiki/actions</li>
+<li>Знайдіть останній run "Build &amp; Deploy CiWiki"</li>
+<li>Перевірте статус (має бути ✅)</li>
+<li>Відвідайте сайт: https://www.cimeika.com.ua</li>
+</ol>
+<h3 id="_26">Логи</h3>
+<pre><code class="language-bash"># Переглянути logs GitHub Actions
+# GitHub UI → Actions → Select workflow run → View logs
+</code></pre>
+<h2 id="_27">Додаткові ресурси</h2>
 <ul>
-<li>❌ Releases без testing</li>
-<li>❌ Недокументовані breaking changes</li>
-<li>❌ Пропуск version bump</li>
-<li>❌ Releases з failed tests</li>
-<li>❌ Hotfixes без backport</li>
+<li><a href="https://www.mkdocs.org/">MkDocs Documentation</a></li>
+<li><a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a></li>
+<li><a href="https://docs.github.com/en/pages">GitHub Pages Documentation</a></li>
+<li><a href="../ci-cd/">CI/CD Process</a></li>
+<li><a href="../pr-process/">PR Process</a></li>
 </ul>
-<h2 id="_6">Контакти</h2>
-<p>Для питань щодо releases:
-- Створіть issue з label "release"
-- Консультуйтесь з release manager
-- Перевірте цю документацію</p>
-<h2 id="_7">Додаткові ресурси</h2>
+<h2 id="changelog">Changelog</h2>
 <ul>
-<li><a href="https://semver.org/">Semantic Versioning</a></li>
-<li><a href="https://keepachangelog.com/">Keep a Changelog</a></li>
-<li><a href="../commit-conventions/">Commit Conventions</a></li>
-<li><a href="../testing/">Testing Guide</a></li>
+<li><strong>2026-01-25</strong>: Initial web publishing implementation</li>
+<li>Copied Legend ci files to docs</li>
+<li>Fixed broken links</li>
+<li>Updated workflow to copy all necessary files</li>
+<li>Disabled conflicting workflows</li>
+<li>Created comprehensive documentation</li>
+<li>Configured GitHub Pages deployment</li>
 </ul>
+<h2 id="_28">Майбутні покращення</h2>
+<p><strong>Пріоритет: Середній — реалізація в наступних ітераціях</strong></p>
+<h3 id="1">1. Автоматична синхронізація дублікатів файлів</h3>
+<ul>
+<li>Реалізувати pre-commit hook для автоматичного копіювання</li>
+<li>Або використовувати symbolic links (якщо підтримується)</li>
+<li>Або створити GitHub Action для синхронізації при PR</li>
+</ul>
+<p><strong>Rationale</strong>: Зменшить помилки при оновленні та спростить підтримку</p>
+<h3 id="2">2. Уніфікація мовної структури</h3>
+<ul>
+<li>Визначити стратегію найменування (Ukrainian vs English vs Mixed)</li>
+<li>Оновити всі navigation labels для консистентності</li>
+<li>Синхронізувати з іменами директорій</li>
+</ul>
+<p><strong>Rationale</strong>: Покращить user experience та знизить confusion</p>
+<h3 id="3">3. Покращена валідація при збірці</h3>
+<ul>
+<li>Додати автоматичну перевірку broken links</li>
+<li>Валідація структури навігації</li>
+<li>Pre-commit hooks для локального тестування</li>
+</ul>
+<p><strong>Rationale</strong>: Запобігає broken links та покращує якість документації</p>
+<hr />
+<p><strong>Примітка</strong>: Згідно з принципом мінімальних змін, ці покращення будуть реалізовані окремими PR після стабілізації поточної реалізації.</p>
 
 
 
