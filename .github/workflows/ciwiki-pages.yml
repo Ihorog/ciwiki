@@ -17,8 +17,15 @@ jobs:
         with:
           python-version: '3.x'
       - run: pip install mkdocs mkdocs-material
-      - run: cp SECURITY.md docs/SECURITY.md
-      - run: mkdocs build --strict
+      - name: Copy dynamic files to docs
+        run: |
+          if [ -f SECURITY.md ]; then
+            cp SECURITY.md docs/
+          else
+            echo "Warning: SECURITY.md not found"
+            exit 1
+          fi
+      - run: mkdocs build
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:

@@ -18,6 +18,19 @@ nav:
     - Commit Conventions: processes/commit-conventions.md
     - Master Issue: processes/master-issue.md
     - CI/CD: processes/ci-cd.md
+    - Web Publishing: processes/web-publishing.md
+  - Легенда Ci:
+    - Огляд: Legend-ci/README.md
+    - Підсумок: Legend-ci/00-summary.md
+    - Визначення: Legend-ci/01-definition.md
+    - Онтологія: Legend-ci/02-ontology.md
+    - Наративні шари: Legend-ci/03-narrative-layers.md
+    - Було і Буде: Legend-ci/04-buloiebude.md
+    - Функції: Legend-ci/05-functions.md
+    - Практика: Legend-ci/06-practice.md
+    - Критика: Legend-ci/07-critique.md
+    - Посилання: Legend-ci/appendix-references.md
+    - Таблиці: Legend-ci/appendix-tables.md
   - Cimeika:
     - Ci:
       - Ci: Cimeika/Ci/index.md

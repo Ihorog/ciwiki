@@ -69,12 +69,21 @@ Continuous Integration та Continuous Deployment процеси та workflows.
 - Deployment strategies
 - Monitoring
 
+### 🌐 [Web Publishing](./web-publishing.md)
+Процес публікації документації на GitHub Pages з використанням MkDocs.
+
+**Ключові теми**:
+- MkDocs configuration
+- GitHub Pages deployment
+- Documentation structure
+- Local development
+
 ## Швидкий доступ
 
 ### Для нових розробників
 
 1. **Перше, що треба прочитати**:
-   - [COPILOT_CANON.md](../../COPILOT_CANON.md) — основні правила
+   - [COPILOT_CANON.md](../COPILOT_CANON.md) — основні правила
    - [PR Process](./pr-process.md) — як працювати з кодом
    - [Commit Conventions](./commit-conventions.md) — як комітити
 
@@ -130,7 +139,7 @@ Continuous Integration та Continuous Deployment процеси та workflows.
 
 ## Шаблони
 
-### [Change Template](../../templates/change-template.md)
+### [Change Template](../templates/change-template.md)
 
 **Обов'язковий** шаблон для всіх автоматизацій та оптимізацій в:
 - `Ihorog/cit`
@@ -141,15 +150,15 @@ Continuous Integration та Continuous Deployment процеси та workflows.
 ### PR Template
 
 Автоматично застосовується при створенні PR:
-- [.github/pull_request_template.md](../../.github/pull_request_template.md)
+- [.github/pull_request_template.md](.../.github/pull_request_template.md)
 
 ## Політики
 
-### [Copilot Guard](../../policies/copilot-guard.md)
+### [Copilot Guard](../policies/copilot-guard.md)
 
 Політика захисту від витоку secrets в документації та коді.
 
-### [Repository Status](../../policies/repository-status.md)
+### [Repository Status](../policies/repository-status.md)
 
 Статус та правила для кожного репозиторію в екосистемі.
 
@@ -185,7 +194,7 @@ Workflows для автоматизації:
 3. **Automate** — усуньте повтор
 4. **Document** — оновіть процес
 
-Детальніше: [COPILOT_CANON.md](../../COPILOT_CANON.md)
+Детальніше: [COPILOT_CANON.md](../COPILOT_CANON.md)
 
 ### Documentation First
 

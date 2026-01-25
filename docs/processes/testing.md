@@ -546,7 +546,7 @@ npm test -- -u
 - [PR Process](./pr-process.md)
 - [Commit Conventions](./commit-conventions.md)
 - [CI/CD Guide](./ci-cd.md)
-- [Security Policy](../../SECURITY.md)
+- [Security Policy](../SECURITY.md)
 
 ## Питання?
 

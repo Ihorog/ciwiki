@@ -434,4 +434,4 @@ jobs:
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
 - [Testing Guide](./testing.md)
 - [Release Process](./release-process.md)
-- [Security Policy](../../SECURITY.md)
+- [Security Policy](../SECURITY.md)
