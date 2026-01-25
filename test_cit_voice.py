@@ -5,6 +5,7 @@
 
 import asyncio
 import sys
+import traceback
 from pathlib import Path
 
 # Додати поточну директорію до шляху
@@ -158,5 +159,4 @@ if __name__ == "__main__":
         print("\n\n⛔ Tests interrupted by user")
     except Exception as e:
         print(f"\n\n❌ Test failed with error: {e}")
-        import traceback
         traceback.print_exc()

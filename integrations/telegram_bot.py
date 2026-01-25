@@ -5,6 +5,7 @@ CIT Telegram Bot - Автономний канал сповіщень
 
 import os
 import logging
+import tempfile
 from typing import Dict, Any, Optional
 from pathlib import Path
 import httpx
@@ -229,8 +230,8 @@ class TelegramNotifier:
         if not media_file:
             return None
         
-        # Шлях для кешування медіа локально
-        cache_dir = Path('/tmp/cit_media_cache')
+        # Шлях для кешування медіа локально (cross-platform)
+        cache_dir = Path(tempfile.gettempdir()) / 'cit_media_cache'
         cache_dir.mkdir(exist_ok=True)
         local_path = cache_dir / Path(media_file).name
         
@@ -238,8 +239,22 @@ class TelegramNotifier:
         if local_path.exists():
             return str(local_path)
         
-        # Завантажити з репозиторію
+        # Завантажити з репозиторію (з lock механізмом для race condition)
+        lock_file = local_path.with_suffix('.lock')
         try:
+            # Спроба створити lock файл (атомарна операція)
+            try:
+                lock_file.touch(exist_ok=False)
+            except FileExistsError:
+                # Інший процес завантажує, зачекати та повернути файл
+                import time
+                for _ in range(10):
+                    if local_path.exists():
+                        return str(local_path)
+                    time.sleep(0.5)
+                return None
+            
+            # Завантажити файл
             url = f"{self.media_repo_url}/{media_file}"
             async with httpx.AsyncClient() as client:
                 response = await client.get(url, timeout=10.0)
@@ -250,6 +265,10 @@ class TelegramNotifier:
                     return str(local_path)
         except Exception as e:
             logger.warning(f"Failed to download media {media_file}: {e}")
+        finally:
+            # Видалити lock файл
+            if lock_file.exists():
+                lock_file.unlink()
         
         return None
     

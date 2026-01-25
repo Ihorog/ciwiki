@@ -89,6 +89,7 @@ class VoiceEngine:
         class ManifestHandler(FileSystemEventHandler):
             def __init__(self, voice_engine):
                 self.voice_engine = voice_engine
+                self.pending_tasks = set()
                 
             def on_modified(self, event):
                 if event.src_path.endswith('manifest.json'):
@@ -98,7 +99,10 @@ class VoiceEngine:
                         'source': 'manifest',
                         'description': 'Організм проводить фоновий синтез знань...'
                     }
-                    asyncio.create_task(self.voice_engine.process_event(event_data))
+                    # Створити task та зберегти посилання
+                    task = asyncio.create_task(self.voice_engine.process_event(event_data))
+                    self.pending_tasks.add(task)
+                    task.add_done_callback(self.pending_tasks.discard)
         
         self.observer = Observer()
         handler = ManifestHandler(self)
