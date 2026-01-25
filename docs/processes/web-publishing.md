@@ -386,3 +386,34 @@ mv .github/workflows/duplicate.yml .github/workflows/duplicate.yml.disabled
   - Fixed broken links
   - Updated workflow to copy all necessary files
   - Disabled conflicting workflows
+  - Created comprehensive documentation
+  - Configured GitHub Pages deployment
+
+## Майбутні покращення
+
+**Пріоритет: Середній — реалізація в наступних ітераціях**
+
+### 1. Автоматична синхронізація дублікатів файлів
+- Реалізувати pre-commit hook для автоматичного копіювання
+- Або використовувати symbolic links (якщо підтримується)
+- Або створити GitHub Action для синхронізації при PR
+
+**Rationale**: Зменшить помилки при оновленні та спростить підтримку
+
+### 2. Уніфікація мовної структури
+- Визначити стратегію найменування (Ukrainian vs English vs Mixed)
+- Оновити всі navigation labels для консистентності
+- Синхронізувати з іменами директорій
+
+**Rationale**: Покращить user experience та знизить confusion
+
+### 3. Покращена валідація при збірці
+- Додати автоматичну перевірку broken links
+- Валідація структури навігації
+- Pre-commit hooks для локального тестування
+
+**Rationale**: Запобігає broken links та покращує якість документації
+
+---
+
+**Примітка**: Згідно з принципом мінімальних змін, ці покращення будуть реалізовані окремими PR після стабілізації поточної реалізації.
