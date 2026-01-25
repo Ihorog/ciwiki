@@ -17,6 +17,7 @@ jobs:
         with:
           python-version: '3.x'
       - run: pip install mkdocs mkdocs-material
+      - run: cp SECURITY.md docs/SECURITY.md
       - run: mkdocs build --strict
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
