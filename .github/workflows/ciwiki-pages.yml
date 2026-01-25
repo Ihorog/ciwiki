@@ -17,15 +17,9 @@ jobs:
         with:
           python-version: '3.x'
       - run: pip install mkdocs mkdocs-material
-      - name: Copy files to docs
+      - name: Copy dynamic files to docs
         run: |
-          cp COPILOT_CANON.md docs/ || true
           cp SECURITY.md docs/ || true
-          cp -r "Legend ci" docs/Legend-ci || true
-          mkdir -p docs/templates docs/policies docs/.github
-          cp templates/*.md docs/templates/ || true
-          cp policies/*.md docs/policies/ || true
-          cp .github/pull_request_template.md docs/.github/ || true
       - run: mkdocs build
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4

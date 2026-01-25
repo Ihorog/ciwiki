@@ -72,14 +72,12 @@ on:
    - run: pip install mkdocs mkdocs-material
    ```
 
-4. **Копіювання файлів**
-   Workflow копіює необхідні файли з кореня репозиторію до `docs/`:
-   - `COPILOT_CANON.md`
-   - `SECURITY.md`
-   - `Legend ci/` → `docs/Legend-ci/`
-   - `templates/` → `docs/templates/`
-   - `policies/` → `docs/policies/`
-   - `.github/pull_request_template.md` → `docs/.github/`
+4. **Копіювання динамічних файлів**
+   Workflow копіює файли що часто змінюються:
+   - `SECURITY.md` → `docs/SECURITY.md` (оновлюється при кожній збірці)
+   
+   **Примітка**: Інші файли (COPILOT_CANON.md, Legend-ci/, templates/, policies/, .github/) 
+   вже знаходяться в `docs/` і комітяться разом з іншою документацією для простоти підтримки.
 
 5. **Збірка сайту**
    ```yaml
@@ -122,8 +120,8 @@ nav:
 ```
 docs/
 ├── index.md                     # Головна сторінка
-├── COPILOT_CANON.md            # Скопійовано при збірці
-├── SECURITY.md                 # Скопійовано при збірці
+├── COPILOT_CANON.md            # Копія з кореня репозиторію
+├── SECURITY.md                 # Копіюється при збірці з кореня
 ├── processes/                  # Процеси та інструкції
 │   ├── index.md
 │   ├── pr-process.md
@@ -132,7 +130,7 @@ docs/
 │   ├── ci-cd.md
 │   ├── web-publishing.md       # Цей файл
 │   └── ...
-├── Legend-ci/                  # Легенда Ci документація
+├── Legend-ci/                  # Легенда Ci документація (копія з "Legend ci/")
 │   ├── README.md
 │   ├── 00-summary.md
 │   └── ...
@@ -140,10 +138,16 @@ docs/
 │   ├── Ci/
 │   ├── Казкар/
 │   └── ...
-├── templates/                  # Шаблони
-├── policies/                   # Політики
-└── .github/                    # GitHub конфігурація
+├── templates/                  # Шаблони (копія з кореня)
+├── policies/                   # Політики (копія з кореня)
+└── .github/                    # GitHub конфігурація (копія з кореня)
 ```
+
+**Примітка про дублікати**: 
+- Файли в `docs/Legend-ci/`, `docs/templates/`, `docs/policies/`, `docs/.github/` та `docs/COPILOT_CANON.md` є копіями з кореневої директорії
+- `docs/SECURITY.md` автоматично оновлюється при кожній збірці
+- Оригінальні файли в `Legend ci/`, `templates/`, `policies/`, `.github/` залишаються джерелом правди
+- При оновленні цих файлів потрібно також оновити їх копії в `docs/`
 
 ## Локальна розробка
 
@@ -307,7 +311,7 @@ mv .github/workflows/duplicate.yml .github/workflows/duplicate.yml.disabled
 4. ✅ Перевіряйте build warnings
 5. ✅ Організуйте файли логічно
 6. ✅ Оновлюйте навігацію в `mkdocs.yml`
-7. ✅ Копіюйте зовнішні файли при збірці
+7. ✅ При оновленні файлів в `Legend ci/`, `templates/`, `policies/` — також оновіть копії в `docs/`
 
 ### Don'ts ❌
 
@@ -315,8 +319,41 @@ mv .github/workflows/duplicate.yml .github/workflows/duplicate.yml.disabled
 2. ❌ Не хардкодте абсолютні URL
 3. ❌ Не створюйте дублікати workflows
 4. ❌ Не пушіть напряму до `gh-pages` branch
-5. ❌ Не змінюйте файли в `docs/` що копіюються при збірці
+5. ❌ Не змінюйте `docs/SECURITY.md` напряму (воно автоматично оновлюється з кореня)
 6. ❌ Не використовуйте різні регістри для файлів
+7. ❌ Не оновлюйте копії в `docs/` без оновлення оригіналів
+
+## Підтримка копій файлів
+
+### Процес оновлення
+
+Коли оновлюєте файли що існують і в кореневій директорії і в `docs/`:
+
+1. **Оновіть оригінал** в кореневій директорії
+   ```bash
+   # Приклад: оновлення Legend ci файлу
+   vim "Legend ci/README.md"
+   ```
+
+2. **Скопіюйте в docs/**
+   ```bash
+   cp "Legend ci/README.md" docs/Legend-ci/README.md
+   ```
+
+3. **Закомітьте обидва**
+   ```bash
+   git add "Legend ci/README.md" docs/Legend-ci/README.md
+   git commit -m "Update Legend ci README"
+   ```
+
+### Автоматизація (майбутнє покращення)
+
+Це можна автоматизувати через:
+- Pre-commit hook
+- GitHub Action
+- Makefile команда
+
+**TODO**: Додати автоматичну синхронізацію при коміті
 
 ## Моніторинг
 
