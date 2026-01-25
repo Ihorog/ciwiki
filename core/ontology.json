@@ -1,0 +1,63 @@
+{
+  "event_levels": {
+    "1": {
+      "name": "Фон",
+      "emoji": "🟢",
+      "color": "green",
+      "priority": "background",
+      "description": "Background system processes and knowledge synthesis"
+    },
+    "11": {
+      "name": "Дія",
+      "emoji": "🟡",
+      "color": "yellow",
+      "priority": "action",
+      "description": "Active proposals and optimization suggestions"
+    },
+    "111": {
+      "name": "Критично",
+      "emoji": "🔴",
+      "color": "red",
+      "priority": "critical",
+      "description": "Critical system events and structural gaps"
+    }
+  },
+  "event_types": {
+    "knowledge_synthesis": {
+      "level": "1",
+      "template": "Організм проводить фоновий синтез знань...",
+      "keywords": ["synthesis", "background", "processing"]
+    },
+    "module_proposal": {
+      "level": "11",
+      "template": "Пропоную активувати модуль {module_name}. Це оптимізує {goal}...",
+      "keywords": ["activate", "optimize", "proposal"],
+      "requires_media": true,
+      "interactive": true
+    },
+    "structural_gap": {
+      "level": "111",
+      "template": "УВАГА: Виявлено структурну прогалину. Сформовано нове ТЗ на GitHub.",
+      "keywords": ["critical", "gap", "attention"],
+      "requires_media": true
+    },
+    "state_change": {
+      "level": "1",
+      "template": "Стан системи змінено: {state_description}",
+      "keywords": ["state", "change", "update"]
+    },
+    "intent_detected": {
+      "level": "11",
+      "template": "Виявлено намір: {intent_description}. Дія: {action_suggestion}",
+      "keywords": ["intent", "detected", "observer"],
+      "requires_media": true,
+      "interactive": true
+    }
+  },
+  "semantic_mappings": {
+    "manifest_change": ["knowledge_synthesis", "state_change"],
+    "visual_state_change": ["module_proposal", "state_change"],
+    "intent_observation": ["intent_detected", "module_proposal"],
+    "error_detection": ["structural_gap"]
+  }
+}

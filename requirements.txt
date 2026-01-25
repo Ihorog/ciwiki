@@ -2,3 +2,9 @@
 mkdocs-material
 mkdocs-minify-plugin
 mkdocs-redirects
+
+# CIT Voice Module dependencies
+aiogram>=3.3.0
+httpx>=0.25.0
+watchdog>=3.0.0
+python-dotenv>=1.0.0
