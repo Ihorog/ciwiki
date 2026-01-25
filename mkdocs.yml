@@ -19,6 +19,7 @@ nav:
     - Master Issue: processes/master-issue.md
     - CI/CD: processes/ci-cd.md
     - Web Publishing: processes/web-publishing.md
+    - GitHub Pages Setup: GITHUB_PAGES_SETUP.md
   - Легенда Ci:
     - Огляд: Legend-ci/README.md
     - Підсумок: Legend-ci/00-summary.md

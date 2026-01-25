@@ -199,8 +199,8 @@ mkdocs serve
 ### Корисні посилання
 
 - **Документація**: [Web Publishing Process](./processes/web-publishing.md)
-- **Workflow конфігурація**: [ciwiki-pages.yml](../.github/workflows/ciwiki-pages.yml)
-- **MkDocs конфігурація**: [mkdocs.yml](../mkdocs.yml)
+- **Workflow конфігурація**: [ciwiki-pages.yml](https://github.com/Ihorog/ciwiki/blob/main/.github/workflows/ciwiki-pages.yml)
+- **MkDocs конфігурація**: [mkdocs.yml](https://github.com/Ihorog/ciwiki/blob/main/mkdocs.yml)
 - **GitHub Pages Docs**: https://docs.github.com/en/pages
 
 ## Контакти та підтримка
