@@ -119,7 +119,11 @@ mkdocs serve
 # Відкрити http://127.0.0.1:8000
 ```
 
-Детальніше: [Web Publishing документація](./docs/processes/web-publishing.md)
+### Документація
+
+- 📖 [Налаштування GitHub Pages](./SETUP_GITHUB_PAGES.md) — швидкий старт
+- 📚 [Web Publishing процес](./docs/processes/web-publishing.md) — повна документація
+- 🔧 [Детальне налаштування](./docs/GITHUB_PAGES_SETUP.md) — troubleshooting та перевірка
 
 ## Внесок змін
 
