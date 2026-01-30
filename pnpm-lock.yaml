@@ -47,8 +47,8 @@ devDependencies:
     specifier: ^13.0.1
     version: 13.0.1(webpack@5.104.1)
   css-loader:
-    specifier: ^7.1.2
-    version: 7.1.2(webpack@5.104.1)
+    specifier: ^7.1.3
+    version: 7.1.3(webpack@5.104.1)
   html-webpack-plugin:
     specifier: ^5.6.6
     version: 5.6.6(webpack@5.104.1)
@@ -716,8 +716,8 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
 
-  /css-loader@7.1.2(webpack@5.104.1):
-    resolution: {integrity: sha512-6WvYYn7l/XEGN8Xu2vWFt9nVzrCn39vKyTEFf/ExEyoksJjjSZV/0/35XPlMbpnr6VGhZIUg5yJrL8tGfes/FA==}
+  /css-loader@7.1.3(webpack@5.104.1):
+    resolution: {integrity: sha512-frbERmjT0UC5lMheWpJmMilnt9GEhbZJN/heUb7/zaJYeIzj5St9HvDcfshzzOqbsS+rYpMk++2SD3vGETDSyA==}
     engines: {node: '>= 18.12.0'}
     peerDependencies:
       '@rspack/core': 0.x || 1.x
