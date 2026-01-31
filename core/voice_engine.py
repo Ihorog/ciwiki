@@ -8,6 +8,7 @@ import json
 import asyncio
 import logging
 import hashlib
+import time
 from pathlib import Path
 from typing import Dict, Any, Optional, List
 from datetime import datetime
@@ -106,8 +107,7 @@ class VoiceEngine:
                 
             def on_modified(self, event):
                 if event.src_path.endswith('manifest.json'):
-                    # Дебаунсинг: ігноруємо повторні події протягом 1 секунди
-                    import time
+                    # Debouncing: ignore repeated events within 1 second
                     current_time = time.time()
                     if current_time - self.last_modified < self.debounce_delay:
                         return

@@ -7,6 +7,7 @@ import os
 import logging
 import tempfile
 import asyncio
+import time
 from typing import Dict, Any, Optional
 from pathlib import Path
 import httpx
@@ -38,12 +39,13 @@ class TelegramNotifier:
         self.chat_id = chat_id
         self.media_repo_url = media_repo_url or "https://raw.githubusercontent.com/Ihorog/media/main"
         
-        # Кеш для медіа-файлів з обмеженням
+        # Media cache with cleanup
         self.media_cache_dir = Path(tempfile.gettempdir()) / 'cit_media_cache'
         self.media_cache_dir.mkdir(exist_ok=True)
-        self.media_locks = {}  # Словник для asyncio locks замість файлових locks
+        self.media_locks = {}  # asyncio locks instead of file locks
+        self.cleanup_task = None  # Track cleanup task for proper shutdown
         
-        # Реєстрація обробників
+        # Register handlers
         self._setup_handlers()
         self.dp.include_router(self.router)
     
@@ -246,22 +248,21 @@ class TelegramNotifier:
     async def start(self):
         """Запуск Telegram бота"""
         logger.info("Starting Telegram bot...")
-        # Запустити cleanup задачу для кешу
-        asyncio.create_task(self._cleanup_media_cache())
+        # Start cleanup task and track it
+        self.cleanup_task = asyncio.create_task(self._cleanup_media_cache())
         await self.dp.start_polling(self.bot)
     
     async def _cleanup_media_cache(self):
         """Періодичне очищення старих файлів з кешу"""
-        import time
         while True:
             try:
-                await asyncio.sleep(3600)  # Перевіряти кожну годину
+                await asyncio.sleep(3600)  # Check every hour
                 current_time = time.time()
                 for file_path in self.media_cache_dir.glob('*'):
                     if file_path.is_file():
-                        # Видалити файли старші за 24 години
+                        # Remove files older than 24 hours
                         file_age = current_time - file_path.stat().st_mtime
-                        if file_age > 86400:  # 24 години в секундах
+                        if file_age > 86400:  # 24 hours in seconds
                             file_path.unlink()
                             logger.info(f"Cleaned up cached file: {file_path.name}")
             except Exception as e:
@@ -269,6 +270,13 @@ class TelegramNotifier:
     
     async def stop(self):
         """Зупинка Telegram бота"""
+        # Cancel cleanup task
+        if self.cleanup_task and not self.cleanup_task.done():
+            self.cleanup_task.cancel()
+            try:
+                await self.cleanup_task
+            except asyncio.CancelledError:
+                pass
         await self.bot.session.close()
         logger.info("Telegram bot stopped")
 
