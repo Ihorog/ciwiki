@@ -26,6 +26,9 @@ logger = logging.getLogger(__name__)
 class VoiceEngine:
     """Центральний обробник подій для CIT Voice"""
     
+    # Configuration constants
+    DEBOUNCE_DELAY_SECONDS = 1.0  # Debounce delay for file watch events
+    
     def __init__(self, ontology_path: str, manifest_path: str, api_endpoint: Optional[str] = None):
         self.ontology_path = Path(ontology_path)
         self.manifest_path = Path(manifest_path)
@@ -103,7 +106,7 @@ class VoiceEngine:
                 self.voice_engine = voice_engine
                 self.pending_tasks = set()
                 self.last_modified = 0
-                self.debounce_delay = 1.0  # секунди
+                self.debounce_delay = voice_engine.DEBOUNCE_DELAY_SECONDS
                 
             def on_modified(self, event):
                 if event.src_path.endswith('manifest.json'):

@@ -32,6 +32,10 @@ logger = logging.getLogger(__name__)
 class TelegramNotifier:
     """Telegram інтеграція для CIT Voice"""
     
+    # Cache configuration
+    CACHE_TTL_SECONDS = 86400  # 24 hours
+    CACHE_CLEANUP_INTERVAL = 3600  # 1 hour
+    
     def __init__(self, bot_token: str, chat_id: str, media_repo_url: Optional[str] = None):
         self.bot = Bot(token=bot_token)
         self.dp = Dispatcher()
@@ -48,6 +52,10 @@ class TelegramNotifier:
         # Register handlers
         self._setup_handlers()
         self.dp.include_router(self.router)
+    
+    def _parse_intent_id(self, callback_data: str) -> str:
+        """Parse intent ID from callback data"""
+        return callback_data.split("_", 1)[1] if "_" in callback_data else ""
     
     def _setup_handlers(self):
         """Налаштування обробників команд та callback"""
@@ -70,7 +78,7 @@ class TelegramNotifier:
         
         @self.router.callback_query(F.data.startswith("accept_"))
         async def callback_accept(callback: CallbackQuery):
-            intent_id = callback.data.split("_", 1)[1] if "_" in callback.data else ""
+            intent_id = self._parse_intent_id(callback.data)
             await callback.answer()
             await callback.message.edit_text(
                 f"{callback.message.text}\n\n✅ ПРИЙНЯТО. Активація...",
@@ -80,7 +88,7 @@ class TelegramNotifier:
         
         @self.router.callback_query(F.data.startswith("reject_"))
         async def callback_reject(callback: CallbackQuery):
-            intent_id = callback.data.split("_", 1)[1] if "_" in callback.data else ""
+            intent_id = self._parse_intent_id(callback.data)
             await callback.answer()
             await callback.message.edit_text(
                 f"{callback.message.text}\n\n❌ ВІДХИЛЕНО.",
@@ -256,13 +264,13 @@ class TelegramNotifier:
         """Періодичне очищення старих файлів з кешу"""
         while True:
             try:
-                await asyncio.sleep(3600)  # Check every hour
+                await asyncio.sleep(self.CACHE_CLEANUP_INTERVAL)
                 current_time = time.time()
                 for file_path in self.media_cache_dir.glob('*'):
                     if file_path.is_file():
-                        # Remove files older than 24 hours
+                        # Remove files older than CACHE_TTL_SECONDS
                         file_age = current_time - file_path.stat().st_mtime
-                        if file_age > 86400:  # 24 hours in seconds
+                        if file_age > self.CACHE_TTL_SECONDS:
                             file_path.unlink()
                             logger.info(f"Cleaned up cached file: {file_path.name}")
             except Exception as e:
