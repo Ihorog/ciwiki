@@ -7,6 +7,8 @@ CIT Voice Engine - Central Event Processor
 import json
 import asyncio
 import logging
+import hashlib
+import time
 from pathlib import Path
 from typing import Dict, Any, Optional, List
 from datetime import datetime
@@ -24,6 +26,9 @@ logger = logging.getLogger(__name__)
 class VoiceEngine:
     """Центральний обробник подій для CIT Voice"""
     
+    # Configuration constants
+    DEBOUNCE_DELAY_SECONDS = 1.0  # Debounce delay for file watch events
+    
     def __init__(self, ontology_path: str, manifest_path: str, api_endpoint: Optional[str] = None):
         self.ontology_path = Path(ontology_path)
         self.manifest_path = Path(manifest_path)
@@ -31,6 +36,7 @@ class VoiceEngine:
         self.ontology = self._load_ontology()
         self.event_handlers: List = []
         self.observer = None
+        self.manifest_handler = None
         
     def _load_ontology(self) -> Dict[str, Any]:
         """Завантаження семантичної онтології"""
@@ -77,12 +83,21 @@ class VoiceEngine:
         logger.info(f"Processing event: level={classified_event['level']}, "
                    f"type={classified_event['event_type']}")
         
-        # Відправити подію всім зареєстрованим обробникам
+        # Паралельна відправка подій всім зареєстрованим обробникам
+        tasks = []
         for handler in self.event_handlers:
-            try:
-                await handler.handle_event(classified_event)
-            except Exception as e:
-                logger.error(f"Handler {handler.__class__.__name__} failed: {e}")
+            task = asyncio.create_task(self._safe_handle_event(handler, classified_event))
+            tasks.append(task)
+        
+        if tasks:
+            await asyncio.gather(*tasks, return_exceptions=True)
+    
+    async def _safe_handle_event(self, handler, event):
+        """Безпечний виклик обробника з обробкою помилок"""
+        try:
+            await handler.handle_event(event)
+        except Exception as e:
+            logger.error(f"Handler {handler.__class__.__name__} failed: {e}")
     
     async def watch_manifest(self):
         """Моніторинг змін у manifest.json"""
@@ -90,9 +105,17 @@ class VoiceEngine:
             def __init__(self, voice_engine):
                 self.voice_engine = voice_engine
                 self.pending_tasks = set()
+                self.last_modified = 0
+                self.debounce_delay = voice_engine.DEBOUNCE_DELAY_SECONDS
                 
             def on_modified(self, event):
                 if event.src_path.endswith('manifest.json'):
+                    # Debouncing: ignore repeated events within 1 second
+                    current_time = time.time()
+                    if current_time - self.last_modified < self.debounce_delay:
+                        return
+                    self.last_modified = current_time
+                    
                     logger.info("Manifest.json changed")
                     event_data = {
                         'type': 'knowledge_synthesis',
@@ -103,17 +126,23 @@ class VoiceEngine:
                     task = asyncio.create_task(self.voice_engine.process_event(event_data))
                     self.pending_tasks.add(task)
                     task.add_done_callback(self.pending_tasks.discard)
+            
+            async def cleanup(self):
+                """Очистка незавершених задач"""
+                if self.pending_tasks:
+                    await asyncio.gather(*self.pending_tasks, return_exceptions=True)
+                    self.pending_tasks.clear()
         
         self.observer = Observer()
-        handler = ManifestHandler(self)
-        self.observer.schedule(handler, str(self.manifest_path.parent), recursive=False)
+        self.manifest_handler = ManifestHandler(self)
+        self.observer.schedule(self.manifest_handler, str(self.manifest_path.parent), recursive=False)
         self.observer.start()
         logger.info(f"Started watching manifest: {self.manifest_path}")
     
     async def poll_api_state(self, interval: int = 30):
         """Періодичний опитування API для змін стану"""
         async with httpx.AsyncClient() as client:
-            previous_state = None
+            previous_state_hash = None
             
             while True:
                 try:
@@ -121,18 +150,22 @@ class VoiceEngine:
                     if response.status_code == 200:
                         current_state = response.json()
                         
-                        # Порівняння зі попереднім станом
-                        if previous_state and previous_state != current_state:
+                        # Використання хешування для ефективного порівняння
+                        current_state_json = json.dumps(current_state, sort_keys=True)
+                        current_state_hash = hashlib.md5(current_state_json.encode()).hexdigest()
+                        
+                        # Порівняння зі попереднім станом через хеш
+                        if previous_state_hash and previous_state_hash != current_state_hash:
                             event_data = {
                                 'type': 'visual_state_change',
                                 'source': 'api',
-                                'previous': previous_state,
+                                'previous': None,  # Не зберігаємо попередній стан для економії пам'яті
                                 'current': current_state,
                                 'description': f'Візуальний стан змінено'
                             }
                             await self.process_event(event_data)
                         
-                        previous_state = current_state
+                        previous_state_hash = current_state_hash
                         
                 except httpx.RequestError as e:
                     logger.warning(f"API request failed: {e}")
@@ -175,6 +208,16 @@ class VoiceEngine:
         if self.observer:
             self.observer.stop()
             self.observer.join()
+        # Очистка незавершених задач в manifest handler
+        if self.manifest_handler:
+            try:
+                loop = asyncio.get_event_loop()
+                if loop.is_running():
+                    asyncio.create_task(self.manifest_handler.cleanup())
+                else:
+                    loop.run_until_complete(self.manifest_handler.cleanup())
+            except Exception as e:
+                logger.error(f"Error cleaning up manifest handler: {e}")
         logger.info("CIT Voice Engine stopped")
 
 
