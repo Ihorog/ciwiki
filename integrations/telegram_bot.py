@@ -6,6 +6,7 @@ CIT Telegram Bot - Автономний канал сповіщень
 import os
 import logging
 import tempfile
+import asyncio
 from typing import Dict, Any, Optional
 from pathlib import Path
 import httpx
@@ -37,6 +38,11 @@ class TelegramNotifier:
         self.chat_id = chat_id
         self.media_repo_url = media_repo_url or "https://raw.githubusercontent.com/Ihorog/media/main"
         
+        # Кеш для медіа-файлів з обмеженням
+        self.media_cache_dir = Path(tempfile.gettempdir()) / 'cit_media_cache'
+        self.media_cache_dir.mkdir(exist_ok=True)
+        self.media_locks = {}  # Словник для asyncio locks замість файлових locks
+        
         # Реєстрація обробників
         self._setup_handlers()
         self.dp.include_router(self.router)
@@ -62,7 +68,7 @@ class TelegramNotifier:
         
         @self.router.callback_query(F.data.startswith("accept_"))
         async def callback_accept(callback: CallbackQuery):
-            intent_id = callback.data.replace("accept_", "")
+            intent_id = callback.data.split("_", 1)[1] if "_" in callback.data else ""
             await callback.answer()
             await callback.message.edit_text(
                 f"{callback.message.text}\n\n✅ ПРИЙНЯТО. Активація...",
@@ -72,7 +78,7 @@ class TelegramNotifier:
         
         @self.router.callback_query(F.data.startswith("reject_"))
         async def callback_reject(callback: CallbackQuery):
-            intent_id = callback.data.replace("reject_", "")
+            intent_id = callback.data.split("_", 1)[1] if "_" in callback.data else ""
             await callback.answer()
             await callback.message.edit_text(
                 f"{callback.message.text}\n\n❌ ВІДХИЛЕНО.",
@@ -99,73 +105,40 @@ class TelegramNotifier:
         interactive = event.get('interactive', False)
         
         try:
-            # Рівень 1 (Фон) - просте повідомлення
-            if level == '1':
-                await self.bot.send_message(
-                    chat_id=self.chat_id,
-                    text=message_text,
-                    parse_mode=ParseMode.HTML
-                )
+            # Підготовка keyboard для інтерактивних подій
+            keyboard = self._create_action_keyboard(event_type) if interactive else None
             
-            # Рівень 11 (Дія) - з медіа та кнопками
-            elif level == '11':
-                keyboard = None
-                if interactive:
-                    keyboard = self._create_action_keyboard(event_type)
-                
-                if requires_media:
-                    media_path = await self._get_media_for_event(event_type)
-                    if media_path:
-                        await self.bot.send_photo(
-                            chat_id=self.chat_id,
-                            photo=FSInputFile(media_path),
-                            caption=message_text,
-                            parse_mode=ParseMode.HTML,
-                            reply_markup=keyboard
-                        )
-                    else:
-                        await self.bot.send_message(
-                            chat_id=self.chat_id,
-                            text=message_text,
-                            parse_mode=ParseMode.HTML,
-                            reply_markup=keyboard
-                        )
-                else:
-                    await self.bot.send_message(
-                        chat_id=self.chat_id,
-                        text=message_text,
-                        parse_mode=ParseMode.HTML,
-                        reply_markup=keyboard
-                    )
+            # Отримання медіа, якщо потрібно
+            media_path = None
+            if requires_media:
+                media_path = await self._get_media_for_event(event_type)
             
-            # Рівень 111 (Критично) - з медіа
-            elif level == '111':
-                if requires_media:
-                    media_path = await self._get_media_for_event(event_type)
-                    if media_path:
-                        await self.bot.send_photo(
-                            chat_id=self.chat_id,
-                            photo=FSInputFile(media_path),
-                            caption=message_text,
-                            parse_mode=ParseMode.HTML
-                        )
-                    else:
-                        await self.bot.send_message(
-                            chat_id=self.chat_id,
-                            text=message_text,
-                            parse_mode=ParseMode.HTML
-                        )
-                else:
-                    await self.bot.send_message(
-                        chat_id=self.chat_id,
-                        text=message_text,
-                        parse_mode=ParseMode.HTML
-                    )
+            # Відправка повідомлення (уніфікований метод)
+            await self._send_notification(message_text, media_path, keyboard)
             
             logger.info(f"Message sent successfully: level={level}, type={event_type}")
             
         except Exception as e:
             logger.error(f"Failed to send message: {e}")
+    
+    async def _send_notification(self, message_text: str, media_path: Optional[str] = None, 
+                                 keyboard: Optional[InlineKeyboardMarkup] = None):
+        """Уніфікований метод відправки повідомлень"""
+        if media_path:
+            await self.bot.send_photo(
+                chat_id=self.chat_id,
+                photo=FSInputFile(media_path),
+                caption=message_text,
+                parse_mode=ParseMode.HTML,
+                reply_markup=keyboard
+            )
+        else:
+            await self.bot.send_message(
+                chat_id=self.chat_id,
+                text=message_text,
+                parse_mode=ParseMode.HTML,
+                reply_markup=keyboard
+            )
     
     def _format_message(self, level: str, emoji: str, template: str, data: Dict[str, Any]) -> str:
         """
@@ -230,52 +203,67 @@ class TelegramNotifier:
         if not media_file:
             return None
         
-        # Шлях для кешування медіа локально (cross-platform)
-        cache_dir = Path(tempfile.gettempdir()) / 'cit_media_cache'
-        cache_dir.mkdir(exist_ok=True)
-        local_path = cache_dir / Path(media_file).name
+        # Шлях для кешування медіа локально
+        local_path = self.media_cache_dir / Path(media_file).name
         
         # Якщо файл вже кешований, повернути його
         if local_path.exists():
             return str(local_path)
         
-        # Завантажити з репозиторію (з lock механізмом для race condition)
-        lock_file = local_path.with_suffix('.lock')
-        try:
-            # Спроба створити lock файл (атомарна операція)
-            try:
-                lock_file.touch(exist_ok=False)
-            except FileExistsError:
-                # Інший процес завантажує, зачекати та повернути файл
-                import time
-                for _ in range(10):
-                    if local_path.exists():
-                        return str(local_path)
-                    time.sleep(0.5)
-                return None
+        # Використання asyncio.Lock замість файлових lock'ів
+        if media_file not in self.media_locks:
+            self.media_locks[media_file] = asyncio.Lock()
+        
+        async with self.media_locks[media_file]:
+            # Повторна перевірка після отримання lock'а
+            if local_path.exists():
+                return str(local_path)
             
-            # Завантажити файл
+            # Завантажити файл з retry логікою
             url = f"{self.media_repo_url}/{media_file}"
-            async with httpx.AsyncClient() as client:
-                response = await client.get(url, timeout=10.0)
-                if response.status_code == 200:
-                    with open(local_path, 'wb') as f:
-                        f.write(response.content)
-                    logger.info(f"Downloaded media: {media_file}")
-                    return str(local_path)
-        except Exception as e:
-            logger.warning(f"Failed to download media {media_file}: {e}")
-        finally:
-            # Видалити lock файл
-            if lock_file.exists():
-                lock_file.unlink()
+            
+            for attempt in range(3):  # 3 спроби
+                try:
+                    async with httpx.AsyncClient() as client:
+                        response = await client.get(url, timeout=10.0)
+                        if response.status_code == 200:
+                            # Використання async file I/O
+                            async with asyncio.to_thread(open, local_path, 'wb') as f:
+                                await asyncio.to_thread(f.write, response.content)
+                            logger.info(f"Downloaded media: {media_file}")
+                            return str(local_path)
+                        else:
+                            logger.warning(f"Failed to download {media_file}: HTTP {response.status_code}")
+                except Exception as e:
+                    logger.warning(f"Attempt {attempt + 1}/3 failed for {media_file}: {e}")
+                    if attempt < 2:
+                        await asyncio.sleep(2 ** attempt)  # Exponential backoff
         
         return None
     
     async def start(self):
         """Запуск Telegram бота"""
         logger.info("Starting Telegram bot...")
+        # Запустити cleanup задачу для кешу
+        asyncio.create_task(self._cleanup_media_cache())
         await self.dp.start_polling(self.bot)
+    
+    async def _cleanup_media_cache(self):
+        """Періодичне очищення старих файлів з кешу"""
+        import time
+        while True:
+            try:
+                await asyncio.sleep(3600)  # Перевіряти кожну годину
+                current_time = time.time()
+                for file_path in self.media_cache_dir.glob('*'):
+                    if file_path.is_file():
+                        # Видалити файли старші за 24 години
+                        file_age = current_time - file_path.stat().st_mtime
+                        if file_age > 86400:  # 24 години в секундах
+                            file_path.unlink()
+                            logger.info(f"Cleaned up cached file: {file_path.name}")
+            except Exception as e:
+                logger.error(f"Error during cache cleanup: {e}")
     
     async def stop(self):
         """Зупинка Telegram бота"""
