@@ -227,9 +227,11 @@ class TelegramNotifier:
                     async with httpx.AsyncClient() as client:
                         response = await client.get(url, timeout=10.0)
                         if response.status_code == 200:
-                            # Використання async file I/O
-                            async with asyncio.to_thread(open, local_path, 'wb') as f:
-                                await asyncio.to_thread(f.write, response.content)
+                            # Використання async file I/O через to_thread
+                            def write_file():
+                                with open(local_path, 'wb') as f:
+                                    f.write(response.content)
+                            await asyncio.to_thread(write_file)
                             logger.info(f"Downloaded media: {media_file}")
                             return str(local_path)
                         else:
