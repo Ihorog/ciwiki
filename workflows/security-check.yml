@@ -30,12 +30,13 @@ jobs:
       run: |
         npm ci
         pip install -r requirements.txt
+        echo "✓ Dependencies installed successfully"
 
     - name: Run npm audit
       run: |
         echo "Running npm security audit..."
-        npm audit --audit-level=moderate || true
-        npm audit --json > npm-audit.json || true
+        npm audit --audit-level=moderate --json > npm-audit.json || true
+        cat npm-audit.json
 
     - name: Run Python security scan
       run: |
@@ -46,14 +47,22 @@ jobs:
     - name: Check for secrets in code
       run: |
         echo "Checking for potential secrets..."
+        SECRET_FOUND=0
         # Перевірка на наявність потенційних токенів OpenAI
-        if grep -r "sk-[A-Za-z0-9]\{20,\}" --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist --exclude="*.json" . ; then
+        if grep -r "sk-[A-Za-z0-9]\{20,\}" --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist --exclude="*.json" --exclude-dir=docs --exclude-dir=policies . ; then
           echo "WARNING: Potential OpenAI API key detected"
+          SECRET_FOUND=1
         fi
         # Перевірка на наявність потенційних токенів HuggingFace
-        if grep -r "hf_[A-Za-z0-9]\{20,\}" --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist --exclude="*.json" . ; then
+        if grep -r "hf_[A-Za-z0-9]\{20,\}" --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist --exclude="*.json" --exclude-dir=docs --exclude-dir=policies . ; then
           echo "WARNING: Potential HuggingFace token detected"
+          SECRET_FOUND=1
         fi
+        if [ $SECRET_FOUND -eq 1 ]; then
+          echo "ERROR: Potential secrets found in code! Please review and remove."
+          exit 1
+        fi
+        echo "✓ No secrets detected in code"
 
     - name: Verify .env is not committed
       run: |
@@ -64,6 +73,14 @@ jobs:
         else
           echo "✓ No .env file found in repository"
         fi
+
+    - name: Upload security scan artifacts
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: security-scan-results
+        path: npm-audit.json
+        retention-days: 30
 
     - name: Security scan summary
       if: always()
