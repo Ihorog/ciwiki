@@ -3,16 +3,70 @@ name: Security Analysis
 on:
   schedule:
     - cron: "0 0 * * 0" # Щотижнева перевірка
+  workflow_dispatch: # Дозволити ручний запуск
 
 jobs:
   security-scan:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
-    - name: Run security scan
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies
       run: |
-        echo "Running security scan..."
-        # Додайте реальні сканери безпеки
+        npm ci
+        pip install -r requirements.txt
+
+    - name: Run npm audit
+      run: |
+        echo "Running npm security audit..."
+        npm audit --audit-level=moderate || true
+        npm audit --json > npm-audit.json || true
+
+    - name: Run Python security scan
+      run: |
+        echo "Running Python security scan..."
+        pip install pip-audit
+        pip-audit --desc --requirement requirements.txt || true
+
+    - name: Check for secrets in code
+      run: |
+        echo "Checking for potential secrets..."
+        # Перевірка на наявність потенційних токенів OpenAI
+        if grep -r "sk-[A-Za-z0-9]\{20,\}" --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist --exclude="*.json" . ; then
+          echo "WARNING: Potential OpenAI API key detected"
+        fi
+        # Перевірка на наявність потенційних токенів HuggingFace
+        if grep -r "hf_[A-Za-z0-9]\{20,\}" --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist --exclude="*.json" . ; then
+          echo "WARNING: Potential HuggingFace token detected"
+        fi
+
+    - name: Verify .env is not committed
+      run: |
+        echo "Verifying .env files are not committed..."
+        if git ls-files | grep -q "^\.env$"; then
+          echo "ERROR: .env file is committed to repository!"
+          exit 1
+        else
+          echo "✓ No .env file found in repository"
+        fi
+
+    - name: Security scan summary
+      if: always()
+      run: |
+        echo "Security scan completed"
+        echo "Review the scan results above for any issues"
