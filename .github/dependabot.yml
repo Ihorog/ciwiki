@@ -12,6 +12,25 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
+    # Security: Automatically update vulnerable dependencies
+    reviewers:
+      - "Ihorog"
+    
+  # Enable version updates for pip (Python dependencies)
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "python"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    # Security: Automatically update vulnerable dependencies
+    reviewers:
+      - "Ihorog"
 
   # Enable version updates for GitHub Actions
   - package-ecosystem: "github-actions"
@@ -24,3 +43,6 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
+    # Security: Keep actions up to date to prevent supply chain attacks
+    reviewers:
+      - "Ihorog"
