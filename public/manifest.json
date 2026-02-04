@@ -1,7 +1,7 @@
 {
-  "name": "Cimeika",
-  "short_name": "Cimeika",
-  "description": "Cimeika - теоретична база та бібліотека знань",
+  "name": "ПоДія - Cimeika",
+  "short_name": "ПоДія",
+  "description": "ПоДія - модуль календарних подій та теоретична база знань",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
