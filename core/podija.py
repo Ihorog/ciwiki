@@ -17,6 +17,8 @@ Core Rules:
 import json
 import logging
 import os
+import re
+import time
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, Any, Optional
@@ -152,7 +154,6 @@ class PodijaIntentExtractor:
             return reference_date + timedelta(days=days_ahead)
         
         # Try to find specific date patterns (DD.MM, DD/MM, DD-MM)
-        import re
         date_pattern = r'(\d{1,2})[\.\-/](\d{1,2})'
         match = re.search(date_pattern, text)
         if match:
@@ -176,7 +177,6 @@ class PodijaIntentExtractor:
     
     def _extract_time(self, text: str) -> str:
         """Extract time from text"""
-        import re
         
         # Pattern for time: "о 10", "в 14:30", "о 9:00", "14:30"
         time_patterns = [
@@ -214,7 +214,6 @@ class PodijaIntentExtractor:
             r'\d{1,2}[\.\-/]\d{1,2}[\.\-/]?\d*\s*',
         ]
         
-        import re
         title = original_text.strip()
         
         for marker in markers_to_remove:
@@ -242,7 +241,6 @@ class PodijaIntentExtractor:
             Saved event with added id and metadata
         """
         # Generate unique ID using timestamp with microseconds
-        import time
         event_id = int(time.time() * 1000000)  # Use microseconds for better uniqueness
         
         # Create full event object
