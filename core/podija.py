@@ -202,13 +202,14 @@ class PodijaIntentExtractor:
     def _extract_title(self, original_text: str, text_lower: str) -> str:
         """Extract event title from text"""
         # Remove date/time markers to get clean title
+        # Order matters: check longer patterns first to avoid partial matches
         markers_to_remove = [
-            r'завтра\s*',
             r'післязавтра\s*',
             r'після\s+завтра\s*',
-            r'сьогодні\s*',
-            r'через\s+тиждень\s*',
             r'наступного\s+тижня\s*',
+            r'через\s+тиждень\s*',
+            r'завтра\s*',
+            r'сьогодні\s*',
             r'[ов]\s*\d{1,2}(?::\d{2})?\s*(?:год|час)?\s*',
             r'\d{1,2}:\d{2}\s*',
             r'\d{1,2}[\.\-/]\d{1,2}[\.\-/]?\d*\s*',
