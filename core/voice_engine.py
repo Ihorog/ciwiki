@@ -2,6 +2,7 @@
 CIT Voice Engine - Central Event Processor
 Слухає зміни станів у manifest.json та api/state-visual
 Надає семантичне забарвлення подій згідно з ontology.json
+Інтегрує модуль ПоДія для календарних подій
 """
 
 import json
@@ -15,6 +16,9 @@ from datetime import datetime
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import httpx
+
+# Import Podija module
+from core.podija import PodijaIntentExtractor
 
 logging.basicConfig(
     level=logging.INFO,
@@ -37,6 +41,9 @@ class VoiceEngine:
         self.event_handlers: List = []
         self.observer = None
         self.manifest_handler = None
+        
+        # Initialize Podija Intent Extractor
+        self.podija = PodijaIntentExtractor()
         
     def _load_ontology(self) -> Dict[str, Any]:
         """Завантаження семантичної онтології"""
@@ -188,6 +195,39 @@ class VoiceEngine:
             'goal': intent_data.get('goal', '')
         }
         await self.process_event(event_data)
+    
+    async def process_podija_intent(self, user_input: str) -> Dict[str, Any]:
+        """
+        Process ПоДія (Podija) calendar intent from natural language
+        
+        Args:
+            user_input: Natural language input (e.g., "Завтра о 10 нарада")
+            
+        Returns:
+            Created event data with id
+        """
+        logger.info(f"Processing Podija intent: {user_input}")
+        
+        # Extract intent using Podija
+        event_data = self.podija.extract_intent(user_input)
+        
+        # Save to calendar.json
+        saved_event = self.podija.save_event(event_data)
+        
+        # Emit event to all handlers
+        event_notification = {
+            'type': 'podija_event_created',
+            'source': 'podija',
+            'title': saved_event['title'],
+            'date': saved_event['date'],
+            'time': saved_event['time'],
+            'desc': saved_event['desc'],
+            'event_id': saved_event['id'],
+            'user_input': user_input
+        }
+        await self.process_event(event_notification)
+        
+        return saved_event
     
     async def start(self):
         """Запуск голосового движка"""

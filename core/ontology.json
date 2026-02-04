@@ -52,12 +52,20 @@
       "keywords": ["intent", "detected", "observer"],
       "requires_media": true,
       "interactive": true
+    },
+    "podija_event_created": {
+      "level": "111",
+      "template": "📅 ПоДія: {title} ({date} о {time})",
+      "keywords": ["podija", "calendar", "event", "scheduled"],
+      "requires_media": false,
+      "interactive": false
     }
   },
   "semantic_mappings": {
     "manifest_change": ["knowledge_synthesis", "state_change"],
     "visual_state_change": ["module_proposal", "state_change"],
     "intent_observation": ["intent_detected", "module_proposal"],
-    "error_detection": ["structural_gap"]
+    "error_detection": ["structural_gap"],
+    "calendar_event": ["podija_event_created"]
   }
 }
