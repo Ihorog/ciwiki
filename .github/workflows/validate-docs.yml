@@ -101,8 +101,8 @@ jobs:
             "docs/processes/commit-conventions.md"
             "docs/processes/master-issue.md"
             "docs/processes/ci-cd.md"
-            "templates/change-template.md"
-            "policies/copilot-guard.md"
+            "docs/templates/change-template.md"
+            "docs/policies/copilot-guard.md"
             ".github/pull_request_template.md"
           )
           
