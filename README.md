@@ -44,12 +44,12 @@ CiWiki є центральним репозиторієм документаці
 - [Master Issue](./docs/processes/master-issue.md) — Робота з master issues
 
 #### Шаблони
-- [Шаблон змін](./templates/change-template.md) — Обов'язковий шаблон для покрокових змін
+- [Шаблон змін](./docs/templates/change-template.md) — Обов'язковий шаблон для покрокових змін
 - [PR Template](./.github/pull_request_template.md) — Шаблон Pull Request
 
 #### Політики
-- [Copilot Guard](./policies/copilot-guard.md) — Захист від витоку секретів
-- [Repository Status](./policies/repository-status.md) — Статус репозиторію
+- [Copilot Guard](./docs/policies/copilot-guard.md) — Захист від витоку секретів
+- [Repository Status](./docs/policies/repository-status.md) — Статус репозиторію
 
 ## Швидкий старт
 
@@ -57,7 +57,7 @@ CiWiki є центральним репозиторієм документаці
 
 1. Ознайомтесь з [COPILOT_CANON.md](./COPILOT_CANON.md) — основні правила роботи
 2. Прочитайте [PR процес](./docs/processes/pr-process.md) перед створенням PR
-3. Використовуйте [шаблон змін](./templates/change-template.md) для всіх змін
+3. Використовуйте [шаблон змін](./docs/templates/change-template.md) для всіх змін
 
 ### Для асистентів (GitHub Copilot)
 
@@ -82,12 +82,9 @@ ciwiki/
 │   ├── processes/              # Процеси та інструкції
 │   ├── Cimeika/               # Документація проєкту
 │   └── index.md               # Головна сторінка документації
-├── templates/                  # Шаблони для різних процесів
-├── policies/                   # Політики та правила
 ├── .github/                    # GitHub конфігурація
 │   ├── workflows/             # CI/CD workflows
 │   └── copilot-instructions.md # Copilot інструкції
-└── workflows/                  # Додаткові workflow файли
 ```
 
 ## CI/CD

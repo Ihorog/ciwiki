@@ -24,7 +24,7 @@
 - [ ] **Немає sensitive даних в документації**
   - Немає внутрішніх URL або IP адрес
   - Немає конфіденційної інформації про інфраструктуру
-  - Дотримання [Copilot Guard Policy](./policies/copilot-guard.md)
+  - Дотримання [Copilot Guard Policy](./docs/policies/copilot-guard.md)
 
 - [ ] **Валідація введення**
   - Всі user inputs валідовані
@@ -210,7 +210,7 @@ API_KEY=your_api_key_here
 
 ## 🛡️ Copilot Guard Policy
 
-Дотримуйтесь [Copilot Guard Policy](./policies/copilot-guard.md):
+Дотримуйтесь [Copilot Guard Policy](./docs/policies/copilot-guard.md):
 
 ### Правила для AI Agents:
 
@@ -372,7 +372,7 @@ API_KEY=your_api_key_here
 
 ### Internal:
 - [SECURITY.md](./SECURITY.md) - Security Policy
-- [Copilot Guard](./policies/copilot-guard.md) - AI Safety
+- [Copilot Guard](./docs/policies/copilot-guard.md) - AI Safety
 - [Secrets Management](./docs/processes/secrets-management.md) - Credential handling
 
 ### External:

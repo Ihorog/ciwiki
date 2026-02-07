@@ -77,7 +77,7 @@ assignees: ''
 <!-- Посилання на документацію, стандарти, приклади -->
 
 - [SECURITY.md](../SECURITY.md)
-- [Copilot Guard Policy](../policies/copilot-guard.md)
+- [Copilot Guard Policy](../../docs/policies/copilot-guard.md)
 - [Secrets Management](../docs/processes/secrets-management.md)
 
 ## 🔄 Поточний стан

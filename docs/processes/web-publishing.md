@@ -76,8 +76,8 @@ on:
    Workflow копіює файли що часто змінюються:
    - `SECURITY.md` → `docs/SECURITY.md` (оновлюється при кожній збірці)
    
-   **Примітка**: Інші файли (COPILOT_CANON.md, Legend-ci/, templates/, policies/, .github/) 
-   вже знаходяться в `docs/` і комітяться разом з іншою документацією для простоти підтримки.
+   **Примітка**: Інші файли (Legend-ci/, templates/, policies/) 
+   вже знаходяться в `docs/` як єдине джерело. `COPILOT_CANON.md` залишається в корені репозиторію.
 
 5. **Збірка сайту**
    ```yaml
@@ -130,7 +130,7 @@ docs/
 │   ├── ci-cd.md
 │   ├── web-publishing.md       # Цей файл
 │   └── ...
-├── Legend-ci/                  # Легенда Ci документація (копія з "Legend ci/")
+├── Legend-ci/                  # Легенда Ci документація
 │   ├── README.md
 │   ├── 00-summary.md
 │   └── ...
@@ -138,16 +138,14 @@ docs/
 │   ├── Ci/
 │   ├── Казкар/
 │   └── ...
-├── templates/                  # Шаблони (копія з кореня)
-├── policies/                   # Політики (копія з кореня)
-└── .github/                    # GitHub конфігурація (копія з кореня)
+├── templates/                  # Шаблони
+└── policies/                   # Політики
 ```
 
-**Примітка про дублікати**: 
-- Файли в `docs/Legend-ci/`, `docs/templates/`, `docs/policies/`, `docs/.github/` та `docs/COPILOT_CANON.md` є копіями з кореневої директорії
-- `docs/SECURITY.md` автоматично оновлюється при кожній збірці
-- Оригінальні файли в `Legend ci/`, `templates/`, `policies/`, `.github/` залишаються джерелом правди
-- При оновленні цих файлів потрібно також оновити їх копії в `docs/`
+**Примітка**: 
+- `docs/SECURITY.md` автоматично оновлюється при кожній збірці з кореневого `SECURITY.md`
+- `COPILOT_CANON.md` знаходиться в корені репозиторію (не дублюється в `docs/`)
+- Всі документаційні файли мають єдине розташування в `docs/` без дублікатів
 
 ## Локальна розробка
 
@@ -223,14 +221,12 @@ theme:
 
 ### Посилання на файли поза docs/
 
-Файли з кореня репозиторію копіюються при збірці:
+Файл `SECURITY.md` з кореня репозиторію копіюється при збірці:
 - `SECURITY.md` → `docs/SECURITY.md`
-- `COPILOT_CANON.md` → `docs/COPILOT_CANON.md`
 
 Посилання:
 ```markdown
 [Security Policy](../SECURITY.md)
-[Copilot Canon](../COPILOT_CANON.md)
 ```
 
 ## GitHub Pages налаштування
@@ -311,7 +307,7 @@ mv .github/workflows/duplicate.yml .github/workflows/duplicate.yml.disabled
 4. ✅ Перевіряйте build warnings
 5. ✅ Організуйте файли логічно
 6. ✅ Оновлюйте навігацію в `mkdocs.yml`
-7. ✅ При оновленні файлів в `Legend ci/`, `templates/`, `policies/` — також оновіть копії в `docs/`
+7. ✅ Оновлюйте навігацію в `mkdocs.yml` при додаванні нових файлів
 
 ### Don'ts ❌
 
@@ -321,39 +317,19 @@ mv .github/workflows/duplicate.yml .github/workflows/duplicate.yml.disabled
 4. ❌ Не пушіть напряму до `gh-pages` branch
 5. ❌ Не змінюйте `docs/SECURITY.md` напряму (воно автоматично оновлюється з кореня)
 6. ❌ Не використовуйте різні регістри для файлів
-7. ❌ Не оновлюйте копії в `docs/` без оновлення оригіналів
+7. ❌ Не створюйте дублікати файлів в кореневій директорії
 
-## Підтримка копій файлів
+## Структура файлів
 
-### Процес оновлення
+### Принцип єдиного розташування
 
-Коли оновлюєте файли що існують і в кореневій директорії і в `docs/`:
+Кожен документаційний файл має лише одне розташування:
+- Документація проєкту → `docs/`
+- Конфігурація Copilot → `COPILOT_CANON.md` (корінь)
+- Безпека → `SECURITY.md` (корінь, копіюється в `docs/` при збірці)
+- GitHub конфігурація → `.github/`
 
-1. **Оновіть оригінал** в кореневій директорії
-   ```bash
-   # Приклад: оновлення Legend ci файлу
-   vim "Legend ci/README.md"
-   ```
-
-2. **Скопіюйте в docs/**
-   ```bash
-   cp "Legend ci/README.md" docs/Legend-ci/README.md
-   ```
-
-3. **Закомітьте обидва**
-   ```bash
-   git add "Legend ci/README.md" docs/Legend-ci/README.md
-   git commit -m "Update Legend ci README"
-   ```
-
-### Автоматизація (майбутнє покращення)
-
-Це можна автоматизувати через:
-- Pre-commit hook
-- GitHub Action
-- Makefile команда
-
-**TODO**: Додати автоматичну синхронізацію при коміті
+Це запобігає конфліктам між дублікатами файлів.
 
 ## Моніторинг
 
@@ -382,7 +358,7 @@ mv .github/workflows/duplicate.yml .github/workflows/duplicate.yml.disabled
 ## Changelog
 
 - **2026-01-25**: Initial web publishing implementation
-  - Copied Legend ci files to docs
+  - Created Legend-ci docs
   - Fixed broken links
   - Updated workflow to copy all necessary files
   - Disabled conflicting workflows
@@ -393,21 +369,14 @@ mv .github/workflows/duplicate.yml .github/workflows/duplicate.yml.disabled
 
 **Пріоритет: Середній — реалізація в наступних ітераціях**
 
-### 1. Автоматична синхронізація дублікатів файлів
-- Реалізувати pre-commit hook для автоматичного копіювання
-- Або використовувати symbolic links (якщо підтримується)
-- Або створити GitHub Action для синхронізації при PR
-
-**Rationale**: Зменшить помилки при оновленні та спростить підтримку
-
-### 2. Уніфікація мовної структури
+### 1. Уніфікація мовної структури
 - Визначити стратегію найменування (Ukrainian vs English vs Mixed)
 - Оновити всі navigation labels для консистентності
 - Синхронізувати з іменами директорій
 
 **Rationale**: Покращить user experience та знизить confusion
 
-### 3. Покращена валідація при збірці
+### 2. Покращена валідація при збірці
 - Додати автоматичну перевірку broken links
 - Валідація структури навігації
 - Pre-commit hooks для локального тестування

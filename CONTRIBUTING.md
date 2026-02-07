@@ -254,13 +254,13 @@ PR буде змерджено якщо:
 - ✅ Перевірте [Security Checklist](SECURITY_CHECKLIST.md)
 - ✅ Запустіть `npm audit` та `pip-audit`
 - ✅ Переконайтесь що немає секретів в коді
-- ✅ Дотримуйтесь [Copilot Guard Policy](./policies/copilot-guard.md)
+- ✅ Дотримуйтесь [Copilot Guard Policy](./docs/policies/copilot-guard.md)
 
 ### Security Resources
 
 - 📋 [Security Checklist](SECURITY_CHECKLIST.md) - Детальний checklist
 - 🔒 [Security Policy](SECURITY.md) - Політика безпеки
-- 🛡️ [Copilot Guard](./policies/copilot-guard.md) - Захист від витоку секретів
+- 🛡️ [Copilot Guard](./docs/policies/copilot-guard.md) - Захист від витоку секретів
 - 📚 [Secrets Management](./docs/processes/secrets-management.md) - Управління credentials
 
 ## Питання?

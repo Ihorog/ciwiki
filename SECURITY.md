@@ -56,7 +56,7 @@ All repositories have automated security scanning:
 - **Secret Scanning** — detects leaked credentials
 - **Copilot Guard** — prevents secrets in documentation
 
-See [policies/copilot-guard.md](./policies/copilot-guard.md) for details.
+See [policies/copilot-guard.md](./docs/policies/copilot-guard.md) for details.
 
 ### Code Review Requirements
 
@@ -233,7 +233,7 @@ This security policy is reviewed and updated:
 ## Additional Resources
 
 - [Secrets Management Guide](./docs/processes/secrets-management.md)
-- [Copilot Guard Policy](./policies/copilot-guard.md)
+- [Copilot Guard Policy](./docs/policies/copilot-guard.md)
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 - [GitHub Security Best Practices](https://docs.github.com/en/code-security)
 
