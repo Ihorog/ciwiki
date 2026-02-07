@@ -20,10 +20,6 @@ import httpx
 # Import Podija module
 from core.podija import PodijaIntentExtractor
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
 logger = logging.getLogger(__name__)
 
 
@@ -264,6 +260,11 @@ class VoiceEngine:
 # Точка входу для тестування
 if __name__ == "__main__":
     import sys
+    
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
     
     # Шляхи за замовчуванням
     ontology_path = sys.argv[1] if len(sys.argv) > 1 else "core/ontology.json"

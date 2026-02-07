@@ -61,6 +61,16 @@ class PodijaIntentExtractor:
         self.calendar_path = Path(calendar_path)
         self._ensure_storage()
     
+    def _load_calendar(self) -> Dict[str, Any]:
+        """Load calendar data from JSON file"""
+        with open(self.calendar_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    
+    def _save_calendar(self, calendar_data: Dict[str, Any]):
+        """Save calendar data to JSON file"""
+        with open(self.calendar_path, 'w', encoding='utf-8') as f:
+            json.dump(calendar_data, f, ensure_ascii=False, indent=2)
+    
     def _ensure_storage(self):
         """Ensure storage directory and file exist"""
         self.calendar_path.parent.mkdir(parents=True, exist_ok=True)
@@ -73,8 +83,7 @@ class PodijaIntentExtractor:
                     "last_updated": None
                 }
             }
-            with open(self.calendar_path, 'w', encoding='utf-8') as f:
-                json.dump(initial_data, f, ensure_ascii=False, indent=2)
+            self._save_calendar(initial_data)
             logger.info(f"Created calendar storage: {self.calendar_path}")
     
     def extract_intent(self, user_input: str) -> Dict[str, Any]:
@@ -256,16 +265,14 @@ class PodijaIntentExtractor:
         }
         
         # Load current calendar
-        with open(self.calendar_path, 'r', encoding='utf-8') as f:
-            calendar_data = json.load(f)
+        calendar_data = self._load_calendar()
         
         # Add event
         calendar_data["events"].append(full_event)
         calendar_data["metadata"]["last_updated"] = datetime.now().isoformat()
         
         # Save back to file
-        with open(self.calendar_path, 'w', encoding='utf-8') as f:
-            json.dump(calendar_data, f, ensure_ascii=False, indent=2)
+        self._save_calendar(calendar_data)
         
         logger.info(f"Saved event: {full_event['title']} on {full_event['date']} at {full_event['time']}")
         
@@ -281,8 +288,7 @@ class PodijaIntentExtractor:
         Returns:
             List of events
         """
-        with open(self.calendar_path, 'r', encoding='utf-8') as f:
-            calendar_data = json.load(f)
+        calendar_data = self._load_calendar()
         
         events = calendar_data.get("events", [])
         

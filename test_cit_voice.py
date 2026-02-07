@@ -14,6 +14,17 @@ sys.path.insert(0, str(Path(__file__).parent))
 from core.voice_engine import VoiceEngine
 
 
+def _create_test_engine() -> VoiceEngine:
+    """Create a VoiceEngine instance with default test paths"""
+    base_path = Path(__file__).parent
+    ontology_path = base_path / "core" / "ontology.json"
+    manifest_path = base_path / "public" / "manifest.json"
+    return VoiceEngine(
+        ontology_path=str(ontology_path),
+        manifest_path=str(manifest_path)
+    )
+
+
 class MockTelegramHandler:
     """Mock обробник для тестування без реального Telegram"""
     
@@ -36,14 +47,7 @@ async def test_events():
     """Тестування різних типів подій"""
     
     # Ініціалізація Voice Engine
-    base_path = Path(__file__).parent
-    ontology_path = base_path / "core" / "ontology.json"
-    manifest_path = base_path / "public" / "manifest.json"
-    
-    engine = VoiceEngine(
-        ontology_path=str(ontology_path),
-        manifest_path=str(manifest_path)
-    )
+    engine = _create_test_engine()
     
     # Реєстрація mock обробника
     mock_handler = MockTelegramHandler()
@@ -105,14 +109,7 @@ async def test_events():
 async def test_classification():
     """Тестування класифікації подій"""
     
-    base_path = Path(__file__).parent
-    ontology_path = base_path / "core" / "ontology.json"
-    manifest_path = base_path / "public" / "manifest.json"
-    
-    engine = VoiceEngine(
-        ontology_path=str(ontology_path),
-        manifest_path=str(manifest_path)
-    )
+    engine = _create_test_engine()
     
     print("\n🔍 Testing Event Classification\n")
     
