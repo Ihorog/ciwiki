@@ -16,6 +16,17 @@ from core.podija import PodijaIntentExtractor
 from core.voice_engine import VoiceEngine
 
 
+def _create_test_engine() -> VoiceEngine:
+    """Create a VoiceEngine instance with default test paths"""
+    base_path = Path(__file__).parent
+    ontology_path = base_path / "core" / "ontology.json"
+    manifest_path = base_path / "public" / "manifest.json"
+    return VoiceEngine(
+        ontology_path=str(ontology_path),
+        manifest_path=str(manifest_path)
+    )
+
+
 def test_acceptance_criteria_1():
     """
     Acceptance Criteria 1:
@@ -239,16 +250,8 @@ async def test_voice_engine_integration():
     print("TEST 6: Voice Engine Integration")
     print("="*70)
     
-    # Setup paths
-    base_path = Path(__file__).parent
-    ontology_path = base_path / "core" / "ontology.json"
-    manifest_path = base_path / "public" / "manifest.json"
-    
     # Initialize Voice Engine
-    engine = VoiceEngine(
-        ontology_path=str(ontology_path),
-        manifest_path=str(manifest_path)
-    )
+    engine = _create_test_engine()
     
     print("\n✅ Voice Engine initialized with Podija support")
     

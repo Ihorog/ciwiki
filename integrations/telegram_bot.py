@@ -22,10 +22,6 @@ from aiogram.types import (
 from aiogram.filters import Command
 from aiogram.enums import ParseMode
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
 logger = logging.getLogger(__name__)
 
 
@@ -293,6 +289,11 @@ class TelegramNotifier:
 if __name__ == "__main__":
     import asyncio
     from dotenv import load_dotenv
+    
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
     
     load_dotenv()
     
