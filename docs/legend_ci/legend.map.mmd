@@ -1,0 +1,57 @@
+graph LR
+    ci(("Ci"))
+    pershodzherelo["Першоджерело"]
+    pershyi_podil["Перший поділ"]
+    dzerkalo_materii["Дзеркало матерії"]
+    dzerkalo_svidomosti["Дзеркало свідомості"]
+    tanets_protylezhnostei["Танець протилежностей"]
+    mosti_yednosti["Мости єдності"]
+    proyav_ci["Прояв CI"]
+    rytm["Ритм"]
+    pamiat["Пам'ять"]
+    tvorennia["Творення"]
+    transformatsiia["Трансформація"]
+    harmoniia["Гармонія"]
+    prostir["Простір"]
+    chas["Час"]
+    svidomist_kazkar["Казкар"]
+    zviazok["Зв'язок"]
+    vidkryttia["Відкриття"]
+    hru["Гра"]
+    povern_do_tsentru["Повернення"]
+    nestrimne_rozvytok["Розвиток"]
+    ci <-->|"Ci породжує першоджерело"| pershodzherelo
+    pershodzherelo -->|"Єдине ділиться"| pershyi_podil
+    pershyi_podil -->|"Матеріальний полюс"| dzerkalo_materii
+    pershyi_podil -->|"Свідомий полюс"| dzerkalo_svidomosti
+    dzerkalo_materii <-->|"Взаємовідображення"| dzerkalo_svidomosti
+    dzerkalo_materii --> tanets_protylezhnostei
+    dzerkalo_svidomosti --> tanets_protylezhnostei
+    tanets_protylezhnostei -->|"Протилежності єднаються"| mosti_yednosti
+    mosti_yednosti -->|"Єдність проявляється"| proyav_ci
+    proyav_ci -->|"Прояв повертається до джерела"| ci
+    ci --> rytm
+    ci --> pamiat
+    ci --> tvorennia
+    ci --> transformatsiia
+    ci --> harmoniia
+    ci --> prostir
+    ci --> chas
+    ci --> svidomist_kazkar
+    ci --> zviazok
+    ci --> vidkryttia
+    ci --> hru
+    ci --> povern_do_tsentru
+    ci --> nestrimne_rozvytok
+    rytm <-->|"Ритм вимірює час"| chas
+    pamiat -->|"Пам'ять зберігає час"| chas
+    tvorennia -->|"Творення потребує простору"| prostir
+    transformatsiia -->|"Трансформація — новий поділ"| pershyi_podil
+    harmoniia -->|"Гармонія — результат танцю"| tanets_protylezhnostei
+    svidomist_kazkar -->|"Казкар тримає пам'ять"| pamiat
+    zviazok -->|"Зв'язок будує мости"| mosti_yednosti
+    vidkryttia -->|"Відкриття творить нове"| tvorennia
+    hru -->|"Гра веде до відкриття"| vidkryttia
+    povern_do_tsentru -->|"Повернення до джерела"| pershodzherelo
+    nestrimne_rozvytok -->|"Розвиток через трансформацію"| transformatsiia
+    pershodzherelo -->|"Джерело завжди Ci"| ci
