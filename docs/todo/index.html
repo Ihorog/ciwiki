@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#6200ea" />
+  <meta name="description" content="Мінімальний PWA список справ" />
+  <title>Cimeika To-Do</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>✅ Cimeika To-Do</h1>
+    </header>
+
+    <section id="input-section">
+      <form id="add-form">
+        <input
+          id="new-task"
+          type="text"
+          placeholder="Нове завдання…"
+          maxlength="200"
+          autocomplete="off"
+          required
+        />
+        <button type="submit" aria-label="Додати">+</button>
+      </form>
+    </section>
+
+    <section id="filters">
+      <button class="filter-btn active" data-filter="all">Усі</button>
+      <button class="filter-btn" data-filter="active">Активні</button>
+      <button class="filter-btn" data-filter="completed">Виконані</button>
+    </section>
+
+    <ul id="task-list" role="list"></ul>
+
+    <footer id="footer">
+      <span id="tasks-left"></span>
+      <div id="data-actions">
+        <button id="export-btn" title="Експорт JSON">⬇ JSON</button>
+        <label id="import-label" title="Імпорт JSON">
+          ⬆ JSON
+          <input id="import-input" type="file" accept=".json,application/json" hidden />
+        </label>
+        <button id="clear-completed" title="Видалити виконані">🗑 Виконані</button>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

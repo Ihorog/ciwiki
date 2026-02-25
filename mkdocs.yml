@@ -30,6 +30,7 @@ nav:
   - Дані Legend CI:
       - README: legend_ci/README.md
       - Огляд вузлів: legend_ci/legend.nodes.md
+  - To-Do (PWA): todo/index.html
   - Настрій: nastrij/index.md
   - Маля: malya/index.md
   - Галерея: gallery/index.md
