@@ -1,0 +1,25 @@
+{
+  "name": "ПоДія — To-Do List",
+  "short_name": "ПоДія",
+  "description": "Minimal dependency-free to-do list with offline support",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1e7864",
+  "theme_color": "#1e7864",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
