@@ -285,7 +285,7 @@
       "index": 15,
       "layers": {
         "public": "Той, хто розповідає — з'єднує всі нитки в одне полотно.",
-        "deep": "Нарація як пізнавальний інструмент: мозок організує досвід у вигляді сторій. Казкар — архетип інтегратора знання.",
+        "deep": "Нарація як пізнавальний інструмент: мозок організує досвід у вигляді історій. Казкар — архетип інтегратора знання.",
         "examples": [
           "Дідусь, що передає мудрість через казку",
           "Науковець, що перетворює дані на теорію",
@@ -429,7 +429,7 @@
     { "from": "hru", "to": "vidkryttia", "type": "linear", "label": "Гра веде до відкриття" },
     { "from": "povern_do_tsentru", "to": "pershodzherelo", "type": "return", "label": "Повернення до джерела" },
     { "from": "nestrimne_rozvytok", "to": "transformatsiia", "type": "linear", "label": "Розвиток через трансформацію" },
-    { "from": "pershodzherelo", "to": "ci", "type": "return", "label": "Джерело завжди Ci", "bidirectional": false }
+    { "from": "pershodzherelo", "to": "ci", "type": "return", "label": "Джерело завжди Ci" }
   ],
   "meta": {
     "default_layout": "radial",
