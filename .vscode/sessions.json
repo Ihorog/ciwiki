@@ -2,13 +2,13 @@
   "$schema": "https://cdn.statically.io/gh/nguyenngoclongdev/cdn/main/schema/v11/terminal-keeper.json",
   "theme": "tribe",
   "active": "default",
-  "activateOnStartup": true,
+  "activateOnStartup": false,
   "keepExistingTerminals": false,
   "sessions": {
     "default": [
       {
         "name": "hello",
-        "autoExecuteCommands": true,
+        "autoExecuteCommands": false,
         "icon": "person",
         "color": "terminal.ansiGreen",
         "commands": [
