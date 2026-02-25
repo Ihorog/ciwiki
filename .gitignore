@@ -1,2 +1,5 @@
 # VS Code local workspace session config (contains auto-execute settings; keep local only)
 .vscode/sessions.json
+
+# MkDocs build output (deployed to gh-pages, not committed)
+site/
