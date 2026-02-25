@@ -12,3 +12,6 @@ docs/SECURITY.md
 *.pyc
 __pycache__/
 *.log
+
+# VSCode local workspace automation (opt-in only)
+.vscode/sessions.json
