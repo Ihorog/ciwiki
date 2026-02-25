@@ -87,6 +87,34 @@ ciwiki/
 │   └── copilot-instructions.md # Copilot інструкції
 ```
 
+## Legend Ci Pipeline
+
+Детальна документація пайплайну: [`legend_registry.yml`](./legend_registry.yml).
+
+Єдине джерело правди: `docs/legend_ci/legend.graph.json`
+
+### Запуск локально
+
+```bash
+# Крок 1: синхронізувати граф → markdown-файли
+python scripts/legend/sync_graph_to_markdown.py
+
+# Крок 2: побудувати HTML-сторінки та JSON API
+python scripts/legend/build_legend.py
+```
+
+Результати:
+- `content/legend/**` — markdown-файли по главах
+- `docs/legend/**` — HTML-сторінки з навігацією
+- `api/v1/legend/**` — JSON API
+
+Ручні правки дозволені лише всередині зон:
+```
+<!-- CI:MANUAL:BEGIN -->
+...ваш вміст...
+<!-- CI:MANUAL:END -->
+```
+
 ## CI/CD
 
 Всі зміни проходять через автоматизовані перевірки:

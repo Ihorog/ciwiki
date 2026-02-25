@@ -1,0 +1,222 @@
+[
+  {
+    "id": "pershodzherelo",
+    "title": "Першоджерело",
+    "index": 1,
+    "tags": [
+      "origin",
+      "silence",
+      "potential"
+    ],
+    "url": "/legend/pershodzherelo/"
+  },
+  {
+    "id": "pershyi_podil",
+    "title": "Перший поділ",
+    "index": 2,
+    "tags": [
+      "duality",
+      "division",
+      "polarity"
+    ],
+    "url": "/legend/pershyi_podil/"
+  },
+  {
+    "id": "dzerkalo_materii",
+    "title": "Дзеркало матерії",
+    "index": 3,
+    "tags": [
+      "matter",
+      "mirror",
+      "information"
+    ],
+    "url": "/legend/dzerkalo_materii/"
+  },
+  {
+    "id": "dzerkalo_svidomosti",
+    "title": "Дзеркало свідомості",
+    "index": 4,
+    "tags": [
+      "consciousness",
+      "mirror",
+      "perception"
+    ],
+    "url": "/legend/dzerkalo_svidomosti/"
+  },
+  {
+    "id": "tanets_protylezhnostei",
+    "title": "Танець протилежностей",
+    "index": 5,
+    "tags": [
+      "opposites",
+      "dance",
+      "dialectics"
+    ],
+    "url": "/legend/tanets_protylezhnostei/"
+  },
+  {
+    "id": "mosti_yednosti",
+    "title": "Мости єдності",
+    "index": 6,
+    "tags": [
+      "bridges",
+      "unity",
+      "analogy"
+    ],
+    "url": "/legend/mosti_yednosti/"
+  },
+  {
+    "id": "proyav_ci",
+    "title": "Прояв CI",
+    "index": 7,
+    "tags": [
+      "manifestation",
+      "emergence",
+      "CI"
+    ],
+    "url": "/legend/proyav_ci/"
+  },
+  {
+    "id": "rytm",
+    "title": "Ритм",
+    "index": 8,
+    "tags": [
+      "rhythm",
+      "time",
+      "synchronization"
+    ],
+    "url": "/legend/rytm/"
+  },
+  {
+    "id": "pamiat",
+    "title": "Пам'ять",
+    "index": 9,
+    "tags": [
+      "memory",
+      "past",
+      "reconstruction"
+    ],
+    "url": "/legend/pamiat/"
+  },
+  {
+    "id": "tvorennia",
+    "title": "Творення",
+    "index": 10,
+    "tags": [
+      "creation",
+      "autopoiesis",
+      "making"
+    ],
+    "url": "/legend/tvorennia/"
+  },
+  {
+    "id": "transformatsiia",
+    "title": "Трансформація",
+    "index": 11,
+    "tags": [
+      "transformation",
+      "phase-transition",
+      "change"
+    ],
+    "url": "/legend/transformatsiia/"
+  },
+  {
+    "id": "harmoniia",
+    "title": "Гармонія",
+    "index": 12,
+    "tags": [
+      "harmony",
+      "balance",
+      "homeostasis"
+    ],
+    "url": "/legend/harmoniia/"
+  },
+  {
+    "id": "prostir",
+    "title": "Простір",
+    "index": 13,
+    "tags": [
+      "space",
+      "field",
+      "topology"
+    ],
+    "url": "/legend/prostir/"
+  },
+  {
+    "id": "chas",
+    "title": "Час",
+    "index": 14,
+    "tags": [
+      "time",
+      "entropy",
+      "flow"
+    ],
+    "url": "/legend/chas/"
+  },
+  {
+    "id": "svidomist_kazkar",
+    "title": "Казкар",
+    "index": 15,
+    "tags": [
+      "narrator",
+      "storytelling",
+      "kazkar"
+    ],
+    "url": "/legend/svidomist_kazkar/"
+  },
+  {
+    "id": "zviazok",
+    "title": "Зв'язок",
+    "index": 16,
+    "tags": [
+      "connection",
+      "network",
+      "relation"
+    ],
+    "url": "/legend/zviazok/"
+  },
+  {
+    "id": "vidkryttia",
+    "title": "Відкриття",
+    "index": 17,
+    "tags": [
+      "discovery",
+      "insight",
+      "paradigm"
+    ],
+    "url": "/legend/vidkryttia/"
+  },
+  {
+    "id": "hru",
+    "title": "Гра",
+    "index": 18,
+    "tags": [
+      "play",
+      "game",
+      "exploration"
+    ],
+    "url": "/legend/hru/"
+  },
+  {
+    "id": "povern_do_tsentru",
+    "title": "Повернення",
+    "index": 19,
+    "tags": [
+      "return",
+      "cycle",
+      "reflection"
+    ],
+    "url": "/legend/povern_do_tsentru/"
+  },
+  {
+    "id": "nestrimne_rozvytok",
+    "title": "Розвиток",
+    "index": 20,
+    "tags": [
+      "development",
+      "evolution",
+      "growth"
+    ],
+    "url": "/legend/nestrimne_rozvytok/"
+  }
+]

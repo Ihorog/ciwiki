@@ -1,0 +1,44 @@
+name: Legend Ci Pipeline
+
+on:
+  pull_request:
+    paths:
+      - "docs/legend_ci/legend.graph.json"
+      - "scripts/legend/sync_graph_to_markdown.py"
+      - "scripts/legend/build_legend.py"
+      - "content/legend/**"
+      - ".github/workflows/legend-ci-pipeline.yml"
+
+jobs:
+  pipeline:
+    name: Sync & Build Legend Ci
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Run sync (graph → markdown)
+        run: python scripts/legend/sync_graph_to_markdown.py
+
+      - name: Fail if working tree is dirty after sync
+        run: |
+          git diff --exit-code \
+            || (echo "❌ Working tree dirty after sync — commit the generated content/legend/** files" && exit 1)
+          echo "✓ Working tree clean after sync"
+
+      - name: Run build (markdown → HTML + JSON API)
+        run: python scripts/legend/build_legend.py
+
+      - name: Verify HTML pages exist
+        run: |
+          test -f docs/legend/index.html || (echo "❌ docs/legend/index.html missing" && exit 1)
+          echo "✓ docs/legend/index.html present"
+
+      - name: Verify API index exists
+        run: |
+          test -f api/v1/legend/index.json || (echo "❌ api/v1/legend/index.json missing" && exit 1)
+          echo "✓ api/v1/legend/index.json present"
