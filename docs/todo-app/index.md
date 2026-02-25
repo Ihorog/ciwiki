@@ -1,52 +1,52 @@
-# ПоДія — To-Do List PWA
+# ПоДія — PWA список завдань
 
-A minimal, dependency-free to-do list app with offline support, installable as a
-Progressive Web App (PWA) on Android Chrome and other modern browsers.
+Мінімальний список завдань без зовнішніх залежностей з підтримкою офлайн-режиму, встановлюваний як
+Progressive Web App (PWA) в Android Chrome та інших сучасних браузерах.
 
-## Features
+## Можливості
 
-- ✅ Add, edit, complete, and delete tasks
-- 💾 Tasks persisted to `localStorage` with versioned key `todo_v1` (migration-safe schema)
-- 📦 Export / Import tasks as JSON
-- 📶 Works offline after first load (service worker caches the app shell)
-- 📲 Installable on Android Chrome and other PWA-capable browsers
+- ✅ Додавання, редагування, виконання та видалення завдань
+- 💾 Завдання зберігаються в `localStorage` під версійним ключем `todo_v1` (безпечна міграція схеми)
+- 📦 Експорт / Імпорт завдань у форматі JSON
+- 📶 Працює офлайн після першого завантаження (Service Worker кешує оболонку застосунку)
+- 📲 Встановлюється як PWA на Android Chrome та інших підтримуваних браузерах
 
-## Local Development
+## Локальна розробка
 
-No build step is required — the app is a single HTML file with inline CSS and JS.
+Крок збирання не потрібен — застосунок є єдиним HTML-файлом з вбудованими CSS та JS.
 
-### Serve locally
+### Локальний запуск
 
-Use any static file server. Examples:
+Будь-який статичний файловий сервер підходить. Приклади:
 
 ```bash
-# Python (built-in)
+# Python (вбудований)
 python3 -m http.server 8080 --directory public/
 
 # Node.js (npx)
 npx serve public/ -l 8080
 ```
 
-Then open <http://localhost:8080> in your browser.
+Відкрийте <http://localhost:8080> у браузері.
 
-> **Important:** Service workers only register in **secure contexts** such as `https://` or local loopback hosts (`http://localhost`, `http://127.0.0.1`, `http://[::1]`).
-> For production, always serve the app over `https://`.
+> **Важливо:** Service Worker реєструється лише в **захищених контекстах** — `https://` або локальних петлевих адресах (`http://localhost`, `http://127.0.0.1`, `http://[::1]`).
+> У продакшені завжди використовуйте `https://`.
 
-## File Structure
+## Структура файлів
 
 ```
 public/
-├── index.html        # Single-page app (all-inline, no dependencies)
+├── index.html        # Односторінковий застосунок (все вбудовано, без залежностей)
 ├── manifest.json     # Web App Manifest
-├── sw.js             # Service Worker (offline shell caching)
+├── sw.js             # Service Worker (офлайн-кешування оболонки)
 └── icons/
-    ├── icon-192.png  # App icon 192 × 192
-    └── icon-512.png  # App icon 512 × 512
+    ├── icon-192.png  # Іконка застосунку 192 × 192
+    └── icon-512.png  # Іконка застосунку 512 × 512
 ```
 
-## Data Schema
+## Схема даних
 
-Tasks are stored in `localStorage` under the key **`todo_v1`**:
+Завдання зберігаються в `localStorage` під ключем **`todo_v1`**:
 
 ```json
 {
@@ -54,7 +54,7 @@ Tasks are stored in `localStorage` under the key **`todo_v1`**:
   "tasks": [
     {
       "id": "<uuid>",
-      "text": "Task description",
+      "text": "Опис завдання",
       "done": false,
       "createdAt": 1700000000000
     }
@@ -62,42 +62,42 @@ Tasks are stored in `localStorage` under the key **`todo_v1`**:
 }
 ```
 
-The loader is migration-safe: if it finds a plain array (legacy v0 format) it
-automatically upgrades it to the current schema.
+Завантажувач є безпечним для міграцій: якщо знайдено простий масив (формат v0), він
+автоматично оновлюється до поточної схеми.
 
-## Export / Import JSON
+## Експорт / Імпорт JSON
 
-Click **⇅ JSON** in the header to open the panel:
+Натисніть **⇅ JSON** у заголовку, щоб відкрити панель:
 
-- **⬇ Export JSON** — downloads all tasks as a `.json` file.
-- **⬆ Import JSON** — imports tasks from a previously exported file; duplicates
-  (matching `id`) are skipped so merging is safe.
+- **⬇ Експорт JSON** — завантажує всі завдання як файл `.json`.
+- **⬆ Імпорт JSON** — імпортує завдання з раніше експортованого файлу; дублікати
+  (за збігом `id`) пропускаються — злиття є безпечним.
 
-## PWA Install (Android Chrome)
+## Встановлення PWA (Android Chrome)
 
-1. Open the app URL in Chrome on Android.
-2. After a few seconds, Chrome shows an **"Add to Home screen"** banner  
-   — or tap the **📲 Install** button in the app header.
-3. Tap **Install** / **Add** to place the app icon on your home screen.
-4. The app opens in **standalone** mode (no browser chrome) and works offline.
+1. Відкрийте URL застосунку в Chrome на Android.
+2. Через кілька секунд Chrome показує банер **«Додати на головний екран»**  
+   — або натисніть кнопку **📲 Встановити** у заголовку застосунку.
+3. Натисніть **Встановити** / **Додати**, щоб розмістити іконку застосунку на головному екрані.
+4. Застосунок відкривається в режимі **standalone** (без навігації браузера) і працює офлайн.
 
-> On iOS Safari: tap the Share button → **Add to Home Screen**.
+> На iOS Safari: натисніть кнопку «Поділитись» → **На екран «Домів»**.
 
-## Offline Behaviour
+## Офлайн-режим
 
-On first load the service worker (`sw.js`) caches the app shell
-(`index.html`, `manifest.json`, icons).  
-On subsequent loads — even without network — the app loads instantly from cache.
+Під час першого завантаження Service Worker (`sw.js`) кешує оболонку застосунку
+(`index.html`, `manifest.json`, іконки).  
+Під час наступних завантажень — навіть без мережі — застосунок миттєво завантажується з кешу.
 
-## Lighthouse PWA Checklist
+## Контрольний список Lighthouse PWA
 
-The app is designed to pass the Lighthouse PWA audit:
+Застосунок розроблено для проходження аудиту Lighthouse PWA:
 
-| Check | Status |
-|-------|--------|
-| Has a web app manifest | ✅ `manifest.json` with required fields |
-| Manifest has icons ≥ 192 px | ✅ `icon-192.png`, `icon-512.png` |
+| Перевірка | Статус |
+|-----------|--------|
+| Наявний Web App Manifest | ✅ `manifest.json` з обов'язковими полями |
+| Manifest має іконки ≥ 192 px | ✅ `icon-192.png`, `icon-512.png` |
 | `display: standalone` | ✅ |
-| Service worker registered | ✅ `sw.js` |
-| App shell cached offline | ✅ install event pre-caches shell URLs |
-| HTTPS (or localhost) | ✅ required by browser for SW |
+| Service Worker зареєстровано | ✅ `sw.js` |
+| Оболонка застосунку кешована офлайн | ✅ подія install попередньо кешує URL оболонки |
+| HTTPS (або localhost) | ✅ обов'язково для SW |

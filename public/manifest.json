@@ -1,7 +1,7 @@
 {
-  "name": "ПоДія — To-Do List",
+  "name": "ПоДія — Список завдань",
   "short_name": "ПоДія",
-  "description": "Minimal dependency-free to-do list with offline support",
+  "description": "Мінімальний список завдань без залежностей з підтримкою офлайн-режиму",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
