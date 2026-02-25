@@ -1,6 +1,6 @@
 # Легенда CI — Огляд
 
-> **Єдине джерело істини:** [`docs/legend_ci/legend.graph.json`](../../legend_ci/legend.graph.json)
+> **Єдине джерело істини:** [`legend.graph.json`](../../legend_ci/legend.graph.json)
 
 Легенда CI — це семиактна космологія Cimeika. Сім розділів описують шлях від безмовного першоджерела до явного прояву Ci у світі.
 
