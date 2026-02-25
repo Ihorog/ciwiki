@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ПоДія — To-Do List</title>
+  <meta name="description" content="Minimal dependency-free offline-ready to-do list">
+  <meta name="theme-color" content="#1e7864">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f5f7fa;
+      --surface: #ffffff;
+      --primary: #1e7864;
+      --primary-dark: #155a4a;
+      --text: #1a1a2e;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --danger: #dc2626;
+      --check: #16a34a;
+      --radius: 8px;
+    }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 0 0 env(safe-area-inset-bottom);
+    }
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 6px rgba(0,0,0,.18);
+    }
+    header h1 { font-size: 1.25rem; font-weight: 700; letter-spacing: .02em; }
+    header .subtitle { font-size: .75rem; opacity: .8; margin-top: 1px; }
+    .header-actions { display: flex; gap: .5rem; }
+    .btn {
+      border: none; cursor: pointer; border-radius: var(--radius);
+      font-size: .8rem; font-weight: 600; padding: .4rem .7rem;
+      transition: opacity .15s;
+    }
+    .btn:hover { opacity: .85; }
+    .btn-ghost {
+      background: rgba(255,255,255,.2); color: #fff;
+    }
+    .btn-primary {
+      background: var(--primary); color: #fff;
+    }
+    .btn-danger { background: var(--danger); color: #fff; }
+    main { max-width: 640px; margin: 0 auto; padding: 1rem 1rem 5rem; }
+    .add-form {
+      display: flex; gap: .5rem; margin-bottom: 1.25rem;
+    }
+    .add-form input {
+      flex: 1; padding: .65rem .85rem;
+      border: 2px solid var(--border); border-radius: var(--radius);
+      font-size: 1rem; background: var(--surface); color: var(--text);
+      transition: border-color .15s;
+    }
+    .add-form input:focus { outline: none; border-color: var(--primary); }
+    .add-form button {
+      padding: .65rem 1.1rem; background: var(--primary); color: #fff;
+      border: none; border-radius: var(--radius); font-size: 1.25rem;
+      cursor: pointer; font-weight: 700; transition: background .15s;
+    }
+    .add-form button:hover { background: var(--primary-dark); }
+    .filters {
+      display: flex; gap: .5rem; margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: .3rem .75rem; border: 2px solid var(--border);
+      border-radius: 20px; font-size: .8rem; font-weight: 600;
+      background: var(--surface); color: var(--muted); cursor: pointer;
+      transition: all .15s;
+    }
+    .filter-btn.active {
+      border-color: var(--primary); color: var(--primary);
+      background: #e8f5f1;
+    }
+    .stats {
+      font-size: .8rem; color: var(--muted); margin-bottom: .75rem;
+    }
+    .task-list { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    .task-item {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: .75rem 1rem;
+      display: flex; align-items: center; gap: .75rem;
+      transition: box-shadow .15s, opacity .15s;
+    }
+    .task-item:hover { box-shadow: 0 2px 8px rgba(0,0,0,.07); }
+    .task-item.done { opacity: .6; }
+    .task-check {
+      width: 1.25rem; height: 1.25rem; flex-shrink: 0;
+      accent-color: var(--check); cursor: pointer;
+    }
+    .task-text {
+      flex: 1; font-size: .95rem; word-break: break-word;
+      transition: text-decoration .15s;
+    }
+    .task-item.done .task-text { text-decoration: line-through; color: var(--muted); }
+    .task-text-edit {
+      flex: 1; padding: .15rem .35rem;
+      border: 1px solid var(--primary); border-radius: 4px;
+      font-size: .95rem; font-family: inherit;
+    }
+    .task-actions { display: flex; gap: .35rem; flex-shrink: 0; }
+    .icon-btn {
+      border: none; background: none; cursor: pointer;
+      font-size: 1rem; padding: .2rem; border-radius: 4px;
+      color: var(--muted); transition: color .15s, background .15s;
+    }
+    .icon-btn:hover { color: var(--text); background: var(--border); }
+    .icon-btn.delete:hover { color: var(--danger); }
+    .empty {
+      text-align: center; color: var(--muted); padding: 3rem 1rem;
+      font-size: .95rem;
+    }
+    .empty .empty-icon { font-size: 3rem; margin-bottom: .5rem; }
+    .bulk-actions {
+      display: flex; gap: .5rem; margin-bottom: 1rem; flex-wrap: wrap;
+    }
+    /* Import/Export panel */
+    .panel {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .panel h2 { font-size: .9rem; font-weight: 700; margin-bottom: .75rem; }
+    .panel-actions { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .install-banner {
+      background: var(--primary); color: #fff; border-radius: var(--radius);
+      padding: .75rem 1rem; margin-bottom: 1rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: .5rem;
+    }
+    .install-banner span { font-size: .85rem; }
+    #install-btn { display: none; }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a; --surface: #1e293b;
+        --text: #f1f5f9; --muted: #94a3b8; --border: #334155;
+      }
+      .filter-btn.active { background: #0f2e25; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>ПоДія ✓</h1>
+      <div class="subtitle">offline-ready to-do list</div>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-ghost" id="toggle-panel-btn" aria-label="Import / Export">⇅ JSON</button>
+      <button class="btn btn-ghost" id="install-btn" aria-label="Install app">📲 Install</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="install-banner" class="install-banner" style="display:none">
+      <span>📲 Add ПоДія to your home screen for the best experience!</span>
+      <button class="btn btn-ghost" id="banner-install-btn">Install</button>
+    </div>
+
+    <div id="io-panel" class="panel" style="display:none">
+      <h2>Import / Export</h2>
+      <div class="panel-actions">
+        <button class="btn btn-primary" id="export-btn">⬇ Export JSON</button>
+        <label class="btn btn-primary" style="cursor:pointer">
+          ⬆ Import JSON
+          <input type="file" id="import-input" accept=".json" style="display:none">
+        </label>
+      </div>
+    </div>
+
+    <form class="add-form" id="add-form" autocomplete="off">
+      <input id="new-task-input" type="text" placeholder="Add a new task…"
+             maxlength="500" aria-label="New task text">
+      <button type="submit" aria-label="Add task">+</button>
+    </form>
+
+    <div class="filters" role="group" aria-label="Filter tasks">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="active">Active</button>
+      <button class="filter-btn" data-filter="done">Done</button>
+    </div>
+
+    <div class="stats" id="stats"></div>
+
+    <div class="bulk-actions">
+      <button class="btn btn-primary" id="check-all-btn" title="Mark all done">✓ All done</button>
+      <button class="btn btn-ghost" id="uncheck-all-btn"
+              style="border:2px solid var(--border);color:var(--text)">↺ Reset</button>
+      <button class="btn btn-danger" id="clear-done-btn">🗑 Clear done</button>
+    </div>
+
+    <ul class="task-list" id="task-list" aria-label="Task list"></ul>
+    <div id="empty-state" class="empty" style="display:none">
+      <div class="empty-icon">📋</div>
+      <div>No tasks yet. Add one above!</div>
+    </div>
+  </main>
+
+  <script>
+  'use strict';
+  /* ── Storage schema ─────────────────────────────────────────────────────── */
+  const STORAGE_KEY = 'todo_v1';
+  const SCHEMA_VERSION = 1;
+
+  /** @typedef {{ id: string, text: string, done: boolean, createdAt: number }} Task */
+
+  /**
+   * Load tasks from localStorage, applying migration-safe schema.
+   * @returns {{ version: number, tasks: Task[] }}
+   */
+  function loadStore() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return { version: SCHEMA_VERSION, tasks: [] };
+      const data = JSON.parse(raw);
+      // Migration: if no version field, treat as v0 (plain array)
+      if (Array.isArray(data)) {
+        return { version: SCHEMA_VERSION, tasks: data.map(migrateTask) };
+      }
+      if (data.version === SCHEMA_VERSION) {
+        return { version: SCHEMA_VERSION, tasks: (data.tasks || []).map(migrateTask) };
+      }
+      // Future versions: add migration steps here
+      return { version: SCHEMA_VERSION, tasks: (data.tasks || []).map(migrateTask) };
+    } catch (_) {
+      return { version: SCHEMA_VERSION, tasks: [] };
+    }
+  }
+
+  /** Ensure a task object has all required fields. */
+  function migrateTask(t) {
+    return {
+      id: t.id || crypto.randomUUID(),
+      text: String(t.text || '').trim(),
+      done: Boolean(t.done),
+      createdAt: t.createdAt || Date.now(),
+    };
+  }
+
+  function saveStore(tasks) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: SCHEMA_VERSION, tasks }));
+  }
+
+  /* ── State ──────────────────────────────────────────────────────────────── */
+  let tasks = loadStore().tasks;
+  let filter = 'all'; // 'all' | 'active' | 'done'
+  let editingId = null;
+
+  /* ── Helpers ────────────────────────────────────────────────────────────── */
+  function genId() {
+    return (typeof crypto !== 'undefined' && crypto.randomUUID)
+      ? crypto.randomUUID()
+      : Math.random().toString(36).slice(2) + Date.now().toString(36);
+  }
+
+  function filteredTasks() {
+    if (filter === 'active') return tasks.filter(t => !t.done);
+    if (filter === 'done')   return tasks.filter(t => t.done);
+    return tasks;
+  }
+
+  /* ── Render ─────────────────────────────────────────────────────────────── */
+  function render() {
+    saveStore(tasks);
+    const list = document.getElementById('task-list');
+    const empty = document.getElementById('empty-state');
+    const stats = document.getElementById('stats');
+    const shown = filteredTasks();
+
+    // Stats
+    const total = tasks.length;
+    const done  = tasks.filter(t => t.done).length;
+    stats.textContent = total
+      ? `${done} / ${total} done`
+      : '';
+
+    // Empty state
+    empty.style.display = shown.length ? 'none' : 'block';
+    list.style.display  = shown.length ? '' : 'none';
+    if (!shown.length) return;
+
+    // Task items (keyed update)
+    const existingIds = new Set([...list.children].map(el => el.dataset.id));
+    const newIds      = new Set(shown.map(t => t.id));
+
+    // Remove stale
+    [...list.children].forEach(el => {
+      if (!newIds.has(el.dataset.id)) el.remove();
+    });
+
+    // Add / update
+    shown.forEach((task, i) => {
+      let li = list.querySelector(`[data-id="${task.id}"]`);
+      if (!li) {
+        li = buildTaskEl(task);
+        list.appendChild(li);
+      } else {
+        updateTaskEl(li, task);
+      }
+      // Maintain order
+      if (list.children[i] !== li) list.insertBefore(li, list.children[i]);
+    });
+  }
+
+  function buildTaskEl(task) {
+    const li = document.createElement('li');
+    li.className = 'task-item' + (task.done ? ' done' : '');
+    li.dataset.id = task.id;
+    li.innerHTML = taskHTML(task);
+    bindTaskEvents(li, task);
+    return li;
+  }
+
+  function updateTaskEl(li, task) {
+    li.className = 'task-item' + (task.done ? ' done' : '');
+    if (editingId === task.id) return; // Don't overwrite while editing
+    li.innerHTML = taskHTML(task);
+    bindTaskEvents(li, task);
+  }
+
+  function taskHTML(task) {
+    const txt = escHtml(task.text);
+    return `
+      <input class="task-check" type="checkbox" aria-label="Toggle done"
+             ${task.done ? 'checked' : ''}>
+      <span class="task-text" title="${txt}">${txt}</span>
+      <div class="task-actions">
+        <button class="icon-btn edit" aria-label="Edit task" title="Edit">✏</button>
+        <button class="icon-btn delete" aria-label="Delete task" title="Delete">🗑</button>
+      </div>`;
+  }
+
+  function bindTaskEvents(li, task) {
+    li.querySelector('.task-check').addEventListener('change', e => {
+      const t = tasks.find(x => x.id === task.id);
+      if (t) { t.done = e.target.checked; render(); }
+    });
+    li.querySelector('.edit').addEventListener('click', () => startEdit(li, task));
+    li.querySelector('.delete').addEventListener('click', () => {
+      tasks = tasks.filter(x => x.id !== task.id);
+      render();
+    });
+  }
+
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+            .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+
+  /* ── Edit ───────────────────────────────────────────────────────────────── */
+  function startEdit(li, task) {
+    editingId = task.id;
+    const span = li.querySelector('.task-text');
+    const input = document.createElement('input');
+    input.className = 'task-text-edit';
+    input.value = task.text;
+    span.replaceWith(input);
+    input.focus();
+    input.select();
+
+    function commit() {
+      const val = input.value.trim();
+      if (val) {
+        const t = tasks.find(x => x.id === task.id);
+        if (t) t.text = val;
+      }
+      editingId = null;
+      render();
+    }
+    input.addEventListener('blur', commit);
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); commit(); }
+      if (e.key === 'Escape') { editingId = null; render(); }
+    });
+  }
+
+  /* ── Add form ───────────────────────────────────────────────────────────── */
+  document.getElementById('add-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const input = document.getElementById('new-task-input');
+    const text = input.value.trim();
+    if (!text) return;
+    tasks.unshift({ id: genId(), text, done: false, createdAt: Date.now() });
+    input.value = '';
+    filter = 'all';
+    document.querySelectorAll('.filter-btn').forEach(b =>
+      b.classList.toggle('active', b.dataset.filter === 'all'));
+    render();
+  });
+
+  /* ── Filters ────────────────────────────────────────────────────────────── */
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      filter = btn.dataset.filter;
+      document.querySelectorAll('.filter-btn').forEach(b =>
+        b.classList.toggle('active', b === btn));
+      render();
+    });
+  });
+
+  /* ── Bulk actions ───────────────────────────────────────────────────────── */
+  document.getElementById('check-all-btn').addEventListener('click', () => {
+    tasks.forEach(t => t.done = true);
+    render();
+  });
+  document.getElementById('uncheck-all-btn').addEventListener('click', () => {
+    tasks.forEach(t => t.done = false);
+    render();
+  });
+  document.getElementById('clear-done-btn').addEventListener('click', () => {
+    tasks = tasks.filter(t => !t.done);
+    render();
+  });
+
+  /* ── Export / Import ────────────────────────────────────────────────────── */
+  document.getElementById('toggle-panel-btn').addEventListener('click', () => {
+    const panel = document.getElementById('io-panel');
+    panel.style.display = panel.style.display === 'none' ? '' : 'none';
+  });
+
+  document.getElementById('export-btn').addEventListener('click', () => {
+    const payload = JSON.stringify({ version: SCHEMA_VERSION, tasks }, null, 2);
+    const blob = new Blob([payload], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `podija-tasks-${new Date().toISOString().slice(0,10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  document.getElementById('import-input').addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = evt => {
+      try {
+        const data = JSON.parse(evt.target.result);
+        const imported = Array.isArray(data)
+          ? data.map(migrateTask)
+          : (data.tasks || []).map(migrateTask);
+        if (!imported.length) { alert('No tasks found in file.'); return; }
+        if (confirm(`Import ${imported.length} task(s)? Existing tasks will be kept.`)) {
+          // Merge: avoid duplicate IDs
+          const existingIds = new Set(tasks.map(t => t.id));
+          imported.forEach(t => { if (!existingIds.has(t.id)) tasks.push(t); });
+          render();
+        }
+      } catch (_) {
+        alert('Invalid JSON file.');
+      }
+      e.target.value = '';
+    };
+    reader.readAsText(file);
+  });
+
+  /* ── PWA Install prompt ─────────────────────────────────────────────────── */
+  let deferredPrompt = null;
+
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferredPrompt = e;
+    document.getElementById('install-btn').style.display = '';
+    document.getElementById('install-banner').style.display = '';
+  });
+
+  function triggerInstall() {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => {
+      deferredPrompt = null;
+      document.getElementById('install-btn').style.display = 'none';
+      document.getElementById('install-banner').style.display = 'none';
+    });
+  }
+  document.getElementById('install-btn').addEventListener('click', triggerInstall);
+  document.getElementById('banner-install-btn').addEventListener('click', triggerInstall);
+
+  window.addEventListener('appinstalled', () => {
+    document.getElementById('install-btn').style.display = 'none';
+    document.getElementById('install-banner').style.display = 'none';
+  });
+
+  /* ── Service Worker ─────────────────────────────────────────────────────── */
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  }
+
+  /* ── Init ───────────────────────────────────────────────────────────────── */
+  render();
+  </script>
+</body>
+</html>
