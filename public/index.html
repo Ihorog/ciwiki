@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="uk">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -247,7 +247,7 @@
   /** Ensure a task object has all required fields. */
   function migrateTask(t) {
     return {
-      id: t.id || crypto.randomUUID(),
+      id: t.id || genId(),
       text: String(t.text || '').trim(),
       done: Boolean(t.done),
       createdAt: t.createdAt || Date.now(),
@@ -297,7 +297,6 @@
     if (!shown.length) return;
 
     // Task items (keyed update)
-    const existingIds = new Set([...list.children].map(el => el.dataset.id));
     const newIds      = new Set(shown.map(t => t.id));
 
     // Remove stale
@@ -477,8 +476,8 @@
   window.addEventListener('beforeinstallprompt', e => {
     e.preventDefault();
     deferredPrompt = e;
-    document.getElementById('install-btn').style.display = '';
-    document.getElementById('install-banner').style.display = '';
+    document.getElementById('install-btn').style.display = 'inline-flex';
+    document.getElementById('install-banner').style.display = 'flex';
   });
 
   function triggerInstall() {

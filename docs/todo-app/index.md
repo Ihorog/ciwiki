@@ -24,13 +24,13 @@ Use any static file server. Examples:
 python3 -m http.server 8080 --directory public/
 
 # Node.js (npx)
-npx serve public/
+npx serve public/ -l 8080
 ```
 
 Then open <http://localhost:8080> in your browser.
 
-> **Important:** The Service Worker only registers over `https://` or `http://localhost`.
-> Always use `localhost` (not `127.0.0.1`) when testing locally.
+> **Important:** Service workers only register in **secure contexts** such as `https://` or local loopback hosts (`http://localhost`, `http://127.0.0.1`, `http://[::1]`).
+> For production, always serve the app over `https://`.
 
 ## File Structure
 
