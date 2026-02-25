@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ПоДія — To-Do List</title>
-  <meta name="description" content="Minimal dependency-free offline-ready to-do list">
+  <title>ПоДія — Список завдань</title>
+  <meta name="description" content="Мінімальний список завдань без залежностей з підтримкою офлайн-режиму">
   <meta name="theme-color" content="#1e7864">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
@@ -160,56 +160,56 @@
   <header>
     <div>
       <h1>ПоДія ✓</h1>
-      <div class="subtitle">offline-ready to-do list</div>
+      <div class="subtitle">список завдань офлайн</div>
     </div>
     <div class="header-actions">
-      <button class="btn btn-ghost" id="toggle-panel-btn" aria-label="Import / Export">⇅ JSON</button>
-      <button class="btn btn-ghost" id="install-btn" aria-label="Install app">📲 Install</button>
+      <button class="btn btn-ghost" id="toggle-panel-btn" aria-label="Імпорт / Експорт">⇅ JSON</button>
+      <button class="btn btn-ghost" id="install-btn" aria-label="Встановити застосунок">📲 Встановити</button>
     </div>
   </header>
 
   <main>
     <div id="install-banner" class="install-banner" style="display:none">
-      <span>📲 Add ПоДія to your home screen for the best experience!</span>
-      <button class="btn btn-ghost" id="banner-install-btn">Install</button>
+      <span>📲 Додайте ПоДія на головний екран для кращого досвіду!</span>
+      <button class="btn btn-ghost" id="banner-install-btn">Встановити</button>
     </div>
 
     <div id="io-panel" class="panel" style="display:none">
-      <h2>Import / Export</h2>
+      <h2>Імпорт / Експорт</h2>
       <div class="panel-actions">
-        <button class="btn btn-primary" id="export-btn">⬇ Export JSON</button>
+        <button class="btn btn-primary" id="export-btn">⬇ Експорт JSON</button>
         <label class="btn btn-primary" style="cursor:pointer">
-          ⬆ Import JSON
+          ⬆ Імпорт JSON
           <input type="file" id="import-input" accept=".json" style="display:none">
         </label>
       </div>
     </div>
 
     <form class="add-form" id="add-form" autocomplete="off">
-      <input id="new-task-input" type="text" placeholder="Add a new task…"
-             maxlength="500" aria-label="New task text">
-      <button type="submit" aria-label="Add task">+</button>
+      <input id="new-task-input" type="text" placeholder="Додати нове завдання…"
+             maxlength="500" aria-label="Текст нового завдання">
+      <button type="submit" aria-label="Додати завдання">+</button>
     </form>
 
-    <div class="filters" role="group" aria-label="Filter tasks">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="active">Active</button>
-      <button class="filter-btn" data-filter="done">Done</button>
+    <div class="filters" role="group" aria-label="Фільтрувати завдання">
+      <button class="filter-btn active" data-filter="all">Усі</button>
+      <button class="filter-btn" data-filter="active">Активні</button>
+      <button class="filter-btn" data-filter="done">Виконані</button>
     </div>
 
     <div class="stats" id="stats"></div>
 
     <div class="bulk-actions">
-      <button class="btn btn-primary" id="check-all-btn" title="Mark all done">✓ All done</button>
+      <button class="btn btn-primary" id="check-all-btn" title="Позначити всі виконаними">✓ Всі виконані</button>
       <button class="btn btn-ghost" id="uncheck-all-btn"
-              style="border:2px solid var(--border);color:var(--text)">↺ Reset</button>
-      <button class="btn btn-danger" id="clear-done-btn">🗑 Clear done</button>
+              style="border:2px solid var(--border);color:var(--text)">↺ Скинути</button>
+      <button class="btn btn-danger" id="clear-done-btn">🗑 Видалити виконані</button>
     </div>
 
-    <ul class="task-list" id="task-list" aria-label="Task list"></ul>
+    <ul class="task-list" id="task-list" aria-label="Список завдань"></ul>
     <div id="empty-state" class="empty" style="display:none">
       <div class="empty-icon">📋</div>
-      <div>No tasks yet. Add one above!</div>
+      <div>Завдань ще немає. Додайте перше вище!</div>
     </div>
   </main>
 
@@ -288,7 +288,7 @@
     const total = tasks.length;
     const done  = tasks.filter(t => t.done).length;
     stats.textContent = total
-      ? `${done} / ${total} done`
+      ? `${done} / ${total} виконано`
       : '';
 
     // Empty state
@@ -337,12 +337,12 @@
   function taskHTML(task) {
     const txt = escHtml(task.text);
     return `
-      <input class="task-check" type="checkbox" aria-label="Toggle done"
+      <input class="task-check" type="checkbox" aria-label="Позначити виконаним"
              ${task.done ? 'checked' : ''}>
       <span class="task-text" title="${txt}">${txt}</span>
       <div class="task-actions">
-        <button class="icon-btn edit" aria-label="Edit task" title="Edit">✏</button>
-        <button class="icon-btn delete" aria-label="Delete task" title="Delete">🗑</button>
+        <button class="icon-btn edit" aria-label="Редагувати завдання" title="Редагувати">✏</button>
+        <button class="icon-btn delete" aria-label="Видалити завдання" title="Видалити">🗑</button>
       </div>`;
   }
 
@@ -469,15 +469,15 @@
         const imported = Array.isArray(data)
           ? data.map(migrateTask)
           : (data.tasks || []).map(migrateTask);
-        if (!imported.length) { alert('No tasks found in file.'); return; }
-        if (confirm(`Import ${imported.length} task(s)? Existing tasks will be kept.`)) {
+        if (!imported.length) { alert('У файлі не знайдено завдань.'); return; }
+        if (confirm(`Імпортувати ${imported.length} завдань(ня)? Наявні завдання буде збережено.`)) {
           // Merge: avoid duplicate IDs
           const existingIds = new Set(tasks.map(t => t.id));
           imported.forEach(t => { if (!existingIds.has(t.id)) tasks.push(t); });
           render();
         }
       } catch (_) {
-        alert('Invalid JSON file.');
+        alert('Невірний JSON файл.');
       }
       e.target.value = '';
     };
