@@ -1,2 +1,3 @@
-﻿# Cimeika Knowledge Base
+# Ciwiki
 
+Готово. Це стартова сторінка MkDocs.

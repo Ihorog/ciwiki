@@ -1,12 +1,12 @@
-site_name: Cimeika
-
+site_name: Ciwiki Docs
 theme:
   name: material
-  language: uk
-
-plugins:
-  - search
-
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - search.suggest
+    - search.highlight
 nav:
   - Ci: ci/index.md
   - ПоДія: podija/index.md
