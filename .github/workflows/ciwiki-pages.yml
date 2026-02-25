@@ -1,0 +1,34 @@
+name: Build & Deploy CiWiki
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
+      - run: pip install mkdocs mkdocs-material
+      - name: Copy dynamic files to docs
+        run: |
+          if [ -f SECURITY.md ]; then
+            cp SECURITY.md docs/
+          else
+            echo "Warning: SECURITY.md not found"
+            exit 1
+          fi
+      - run: mkdocs build
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          publish_branch: gh-pages

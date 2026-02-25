@@ -429,7 +429,7 @@
     { "from": "hru", "to": "vidkryttia", "type": "linear", "label": "Гра веде до відкриття" },
     { "from": "povern_do_tsentru", "to": "pershodzherelo", "type": "return", "label": "Повернення до джерела" },
     { "from": "nestrimne_rozvytok", "to": "transformatsiia", "type": "linear", "label": "Розвиток через трансформацію" },
-    { "from": "pershodzherelo", "to": "ci", "type": "return", "label": "Джерело завжди Ci", "bidirectional": false }
+    { "from": "pershodzherelo", "to": "ci", "type": "return", "label": "Джерело завжди Ci" }
   ],
   "meta": {
     "default_layout": "radial",
