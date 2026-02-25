@@ -99,7 +99,11 @@ def validate(graph: dict, schema_path: Path) -> list:
         errors += _validate_required(edge, ["from", "to", "type"], path)
         for endpoint in ("from", "to"):
             ref = edge.get(endpoint)
-            if ref and ref not in seen_ids:
+            if not isinstance(ref, str):
+                errors.append(f"Edge '{endpoint}' must be a string at {path}")
+            elif not ref.strip():
+                errors.append(f"Edge '{endpoint}' must be a non-empty string at {path}")
+            elif ref not in seen_ids:
                 errors.append(f"Edge '{endpoint}' references unknown node id '{ref}' at {path}")
 
     return errors
@@ -154,7 +158,6 @@ def generate_mermaid(graph: dict) -> str:
         frm = edge["from"]
         to = edge["to"]
         label = edge.get("label", "")
-        etype = edge.get("type", "linear")
         bidir = edge.get("bidirectional", False)
         arrow = "<-->" if bidir else "-->"
         if label:
@@ -231,17 +234,26 @@ def main(argv=None):
     nodes_md = generate_nodes_md(graph)
     nodes_md_path = out_dir / "legend.nodes.md"
     nodes_md_path.write_text(nodes_md, encoding="utf-8")
-    print(f"✓ Generated {nodes_md_path.relative_to(REPO_ROOT)}")
+    try:
+        print(f"✓ Generated {nodes_md_path.relative_to(REPO_ROOT)}")
+    except ValueError:
+        print(f"✓ Generated {nodes_md_path}")
 
     mmd = generate_mermaid(graph)
     mmd_path = out_dir / "legend.map.mmd"
     mmd_path.write_text(mmd, encoding="utf-8")
-    print(f"✓ Generated {mmd_path.relative_to(REPO_ROOT)}")
+    try:
+        print(f"✓ Generated {mmd_path.relative_to(REPO_ROOT)}")
+    except ValueError:
+        print(f"✓ Generated {mmd_path}")
 
     search = generate_search_json(graph)
     search_path = out_dir / "legend.search.json"
     search_path.write_text(json.dumps(search, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"✓ Generated {search_path.relative_to(REPO_ROOT)}")
+    try:
+        print(f"✓ Generated {search_path.relative_to(REPO_ROOT)}")
+    except ValueError:
+        print(f"✓ Generated {search_path}")
 
     print("Done.")
 
