@@ -12,8 +12,8 @@ jobs:
       pages: write
       id-token: write
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
       - run: pip install mkdocs mkdocs-material
@@ -25,10 +25,15 @@ jobs:
             echo "Warning: SECURITY.md not found"
             exit 1
           fi
+      - name: Build Legend Ci (HTML + JSON API)
+        run: python scripts/legend/build_legend.py
       - run: mkdocs build
+      - name: Include Legend Ci API in site
+        run: cp -r api site/api
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
           publish_branch: gh-pages
+          cname: www.cimeika.com.ua
