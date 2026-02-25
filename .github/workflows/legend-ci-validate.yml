@@ -35,3 +35,9 @@ jobs:
           test -f docs/legend_ci/legend.map.mmd   || (echo "❌ legend.map.mmd missing" && exit 1)
           test -f docs/legend_ci/legend.search.json || (echo "❌ legend.search.json missing" && exit 1)
           echo "✓ All artifacts present"
+
+      - name: Check artifacts are up-to-date
+        run: |
+          git diff --exit-code docs/legend_ci/legend.nodes.md docs/legend_ci/legend.map.mmd docs/legend_ci/legend.search.json \
+            || (echo "❌ Generated artifacts are out of date. Run scripts/legend/render.py and commit the changes." && exit 1)
+          echo "✓ Artifacts are up-to-date"
