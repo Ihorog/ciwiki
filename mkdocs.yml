@@ -27,6 +27,9 @@ nav:
       - Legacy:
           - legend_ci.html: _assets/legend/legend_ci.html
           - legends_ci.html: _assets/legend/legends_ci.html
+  - Дані Legend CI:
+      - README: legend_ci/README.md
+      - Огляд вузлів: legend_ci/legend.nodes.md
   - Настрій: nastrij/index.md
   - Маля: malya/index.md
   - Галерея: gallery/index.md
