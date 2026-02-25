@@ -65,7 +65,7 @@ meta: layout_hint, animation, hex_facets (Ci-1 … Ci-7)
 
 ```bash
 # Встановлення (одноразово)
-pip install jsonschema   # необов'язково: render.py валідує і без нього
+pip install jsonschema   # рекомендовано: вмикає повну валідацію за JSON Schema; без нього — лише базові перевірки
 
 # Запуск
 cd /шлях/до/репозиторію

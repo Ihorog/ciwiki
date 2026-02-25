@@ -41,8 +41,30 @@ def _validate_required(obj: dict, fields: list, path: str) -> list:
 
 
 def validate(graph: dict, schema_path: Path) -> list:
-    """Return list of validation error strings (empty = valid)."""
+    """Return list of validation error strings (empty = valid), including JSON schema validation using schema_path."""
     errors = []
+
+    # JSON schema validation (external, from provided schema_path)
+    try:
+        from jsonschema import Draft7Validator
+        try:
+            with schema_path.open("r", encoding="utf-8") as f:
+                schema = json.load(f)
+        except OSError as exc:
+            errors.append(f"Unable to read schema file '{schema_path}': {exc}")
+            return errors
+        except json.JSONDecodeError as exc:
+            errors.append(f"Invalid JSON schema in '{schema_path}': {exc}")
+            return errors
+        validator = Draft7Validator(schema)
+        schema_errors = [
+            f"Schema validation error at '{'/'.join(map(str, e.path)) or 'root'}': {e.message}"
+            for e in validator.iter_errors(graph)
+        ]
+        if schema_errors:
+            return schema_errors
+    except ImportError:
+        pass  # jsonschema not installed; fall back to built-in checks below
 
     # Basic structure
     errors += _validate_required(graph, ["version", "center", "nodes", "edges"], "root")

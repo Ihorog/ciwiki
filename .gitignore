@@ -1,17 +1,1 @@
-node_modules
-dist/
-site/
-.history/
-*.bak*
-sdfghj/
-docs/SECURITY.md
-
-# CIT Voice
-.env
-/tmp/cit_media_cache/
-*.pyc
-__pycache__/
-*.log
-
-# VSCode local workspace automation (opt-in only)
-.vscode/sessions.json
+scripts/legend/__pycache__/
