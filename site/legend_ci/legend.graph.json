@@ -1,0 +1,440 @@
+{
+  "version": "1.0.0",
+  "center": {
+    "id": "ci",
+    "title": "Ci",
+    "summary": "Єдиний потік свідомості, що пронизує всі шари буття. Джерело і ціль усієї системи Legend Ci."
+  },
+  "nodes": [
+    {
+      "id": "pershodzherelo",
+      "title": "Першоджерело",
+      "index": 1,
+      "layers": {
+        "public": "Точка, з якої все починається. Безмовний імпульс до існування.",
+        "deep": "Сингулярний стан перед диференціацією; аналог квантового вакууму, де потенційність максимальна, а форма відсутня.",
+        "examples": [
+          "Момент перед першою думкою зранку",
+          "Тиша між двома нотами",
+          "Стан медитації без об'єкта"
+        ]
+      },
+      "meta": {
+        "animation": "pulse",
+        "layout_hint": "radial",
+        "hex_facet": "Ci-1",
+        "tags": ["origin", "silence", "potential"]
+      }
+    },
+    {
+      "id": "pershyi_podil",
+      "title": "Перший поділ",
+      "index": 2,
+      "layers": {
+        "public": "Єдине ділиться на два — народжуються полярності.",
+        "deep": "Принцип бінарної диференціації: з нероздільного виникають протилежності (суб'єкт/об'єкт, свідомість/матерія). Аналог симетрії, що порушується у фізиці.",
+        "examples": [
+          "День і ніч як перший ритм",
+          "Вдих і видих",
+          "Я і світ"
+        ]
+      },
+      "meta": {
+        "animation": "split",
+        "layout_hint": "radial",
+        "hex_facet": "Ci-2",
+        "tags": ["duality", "division", "polarity"]
+      }
+    },
+    {
+      "id": "dzerkalo_materii",
+      "title": "Дзеркало матерії",
+      "index": 3,
+      "layers": {
+        "public": "Фізичний світ як відображення внутрішнього порядку.",
+        "deep": "Матерія як кристалізована інформація; фізичні закони — мова, якою Ci читає себе у щільному стані.",
+        "examples": [
+          "Кристалічні ґрати як зримий код",
+          "Топографія мозку відображає досвід",
+          "Архітектура міста як проекція колективної свідомості"
+        ]
+      },
+      "meta": {
+        "animation": "reflect",
+        "layout_hint": "hex",
+        "hex_facet": "Ci-3",
+        "tags": ["matter", "mirror", "information"]
+      }
+    },
+    {
+      "id": "dzerkalo_svidomosti",
+      "title": "Дзеркало свідомості",
+      "index": 4,
+      "layers": {
+        "public": "Внутрішній світ як дзеркало, в якому відображається реальність.",
+        "deep": "Свідомість не пасивний реципієнт, а активний конструктор досвіду; нейронні кореляти свідомості як динамічний граф.",
+        "examples": [
+          "Сприйняття кольору залежить від досвіду та мови",
+          "Плацебо-ефект: думка змінює матерію",
+          "Увага формує пам'ять"
+        ]
+      },
+      "meta": {
+        "animation": "reflect",
+        "layout_hint": "hex",
+        "hex_facet": "Ci-4",
+        "tags": ["consciousness", "mirror", "perception"]
+      }
+    },
+    {
+      "id": "tanets_protylezhnostei",
+      "title": "Танець протилежностей",
+      "index": 5,
+      "layers": {
+        "public": "Протилежності не борються — вони танцюють разом.",
+        "deep": "Діалектична динаміка: тезис та антитезис не знищують одне одного, а породжують синтез вищого рівня (принцип Гегеля як патерн природи).",
+        "examples": [
+          "Тепло і холод народжують вітер",
+          "Конфлікт ідей як двигун науки",
+          "Вдих/видих — танець газообміну"
+        ]
+      },
+      "meta": {
+        "animation": "orbit",
+        "layout_hint": "radial",
+        "hex_facet": "Ci-5",
+        "tags": ["opposites", "dance", "dialectics"]
+      }
+    },
+    {
+      "id": "mosti_yednosti",
+      "title": "Мости єдності",
+      "index": 6,
+      "layers": {
+        "public": "Зв'язки між різним — ось де живе сенс.",
+        "deep": "Аналогічність структур на різних рівнях буття (фракталі, гомологія, метафора як пізнавальний міст). Теорія категорій як математика зв'язків.",
+        "examples": [
+          "Метафора «час — гроші» переносить структуру",
+          "ДНК як міст між поколіннями",
+          "Дружба як міст між двома всесвітами"
+        ]
+      },
+      "meta": {
+        "animation": "connect",
+        "layout_hint": "linear",
+        "hex_facet": "Ci-6",
+        "tags": ["bridges", "unity", "analogy"]
+      }
+    },
+    {
+      "id": "proyav_ci",
+      "title": "Прояв CI",
+      "index": 7,
+      "layers": {
+        "public": "Ci стає видимим у кожному прояві світу.",
+        "deep": "Емерджентність: з простих взаємодій виникають складні, якісно нові властивості. Ci як атрактор у хаотичних системах.",
+        "examples": [
+          "Свідомість як прояв нейронних взаємодій",
+          "Мурашина колонія як суперорганізм",
+          "Мова як прояв соціальних взаємодій"
+        ]
+      },
+      "meta": {
+        "animation": "emerge",
+        "layout_hint": "radial",
+        "hex_facet": "Ci-7",
+        "tags": ["manifestation", "emergence", "CI"]
+      }
+    },
+    {
+      "id": "rytm",
+      "title": "Ритм",
+      "index": 8,
+      "layers": {
+        "public": "Все живе дихає у власному ритмі.",
+        "deep": "Осцилятори та синхронізація: від циркадних ритмів до мозкових хвиль. Ритм як механізм узгодження інформації в часі.",
+        "examples": [
+          "Серцебиття як базовий ритм присутності",
+          "Пори року як макроритм",
+          "Повторення у навчанні закріплює зв'язки"
+        ]
+      },
+      "meta": {
+        "animation": "pulse",
+        "layout_hint": "radial",
+        "tags": ["rhythm", "time", "synchronization"]
+      }
+    },
+    {
+      "id": "pamiat",
+      "title": "Пам'ять",
+      "index": 9,
+      "layers": {
+        "public": "Минуле живе у теперішньому через пам'ять.",
+        "deep": "Пам'ять як реконструктивний процес, а не архів. Нейропластичність: кожне пригадування змінює спогад.",
+        "examples": [
+          "Запах, що повертає дитинство",
+          "Колективна пам'ять культури у ритуалах",
+          "Git як пам'ять коду"
+        ]
+      },
+      "meta": {
+        "animation": "trace",
+        "layout_hint": "linear",
+        "tags": ["memory", "past", "reconstruction"]
+      }
+    },
+    {
+      "id": "tvorennia",
+      "title": "Творення",
+      "index": 10,
+      "layers": {
+        "public": "Кожен акт творення — це Ci, що формує себе.",
+        "deep": "Аутопоезис: живі та когнітивні системи безперервно відтворюють себе. Творчість як управління хаосом у пошуку нових патернів.",
+        "examples": [
+          "Дитина, що будує з піску",
+          "Написання коду як матеріалізація думки",
+          "Приготування їжі як щоденний ритуал творення"
+        ]
+      },
+      "meta": {
+        "animation": "build",
+        "layout_hint": "hex",
+        "tags": ["creation", "autopoiesis", "making"]
+      }
+    },
+    {
+      "id": "transformatsiia",
+      "title": "Трансформація",
+      "index": 11,
+      "layers": {
+        "public": "Зміна — не втрата, а перехід у нову форму.",
+        "deep": "Фазові переходи: системи можуть різко змінювати стан при накопиченні певного параметра (температура, тиск, натиск досвіду).",
+        "examples": [
+          "Вода стає парою",
+          "Криза як точка фазового переходу в житті",
+          "Рефакторинг коду — трансформація без зміни поведінки"
+        ]
+      },
+      "meta": {
+        "animation": "morph",
+        "layout_hint": "radial",
+        "tags": ["transformation", "phase-transition", "change"]
+      }
+    },
+    {
+      "id": "harmoniia",
+      "title": "Гармонія",
+      "index": 12,
+      "layers": {
+        "public": "Гармонія — це баланс у русі, а не стан спокою.",
+        "deep": "Динамічна рівновага: гомеостаз у біологічних системах, резонанс у фізиці, консенсус у соціальних мережах.",
+        "examples": [
+          "Екосистема лісу у рівновазі",
+          "Імунна система як динамічна гармонія",
+          "Джазова імпровізація як гармонія у процесі"
+        ]
+      },
+      "meta": {
+        "animation": "balance",
+        "layout_hint": "hex",
+        "tags": ["harmony", "balance", "homeostasis"]
+      }
+    },
+    {
+      "id": "prostir",
+      "title": "Простір",
+      "index": 13,
+      "layers": {
+        "public": "Простір — не порожнеча, а поле можливостей.",
+        "deep": "Простір як реляційна структура (Лейбніц: простір визначається відносинами об'єктів). Топологія смислів у когнітивному просторі.",
+        "examples": [
+          "Пауза в мові надає слову вагу",
+          "Негативний простір у живописі",
+          "Робочий стіл без зайвого — простір для думки"
+        ]
+      },
+      "meta": {
+        "animation": "expand",
+        "layout_hint": "radial",
+        "tags": ["space", "field", "topology"]
+      }
+    },
+    {
+      "id": "chas",
+      "title": "Час",
+      "index": 14,
+      "layers": {
+        "public": "Час — ріка, яку ми можемо відчути, але не зупинити.",
+        "deep": "Час як конструкт сприйняття та фізична реальність одночасно. Стріла часу, ентропія, відносність суб'єктивного часу.",
+        "examples": [
+          "Дитинство здається вічністю",
+          "Дедлайн стискає суб'єктивний час",
+          "Фосили як читання часу у матерії"
+        ]
+      },
+      "meta": {
+        "animation": "flow",
+        "layout_hint": "linear",
+        "tags": ["time", "entropy", "flow"]
+      }
+    },
+    {
+      "id": "svidomist_kazkar",
+      "title": "Казкар",
+      "index": 15,
+      "layers": {
+        "public": "Той, хто розповідає — з'єднує всі нитки в одне полотно.",
+        "deep": "Нарація як пізнавальний інструмент: мозок організує досвід у вигляді історій. Казкар — архетип інтегратора знання.",
+        "examples": [
+          "Дідусь, що передає мудрість через казку",
+          "Науковець, що перетворює дані на теорію",
+          "Ci як казкар власного розвитку"
+        ]
+      },
+      "meta": {
+        "animation": "weave",
+        "layout_hint": "cluster",
+        "tags": ["narrator", "storytelling", "kazkar"]
+      }
+    },
+    {
+      "id": "zviazok",
+      "title": "Зв'язок",
+      "index": 16,
+      "layers": {
+        "public": "Зв'язок — це найменша одиниця сенсу між двома.",
+        "deep": "Теорія мереж: система визначається не вузлами, а ребрами. Синаптичний зв'язок, соціальний капітал, гіперпосилання як реалізації одного принципу.",
+        "examples": [
+          "Рукостискання як перша точка зв'язку",
+          "API як технічний зв'язок систем",
+          "Погляд між людьми на відстані"
+        ]
+      },
+      "meta": {
+        "animation": "link",
+        "layout_hint": "cluster",
+        "tags": ["connection", "network", "relation"]
+      }
+    },
+    {
+      "id": "vidkryttia",
+      "title": "Відкриття",
+      "index": 17,
+      "layers": {
+        "public": "Відкриття — це момент, коли невидиме стає зримим.",
+        "deep": "Інсайт як реконфігурація семантичної мережі. Наукове відкриття як зсув парадигми (Кун); творчий стрибок у розв'язанні задач.",
+        "examples": [
+          "Ейлер і königsberg bridges — граф у природі",
+          "Архімед і принцип витіснення",
+          "Перший раз, коли дитина розуміє сенс слова"
+        ]
+      },
+      "meta": {
+        "animation": "flash",
+        "layout_hint": "radial",
+        "tags": ["discovery", "insight", "paradigm"]
+      }
+    },
+    {
+      "id": "hru",
+      "title": "Гра",
+      "index": 18,
+      "layers": {
+        "public": "Гра — найвільніша форма пізнання.",
+        "deep": "Homo ludens (Гейзінга): гра як першооснова культури. Ігрові стани відкривають нейронні шляхи, недосяжні в режимі виживання.",
+        "examples": [
+          "Дитина, що досліджує гравітацію, кидаючи іграшки",
+          "Мозковий штурм як ігровий режим команди",
+          "Cimeika як ігровий простір смислів"
+        ]
+      },
+      "meta": {
+        "animation": "bounce",
+        "layout_hint": "hex",
+        "tags": ["play", "game", "exploration"]
+      }
+    },
+    {
+      "id": "povern_do_tsentru",
+      "title": "Повернення",
+      "index": 19,
+      "layers": {
+        "public": "Після кожної подорожі — повернення до себе.",
+        "deep": "Циклічність як фундаментальний патерн систем: героїчний шлях Кемпбелла, фізичні цикли, ітераційні алгоритми.",
+        "examples": [
+          "Повернення додому після подорожі",
+          "Рефлексія після активної фази роботи",
+          "git merge — повернення змін до основної гілки"
+        ]
+      },
+      "meta": {
+        "animation": "spiral",
+        "layout_hint": "radial",
+        "tags": ["return", "cycle", "reflection"]
+      }
+    },
+    {
+      "id": "nestrimne_rozvytok",
+      "title": "Розвиток",
+      "index": 20,
+      "layers": {
+        "public": "Розвиток — це рух до більшої складності й більшої простоти одночасно.",
+        "deep": "Еволюція як накопичення адаптацій; розвиток свідомості як інтеграція тіні (Юнг). Ускладнення, що відкриває нові рівні спрощення.",
+        "examples": [
+          "Дитина вчиться ходити: хаос → автоматизм",
+          "Рефакторинг: складна система стає елегантнішою",
+          "Медитативна практика спрощує реакції"
+        ]
+      },
+      "meta": {
+        "animation": "grow",
+        "layout_hint": "radial",
+        "tags": ["development", "evolution", "growth"]
+      }
+    }
+  ],
+  "edges": [
+    { "from": "ci", "to": "pershodzherelo", "type": "emergence", "label": "Ci породжує першоджерело", "bidirectional": true },
+    { "from": "pershodzherelo", "to": "pershyi_podil", "type": "linear", "label": "Єдине ділиться" },
+    { "from": "pershyi_podil", "to": "dzerkalo_materii", "type": "linear", "label": "Матеріальний полюс" },
+    { "from": "pershyi_podil", "to": "dzerkalo_svidomosti", "type": "linear", "label": "Свідомий полюс" },
+    { "from": "dzerkalo_materii", "to": "dzerkalo_svidomosti", "type": "resonance", "label": "Взаємовідображення", "bidirectional": true },
+    { "from": "dzerkalo_materii", "to": "tanets_protylezhnostei", "type": "linear" },
+    { "from": "dzerkalo_svidomosti", "to": "tanets_protylezhnostei", "type": "linear" },
+    { "from": "tanets_protylezhnostei", "to": "mosti_yednosti", "type": "linear", "label": "Протилежності єднаються" },
+    { "from": "mosti_yednosti", "to": "proyav_ci", "type": "linear", "label": "Єдність проявляється" },
+    { "from": "proyav_ci", "to": "ci", "type": "return", "label": "Прояв повертається до джерела" },
+    { "from": "ci", "to": "rytm", "type": "emergence" },
+    { "from": "ci", "to": "pamiat", "type": "emergence" },
+    { "from": "ci", "to": "tvorennia", "type": "emergence" },
+    { "from": "ci", "to": "transformatsiia", "type": "emergence" },
+    { "from": "ci", "to": "harmoniia", "type": "emergence" },
+    { "from": "ci", "to": "prostir", "type": "emergence" },
+    { "from": "ci", "to": "chas", "type": "emergence" },
+    { "from": "ci", "to": "svidomist_kazkar", "type": "emergence" },
+    { "from": "ci", "to": "zviazok", "type": "emergence" },
+    { "from": "ci", "to": "vidkryttia", "type": "emergence" },
+    { "from": "ci", "to": "hru", "type": "emergence" },
+    { "from": "ci", "to": "povern_do_tsentru", "type": "return" },
+    { "from": "ci", "to": "nestrimne_rozvytok", "type": "emergence" },
+    { "from": "rytm", "to": "chas", "type": "resonance", "label": "Ритм вимірює час", "bidirectional": true },
+    { "from": "pamiat", "to": "chas", "type": "resonance", "label": "Пам'ять зберігає час" },
+    { "from": "tvorennia", "to": "prostir", "type": "resonance", "label": "Творення потребує простору" },
+    { "from": "transformatsiia", "to": "pershyi_podil", "type": "resonance", "label": "Трансформація — новий поділ" },
+    { "from": "harmoniia", "to": "tanets_protylezhnostei", "type": "resonance", "label": "Гармонія — результат танцю" },
+    { "from": "svidomist_kazkar", "to": "pamiat", "type": "resonance", "label": "Казкар тримає пам'ять" },
+    { "from": "zviazok", "to": "mosti_yednosti", "type": "resonance", "label": "Зв'язок будує мости" },
+    { "from": "vidkryttia", "to": "tvorennia", "type": "resonance", "label": "Відкриття творить нове" },
+    { "from": "hru", "to": "vidkryttia", "type": "linear", "label": "Гра веде до відкриття" },
+    { "from": "povern_do_tsentru", "to": "pershodzherelo", "type": "return", "label": "Повернення до джерела" },
+    { "from": "nestrimne_rozvytok", "to": "transformatsiia", "type": "linear", "label": "Розвиток через трансформацію" },
+    { "from": "pershodzherelo", "to": "ci", "type": "return", "label": "Джерело завжди Ci" }
+  ],
+  "meta": {
+    "default_layout": "radial",
+    "default_nav_mode": "non-linear",
+    "hex_facets": ["Ci-1", "Ci-2", "Ci-3", "Ci-4", "Ci-5", "Ci-6", "Ci-7"],
+    "animation": "orbital"
+  }
+}

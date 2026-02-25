@@ -1,0 +1,2202 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>Release Process - Ciwiki Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#release-process" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Ciwiki Docs" class="md-header__button md-logo" aria-label="Ciwiki Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ciwiki Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Release Process
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../ci/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Ci
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../podija/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  ПоДія
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../kazkar/" class="md-tabs__link">
+          
+  
+  
+  Казкар
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../legend_ci/" class="md-tabs__link">
+          
+  
+  
+  Дані Legend CI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../todo/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  To-Do (PWA)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../nastrij/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Настрій
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../malya/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Маля
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../gallery/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Галерея
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../calendar/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Календар
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Ciwiki Docs" class="md-nav__button md-logo" aria-label="Ciwiki Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Ciwiki Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ci
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../podija/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ПоДія
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Казкар
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Казкар
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kazkar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📚 Бібліотека Казкаря
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Легенда CI
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Легенда CI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kazkar/legend-ci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Огляд
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kazkar/legend-ci/01-source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [1] Першоджерело
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kazkar/legend-ci/02-division/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [2] Перший поділ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kazkar/legend-ci/03-matter-mirror/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [3] Дзеркало матерії
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kazkar/legend-ci/04-mind-mirror/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [4] Дзеркало свідомості
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kazkar/legend-ci/05-dance-of-opposites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [5] Танець протилежностей
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kazkar/legend-ci/06-bridges/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [6] Мости єдності
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kazkar/legend-ci/07-manifest-ci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [7] Прояв CI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Інтерактив
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Інтерактив
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../_assets/legend/legend_ci_single.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legend CI (SPA)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../_assets/legend/legend_ci_portal.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legends Portal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legacy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Legacy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../_assets/legend/legend_ci.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    legend_ci.html
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../_assets/legend/legends_ci.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    legends_ci.html
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дані Legend CI
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дані Legend CI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legend_ci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    README
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legend_ci/legend.nodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Огляд вузлів
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../todo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    To-Do (PWA)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nastrij/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Настрій
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../malya/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Маля
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gallery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Галерея
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Календар
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Загальні принципи
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioning
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Versioning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-release-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-release versions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-patch-release-xxx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Patch Release (x.x.X)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-minor-release-xxx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Minor Release (x.X.x)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-major-release-xxx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Major Release (X.x.x)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-release-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-Release Checklist
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pre-Release Checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code Quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#infrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Infrastructure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release Workflow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Підготовка
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-version-bump" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Version Bump
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-changelogmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Оновлення CHANGELOG.md
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-release-pr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Release PR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-review-approval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Review &amp; Approval
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-merge-tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Merge &amp; Tag
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-github-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. GitHub Release
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-post-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Post-Release
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changelog-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CHANGELOG Guidelines
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CHANGELOG Guidelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Формат
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Категорії
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-notes-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release Notes Template
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hotfix-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hotfix Process
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rollback-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback Procedure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rollback Procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-immediate-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Immediate Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Communication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-post-mortem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Post-Mortem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Автоматизація
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Автоматизація">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#github-actions-releases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Actions для Releases
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-releases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Releases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Заборонено
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Контакти
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Додаткові ресурси
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="release-process">Release Process</h1>
+<h2 id="_1">Загальні принципи</h2>
+<p>Release process визначає як нові версії коду випускаються в production або публічно доступними. Всі releases проходять через строгу процедуру верифікації.</p>
+<h2 id="versioning">Versioning</h2>
+<p>Використовуємо <a href="https://semver.org/">Semantic Versioning</a> (SemVer):</p>
+<pre><code>MAJOR.MINOR.PATCH (наприклад: 2.1.3)
+</code></pre>
+<ul>
+<li><strong>MAJOR</strong> — breaking changes (несумісні API зміни)</li>
+<li><strong>MINOR</strong> — нова функціональність (backward compatible)</li>
+<li><strong>PATCH</strong> — bug fixes (backward compatible)</li>
+</ul>
+<h3 id="pre-release-versions">Pre-release versions</h3>
+<ul>
+<li><strong>alpha</strong> — <code>1.0.0-alpha.1</code> — ранній етап розробки</li>
+<li><strong>beta</strong> — <code>1.0.0-beta.1</code> — feature complete, тестування</li>
+<li><strong>rc</strong> — <code>1.0.0-rc.1</code> — release candidate</li>
+</ul>
+<h2 id="release-types">Release Types</h2>
+<h3 id="1-patch-release-xxx">1. Patch Release (x.x.X)</h3>
+<p><strong>Коли</strong>: Bug fixes, маленькі покращення, документація</p>
+<p><strong>Процес</strong>:</p>
+<pre><code class="language-bash"># Створіть hotfix branch від main
+git checkout -b hotfix/v1.2.3 main
+
+# Зробіть зміни
+# ... fix bugs ...
+
+# Оновіть версію
+npm version patch -m &quot;Release v%s&quot;
+
+# Оновіть CHANGELOG.md
+# ... додайте зміни ...
+
+# Створіть PR
+git push origin hotfix/v1.2.3
+</code></pre>
+<h3 id="2-minor-release-xxx">2. Minor Release (x.X.x)</h3>
+<p><strong>Коли</strong>: Нова функціональність, покращення, backward compatible</p>
+<p><strong>Процес</strong>:</p>
+<pre><code class="language-bash"># Створіть release branch
+git checkout -b release/v1.3.0 develop
+
+# Freeze feature commits, тільки bug fixes
+# Оновіть версію
+npm version minor -m &quot;Release v%s&quot;
+
+# Оновіть CHANGELOG.md
+# Тестування та верифікація
+
+# Створіть PR до main
+git push origin release/v1.3.0
+</code></pre>
+<h3 id="3-major-release-xxx">3. Major Release (X.x.x)</h3>
+<p><strong>Коли</strong>: Breaking changes, архітектурні зміни</p>
+<p><strong>Процес</strong>:
+- Створіть детальний migration guide
+- Проведіть extensive testing
+- Notify всіх stakeholders заздалегідь
+- Створіть backup plan</p>
+<pre><code class="language-bash">git checkout -b release/v2.0.0 develop
+npm version major -m &quot;Release v%s&quot;
+# ... решта процесу ...
+</code></pre>
+<h2 id="pre-release-checklist">Pre-Release Checklist</h2>
+<h3 id="code-quality">Code Quality</h3>
+<ul>
+<li>[ ] Всі tests проходять</li>
+<li>[ ] Code coverage &gt;= 80%</li>
+<li>[ ] Немає критичних security vulnerabilities</li>
+<li>[ ] Linting проходить без warnings</li>
+<li>[ ] Code review completed</li>
+</ul>
+<h3 id="documentation">Documentation</h3>
+<ul>
+<li>[ ] CHANGELOG.md оновлений</li>
+<li>[ ] README.md актуальний</li>
+<li>[ ] API documentation оновлена</li>
+<li>[ ] Migration guide (для major releases)</li>
+<li>[ ] Release notes підготовлені</li>
+</ul>
+<h3 id="testing">Testing</h3>
+<ul>
+<li>[ ] Unit tests проходять</li>
+<li>[ ] Integration tests проходять</li>
+<li>[ ] E2E tests проходять (якщо є)</li>
+<li>[ ] Manual testing завершено</li>
+<li>[ ] Performance testing (для major/minor)</li>
+</ul>
+<h3 id="infrastructure">Infrastructure</h3>
+<ul>
+<li>[ ] Build успішний</li>
+<li>[ ] Dependencies оновлені</li>
+<li>[ ] Security audit пройдений</li>
+<li>[ ] Deployment scripts перевірені</li>
+<li>[ ] Rollback procedure documented</li>
+</ul>
+<h2 id="release-workflow">Release Workflow</h2>
+<h3 id="1">1. Підготовка</h3>
+<pre><code class="language-bash"># Переконайтесь що local repo clean
+git status
+
+# Переключіться на appropriate branch
+git checkout main  # для hotfix
+# або
+git checkout develop  # для features
+git pull origin main
+</code></pre>
+<h3 id="2-version-bump">2. Version Bump</h3>
+<pre><code class="language-bash"># Automatic version bump
+npm version patch|minor|major -m &quot;Release v%s&quot;
+
+# Або manual в package.json
+# Не забудьте commit!
+</code></pre>
+<h3 id="3-changelogmd">3. Оновлення CHANGELOG.md</h3>
+<pre><code class="language-markdown">## [1.2.3] - 2026-01-23
+
+### Added
+- New feature X
+- New feature Y
+
+### Changed
+- Updated component Z
+
+### Fixed
+- Bug fix A (#123)
+- Bug fix B (#456)
+
+### Security
+- Security patch for vulnerability C
+</code></pre>
+<h3 id="4-release-pr">4. Release PR</h3>
+<p>Створіть PR з:
+- Version bump
+- CHANGELOG updates
+- Документація updates</p>
+<p><strong>Title</strong>: <code>Release v1.2.3</code></p>
+<p><strong>Description</strong>: Використайте release notes template</p>
+<h3 id="5-review-approval">5. Review &amp; Approval</h3>
+<ul>
+<li>Automatic checks повинні пройти</li>
+<li>Мінімум 2 approvals для production releases</li>
+<li>Security team review для major releases</li>
+</ul>
+<h3 id="6-merge-tag">6. Merge &amp; Tag</h3>
+<pre><code class="language-bash"># Після merge PR
+git checkout main
+git pull origin main
+
+# Створіть git tag
+git tag -a v1.2.3 -m &quot;Release version 1.2.3&quot;
+git push origin v1.2.3
+
+# Tag triggers release workflow
+</code></pre>
+<h3 id="7-github-release">7. GitHub Release</h3>
+<ol>
+<li>Перейдіть на GitHub → Releases</li>
+<li>Натисніть "Draft a new release"</li>
+<li>Виберіть tag (v1.2.3)</li>
+<li>Згенеруйте release notes (або напишіть вручну)</li>
+<li>Додайте artifacts якщо потрібно</li>
+<li>Publish release</li>
+</ol>
+<h3 id="8-post-release">8. Post-Release</h3>
+<pre><code class="language-bash"># Merge main назад в develop (якщо використовується)
+git checkout develop
+git merge main
+git push origin develop
+
+# Повідомте команду
+# Моніторте production після deployment
+</code></pre>
+<h2 id="changelog-guidelines">CHANGELOG Guidelines</h2>
+<h3 id="_2">Формат</h3>
+<pre><code class="language-markdown"># Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/),
+and this project adheres to [Semantic Versioning](https://semver.org/).
+
+## [Unreleased]
+
+### Added
+- Features in development
+
+## [1.2.3] - 2026-01-23
+
+### Added
+- New features
+
+### Changed
+- Changes in existing functionality
+
+### Deprecated
+- Soon-to-be removed features
+
+### Removed
+- Removed features
+
+### Fixed
+- Bug fixes
+
+### Security
+- Security fixes
+</code></pre>
+<h3 id="_3">Категорії</h3>
+<ul>
+<li><strong>Added</strong> — нова функціональність</li>
+<li><strong>Changed</strong> — зміни в існуючій функціональності</li>
+<li><strong>Deprecated</strong> — функції що скоро будуть видалені</li>
+<li><strong>Removed</strong> — видалені функції</li>
+<li><strong>Fixed</strong> — bug fixes</li>
+<li><strong>Security</strong> — security patches</li>
+</ul>
+<h2 id="release-notes-template">Release Notes Template</h2>
+<pre><code class="language-markdown"># Release v1.2.3
+
+## 🎉 Highlights
+
+Brief summary of most important changes.
+
+## 🚀 Features
+
+- Feature A: Description
+- Feature B: Description
+
+## 🐛 Bug Fixes
+
+- Fix for issue X (#123)
+- Fix for issue Y (#456)
+
+## 📝 Documentation
+
+- Updated guide Z
+- New tutorial W
+
+## ⚠️ Breaking Changes
+
+(тільки для major releases)
+
+- Breaking change 1
+- Migration steps
+
+## 🔒 Security
+
+- Security patch for CVE-XXXX-YYYY
+
+## 📦 Dependencies
+
+- Updated dependency A to v2.0
+- Added dependency B v1.5
+
+## 🙏 Contributors
+
+Thanks to @user1, @user2 for contributions!
+
+## 📚 Full Changelog
+
+[View full changelog](link-to-compare)
+</code></pre>
+<h2 id="hotfix-process">Hotfix Process</h2>
+<p>Для критичних bug fixes в production:</p>
+<pre><code class="language-bash"># 1. Створіть hotfix від main
+git checkout -b hotfix/critical-bug main
+
+# 2. Зробіть мінімальний fix
+# ... coding ...
+
+# 3. Version bump (patch)
+npm version patch
+
+# 4. Створіть PR з label &quot;hotfix&quot;
+# 5. Expedited review (скорочений review process)
+# 6. Merge і deploy негайно після approval
+# 7. Backport до develop
+</code></pre>
+<h2 id="rollback-procedure">Rollback Procedure</h2>
+<p>Якщо release містить критичну проблему:</p>
+<h3 id="1-immediate-rollback">1. Immediate Rollback</h3>
+<pre><code class="language-bash"># Revert до попередньої версії
+git revert &lt;release-commit-sha&gt;
+git push origin main
+
+# Або deploy попередній tag
+git checkout v1.2.2
+# ... deploy ...
+</code></pre>
+<h3 id="2-communication">2. Communication</h3>
+<ul>
+<li>Повідомте команду про rollback</li>
+<li>Створіть incident report</li>
+<li>Документуйте причину</li>
+</ul>
+<h3 id="3-post-mortem">3. Post-Mortem</h3>
+<ul>
+<li>Проаналізуйте що пішло не так</li>
+<li>Оновіть release checklist</li>
+<li>Впровадьте додаткові safeguards</li>
+</ul>
+<h2 id="_4">Автоматизація</h2>
+<h3 id="github-actions-releases">GitHub Actions для Releases</h3>
+<p>Автоматично створює release коли tag pushed:</p>
+<pre><code class="language-yaml">name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+</code></pre>
+<h2 id="best-practices">Best Practices</h2>
+<ol>
+<li><strong>Regular releases</strong> — не накопичуйте зміни</li>
+<li><strong>Test thoroughly</strong> — краще late ніж broken</li>
+<li><strong>Communicate clearly</strong> — повідомляйте про зміни</li>
+<li><strong>Document everything</strong> — CHANGELOG + release notes</li>
+<li><strong>Automate when possible</strong> — менше manual steps</li>
+<li><strong>Have rollback plan</strong> — завжди</li>
+</ol>
+<h2 id="security-releases">Security Releases</h2>
+<p>Для security vulnerabilities:</p>
+<ol>
+<li><strong>Private disclosure</strong> — не публічні discussions</li>
+<li><strong>Expedited process</strong> — priority review</li>
+<li><strong>Security advisory</strong> — GitHub Security Advisory</li>
+<li><strong>CVE assignment</strong> — якщо applicable</li>
+<li><strong>Coordinated disclosure</strong> — after patch available</li>
+</ol>
+<h2 id="_5">Заборонено</h2>
+<ul>
+<li>❌ Releases без testing</li>
+<li>❌ Недокументовані breaking changes</li>
+<li>❌ Пропуск version bump</li>
+<li>❌ Releases з failed tests</li>
+<li>❌ Hotfixes без backport</li>
+</ul>
+<h2 id="_6">Контакти</h2>
+<p>Для питань щодо releases:
+- Створіть issue з label "release"
+- Консультуйтесь з release manager
+- Перевірте цю документацію</p>
+<h2 id="_7">Додаткові ресурси</h2>
+<ul>
+<li><a href="https://semver.org/">Semantic Versioning</a></li>
+<li><a href="https://keepachangelog.com/">Keep a Changelog</a></li>
+<li><a href="../commit-conventions/">Commit Conventions</a></li>
+<li><a href="../testing/">Testing Guide</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
