@@ -35,6 +35,9 @@ CiWiki є центральним репозиторієм документаці
 - [LICENSE](./LICENSE) — MIT License
 - [CHANGELOG.md](./CHANGELOG.md) — Історія змін
 
+#### Ci
+- [Ci Core · Production Spec](./docs/ci/production-spec.md) — Канонічна специфікація Ci: FAB, оверлеї, жести, токени, стани
+
 #### Процеси
 - [PR процес](./docs/processes/pr-process.md) — Як створювати та обробляти Pull Request
 - [Release процес](./docs/processes/release-process.md) — Процедура випуску релізів
