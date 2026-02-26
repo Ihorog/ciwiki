@@ -1,9 +1,329 @@
 <!DOCTYPE html>
 <html lang="uk">
-<head><meta charset="UTF-8"><title>Legend CI — SPA</title></head>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Legend CI — Інтерактивна карта</title>
+<style>
+  :root {
+    --bg: #0d0d1a;
+    --surface: #161628;
+    --border: #2a2a4a;
+    --accent: #5b8dee;
+    --accent2: #a78bfa;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --center-size: 72px;
+    --node-size: 56px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: system-ui, sans-serif; min-height: 100vh; }
+  header { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--surface); }
+  header h1 { font-size: 1.1rem; font-weight: 600; letter-spacing: 0.05em; }
+  .mode-bar { display: flex; gap: 0.5rem; }
+  .mode-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); border-radius: 4px; padding: 0.3rem 0.8rem; cursor: pointer; font-size: 0.8rem; transition: all 0.15s; }
+  .mode-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(91,141,238,0.1); }
+  .mode-btn:hover:not(.active) { border-color: var(--muted); color: var(--text); }
+  .main { display: flex; height: calc(100vh - 52px); overflow: hidden; }
+  .map-panel { flex: 1; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .radial-container { position: relative; width: 520px; height: 520px; }
+  .node-center {
+    position: absolute; inset: 50%; transform: translate(-50%,-50%);
+    width: var(--center-size); height: var(--center-size);
+    border-radius: 50%; background: var(--accent2);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 1.2rem; color: #fff;
+    box-shadow: 0 0 24px rgba(167,139,250,0.5);
+    cursor: default; z-index: 10;
+    animation: pulse 3s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{box-shadow:0 0 20px rgba(167,139,250,0.4)} 50%{box-shadow:0 0 36px rgba(167,139,250,0.7)} }
+  .node-btn {
+    position: absolute;
+    width: var(--node-size); height: var(--node-size);
+    border-radius: 50%; border: 2px solid var(--border);
+    background: var(--surface); color: var(--text);
+    cursor: pointer; font-size: 0.55rem; text-align: center;
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1.2; padding: 4px; transition: all 0.2s;
+    transform: translate(-50%,-50%);
+  }
+  .node-btn:hover, .node-btn.selected { border-color: var(--accent); color: var(--accent); background: rgba(91,141,238,0.12); box-shadow: 0 0 12px rgba(91,141,238,0.3); }
+  .node-btn .node-idx { font-size: 0.6rem; opacity: 0.6; display: block; }
+  .group-arc_1_origins    { border-color: #f87171; }
+  .group-arc_2_mirrors    { border-color: #fb923c; }
+  .group-arc_3_rhythm     { border-color: #facc15; }
+  .group-arc_4_dynamics   { border-color: #4ade80; }
+  .group-arc_5_space_time { border-color: #22d3ee; }
+  .group-arc_6_narrator   { border-color: var(--accent); }
+  .group-arc_7_journey    { border-color: var(--accent2); }
+  .list-mode .radial-container { display: none; }
+  .list-mode .linear-list { display: flex !important; }
+  .linear-list { display: none; flex-direction: column; gap: 4px; width: 100%; max-width: 360px; max-height: calc(100vh - 100px); overflow-y: auto; padding: 1rem; }
+  .linear-item { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 0.6rem 1rem; cursor: pointer; transition: all 0.15s; font-size: 0.85rem; display: flex; align-items: center; gap: 0.6rem; }
+  .linear-item:hover, .linear-item.selected { border-color: var(--accent); color: var(--accent); }
+  .linear-item .li-idx { color: var(--muted); font-size: 0.75rem; width: 1.4rem; text-align: right; flex-shrink: 0; }
+  .resonance-mode .node-btn { animation: resonance-idle 4s ease-in-out infinite; }
+  .resonance-mode .node-btn.selected { animation: resonance-active 1s ease-in-out infinite; }
+  @keyframes resonance-idle { 0%,100%{opacity:0.7} 50%{opacity:1} }
+  @keyframes resonance-active { 0%,100%{box-shadow:0 0 8px var(--accent)} 50%{box-shadow:0 0 20px var(--accent)} }
+  .detail-panel { width: 360px; border-left: 1px solid var(--border); background: var(--surface); display: flex; flex-direction: column; overflow: hidden; }
+  .detail-empty { flex: 1; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.9rem; text-align: center; padding: 2rem; }
+  .detail-content { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
+  .detail-header { padding: 1.2rem 1.2rem 0.6rem; border-bottom: 1px solid var(--border); }
+  .detail-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }
+  .detail-meta { font-size: 0.75rem; color: var(--muted); }
+  .detail-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 0.5rem; }
+  .tag { background: rgba(91,141,238,0.1); border: 1px solid rgba(91,141,238,0.3); border-radius: 3px; padding: 1px 6px; font-size: 0.7rem; color: var(--accent); }
+  .layer-tabs { display: flex; border-bottom: 1px solid var(--border); }
+  .layer-tab { flex: 1; padding: 0.5rem; text-align: center; cursor: pointer; font-size: 0.78rem; color: var(--muted); border-bottom: 2px solid transparent; transition: all 0.15s; background: transparent; border-top: none; border-left: none; border-right: none; }
+  .layer-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .layer-tab:hover:not(.active) { color: var(--text); }
+  .layer-body { padding: 1rem 1.2rem; font-size: 0.85rem; line-height: 1.6; flex: 1; }
+  .layer-body ul { padding-left: 1.2rem; }
+  .layer-body li { margin-bottom: 0.3rem; }
+  .resonance-section { padding: 0.75rem 1.2rem; border-top: 1px solid var(--border); }
+  .resonance-section h4 { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .resonance-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+  .resonance-chip { background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.3); border-radius: 3px; padding: 2px 8px; font-size: 0.72rem; color: var(--accent2); cursor: pointer; }
+  .resonance-chip:hover { background: rgba(167,139,250,0.2); }
+  .depth-indicator { padding: 0.5rem 1.2rem; border-top: 1px solid var(--border); display: flex; gap: 6px; align-items: center; }
+  .depth-ring { font-size: 0.7rem; color: var(--muted); border: 1px solid var(--border); border-radius: 3px; padding: 2px 8px; cursor: pointer; transition: all 0.15s; background: transparent; }
+  .depth-ring.active { color: var(--accent2); border-color: var(--accent2); }
+  .loading { display: flex; align-items: center; justify-content: center; height: 100%; color: var(--muted); font-size: 0.9rem; }
+  @media (max-width: 700px) {
+    .main { flex-direction: column; }
+    .detail-panel { width: 100%; height: 50%; border-left: none; border-top: 1px solid var(--border); }
+    .map-panel { height: 50%; }
+    .radial-container { transform: scale(0.65); transform-origin: center; }
+  }
+</style>
+</head>
 <body>
-<h1>Legend CI — Interactive</h1>
-<p>Інтерактивна SPA-версія Legend CI. Контент буде додано.</p>
-<p><a href="../../../legend_ci/legend.nodes/">Переглянути вузли</a></p>
+
+<header>
+  <h1>&#11093; Legend CI</h1>
+  <div class="mode-bar">
+    <button class="mode-btn" data-mode="non-linear" onclick="setMode('non-linear')">&#127760; Нелінійний</button>
+    <button class="mode-btn" data-mode="linear" onclick="setMode('linear')">&#9776; Лінійний</button>
+    <button class="mode-btn" data-mode="resonance" onclick="setMode('resonance')">&#10022; Резонанс</button>
+  </div>
+</header>
+
+<div class="main" id="main">
+  <div class="map-panel" id="mapPanel">
+    <div class="loading" id="loadingMsg">Завантаження графу&#8230;</div>
+    <div class="radial-container" id="radialContainer" style="display:none"></div>
+    <div class="linear-list" id="linearList"></div>
+  </div>
+  <div class="detail-panel" id="detailPanel">
+    <div class="detail-empty" id="detailEmpty">&#8592; Оберіть вузол для перегляду</div>
+    <div class="detail-content" id="detailContent" style="display:none"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var graph = null;
+  var selectedId = null;
+  var currentMode = 'non-linear';
+  var currentLayer = 'public';
+  var currentRing = 'overview';
+
+  var ARC_LABELS = {
+    arc_1_origins: 'Походження',
+    arc_2_mirrors: 'Дзеркала',
+    arc_3_rhythm: 'Ритм і пам\u2019ять',
+    arc_4_dynamics: 'Трансформація',
+    arc_5_space_time: 'Простір і час',
+    arc_6_narrator: 'Казкар',
+    arc_7_journey: 'Гра і шлях',
+  };
+
+  function loadGraph() {
+    var paths = [
+      '../../legend_ci/legend.graph.json',
+      '../../../legend_ci/legend.graph.json',
+      '/legend_ci/legend.graph.json',
+    ];
+    var idx = 0;
+    function tryNext() {
+      fetch(paths[idx++])
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)); })
+        .then(function (g) { init(g); })
+        .catch(function (err) {
+          if (idx < paths.length) { tryNext(); return; }
+          document.getElementById('loadingMsg').textContent =
+            'Граф не вдалося завантажити (' + (err && err.message ? err.message : 'невідома помилка') +
+            '). Переконайтесь, що сторінка відкрита через HTTP-сервер.';
+        });
+    }
+    tryNext();
+  }
+
+  function init(g) {
+    graph = g;
+    /* Build O(1) lookup maps once */
+    graph._nodeById = {};
+    g.nodes.forEach(function (n) { graph._nodeById[n.id] = n; });
+    graph._resonanceMap = {};
+    g.edges.forEach(function (e) {
+      if (e.type !== 'resonance') return;
+      if (!graph._resonanceMap[e.from]) graph._resonanceMap[e.from] = [];
+      if (!graph._resonanceMap[e.to])   graph._resonanceMap[e.to]   = [];
+      graph._resonanceMap[e.from].push(e.to);
+      graph._resonanceMap[e.to].push(e.from);
+    });
+    document.getElementById('loadingMsg').style.display = 'none';
+    buildRadial();
+    buildLinearList();
+    setMode(currentMode);
+  }
+
+  function buildRadial() {
+    var container = document.getElementById('radialContainer');
+    container.innerHTML = '';
+
+    var center = document.createElement('div');
+    center.className = 'node-center';
+    center.textContent = graph.center.title;
+    center.title = graph.center.summary || graph.center.title;
+    container.appendChild(center);
+
+    var nodes = graph.nodes;
+    var R = 220;
+    nodes.forEach(function (node, i) {
+      var angle = (2 * Math.PI * i / nodes.length) - Math.PI / 2;
+      var x = 260 + R * Math.cos(angle);
+      var y = 260 + R * Math.sin(angle);
+
+      var btn = document.createElement('button');
+      btn.className = 'node-btn group-' + (node.group || '');
+      btn.id = 'node-' + node.id;
+      btn.style.left = x + 'px';
+      btn.style.top = y + 'px';
+      btn.innerHTML = '<span class="node-idx">' + node.index + '</span>' + node.title;
+      btn.title = node.summary || '';
+      btn.onclick = (function (id) { return function () { selectNode(id); }; })(node.id);
+      container.appendChild(btn);
+    });
+
+    container.style.display = 'block';
+  }
+
+  function buildLinearList() {
+    var list = document.getElementById('linearList');
+    list.innerHTML = '';
+    graph.nodes.forEach(function (node) {
+      var item = document.createElement('div');
+      item.className = 'linear-item';
+      item.id = 'linear-' + node.id;
+      item.innerHTML = '<span class="li-idx">' + node.index + '</span><span>' + node.title + '</span>';
+      item.onclick = (function (id) { return function () { selectNode(id); }; })(node.id);
+      list.appendChild(item);
+    });
+  }
+
+  function setMode(mode) {
+    currentMode = mode;
+    var main = document.getElementById('main');
+    main.classList.remove('list-mode', 'resonance-mode');
+
+    document.querySelectorAll('.mode-btn').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.mode === mode);
+    });
+
+    if (mode === 'linear') {
+      main.classList.add('list-mode');
+      document.getElementById('radialContainer').style.display = 'none';
+      document.getElementById('linearList').style.display = 'flex';
+    } else {
+      document.getElementById('radialContainer').style.display = 'block';
+      document.getElementById('linearList').style.display = 'none';
+      if (mode === 'resonance') {
+        main.classList.add('resonance-mode');
+      }
+    }
+  }
+
+  function selectNode(id) {
+    if (selectedId) {
+      var prev = document.getElementById('node-' + selectedId);
+      if (prev) prev.classList.remove('selected');
+      var prevL = document.getElementById('linear-' + selectedId);
+      if (prevL) prevL.classList.remove('selected');
+    }
+    selectedId = id;
+    var btn = document.getElementById('node-' + id);
+    if (btn) btn.classList.add('selected');
+    var litem = document.getElementById('linear-' + id);
+    if (litem) litem.classList.add('selected');
+    renderDetail(id);
+  }
+
+  function renderDetail(id) {
+    var node = graph._nodeById[id];
+    if (!node) return;
+
+    var empty = document.getElementById('detailEmpty');
+    var content = document.getElementById('detailContent');
+    empty.style.display = 'none';
+    content.style.display = 'flex';
+
+    var resonantIds = graph._resonanceMap[id] || [];
+    var resonantNodes = resonantIds.map(function (rid) { return graph._nodeById[rid]; }).filter(Boolean);
+
+    var tagsHtml = ((node.meta && node.meta.tags) || [])
+      .map(function (t) { return '<span class="tag">#' + t + '</span>'; }).join('');
+
+    var depthRings = (graph.meta && graph.meta.ui && graph.meta.ui.depth_rings) ||
+      ['overview', 'immersion', 'integration'];
+    var ringHtml = depthRings.map(function (r) {
+      return '<button class="depth-ring' + (r === currentRing ? ' active' : '') +
+        '" onclick="setRing(\'' + r + '\')">' + r + '</button>';
+    }).join('');
+
+    var resonanceHtml = resonantNodes.length ? '<div class="resonance-section"><h4>Резонанс</h4><div class="resonance-chips">' +
+      resonantNodes.map(function (n) {
+        return '<span class="resonance-chip" onclick="selectNode(\'' + n.id + '\')">' + n.index + '. ' + n.title + '</span>';
+      }).join('') + '</div></div>' : '';
+
+    content.innerHTML =
+      '<div class="detail-header">' +
+        '<div class="detail-title">' + node.index + '. ' + node.title + '</div>' +
+        '<div class="detail-meta">' + (ARC_LABELS[node.group] || node.group || '') + '</div>' +
+        '<div class="detail-tags">' + tagsHtml + '</div>' +
+      '</div>' +
+      '<div class="layer-tabs">' +
+        '<button class="layer-tab' + (currentLayer === 'public' ? ' active' : '') + '" onclick="setLayer(\'public\')">Публічний</button>' +
+        '<button class="layer-tab' + (currentLayer === 'deep' ? ' active' : '') + '" onclick="setLayer(\'deep\')">Глибокий</button>' +
+        '<button class="layer-tab' + (currentLayer === 'examples' ? ' active' : '') + '" onclick="setLayer(\'examples\')">Приклади</button>' +
+      '</div>' +
+      '<div class="layer-body" id="layerBody">' + layerContent(node) + '</div>' +
+      resonanceHtml +
+      '<div class="depth-indicator">' + ringHtml + '</div>';
+  }
+
+  function layerContent(node) {
+    if (currentLayer === 'public') return '<p>' + node.layers.public + '</p>';
+    if (currentLayer === 'deep') return '<p>' + node.layers.deep + '</p>';
+    if (currentLayer === 'examples') {
+      var items = (node.layers.examples || []).map(function (e) { return '<li>' + e + '</li>'; }).join('');
+      return '<ul>' + items + '</ul>';
+    }
+    return '';
+  }
+
+  /* expose to onclick attrs */
+  window.setMode = setMode;
+  window.setLayer = function (layer) { currentLayer = layer; if (selectedId) renderDetail(selectedId); };
+  window.setRing = function (ring) { currentRing = ring; if (selectedId) renderDetail(selectedId); };
+  window.selectNode = selectNode;
+
+  loadGraph();
+}());
+</script>
 </body>
 </html>
