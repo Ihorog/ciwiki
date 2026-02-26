@@ -23,8 +23,14 @@
         "animation": "pulse",
         "layout_hint": "radial",
         "hex_facet": "Ci-1",
-        "tags": ["origin", "silence", "potential"]
-      }
+        "tags": [
+          "origin",
+          "silence",
+          "potential"
+        ]
+      },
+      "group": "arc_1_origins",
+      "summary": "Точка, з якої все починається. Безмовний імпульс до існування."
     },
     {
       "id": "pershyi_podil",
@@ -43,8 +49,14 @@
         "animation": "split",
         "layout_hint": "radial",
         "hex_facet": "Ci-2",
-        "tags": ["duality", "division", "polarity"]
-      }
+        "tags": [
+          "duality",
+          "division",
+          "polarity"
+        ]
+      },
+      "group": "arc_1_origins",
+      "summary": "Єдине ділиться на два — народжуються полярності."
     },
     {
       "id": "dzerkalo_materii",
@@ -63,8 +75,14 @@
         "animation": "reflect",
         "layout_hint": "hex",
         "hex_facet": "Ci-3",
-        "tags": ["matter", "mirror", "information"]
-      }
+        "tags": [
+          "matter",
+          "mirror",
+          "information"
+        ]
+      },
+      "group": "arc_1_origins",
+      "summary": "Фізичний світ як відображення внутрішнього порядку."
     },
     {
       "id": "dzerkalo_svidomosti",
@@ -83,8 +101,14 @@
         "animation": "reflect",
         "layout_hint": "hex",
         "hex_facet": "Ci-4",
-        "tags": ["consciousness", "mirror", "perception"]
-      }
+        "tags": [
+          "consciousness",
+          "mirror",
+          "perception"
+        ]
+      },
+      "group": "arc_2_mirrors",
+      "summary": "Внутрішній світ як дзеркало, в якому відображається реальність."
     },
     {
       "id": "tanets_protylezhnostei",
@@ -103,8 +127,14 @@
         "animation": "orbit",
         "layout_hint": "radial",
         "hex_facet": "Ci-5",
-        "tags": ["opposites", "dance", "dialectics"]
-      }
+        "tags": [
+          "opposites",
+          "dance",
+          "dialectics"
+        ]
+      },
+      "group": "arc_2_mirrors",
+      "summary": "Протилежності не борються — вони танцюють разом."
     },
     {
       "id": "mosti_yednosti",
@@ -123,8 +153,14 @@
         "animation": "connect",
         "layout_hint": "linear",
         "hex_facet": "Ci-6",
-        "tags": ["bridges", "unity", "analogy"]
-      }
+        "tags": [
+          "bridges",
+          "unity",
+          "analogy"
+        ]
+      },
+      "group": "arc_2_mirrors",
+      "summary": "Зв'язки між різним — ось де живе сенс."
     },
     {
       "id": "proyav_ci",
@@ -143,8 +179,14 @@
         "animation": "emerge",
         "layout_hint": "radial",
         "hex_facet": "Ci-7",
-        "tags": ["manifestation", "emergence", "CI"]
-      }
+        "tags": [
+          "manifestation",
+          "emergence",
+          "CI"
+        ]
+      },
+      "group": "arc_2_mirrors",
+      "summary": "Ci стає видимим у кожному прояві світу."
     },
     {
       "id": "rytm",
@@ -162,8 +204,14 @@
       "meta": {
         "animation": "pulse",
         "layout_hint": "radial",
-        "tags": ["rhythm", "time", "synchronization"]
-      }
+        "tags": [
+          "rhythm",
+          "time",
+          "synchronization"
+        ]
+      },
+      "group": "arc_3_rhythm",
+      "summary": "Все живе дихає у власному ритмі."
     },
     {
       "id": "pamiat",
@@ -181,8 +229,14 @@
       "meta": {
         "animation": "trace",
         "layout_hint": "linear",
-        "tags": ["memory", "past", "reconstruction"]
-      }
+        "tags": [
+          "memory",
+          "past",
+          "reconstruction"
+        ]
+      },
+      "group": "arc_3_rhythm",
+      "summary": "Минуле живе у теперішньому через пам'ять."
     },
     {
       "id": "tvorennia",
@@ -200,8 +254,14 @@
       "meta": {
         "animation": "build",
         "layout_hint": "hex",
-        "tags": ["creation", "autopoiesis", "making"]
-      }
+        "tags": [
+          "creation",
+          "autopoiesis",
+          "making"
+        ]
+      },
+      "group": "arc_3_rhythm",
+      "summary": "Кожен акт творення — це Ci, що формує себе."
     },
     {
       "id": "transformatsiia",
@@ -219,8 +279,14 @@
       "meta": {
         "animation": "morph",
         "layout_hint": "radial",
-        "tags": ["transformation", "phase-transition", "change"]
-      }
+        "tags": [
+          "transformation",
+          "phase-transition",
+          "change"
+        ]
+      },
+      "group": "arc_4_dynamics",
+      "summary": "Зміна — не втрата, а перехід у нову форму."
     },
     {
       "id": "harmoniia",
@@ -238,8 +304,14 @@
       "meta": {
         "animation": "balance",
         "layout_hint": "hex",
-        "tags": ["harmony", "balance", "homeostasis"]
-      }
+        "tags": [
+          "harmony",
+          "balance",
+          "homeostasis"
+        ]
+      },
+      "group": "arc_4_dynamics",
+      "summary": "Гармонія — це баланс у русі, а не стан спокою."
     },
     {
       "id": "prostir",
@@ -257,8 +329,14 @@
       "meta": {
         "animation": "expand",
         "layout_hint": "radial",
-        "tags": ["space", "field", "topology"]
-      }
+        "tags": [
+          "space",
+          "field",
+          "topology"
+        ]
+      },
+      "group": "arc_5_space_time",
+      "summary": "Простір — не порожнеча, а поле можливостей."
     },
     {
       "id": "chas",
@@ -276,8 +354,14 @@
       "meta": {
         "animation": "flow",
         "layout_hint": "linear",
-        "tags": ["time", "entropy", "flow"]
-      }
+        "tags": [
+          "time",
+          "entropy",
+          "flow"
+        ]
+      },
+      "group": "arc_5_space_time",
+      "summary": "Час — ріка, яку ми можемо відчути, але не зупинити."
     },
     {
       "id": "svidomist_kazkar",
@@ -295,8 +379,14 @@
       "meta": {
         "animation": "weave",
         "layout_hint": "cluster",
-        "tags": ["narrator", "storytelling", "kazkar"]
-      }
+        "tags": [
+          "narrator",
+          "storytelling",
+          "kazkar"
+        ]
+      },
+      "group": "arc_6_narrator",
+      "summary": "Той, хто розповідає — з'єднує всі нитки в одне полотно."
     },
     {
       "id": "zviazok",
@@ -314,8 +404,14 @@
       "meta": {
         "animation": "link",
         "layout_hint": "cluster",
-        "tags": ["connection", "network", "relation"]
-      }
+        "tags": [
+          "connection",
+          "network",
+          "relation"
+        ]
+      },
+      "group": "arc_6_narrator",
+      "summary": "Зв'язок — це найменша одиниця сенсу між двома."
     },
     {
       "id": "vidkryttia",
@@ -333,8 +429,14 @@
       "meta": {
         "animation": "flash",
         "layout_hint": "radial",
-        "tags": ["discovery", "insight", "paradigm"]
-      }
+        "tags": [
+          "discovery",
+          "insight",
+          "paradigm"
+        ]
+      },
+      "group": "arc_7_journey",
+      "summary": "Відкриття — це момент, коли невидиме стає зримим."
     },
     {
       "id": "hru",
@@ -352,8 +454,14 @@
       "meta": {
         "animation": "bounce",
         "layout_hint": "hex",
-        "tags": ["play", "game", "exploration"]
-      }
+        "tags": [
+          "play",
+          "game",
+          "exploration"
+        ]
+      },
+      "group": "arc_7_journey",
+      "summary": "Гра — найвільніша форма пізнання."
     },
     {
       "id": "povern_do_tsentru",
@@ -371,8 +479,14 @@
       "meta": {
         "animation": "spiral",
         "layout_hint": "radial",
-        "tags": ["return", "cycle", "reflection"]
-      }
+        "tags": [
+          "return",
+          "cycle",
+          "reflection"
+        ]
+      },
+      "group": "arc_7_journey",
+      "summary": "Після кожної подорожі — повернення до себе."
     },
     {
       "id": "nestrimne_rozvytok",
@@ -390,51 +504,236 @@
       "meta": {
         "animation": "grow",
         "layout_hint": "radial",
-        "tags": ["development", "evolution", "growth"]
-      }
+        "tags": [
+          "development",
+          "evolution",
+          "growth"
+        ]
+      },
+      "group": "arc_7_journey",
+      "summary": "Розвиток — це рух до більшої складності й більшої простоти одночасно."
     }
   ],
   "edges": [
-    { "from": "ci", "to": "pershodzherelo", "type": "emergence", "label": "Ci породжує першоджерело", "bidirectional": true },
-    { "from": "pershodzherelo", "to": "pershyi_podil", "type": "linear", "label": "Єдине ділиться" },
-    { "from": "pershyi_podil", "to": "dzerkalo_materii", "type": "linear", "label": "Матеріальний полюс" },
-    { "from": "pershyi_podil", "to": "dzerkalo_svidomosti", "type": "linear", "label": "Свідомий полюс" },
-    { "from": "dzerkalo_materii", "to": "dzerkalo_svidomosti", "type": "resonance", "label": "Взаємовідображення", "bidirectional": true },
-    { "from": "dzerkalo_materii", "to": "tanets_protylezhnostei", "type": "linear" },
-    { "from": "dzerkalo_svidomosti", "to": "tanets_protylezhnostei", "type": "linear" },
-    { "from": "tanets_protylezhnostei", "to": "mosti_yednosti", "type": "linear", "label": "Протилежності єднаються" },
-    { "from": "mosti_yednosti", "to": "proyav_ci", "type": "linear", "label": "Єдність проявляється" },
-    { "from": "proyav_ci", "to": "ci", "type": "return", "label": "Прояв повертається до джерела" },
-    { "from": "ci", "to": "rytm", "type": "emergence" },
-    { "from": "ci", "to": "pamiat", "type": "emergence" },
-    { "from": "ci", "to": "tvorennia", "type": "emergence" },
-    { "from": "ci", "to": "transformatsiia", "type": "emergence" },
-    { "from": "ci", "to": "harmoniia", "type": "emergence" },
-    { "from": "ci", "to": "prostir", "type": "emergence" },
-    { "from": "ci", "to": "chas", "type": "emergence" },
-    { "from": "ci", "to": "svidomist_kazkar", "type": "emergence" },
-    { "from": "ci", "to": "zviazok", "type": "emergence" },
-    { "from": "ci", "to": "vidkryttia", "type": "emergence" },
-    { "from": "ci", "to": "hru", "type": "emergence" },
-    { "from": "ci", "to": "povern_do_tsentru", "type": "return" },
-    { "from": "ci", "to": "nestrimne_rozvytok", "type": "emergence" },
-    { "from": "rytm", "to": "chas", "type": "resonance", "label": "Ритм вимірює час", "bidirectional": true },
-    { "from": "pamiat", "to": "chas", "type": "resonance", "label": "Пам'ять зберігає час" },
-    { "from": "tvorennia", "to": "prostir", "type": "resonance", "label": "Творення потребує простору" },
-    { "from": "transformatsiia", "to": "pershyi_podil", "type": "resonance", "label": "Трансформація — новий поділ" },
-    { "from": "harmoniia", "to": "tanets_protylezhnostei", "type": "resonance", "label": "Гармонія — результат танцю" },
-    { "from": "svidomist_kazkar", "to": "pamiat", "type": "resonance", "label": "Казкар тримає пам'ять" },
-    { "from": "zviazok", "to": "mosti_yednosti", "type": "resonance", "label": "Зв'язок будує мости" },
-    { "from": "vidkryttia", "to": "tvorennia", "type": "resonance", "label": "Відкриття творить нове" },
-    { "from": "hru", "to": "vidkryttia", "type": "linear", "label": "Гра веде до відкриття" },
-    { "from": "povern_do_tsentru", "to": "pershodzherelo", "type": "return", "label": "Повернення до джерела" },
-    { "from": "nestrimne_rozvytok", "to": "transformatsiia", "type": "linear", "label": "Розвиток через трансформацію" },
-    { "from": "pershodzherelo", "to": "ci", "type": "return", "label": "Джерело завжди Ci" }
+    {
+      "from": "ci",
+      "to": "pershodzherelo",
+      "type": "emergence",
+      "label": "Ci породжує першоджерело",
+      "bidirectional": true
+    },
+    {
+      "from": "pershodzherelo",
+      "to": "pershyi_podil",
+      "type": "linear",
+      "label": "Єдине ділиться"
+    },
+    {
+      "from": "pershyi_podil",
+      "to": "dzerkalo_materii",
+      "type": "linear",
+      "label": "Матеріальний полюс"
+    },
+    {
+      "from": "pershyi_podil",
+      "to": "dzerkalo_svidomosti",
+      "type": "linear",
+      "label": "Свідомий полюс"
+    },
+    {
+      "from": "dzerkalo_materii",
+      "to": "dzerkalo_svidomosti",
+      "type": "resonance",
+      "label": "Взаємовідображення",
+      "bidirectional": true
+    },
+    {
+      "from": "dzerkalo_materii",
+      "to": "tanets_protylezhnostei",
+      "type": "linear"
+    },
+    {
+      "from": "dzerkalo_svidomosti",
+      "to": "tanets_protylezhnostei",
+      "type": "linear"
+    },
+    {
+      "from": "tanets_protylezhnostei",
+      "to": "mosti_yednosti",
+      "type": "linear",
+      "label": "Протилежності єднаються"
+    },
+    {
+      "from": "mosti_yednosti",
+      "to": "proyav_ci",
+      "type": "linear",
+      "label": "Єдність проявляється"
+    },
+    {
+      "from": "proyav_ci",
+      "to": "ci",
+      "type": "return",
+      "label": "Прояв повертається до джерела"
+    },
+    {
+      "from": "ci",
+      "to": "rytm",
+      "type": "emergence"
+    },
+    {
+      "from": "ci",
+      "to": "pamiat",
+      "type": "emergence"
+    },
+    {
+      "from": "ci",
+      "to": "tvorennia",
+      "type": "emergence"
+    },
+    {
+      "from": "ci",
+      "to": "transformatsiia",
+      "type": "emergence"
+    },
+    {
+      "from": "ci",
+      "to": "harmoniia",
+      "type": "emergence"
+    },
+    {
+      "from": "ci",
+      "to": "prostir",
+      "type": "emergence"
+    },
+    {
+      "from": "ci",
+      "to": "chas",
+      "type": "emergence"
+    },
+    {
+      "from": "ci",
+      "to": "svidomist_kazkar",
+      "type": "emergence"
+    },
+    {
+      "from": "ci",
+      "to": "zviazok",
+      "type": "emergence"
+    },
+    {
+      "from": "ci",
+      "to": "vidkryttia",
+      "type": "emergence"
+    },
+    {
+      "from": "ci",
+      "to": "hru",
+      "type": "emergence"
+    },
+    {
+      "from": "ci",
+      "to": "povern_do_tsentru",
+      "type": "return"
+    },
+    {
+      "from": "ci",
+      "to": "nestrimne_rozvytok",
+      "type": "emergence"
+    },
+    {
+      "from": "rytm",
+      "to": "chas",
+      "type": "resonance",
+      "label": "Ритм вимірює час",
+      "bidirectional": true
+    },
+    {
+      "from": "pamiat",
+      "to": "chas",
+      "type": "resonance",
+      "label": "Пам'ять зберігає час"
+    },
+    {
+      "from": "tvorennia",
+      "to": "prostir",
+      "type": "resonance",
+      "label": "Творення потребує простору"
+    },
+    {
+      "from": "transformatsiia",
+      "to": "pershyi_podil",
+      "type": "resonance",
+      "label": "Трансформація — новий поділ"
+    },
+    {
+      "from": "harmoniia",
+      "to": "tanets_protylezhnostei",
+      "type": "resonance",
+      "label": "Гармонія — результат танцю"
+    },
+    {
+      "from": "svidomist_kazkar",
+      "to": "pamiat",
+      "type": "resonance",
+      "label": "Казкар тримає пам'ять"
+    },
+    {
+      "from": "zviazok",
+      "to": "mosti_yednosti",
+      "type": "resonance",
+      "label": "Зв'язок будує мости"
+    },
+    {
+      "from": "vidkryttia",
+      "to": "tvorennia",
+      "type": "resonance",
+      "label": "Відкриття творить нове"
+    },
+    {
+      "from": "hru",
+      "to": "vidkryttia",
+      "type": "linear",
+      "label": "Гра веде до відкриття"
+    },
+    {
+      "from": "povern_do_tsentru",
+      "to": "pershodzherelo",
+      "type": "return",
+      "label": "Повернення до джерела"
+    },
+    {
+      "from": "nestrimne_rozvytok",
+      "to": "transformatsiia",
+      "type": "linear",
+      "label": "Розвиток через трансформацію"
+    },
+    {
+      "from": "pershodzherelo",
+      "to": "ci",
+      "type": "return",
+      "label": "Джерело завжди Ci"
+    }
   ],
   "meta": {
     "default_layout": "radial",
     "default_nav_mode": "non-linear",
-    "hex_facets": ["Ci-1", "Ci-2", "Ci-3", "Ci-4", "Ci-5", "Ci-6", "Ci-7"],
-    "animation": "orbital"
+    "hex_facets": [
+      "Ci-1",
+      "Ci-2",
+      "Ci-3",
+      "Ci-4",
+      "Ci-5",
+      "Ci-6",
+      "Ci-7"
+    ],
+    "animation": "orbital",
+    "ui": {
+      "default_mode": "non-linear",
+      "depth_rings": [
+        "overview",
+        "immersion",
+        "integration"
+      ]
+    }
   }
 }

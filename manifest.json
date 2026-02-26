@@ -18,6 +18,29 @@
       "visibility": "internal"
     }
   ],
+  "modules": [
+    {
+      "id": "legend-ci",
+      "name": "Legend CI",
+      "version": "1.0.0",
+      "description": "Інтерактивна легенда CI: 20 вузлів + центр Ci, три шари, три режими навігації.",
+      "status": "active",
+      "routes": [
+        "/legend/",
+        "/legend_ci/README/",
+        "/content/legend-ci/"
+      ],
+      "content_paths": [
+        "docs/content/legend-ci.md",
+        "docs/legend_ci/legend.graph.json",
+        "docs/legend_ci/SCHEMA.legend.graph.json",
+        "docs/_assets/legend/legend_ci_single.html"
+      ],
+      "graph": "docs/legend_ci/legend.graph.json",
+      "ui": "docs/_assets/legend/legend_ci_single.html",
+      "crdt_hook": true
+    }
+  ],
   "navigation_roots": [
     {"label": "Головна", "path": "/"},
     {"label": "Legend CI", "path": "/legend/"}

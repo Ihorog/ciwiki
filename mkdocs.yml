@@ -31,6 +31,7 @@ nav:
           - legends_ci.html: _assets/legend/legends_ci.html
   - Legend CI:
       - Огляд: legend/index.md
+      - Легенда (текст): content/legend-ci.md
       - Дані:
           - README: legend_ci/README.md
           - Огляд вузлів: legend_ci/legend.nodes.md

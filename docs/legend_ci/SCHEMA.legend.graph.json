@@ -38,7 +38,19 @@
           "type": "array",
           "items": { "type": "string" }
         },
-        "animation": { "type": "string" }
+        "animation": { "type": "string" },
+        "ui": {
+          "type": "object",
+          "description": "UI-specific settings for interactive rendering",
+          "properties": {
+            "default_mode": { "type": "string" },
+            "depth_rings": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Named depth levels: overview / immersion / integration"
+            }
+          }
+        }
       }
     }
   },
@@ -68,6 +80,14 @@
           "type": "integer",
           "minimum": 1,
           "maximum": 20
+        },
+        "group": {
+          "type": "string",
+          "description": "Arc/chapter group the node belongs to"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Short human-readable summary (mirrors layers.public)"
         },
         "layers": { "$ref": "#/definitions/layers" },
         "meta": { "$ref": "#/definitions/nodeMeta" }
