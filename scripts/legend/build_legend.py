@@ -185,7 +185,7 @@ def render_index_html(nodes: list) -> str:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Legend Ci</title>
+<title>Legend CI</title>
 <style>
   body {{ font-family: sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; }}
   ul {{ list-style: none; padding: 0; }}
@@ -195,7 +195,7 @@ def render_index_html(nodes: list) -> str:
 </style>
 </head>
 <body>
-<h1>Legend Ci</h1>
+<h1>Legend CI</h1>
 <ul>
 {items_html}
 </ul>
@@ -290,8 +290,8 @@ def build(content_dir: Path, docs_dir: Path, api_dir: Path) -> None:
     except ValueError:
         print(f"✓ {api_index_path}")
 
-    # docs/legend/index.html
-    docs_index_path = docs_dir / "index.html"
+    # docs/legend/legend_map.html (standalone HTML map; index.md is the MkDocs nav entry)
+    docs_index_path = docs_dir / "legend_map.html"
     docs_index_path.write_text(
         render_index_html([e for e in index_entries]), encoding="utf-8"
     )

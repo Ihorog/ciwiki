@@ -1,4 +1,5 @@
 site_name: Ciwiki Docs
+site_url: https://www.cimeika.com.ua/
 theme:
   name: material
   features:
@@ -8,6 +9,7 @@ theme:
     - search.suggest
     - search.highlight
 nav:
+  - Головна: index.md
   - Ci: ci/index.md
   - ПоДія: podija/index.md
   - Казкар:
@@ -27,9 +29,11 @@ nav:
       - Legacy:
           - legend_ci.html: _assets/legend/legend_ci.html
           - legends_ci.html: _assets/legend/legends_ci.html
-  - Дані Legend CI:
-      - README: legend_ci/README.md
-      - Огляд вузлів: legend_ci/legend.nodes.md
+  - Legend CI:
+      - Огляд: legend/index.md
+      - Дані:
+          - README: legend_ci/README.md
+          - Огляд вузлів: legend_ci/legend.nodes.md
   - To-Do (PWA): todo/index.html
   - Настрій: nastrij/index.md
   - Маля: malya/index.md

@@ -1,0 +1,38 @@
+{
+  "organism": "cimeika",
+  "version": "1.0.0",
+  "description": "Cimeika — єдина інтерактивна навігаційна бібліотека. CiWiki — зовнішній публічний шар, Legend CI — внутрішній світ.",
+  "layers": [
+    {
+      "id": "outer",
+      "name": "CiWiki",
+      "description": "Зовнішній / публічний шар. Документація, процеси, концепції Cimeika.",
+      "path": "/",
+      "visibility": "public"
+    },
+    {
+      "id": "inner",
+      "name": "Legend CI",
+      "description": "Внутрішній світ. Космологія Cimeika: 20 вузлів + центр Ci.",
+      "path": "/legend/",
+      "visibility": "internal"
+    }
+  ],
+  "navigation_roots": [
+    {"label": "Головна", "path": "/"},
+    {"label": "Legend CI", "path": "/legend/"}
+  ],
+  "build": {
+    "framework": "mkdocs",
+    "theme": "mkdocs-material",
+    "source_dir": "docs/",
+    "output_dir": "site/",
+    "command": "mkdocs build"
+  },
+  "deploy": {
+    "platform": "github-pages",
+    "workflow": ".github/workflows/pages.yml",
+    "custom_domain": "www.cimeika.com.ua",
+    "site_url": "https://www.cimeika.com.ua/"
+  }
+}
