@@ -1,7 +1,5 @@
-name: Build & Deploy CiWiki
+name: Build & Deploy CiWiki (legacy)
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:

@@ -1,0 +1,68 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install mkdocs mkdocs-material
+
+      - name: Copy dynamic files to docs
+        run: |
+          if [ -f SECURITY.md ]; then
+            cp SECURITY.md docs/
+          else
+            echo "Warning: SECURITY.md not found"
+            exit 1
+          fi
+
+      - name: Build Legend CI (HTML + JSON API)
+        run: python scripts/legend/build_legend.py
+
+      - name: Build MkDocs site
+        run: mkdocs build
+
+      - name: Include Legend CI API in site
+        run: cp -r api site/api
+
+      - name: Include CNAME for custom domain
+        run: |
+          if [ -f CNAME ]; then
+            cp CNAME site/CNAME
+          fi
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
