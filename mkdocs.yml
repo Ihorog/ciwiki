@@ -10,7 +10,9 @@ theme:
     - search.highlight
 nav:
   - Головна: index.md
-  - Ci: ci/index.md
+  - Ci:
+      - ci/index.md
+      - Production Spec: ci/production-spec.md
   - ПоДія: podija/index.md
   - Казкар:
       - kazkar/index.md
