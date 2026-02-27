@@ -1,0 +1,107 @@
+# =============================================================================
+# workflow.template.yml
+#
+# TEMPLATE ONLY — READ-ONLY REFERENCE
+# This file lives in Ihorog/ciwiki as the canonical template.
+# Consumer repos (cit, ci_gitapi, cimeika-unified, etc.) should copy this
+# file to their own .github/workflows/audit-supabase.yml and adapt as needed.
+#
+# DO NOT place this file directly in ciwiki's .github/workflows/
+# =============================================================================
+#
+# name: Audit Supabase
+#
+# on:
+#   workflow_dispatch:           # Manual trigger
+#     inputs:
+#       project_ref:
+#         description: "Project reference (repo slug or Supabase project ref)"
+#         required: false
+#         default: ""
+#   schedule:
+#     - cron: "0 3 * * *"       # Optional: run daily at 03:00 UTC
+#
+# jobs:
+#   audit:
+#     name: Run Supabase Audit
+#     runs-on: ubuntu-latest
+#
+#     steps:
+#       # 1. Checkout repository
+#       - name: Checkout
+#         uses: actions/checkout@v4
+#
+#       # 2. Install psql client
+#       - name: Install PostgreSQL client
+#         run: |
+#           sudo apt-get update -qq
+#           sudo apt-get install -y -qq postgresql-client
+#
+#       # 3. Run audit script
+#       #    SUPABASE_DB_URL comes from GitHub Secrets — never hardcode it.
+#       - name: Run audit
+#         env:
+#           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+#           OUT_DIR: audit_out
+#           EXECUTED_BY: github-actions
+#           PROJECT_REF: ${{ inputs.project_ref || github.event.repository.name }}
+#           PSQL_TIMEOUT_SEC: "30"
+#           SOFT_FAIL: "1"
+#         run: |
+#           bash scripts/audit_supabase.sh
+#
+#       # 4. Upload audit artifacts
+#       #    Artifacts are retained for 7 days by default.
+#       #    Increase retention_days for compliance requirements.
+#       - name: Upload audit artifacts
+#         if: always()           # Upload even if audit had soft failures
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: audit-supabase-${{ github.run_id }}
+#           path: audit_out/
+#           retention-days: 7
+#
+# =============================================================================
+# NOTES FOR CONSUMER REPOS
+# =============================================================================
+#
+# 1. SECRETS
+#    Add SUPABASE_DB_URL to your repo's GitHub Secrets:
+#    Settings → Secrets and variables → Actions → New repository secret
+#    Name: SUPABASE_DB_URL
+#    Value: postgres://user:password@host:5432/database
+#
+# 2. SCRIPT LOCATION
+#    Copy audit_supabase.sh.template from this spec to your repo as:
+#    scripts/audit_supabase.sh
+#    Adapt the queries in the "Define your queries" section.
+#
+# 3. SOFT_FAIL
+#    With SOFT_FAIL=1 (default), a failed psql connection will NOT fail
+#    the workflow. The artifact will be written with meta.error populated
+#    and meta.psql_exit_code != 0. This is intentional for resilience.
+#
+# 4. ARTIFACT NAMING
+#    Artifacts are named audit-supabase-<run-id> to avoid collisions.
+#    The run-id is included in meta.run_id (adapt script to add this field).
+#
+# 5. TERMUX COMPATIBILITY
+#    For local Termux runs, set env vars manually and run the script directly:
+#    export SUPABASE_DB_URL="postgres://..."  # never commit this
+#    export OUT_DIR="audit_out"
+#    export EXECUTED_BY="termux"
+#    export PROJECT_REF="my-project"
+#    export PSQL_TIMEOUT_SEC=30
+#    export SOFT_FAIL=1
+#    bash scripts/audit_supabase.sh
+#
+# 6. RETENTION
+#    Default retention is 7 days. For compliance, increase to 14-90 days.
+#    Note: GitHub Free plans have artifact storage limits.
+#
+# 7. cimeika-backend (TypeScript/Workers)
+#    Do not add this bash runner to cimeika-backend directly.
+#    Instead, document integration expectations: the Worker can POST audit
+#    results to a storage bucket or trigger this workflow via repository_dispatch.
+#
+# =============================================================================

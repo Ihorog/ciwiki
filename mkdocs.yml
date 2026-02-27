@@ -42,3 +42,6 @@ nav:
   - Маля: malya/index.md
   - Галерея: gallery/index.md
   - Календар: calendar/index.md
+  - Abilities:
+      - Огляд: abilities/index.md
+      - Audit Supabase: abilities/audit_supabase/README.md
