@@ -97,6 +97,21 @@
     .map-panel { height: 50%; }
     .radial-container { transform: scale(0.65); transform-origin: center; }
   }
+  /* Gallery — 1Ci Seven Components honeycomb */
+  .gallery-grid { position: relative; width: 520px; height: 440px; flex-shrink: 0; }
+  .hex-cell {
+    position: absolute; transform: translate(-50%, -50%);
+    width: 140px; height: 121px;
+    clip-path: polygon(100% 50%, 75% 100%, 25% 100%, 0% 50%, 25% 0%, 75% 0%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    cursor: pointer; text-align: center; padding: 0 12px;
+    transition: filter 0.15s;
+  }
+  .hex-cell:hover { filter: brightness(1.35); }
+  .hex-cell.selected { filter: brightness(1.6); }
+  .hex-cell-name { font-size: 0.65rem; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
+  .hex-cell-count { font-size: 0.57rem; margin-top: 3px; opacity: 0.8; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
+  @media (max-width: 700px) { .gallery-grid { transform: scale(0.65); transform-origin: center; } }
 </style>
 </head>
 <body>
@@ -107,6 +122,7 @@
     <button class="mode-btn" data-mode="non-linear" onclick="setMode('non-linear')">&#127760; Нелінійний</button>
     <button class="mode-btn" data-mode="linear" onclick="setMode('linear')">&#9776; Лінійний</button>
     <button class="mode-btn" data-mode="resonance" onclick="setMode('resonance')">&#10022; Резонанс</button>
+    <button class="mode-btn" data-mode="gallery" onclick="setMode('gallery')">&#11041; Галерея</button>
   </div>
 </header>
 
@@ -115,6 +131,7 @@
     <div class="loading" id="loadingMsg">Завантаження графу&#8230;</div>
     <div class="radial-container" id="radialContainer" style="display:none"></div>
     <div class="linear-list" id="linearList"></div>
+    <div class="gallery-grid" id="galleryGrid" style="display:none"></div>
   </div>
   <div class="detail-panel" id="detailPanel">
     <div class="detail-empty" id="detailEmpty">&#8592; Оберіть вузол для перегляду</div>
@@ -141,6 +158,53 @@
     arc_6_narrator: 'Казкар',
     arc_7_journey: 'Гра і шлях',
   };
+
+  var ARC_ORDER = [
+    'arc_1_origins',
+    'arc_2_mirrors',
+    'arc_3_rhythm',
+    'arc_4_dynamics',
+    'arc_5_space_time',
+    'arc_6_narrator',
+    'arc_7_journey',
+  ];
+
+  // Derive arc colors from CSS (.group-arc_* border colors) to avoid duplicating
+  // color definitions in JS. This keeps JS and CSS in sync if colors change.
+  var ARC_COLORS = (function () {
+    var colors = {};
+
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      return colors;
+    }
+
+    ARC_ORDER.forEach(function (arcId) {
+      // Expected CSS class naming: .group-arc_1_origins, .group-arc_2_mirrors, etc.
+      var el = document.querySelector('.group-' + arcId);
+      if (!el) {
+        return;
+      }
+
+      var style = window.getComputedStyle(el);
+      var borderColor = style && style.borderColor;
+      var color = borderColor || style.color || '';
+
+      if (color) {
+        colors[arcId] = color;
+      }
+    });
+
+    return colors;
+  }());
+  var selectedArcId = null;
+
+  /* Ukrainian plural: one/few/many forms */
+  function ukrPlural(n, one, few, many) {
+    var mod10 = n % 10, mod100 = n % 100;
+    if (mod10 === 1 && mod100 !== 11) return one;
+    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return few;
+    return many;
+  }
 
   function loadGraph() {
     var paths = [
@@ -179,6 +243,7 @@
     document.getElementById('loadingMsg').style.display = 'none';
     buildRadial();
     buildLinearList();
+    buildGallery();
     setMode(currentMode);
   }
 
@@ -226,6 +291,83 @@
     });
   }
 
+  function buildGallery() {
+    var container = document.getElementById('galleryGrid');
+    container.innerHTML = '';
+
+    /* Group nodes by arc */
+    var arcNodes = {};
+    graph.nodes.forEach(function (n) {
+      var g = n.group || '';
+      if (!arcNodes[g]) arcNodes[g] = [];
+      arcNodes[g].push(n);
+    });
+
+    /* Honeycomb layout: center hex + 6 surrounding, flat-top orientation.
+       Hex W=140, H≈121 → circumradius R=70, apothem≈60.6
+       Centre-to-centre distance D ≈ 128px (small gap between cells) */
+    var cx = 260, cy = 220, D = 128;
+    var sq3h = D * Math.sqrt(3) / 2; /* ≈ 110.9 */
+    var positions = [
+      [cx,           cy         ],  /* 0 centre */
+      [cx + D,       cy         ],  /* 1 E   0° */
+      [cx + D / 2,   cy + sq3h  ],  /* 2 SE 60° */
+      [cx - D / 2,   cy + sq3h  ],  /* 3 SW120° */
+      [cx - D,       cy         ],  /* 4 W  180° */
+      [cx - D / 2,   cy - sq3h  ],  /* 5 NW240° */
+      [cx + D / 2,   cy - sq3h  ],  /* 6 NE300° */
+    ];
+
+    ARC_ORDER.forEach(function (arcId, i) {
+      var pos    = positions[i];
+      var nodes  = arcNodes[arcId] || [];
+      var color  = ARC_COLORS[arcId] || '#888';
+      var label  = ARC_LABELS[arcId] || arcId;
+
+      var cell = document.createElement('div');
+      cell.className = 'hex-cell';
+      cell.id = 'hex-' + arcId;
+      cell.style.left       = Math.round(pos[0]) + 'px';
+      cell.style.top        = Math.round(pos[1]) + 'px';
+      cell.style.background = color + '2e'; /* ~18% opacity */
+      cell.innerHTML =
+        '<span class="hex-cell-name" style="color:' + color + '">' + label + '</span>' +
+        '<span class="hex-cell-count" style="color:' + color + '">' + nodes.length + '\u00a0' + ukrPlural(nodes.length, 'вузол', 'вузли', 'вузлів') + '</span>';
+      cell.onclick = (function (aid) { return function () { selectArc(aid); }; })(arcId);
+      container.appendChild(cell);
+    });
+  }
+
+  function selectArc(arcId) {
+    document.querySelectorAll('.hex-cell').forEach(function (h) { h.classList.remove('selected'); });
+    var cell = document.getElementById('hex-' + arcId);
+    if (cell) cell.classList.add('selected');
+    selectedArcId = arcId;
+    renderArcDetail(arcId);
+  }
+
+  function renderArcDetail(arcId) {
+    var nodes = graph.nodes.filter(function (n) { return n.group === arcId; });
+    var label = ARC_LABELS[arcId] || arcId;
+    var color = ARC_COLORS[arcId] || '#888';
+
+    var empty   = document.getElementById('detailEmpty');
+    var content = document.getElementById('detailContent');
+    empty.style.display   = 'none';
+    content.style.display = 'flex';
+    content.innerHTML =
+      '<div class="detail-header">' +
+        '<div class="detail-title" style="color:' + color + '">' + label + '</div>' +
+        '<div class="detail-meta">' + nodes.length + '\u00a0' + ukrPlural(nodes.length, 'вузол', 'вузли', 'вузлів') + '</div>' +
+      '</div>' +
+      '<div class="layer-body"><ul style="list-style:none;padding:0">' +
+        nodes.map(function (n) {
+          return '<li style="margin:5px 0"><span class="resonance-chip" onclick="selectNode(\'' +
+            n.id + '\')">' + n.index + '. ' + n.title + '</span></li>';
+        }).join('') +
+      '</ul></div>';
+  }
+
   function setMode(mode) {
     currentMode = mode;
     var main = document.getElementById('main');
@@ -235,13 +377,23 @@
       b.classList.toggle('active', b.dataset.mode === mode);
     });
 
+    var radial  = document.getElementById('radialContainer');
+    var linear  = document.getElementById('linearList');
+    var gallery = document.getElementById('galleryGrid');
+    radial.style.display  = 'none';
+    linear.style.display  = 'none';
+    gallery.style.display = 'none';
+
     if (mode === 'linear') {
       main.classList.add('list-mode');
-      document.getElementById('radialContainer').style.display = 'none';
-      document.getElementById('linearList').style.display = 'flex';
+      linear.style.display = 'flex';
+    } else if (mode === 'gallery') {
+      gallery.style.display = 'block';
+      /* Reset detail panel when entering gallery so arc click is the entry point */
+      document.getElementById('detailEmpty').style.display = '';
+      document.getElementById('detailContent').style.display = 'none';
     } else {
-      document.getElementById('radialContainer').style.display = 'block';
-      document.getElementById('linearList').style.display = 'none';
+      radial.style.display = 'block';
       if (mode === 'resonance') {
         main.classList.add('resonance-mode');
       }
@@ -321,6 +473,7 @@
   window.setLayer = function (layer) { currentLayer = layer; if (selectedId) renderDetail(selectedId); };
   window.setRing = function (ring) { currentRing = ring; if (selectedId) renderDetail(selectedId); };
   window.selectNode = selectNode;
+  window.selectArc = selectArc;
 
   loadGraph();
 }());
