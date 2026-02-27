@@ -1,0 +1,170 @@
+#!/usr/bin/env bash
+# =============================================================================
+# audit_supabase.sh.template
+#
+# TEMPLATE ONLY — READ-ONLY REFERENCE
+# Copy to your consumer repo and adapt before use.
+# Do NOT run this file directly from ciwiki.
+#
+# Purpose: Run SQL audit queries against Supabase via psql and write
+#          deterministic JSON artifacts to ${OUT_DIR}/<query_id>.json
+#
+# Required env vars:
+#   SUPABASE_DB_URL     — PostgreSQL connection string (from GitHub Secret)
+#   OUT_DIR             — Output directory (default: audit_out)
+#   EXECUTED_BY         — Who triggered: github-actions | termux | manual
+#   PROJECT_REF         — Project identifier (repo slug or Supabase project ref)
+#   PSQL_TIMEOUT_SEC    — psql connection timeout in seconds (default: 30)
+#   SOFT_FAIL           — If 1, connection errors do not fail the workflow (default: 1)
+# =============================================================================
+
+set -euo pipefail
+
+# ---------------------------------------------------------------------------
+# Defaults
+# ---------------------------------------------------------------------------
+OUT_DIR="${OUT_DIR:-audit_out}"
+EXECUTED_BY="${EXECUTED_BY:-unknown}"
+PROJECT_REF="${PROJECT_REF:-unknown}"
+PSQL_TIMEOUT_SEC="${PSQL_TIMEOUT_SEC:-30}"
+SOFT_FAIL="${SOFT_FAIL:-1}"
+
+# ---------------------------------------------------------------------------
+# Safety check: SUPABASE_DB_URL must never be logged
+# ---------------------------------------------------------------------------
+if [[ -z "${SUPABASE_DB_URL:-}" ]]; then
+  echo "ERROR: SUPABASE_DB_URL is not set." >&2
+  if [[ "${SOFT_FAIL}" == "1" ]]; then
+    echo "SOFT_FAIL=1 — continuing without audit." >&2
+    exit 0
+  fi
+  exit 1
+fi
+
+export PGCONNECT_TIMEOUT="${PSQL_TIMEOUT_SEC}"
+
+mkdir -p "${OUT_DIR}"
+
+# ---------------------------------------------------------------------------
+# Helper: run_query <query_id> <sql>
+#   Executes SQL, writes JSON artifact to ${OUT_DIR}/<query_id>.json
+# ---------------------------------------------------------------------------
+run_query() {
+  local query_id="$1"
+  local sql="$2"
+  local output_file="${OUT_DIR}/${query_id}.json"
+
+  local start_ms
+  start_ms=$(date +%s%3N 2>/dev/null || python3 -c "import time; print(int(time.time()*1000))")
+
+  local psql_output psql_exit
+  psql_output=$(psql "${SUPABASE_DB_URL}" \
+    --no-password \
+    --tuples-only \
+    --no-align \
+    --csv \
+    --command="${sql}" 2>&1) || psql_exit=$?
+  psql_exit="${psql_exit:-0}"
+
+  local end_ms
+  end_ms=$(date +%s%3N 2>/dev/null || python3 -c "import time; print(int(time.time()*1000))")
+  local duration_ms=$(( end_ms - start_ms ))
+
+  local executed_at
+  executed_at=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+  local error_field="null"
+  if [[ "${psql_exit}" != "0" ]]; then
+    # Escape for JSON
+    local escaped_error
+    escaped_error=$(printf '%s' "${psql_output}" | python3 -c "import sys,json; print(json.dumps(sys.stdin.read()))")
+    error_field="${escaped_error}"
+  fi
+
+  # Build data array from CSV output (skip on error)
+  local data_json="[]"
+  if [[ "${psql_exit}" == "0" && -n "${psql_output}" ]]; then
+    data_json=$(printf '%s' "${psql_output}" | python3 -c "
+import sys, csv, json
+reader = csv.DictReader(sys.stdin)
+rows = list(reader)
+print(json.dumps(rows))
+" 2>/dev/null || echo "[]")
+  fi
+
+  # Compute hashes
+  local sql_sha256
+  sql_sha256=$(printf '%s' "${sql}" | sha256sum | cut -d' ' -f1 2>/dev/null || echo "")
+
+  local data_sha256
+  data_sha256=$(printf '%s' "${data_json}" | sha256sum | cut -d' ' -f1 2>/dev/null || echo "")
+
+  # Write artifact — pass data via env vars to avoid heredoc injection
+  AUDIT_QUERY_ID="${query_id}" \
+  AUDIT_EXECUTED_AT="${executed_at}" \
+  AUDIT_EXECUTED_BY="${EXECUTED_BY}" \
+  AUDIT_PROJECT_REF="${PROJECT_REF}" \
+  AUDIT_PSQL_EXIT="${psql_exit}" \
+  AUDIT_DURATION_MS="${duration_ms}" \
+  AUDIT_SQL_SHA256="${sql_sha256}" \
+  AUDIT_DATA_SHA256="${data_sha256}" \
+  AUDIT_ERROR_JSON="${error_field}" \
+  AUDIT_OUTPUT_FILE="${output_file}" \
+  python3 - <<<"${data_json}" <<'PYEOF'
+import json, os, sys
+
+data = json.loads(sys.stdin.read())
+error_raw = os.environ["AUDIT_ERROR_JSON"]
+# error_raw is either "null" or a JSON-encoded string (already JSON)
+error_value = json.loads(error_raw)
+
+artifact = {
+    "meta": {
+        "query_id": os.environ["AUDIT_QUERY_ID"],
+        "executed_at": os.environ["AUDIT_EXECUTED_AT"],
+        "executed_by": os.environ["AUDIT_EXECUTED_BY"],
+        "project_ref": os.environ["AUDIT_PROJECT_REF"],
+        "psql_exit_code": int(os.environ["AUDIT_PSQL_EXIT"]),
+        "duration_ms": int(os.environ["AUDIT_DURATION_MS"]),
+        "sql_sha256": os.environ["AUDIT_SQL_SHA256"],
+        "data_sha256": os.environ["AUDIT_DATA_SHA256"],
+        "error": error_value,
+        "db_fingerprint": None
+    },
+    "data": data
+}
+output_file = os.environ["AUDIT_OUTPUT_FILE"]
+with open(output_file, "w") as f:
+    json.dump(artifact, f, indent=2, ensure_ascii=False)
+print(f"Wrote artifact: {output_file}")
+PYEOF
+
+  if [[ "${psql_exit}" != "0" && "${SOFT_FAIL}" != "1" ]]; then
+    echo "ERROR: query '${query_id}' failed (exit ${psql_exit}). Set SOFT_FAIL=1 to continue." >&2
+    exit "${psql_exit}"
+  fi
+}
+
+# ---------------------------------------------------------------------------
+# Define your queries below
+# Replace with actual SQL queries relevant to your project.
+# query_id must be a lowercase slug: [a-z0-9-]
+# ---------------------------------------------------------------------------
+
+# Example 1: check schema version
+run_query "check-schema-version" \
+  "SELECT version FROM schema_migrations ORDER BY version DESC LIMIT 1;"
+
+# Example 2: count active users
+run_query "count-active-users" \
+  "SELECT COUNT(*) AS active_users FROM auth.users WHERE deleted_at IS NULL;"
+
+# Example 3: list recent errors (last 24h)
+run_query "recent-errors-24h" \
+  "SELECT id, message, created_at FROM error_logs WHERE created_at > NOW() - INTERVAL '24 hours' ORDER BY created_at DESC LIMIT 50;"
+
+# ---------------------------------------------------------------------------
+# Done
+# ---------------------------------------------------------------------------
+echo "Audit complete. Artifacts in: ${OUT_DIR}/"
+ls -la "${OUT_DIR}/" 2>/dev/null || true
