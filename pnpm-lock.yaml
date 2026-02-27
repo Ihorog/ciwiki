@@ -41,8 +41,8 @@ dependencies:
 
 devDependencies:
   '@types/node':
-    specifier: ^25.3.0
-    version: 25.3.0
+    specifier: ^25.3.2
+    version: 25.3.2
   copy-webpack-plugin:
     specifier: ^13.0.1
     version: 13.0.1(webpack@5.105.2)
@@ -174,8 +174,8 @@ packages:
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
     dev: true
 
-  /@types/node@25.3.0:
-    resolution: {integrity: sha512-4K3bqJpXpqfg2XKGK9bpDTc6xO/xoUP/RBWS7AtRMug6zZFaRekiLzjVtAoZMquxoAbzBvy5nxQ7veS5eYzf8A==}
+  /@types/node@25.3.2:
+    resolution: {integrity: sha512-RpV6r/ij22zRRdyBPcxDeKAzH43phWVKEjL2iksqo1Vz3CuBUrgmPpPhALKiRfU7OMCmeeO9vECBMsV0hMTG8Q==}
     dependencies:
       undici-types: 7.18.2
     dev: true
@@ -1412,7 +1412,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 25.3.0
+      '@types/node': 25.3.2
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: true
