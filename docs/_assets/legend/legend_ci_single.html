@@ -159,21 +159,43 @@
     arc_7_journey: 'Гра і шлях',
   };
 
-  var ARC_COLORS = {
-    arc_1_origins:    '#f87171',
-    arc_2_mirrors:    '#fb923c',
-    arc_3_rhythm:     '#facc15',
-    arc_4_dynamics:   '#4ade80',
-    arc_5_space_time: '#22d3ee',
-    arc_6_narrator:   '#5b8dee',
-    arc_7_journey:    '#a78bfa',
-  };
-
   var ARC_ORDER = [
-    'arc_1_origins', 'arc_2_mirrors', 'arc_3_rhythm', 'arc_4_dynamics',
-    'arc_5_space_time', 'arc_6_narrator', 'arc_7_journey',
+    'arc_1_origins',
+    'arc_2_mirrors',
+    'arc_3_rhythm',
+    'arc_4_dynamics',
+    'arc_5_space_time',
+    'arc_6_narrator',
+    'arc_7_journey',
   ];
 
+  // Derive arc colors from CSS (.group-arc_* border colors) to avoid duplicating
+  // color definitions in JS. This keeps JS and CSS in sync if colors change.
+  var ARC_COLORS = (function () {
+    var colors = {};
+
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      return colors;
+    }
+
+    ARC_ORDER.forEach(function (arcId) {
+      // Expected CSS class naming: .group-arc_1_origins, .group-arc_2_mirrors, etc.
+      var el = document.querySelector('.group-' + arcId);
+      if (!el) {
+        return;
+      }
+
+      var style = window.getComputedStyle(el);
+      var borderColor = style && style.borderColor;
+      var color = borderColor || style.color || '';
+
+      if (color) {
+        colors[arcId] = color;
+      }
+    });
+
+    return colors;
+  }());
   var selectedArcId = null;
 
   /* Ukrainian plural: one/few/many forms */
