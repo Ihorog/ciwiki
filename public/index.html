@@ -472,8 +472,12 @@
         if (!imported.length) { alert('У файлі не знайдено завдань.'); return; }
         if (confirm(`Імпортувати ${imported.length} завдань(ня)? Наявні завдання буде збережено.`)) {
           // Merge: avoid duplicate IDs
-          const existingIds = new Set(tasks.map(t => t.id));
-          imported.forEach(t => { if (!existingIds.has(t.id)) tasks.push(t); });
+          const seenIds = new Set(tasks.map(t => t.id));
+          imported.forEach(t => {
+            if (seenIds.has(t.id)) return;
+            seenIds.add(t.id);
+            tasks.push(t);
+          });
           render();
         }
       } catch (_) {
