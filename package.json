@@ -23,7 +23,7 @@
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
-    "pg": "^8.18.0",
+    "pg": "^8.19.0",
     "reflect-metadata": "^0.2.2",
     "typeorm": "^0.3.28",
     "winston": "^3.19.0"

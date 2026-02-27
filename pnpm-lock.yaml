@@ -27,14 +27,14 @@ dependencies:
     specifier: ^9.0.3
     version: 9.0.3
   pg:
-    specifier: ^8.18.0
-    version: 8.18.0
+    specifier: ^8.19.0
+    version: 8.19.0
   reflect-metadata:
     specifier: ^0.2.2
     version: 0.2.2
   typeorm:
     specifier: ^0.3.28
-    version: 0.3.28(pg@8.18.0)
+    version: 0.3.28(pg@8.19.0)
   winston:
     specifier: ^3.19.0
     version: 3.19.0
@@ -1764,16 +1764,16 @@ packages:
     engines: {node: '>=4.0.0'}
     dev: false
 
-  /pg-pool@3.11.0(pg@8.18.0):
-    resolution: {integrity: sha512-MJYfvHwtGp870aeusDh+hg9apvOe2zmpZJpyt+BMtzUWlVqbhFmMK6bOBXLBUPd7iRtIF9fZplDc7KrPN3PN7w==}
+  /pg-pool@3.12.0(pg@8.19.0):
+    resolution: {integrity: sha512-eIJ0DES8BLaziFHW7VgJEBPi5hg3Nyng5iKpYtj3wbcAUV9A1wLgWiY7ajf/f/oO1wfxt83phXPY8Emztg7ITg==}
     peerDependencies:
       pg: '>=8.0'
     dependencies:
-      pg: 8.18.0
+      pg: 8.19.0
     dev: false
 
-  /pg-protocol@1.11.0:
-    resolution: {integrity: sha512-pfsxk2M9M3BuGgDOfuy37VNRRX3jmKgMjcvAcWqNDpZSf4cUmv8HSOl5ViRQFsfARFn0KuUQTgLxVMbNq5NW3g==}
+  /pg-protocol@1.12.0:
+    resolution: {integrity: sha512-uOANXNRACNdElMXJ0tPz6RBM0XQ61nONGAwlt8da5zs/iUOOCLBQOHSXnrC6fMsvtjxbOJrZZl5IScGv+7mpbg==}
     dev: false
 
   /pg-types@2.2.0:
@@ -1787,8 +1787,8 @@ packages:
       postgres-interval: 1.2.0
     dev: false
 
-  /pg@8.18.0:
-    resolution: {integrity: sha512-xqrUDL1b9MbkydY/s+VZ6v+xiMUmOUk7SS9d/1kpyQxoJ6U9AO1oIJyUWVZojbfe5Cc/oluutcgFG4L9RDP1iQ==}
+  /pg@8.19.0:
+    resolution: {integrity: sha512-QIcLGi508BAHkQ3pJNptsFz5WQMlpGbuBGBaIaXsWK8mel2kQ/rThYI+DbgjUvZrIr7MiuEuc9LcChJoEZK1xQ==}
     engines: {node: '>= 16.0.0'}
     peerDependencies:
       pg-native: '>=3.0.1'
@@ -1797,8 +1797,8 @@ packages:
         optional: true
     dependencies:
       pg-connection-string: 2.11.0
-      pg-pool: 3.11.0(pg@8.18.0)
-      pg-protocol: 1.11.0
+      pg-pool: 3.12.0(pg@8.19.0)
+      pg-protocol: 1.12.0
       pg-types: 2.2.0
       pgpass: 1.0.5
     optionalDependencies:
@@ -2397,7 +2397,7 @@ packages:
       is-typed-array: 1.1.15
     dev: false
 
-  /typeorm@0.3.28(pg@8.18.0):
+  /typeorm@0.3.28(pg@8.19.0):
     resolution: {integrity: sha512-6GH7wXhtfq2D33ZuRXYwIsl/qM5685WZcODZb7noOOcRMteM9KF2x2ap3H0EBjnSV0VO4gNAfJT5Ukp0PkOlvg==}
     engines: {node: '>=16.13.0'}
     hasBin: true
@@ -2461,7 +2461,7 @@ packages:
       dedent: 1.7.1
       dotenv: 16.6.1
       glob: 10.5.0
-      pg: 8.18.0
+      pg: 8.19.0
       reflect-metadata: 0.2.2
       sha.js: 2.4.12
       sql-highlight: 6.1.0
