@@ -1,0 +1,122 @@
+name: Documentation Issue
+description: Повідомити про проблему з документацією або запропонувати покращення
+title: "[DOCS] "
+labels: ["documentation", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Дякуємо за допомогу у покращенні документації!
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Тип issue
+      description: Оберіть тип проблеми з документацією
+      options:
+        - Помилка в документації (неправильна інформація)
+        - Відсутня документація
+        - Неясне пояснення
+        - Застарілий контент
+        - Покращення існуючої документації
+        - Переклад
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: location
+    attributes:
+      label: Локація документації
+      description: Де знаходиться проблема?
+      placeholder: |
+        - URL: https://ihorog.github.io/ciwiki/...
+        - File: docs/processes/...
+        - Section: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Поточний стан
+      description: Що зараз написано в документації?
+      placeholder: Скопіюйте поточний текст або опишіть що там є...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Що має бути
+      description: Яка інформація має бути натомість?
+      placeholder: Опишіть правильний контент або що має бути додано...
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Чому це важливо
+      description: Чому це покращення необхідне?
+      placeholder: |
+        - Допоможе користувачам...
+        - Уникнути плутанини з...
+        - Відповідає новим змінам...
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: component
+    attributes:
+      label: Розділ документації
+      description: Який розділ потребує уваги?
+      options:
+        - label: README / Getting Started
+        - label: Processes (PR, Testing, etc.)
+        - label: Legend CI
+        - label: CI/CD / Workflows
+        - label: API Documentation
+        - label: Architecture / Technical docs
+        - label: Other
+
+  - type: textarea
+    id: proposed-content
+    attributes:
+      label: Запропонований контент
+      description: Якщо у вас є готовий текст, додайте його тут
+      placeholder: |
+        Ви можете використати Markdown форматування:
+
+        ## Heading
+
+        - Bullet point
+        - Another point
+
+        ```code example```
+      render: markdown
+
+  - type: checkboxes
+    id: willing-to-contribute
+    attributes:
+      label: Готовність допомогти
+      options:
+        - label: Я готовий створити PR з виправленням
+        - label: Я можу написати новий контент
+        - label: Я можу зробити review запропонованих змін
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Додаткова інформація
+      description: Додайте скріншоти, посилання на зовнішні ресурси, або інші деталі
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: Я перевірив що подібного issue ще немає
+          required: true
+        - label: Я надав чітку інформацію про локацію проблеми
+          required: true

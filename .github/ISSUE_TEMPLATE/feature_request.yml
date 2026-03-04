@@ -1,0 +1,109 @@
+name: Feature Request
+description: Запропонувати нову функцію або покращення
+title: "[FEATURE] "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Дякуємо за ваш запит на нову функцію! Допоможіть нам зрозуміти вашу потребу.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Опис проблеми
+      description: Яку проблему ця функція вирішить?
+      placeholder: Я завжди розчарований коли...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Запропоноване рішення
+      description: Опишіть як ви бачите реалізацію цієї функції
+      placeholder: Було б чудово якщо...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Альтернативи
+      description: Які альтернативні рішення ви розглядали?
+      placeholder: Я також думав про...
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case
+      description: Опишіть конкретний сценарій використання
+      placeholder: |
+        Як користувач, я хочу...
+        Щоб я міг...
+    validations:
+      required: true
+
+  - type: textarea
+    id: benefits
+    attributes:
+      label: Переваги
+      description: Які переваги принесе ця функція?
+      placeholder: |
+        - Покращить продуктивність на X%
+        - Зменшить час виконання Y
+        - Спростить процес Z
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Пріоритет
+      description: Наскільки важлива ця функція для вас?
+      options:
+        - Low - Nice to have
+        - Medium - Важливо, але не терміново
+        - High - Критично для моєї роботи
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: component
+    attributes:
+      label: Компонент
+      description: Яка частина системи буде покращена?
+      options:
+        - label: Legend CI
+        - label: Documentation
+        - label: CI/CD / Workflows
+        - label: Build system
+        - label: Scripts
+        - label: Other
+
+  - type: checkboxes
+    id: willing-to-contribute
+    attributes:
+      label: Готовність допомогти
+      options:
+        - label: Я готовий допомогти з реалізацією цієї функції
+        - label: Я готовий написати документацію
+        - label: Я готовий протестувати рішення
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Додаткова інформація
+      description: Додайте будь-яку іншу інформацію, скріншоти, або приклади
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: Я перевірив що подібного запиту ще немає
+          required: true
+        - label: Я розглянув альтернативні рішення
+          required: true
+        - label: Ця функція відповідає цілям проєкту
+          required: true

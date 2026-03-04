@@ -1,0 +1,185 @@
+# Issue Automation Configuration
+# This file defines configuration for automated issue management
+
+# Component ownership mapping
+# Maps component labels to GitHub usernames who should be auto-assigned
+component_owners:
+  legend-ci:
+    - Ihorog
+  ci-cd:
+    - Ihorog
+  docs:
+    - Ihorog
+  scripts:
+    - Ihorog
+  security:
+    - Ihorog
+
+# Label keywords for auto-classification
+label_keywords:
+  bug:
+    - bug
+    - error
+    - exception
+    - broken
+    - fail
+    - crash
+    - issue
+    - problem
+  enhancement:
+    - feature
+    - enhancement
+    - add
+    - new
+    - improvement
+    - request
+  documentation:
+    - doc
+    - documentation
+    - readme
+    - guide
+    - tutorial
+  security:
+    - security
+    - vulnerability
+    - exploit
+    - cve
+    - xss
+    - sql injection
+  performance:
+    - performance
+    - slow
+    - optimization
+    - speed
+    - memory
+    - cpu
+  refactor:
+    - refactor
+    - cleanup
+    - technical debt
+    - code quality
+
+# Priority keywords
+priority_keywords:
+  high:
+    - urgent
+    - critical
+    - blocker
+    - asap
+    - p0
+    - emergency
+  medium:
+    - important
+    - p1
+    - soon
+  low:
+    - minor
+    - trivial
+    - p2
+    - p3
+    - cosmetic
+
+# Component keywords
+component_keywords:
+  legend-ci:
+    - legend ci
+    - legend-ci
+    - legend_ci
+    - kazkar
+  ci-cd:
+    - workflow
+    - ci/cd
+    - github actions
+    - pipeline
+    - build
+    - deploy
+  docs:
+    - docs/
+    - documentation
+    - mkdocs
+    - markdown
+  scripts:
+    - scripts/
+    - automation
+    - python script
+    - shell script
+
+# Stale issue policy
+stale_policy:
+  days_before_stale: 30
+  days_before_close: 7
+  exempt_labels:
+    - pinned
+    - master-issue
+    - epic
+    - security
+  stale_message: |
+    Це issue було автоматично позначено як stale через відсутність активності протягом {days} днів.
+
+    Воно буде закрито через {close_days} днів якщо не буде додаткової активності.
+
+    Якщо проблема все ще актуальна:
+    - Додайте коментар з оновленням статусу
+    - Оновіть опис якщо потрібно
+    - Видаліть label 'stale'
+  close_message: |
+    Це issue було автоматично закрито через відсутність активності.
+
+    Якщо проблема все ще актуальна, будь ласка створіть новий issue з оновленою інформацією.
+
+# Duplicate detection
+duplicate_detection:
+  enabled: true
+  similarity_threshold: 0.5  # Jaccard similarity threshold (0.0-1.0)
+  search_limit: 5  # Number of similar issues to check
+  message: |
+    🔍 **Виявлено можливі дублікати:**
+
+    {duplicates_list}
+
+    Будь ласка перевірте чи існує вже подібний issue. Якщо так, додайте коментар до існуючого issue замість створення нового.
+
+    Якщо це не дублікат, проігноруйте це повідомлення.
+
+# Welcome message for first-time contributors
+welcome_message:
+  enabled: true
+  message: |
+    Дякуємо за ваш перший issue, @{author}! 🎉
+
+    Ми розглянемо його найближчим часом. Тим часом:
+
+    - Переконайтеся, що issue містить всю необхідну інформацію
+    - Перевірте [документацію процесів](https://github.com/{owner}/{repo}/tree/main/docs/processes)
+    - Приєднуйтесь до обговорення якщо є додаткові питання
+
+    Якщо це bug report, будь ласка додайте:
+    - Кроки для відтворення
+    - Очікувана поведінка
+    - Фактична поведінка
+    - Версія/середовище
+
+    Welcome to the Cimeika community! 🚀
+
+# Auto-close on resolution
+auto_close:
+  enabled: true
+  keywords:
+    - fixed
+    - resolved
+    - done
+    - completed
+    - solved
+    - виправлено
+    - вирішено
+    - завершено
+  require_author: true  # Only close if author confirms
+  message: |
+    ✅ Issue автоматично закрито після підтвердження вирішення автором.
+
+# Metrics and reporting
+metrics:
+  enabled: true
+  time_to_first_response_target_hours: 24
+  time_to_triage_target_hours: 48
+  auto_label_accuracy_target: 0.80

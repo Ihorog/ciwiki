@@ -1,0 +1,114 @@
+name: Bug Report
+description: Повідомити про проблему або помилку
+title: "[BUG] "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Дякуємо за звіт про помилку! Будь ласка заповніть всі поля щоб ми могли швидко вирішити проблему.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Опис проблеми
+      description: Чіткий та стислий опис що пішло не так
+      placeholder: Розкажіть що сталося...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Кроки для відтворення
+      description: Як ми можемо відтворити цю проблему?
+      placeholder: |
+        1. Перейдіть до '...'
+        2. Натисніть на '...'
+        3. Прокрутіть до '...'
+        4. Побачте помилку
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Очікувана поведінка
+      description: Що ви очікували побачити?
+      placeholder: Опишіть очікувану поведінку...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Фактична поведінка
+      description: Що насправді відбулось?
+      placeholder: Опишіть що сталося...
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Середовище
+      description: Надайте інформацію про ваше середовище
+      placeholder: |
+        - OS: [e.g. Ubuntu 22.04, Windows 11, macOS 13]
+        - Browser: [e.g. Chrome 120, Firefox 121]
+        - Version: [e.g. commit hash, tag]
+        - Node.js version: [e.g. 20.10.0]
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Логи / Повідомлення про помилки
+      description: Скопіюйте та вставте будь-які релевантні логи або повідомлення про помилки
+      render: shell
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Скріншоти
+      description: Якщо можливо, додайте скріншоти які демонструють проблему
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Пріоритет
+      description: Наскільки критична ця проблема?
+      options:
+        - Low - Косметична проблема
+        - Medium - Впливає на роботу але є workaround
+        - High - Блокує роботу без workaround
+        - Critical - Порушує безпеку або призводить до втрати даних
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: component
+    attributes:
+      label: Компонент
+      description: Яка частина системи має проблему?
+      options:
+        - label: Legend CI
+        - label: Documentation
+        - label: CI/CD / Workflows
+        - label: Build system
+        - label: Scripts
+        - label: Other
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: Я перевірив що подібного issue ще немає
+          required: true
+        - label: Я додав всю необхідну інформацію
+          required: true
+        - label: Я перевірив документацію
+          required: true
