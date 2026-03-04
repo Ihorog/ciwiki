@@ -1,0 +1,289 @@
+name: Issue Automation
+
+on:
+  issues:
+    types: [opened, labeled, edited]
+  issue_comment:
+    types: [created]
+  schedule:
+    # Run daily at 00:00 UTC to check stale issues
+    - cron: '0 0 * * *'
+
+permissions:
+  issues: write
+  pull-requests: write
+  contents: read
+
+jobs:
+  auto-triage:
+    name: Auto-triage new issues
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issues' && github.event.action == 'opened'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Auto-label based on content
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const title = issue.title.toLowerCase();
+            const body = (issue.body || '').toLowerCase();
+            const labels = [];
+
+            // Auto-detect issue type
+            if (title.includes('bug') || body.includes('error') || body.includes('exception')) {
+              labels.push('bug');
+            }
+            if (title.includes('feat') || title.includes('feature') || body.includes('new feature')) {
+              labels.push('enhancement');
+            }
+            if (title.includes('doc') || title.includes('documentation')) {
+              labels.push('documentation');
+            }
+            if (title.includes('security') || body.includes('vulnerability')) {
+              labels.push('security');
+            }
+            if (title.includes('performance') || body.includes('slow') || body.includes('optimization')) {
+              labels.push('performance');
+            }
+
+            // Auto-detect priority
+            if (body.includes('urgent') || body.includes('critical') || body.includes('blocker')) {
+              labels.push('priority:high');
+            }
+
+            // Auto-detect component
+            if (body.includes('legend ci') || body.includes('legend-ci')) {
+              labels.push('component:legend-ci');
+            }
+            if (body.includes('workflow') || body.includes('ci/cd') || body.includes('github actions')) {
+              labels.push('component:ci-cd');
+            }
+            if (body.includes('documentation') || body.includes('docs/')) {
+              labels.push('component:docs');
+            }
+
+            // Add triage label
+            labels.push('needs-triage');
+
+            if (labels.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                labels: labels
+              });
+
+              console.log(`Added labels: ${labels.join(', ')}`);
+            }
+
+      - name: Add welcome comment for first-time contributors
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+
+            // Check if this is first issue from this user
+            const userIssues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              creator: issue.user.login,
+              state: 'all',
+              per_page: 100
+            });
+
+            if (userIssues.data.length === 1) {
+              const message = `Дякуємо за ваш перший issue, @${issue.user.login}! 🎉
+
+              Ми розглянемо його найближчим часом. Тим часом:
+
+              - Переконайтеся, що issue містить всю необхідну інформацію
+              - Перевірте [документацію процесів](https://github.com/${context.repo.owner}/${context.repo.repo}/tree/main/docs/processes)
+              - Приєднуйтесь до обговорення якщо є додаткові питання
+
+              Якщо це bug report, будь ласка додайте:
+              - Кроки для відтворення
+              - Очікувана поведінка
+              - Фактична поведінка
+              - Версія/середовище
+
+              Welcome to the Cimeika community! 🚀`;
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: message
+              });
+            }
+
+  auto-assign:
+    name: Auto-assign issues
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issues' && github.event.action == 'labeled'
+    steps:
+      - name: Auto-assign based on labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const label = context.payload.label.name;
+
+            // Define component owners
+            const componentOwners = {
+              'component:legend-ci': ['Ihorog'],
+              'component:ci-cd': ['Ihorog'],
+              'component:docs': ['Ihorog'],
+              'security': ['Ihorog']
+            };
+
+            if (componentOwners[label]) {
+              await github.rest.issues.addAssignees({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                assignees: componentOwners[label]
+              });
+
+              console.log(`Auto-assigned to: ${componentOwners[label].join(', ')}`);
+            }
+
+  stale-issues:
+    name: Mark stale issues
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    steps:
+      - name: Mark stale issues
+        uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          stale-issue-message: |
+            Це issue було автоматично позначено як stale через відсутність активності протягом 30 днів.
+
+            Воно буде закрито через 7 днів якщо не буде додаткової активності.
+
+            Якщо проблема все ще актуальна:
+            - Додайте коментар з оновленням статусу
+            - Оновіть опис якщо потрібно
+            - Видаліть label 'stale'
+
+            Дякуємо за ваш внесок! 🙏
+          stale-pr-message: |
+            Цей PR було автоматично позначено як stale через відсутність активності протягом 30 днів.
+
+            Він буде закрито через 7 днів якщо не буде додаткової активності.
+
+            Якщо PR все ще актуальний:
+            - Rebase на останню версію main
+            - Вирішіть конфлікти
+            - Відповідь на review коментарі
+            - Видаліть label 'stale'
+          close-issue-message: |
+            Це issue було автоматично закрито через відсутність активності.
+
+            Якщо проблема все ще актуальна, будь ласка створіть новий issue з оновленою інформацією.
+          close-pr-message: |
+            Цей PR було автоматично закрито через відсутність активності.
+
+            Якщо хочете продовжити роботу, створіть новий PR.
+          days-before-stale: 30
+          days-before-close: 7
+          stale-issue-label: 'stale'
+          stale-pr-label: 'stale'
+          exempt-issue-labels: 'pinned,master-issue,epic'
+          exempt-pr-labels: 'pinned,work-in-progress'
+
+  auto-close-resolved:
+    name: Auto-close resolved issues
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issue_comment'
+    steps:
+      - name: Close if resolved
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const comment = context.payload.comment;
+            const issue = context.payload.issue;
+
+            // Check if comment contains resolution keywords
+            const resolvedKeywords = [
+              'fixed', 'resolved', 'done', 'completed',
+              'виправлено', 'вирішено', 'завершено'
+            ];
+
+            const commentLower = comment.body.toLowerCase();
+            const hasResolvedKeyword = resolvedKeywords.some(keyword =>
+              commentLower.includes(keyword)
+            );
+
+            // If issue author confirms resolution, close the issue
+            if (hasResolvedKeyword && comment.user.login === issue.user.login) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed',
+                state_reason: 'completed'
+              });
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: '✅ Issue автоматично закрито після підтвердження вирішення автором.'
+              });
+            }
+
+  detect-duplicates:
+    name: Detect duplicate issues
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issues' && github.event.action == 'opened'
+    steps:
+      - name: Check for duplicates
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const title = issue.title.toLowerCase();
+            const body = (issue.body || '').toLowerCase();
+
+            // Search for similar issues
+            const searchQuery = `repo:${context.repo.owner}/${context.repo.repo} is:issue ${title.substring(0, 50)}`;
+
+            const searchResults = await github.rest.search.issuesAndPullRequests({
+              q: searchQuery,
+              per_page: 5
+            });
+
+            // Filter out current issue
+            const similarIssues = searchResults.data.items.filter(i => i.number !== issue.number);
+
+            if (similarIssues.length > 0) {
+              const duplicatesList = similarIssues
+                .map(i => `- #${i.number}: ${i.title}`)
+                .join('\n');
+
+              const message = `🔍 **Виявлено можливі дублікати:**
+
+${duplicatesList}
+
+Будь ласка перевірте чи існує вже подібний issue. Якщо так, додайте коментар до існуючого issue замість створення нового.
+
+Якщо це не дублікат, проігноруйте це повідомлення.`;
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: message
+              });
+
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                labels: ['possible-duplicate']
+              });
+            }

@@ -49,3 +49,14 @@ nav:
   - Abilities:
       - Огляд: abilities/index.md
       - Audit Supabase: abilities/audit_supabase/README.md
+  - Процеси:
+      - Огляд: processes/index.md
+      - PR Process: processes/pr-process.md
+      - Master Issue: processes/master-issue.md
+      - Issue Automation: processes/issue-automation.md
+      - CI/CD: processes/ci-cd.md
+      - Testing: processes/testing.md
+      - Commit Conventions: processes/commit-conventions.md
+      - Secrets Management: processes/secrets-management.md
+      - Release Process: processes/release-process.md
+      - Web Publishing: processes/web-publishing.md
