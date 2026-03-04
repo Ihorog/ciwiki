@@ -18,6 +18,10 @@ nav:
       - kazkar/index.md
       - Легенда CI:
           - Огляд: kazkar/legend-ci/index.md
+          - Повна модель: kazkar/legend-ci/model.md
+          - Інтерактивна навігація: kazkar/legend-ci/interactive-ux.md
+          - Анімаційні сценарії: kazkar/legend-ci/animation.md
+          - Дизайн-система: kazkar/legend-ci/design-system.md
           - "[1] Першоджерело": kazkar/legend-ci/01-source.md
           - "[2] Перший поділ": kazkar/legend-ci/02-division.md
           - "[3] Дзеркало матерії": kazkar/legend-ci/03-matter-mirror.md
