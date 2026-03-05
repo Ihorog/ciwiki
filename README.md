@@ -2,7 +2,7 @@
 
 ## Огляд
 
-CiWiki є центральним репозиторієм документації та єдиним джерелом правил для всієї екосистеми Cimeika. Всі процеси, стандарти, інструкції та контракти визначаються та підтримуються тут.
+CiWiki є центральним репозіторієм документації та **єдиним джерелом правил** для всієї екосистеми Cimeika.
 
 ## System Node
 
@@ -10,19 +10,22 @@ CiWiki є центральним репозиторієм документаці
 |---------------|--------------------------------------------------------------------------------------|
 | Node Role     | Documentation, rules, and the canonical source of truth for all Cimeika nodes.       |
 | Inputs        | Change requests (PRs), documentation updates, API traces.                            |
-| Outputs       | Canonical instructions, standard contracts/rules, procedural approvals.               |
-| Dependencies  | All other nodes depend on ciwiki for system-wide rules and documentation.             |
+| Outputs       | Canonical instructions, standard contracts/rules, procedural approvals.              |
+| Dependencies  | All other nodes depend on ciwiki for system-wide rules and documentation.            |
 
 ## Екосистема Cimeika
 
-### Репозиторії
+### Репозиторії (актуальний список)
 
+> Всі нижче перелічені репозиторії беруть участь у проекті (виконання / інтеграція):
+
+- **ci_gitapi** — API Authorization & Coordination Gateway
 - **ciwiki** (цей репозиторій) — Центральна документація та правила
-- **cit** — Основна кодова база проєкту Cimeika
-- **cimeika-unified** — Уніфікована інтеграція компонентів
-- **citt** — Тестування та інтеграційні тести
-- **media** — Медіа ресурси (тільки документація)
-- **cit_versel** — Заморожений репозиторій (без змін)
+- **cimeika-unified** — Уніфікована інтеграція компонентів (Vercel)
+- **cit** — Основна кодова база / фронтенд (Vercel)
+- **cimeika-backend** — Backend (Cloudflare Workers: TypeScript + Hono)
+- **ci-memory** — Жива памʼять / контекст екосистеми
+- **media** — Медіа ресурси
 
 ### Документація
 
@@ -150,6 +153,7 @@ mkdocs serve
 
 # Відкрити http://127.0.0.1:8000
 ```
+
 Потім створіть Pull Request з гілки `content/cimeika-7-sections`.
 
 ---
@@ -163,7 +167,7 @@ mkdocs serve
 - Фільтри: Усі / Активні / Виконані
 - Дані зберігаються у `localStorage` під ключем `cimeika_todo_v1`
 - Експорт / імпорт JSON (для резервного копіювання)
-- PWA: офлайн-кеш (service worker), Web App Manifest — встановлюється на мобільному
+- PWA: офлайн-кеш (service worker), Web App Manifest — встановлюється на мобільних
 
 ### Як запустити локально (Termux / будь-яка ОС)
 ```bash
