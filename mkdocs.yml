@@ -46,6 +46,9 @@ nav:
   - Маля: malya/index.md
   - Галерея: gallery/index.md
   - Календар: calendar/index.md
+  - Архітектура:
+      - Огляд: architecture/index.md
+      - Виробнича структура: architecture/production-structure.md
   - Abilities:
       - Огляд: abilities/index.md
       - Audit Supabase: abilities/audit_supabase/README.md
