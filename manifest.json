@@ -41,6 +41,19 @@
       "crdt_hook": true
     },
     {
+      "id": "check-ci-runs",
+      "name": "Check CI Runs",
+      "version": "1.0.0",
+      "description": "Active ability: fetches and reports the last N GitHub Actions workflow runs for a target repository. Deployed in ciwiki for ci_gitapi monitoring.",
+      "status": "active",
+      "spec": "docs/abilities/check_ci_runs/README.md",
+      "script_template": "docs/abilities/check_ci_runs/check_ci_runs.sh.template",
+      "workflow_template": "docs/abilities/check_ci_runs/workflow.template.yml",
+      "workflow": ".github/workflows/check-ci-gitapi-runs.yml",
+      "primary_target": "Ihorog/ci_gitapi",
+      "run_limit": 7
+    },
+    {
       "id": "audit-supabase",
       "name": "Audit Supabase",
       "version": "0.1.0",
