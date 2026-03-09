@@ -52,6 +52,7 @@ nav:
   - Abilities:
       - Огляд: abilities/index.md
       - Audit Supabase: abilities/audit_supabase/README.md
+      - Check CI Runs: abilities/check_ci_runs/README.md
   - Процеси:
       - Огляд: processes/index.md
       - PR Process: processes/pr-process.md

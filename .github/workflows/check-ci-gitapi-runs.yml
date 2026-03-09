@@ -1,0 +1,159 @@
+name: Check ci_gitapi Runs
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_limit:
+        description: "Кількість останніх запусків для перевірки"
+        required: false
+        default: "7"
+      workflow_file:
+        description: "Фільтр за workflow-файлом (залиште порожнім для всіх)"
+        required: false
+        default: ""
+
+jobs:
+  check:
+    name: Check last ${{ inputs.run_limit || 7 }} runs in ci_gitapi
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch and report CI runs
+        env:
+          GH_TOKEN: ${{ secrets.CI_READ_TOKEN || secrets.GITHUB_TOKEN }}
+          TARGET_REPO: Ihorog/ci_gitapi
+          RUN_LIMIT: ${{ inputs.run_limit || '7' }}
+          WORKFLOW_FILE: ${{ inputs.workflow_file || '' }}
+          OUT_DIR: ci_runs_out
+          EXECUTED_BY: github-actions
+          FAIL_ON_ERROR: "0"
+        run: |
+          set -euo pipefail
+
+          mkdir -p "$OUT_DIR"
+          CHECKED_AT=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          echo "==> Checking last ${RUN_LIMIT} workflow runs for: ${TARGET_REPO}"
+          echo "    Checked at: ${CHECKED_AT}"
+
+          # Fetch runs (filter by workflow if specified)
+          if [[ -n "$WORKFLOW_FILE" ]]; then
+            RAW_RUNS=$(gh api \
+              "repos/${TARGET_REPO}/actions/workflows/${WORKFLOW_FILE}/runs?per_page=${RUN_LIMIT}" \
+              --jq ".workflow_runs[:${RUN_LIMIT}]" 2>/dev/null || echo "[]")
+          else
+            RAW_RUNS=$(gh api \
+              "repos/${TARGET_REPO}/actions/runs?per_page=${RUN_LIMIT}" \
+              --jq ".workflow_runs[:${RUN_LIMIT}]" 2>/dev/null || echo "[]")
+          fi
+
+          [[ -z "$RAW_RUNS" || "$RAW_RUNS" == "null" ]] && RAW_RUNS="[]"
+
+          # Compute summary counts
+          TOTAL=$(echo "$RAW_RUNS"    | jq 'length')
+          SUCCESS=$(echo "$RAW_RUNS"  | jq '[.[] | select(.conclusion == "success")]   | length')
+          FAILURE=$(echo "$RAW_RUNS"  | jq '[.[] | select(.conclusion == "failure")]   | length')
+          CANCELLED=$(echo "$RAW_RUNS"| jq '[.[] | select(.conclusion == "cancelled")] | length')
+          IN_PROGRESS=$(echo "$RAW_RUNS" | jq '[.[] | select(.status == "in_progress")]| length')
+
+          # Normalize runs
+          RUNS=$(echo "$RAW_RUNS" | jq '[.[] | {
+            run_id:         .id,
+            workflow_name:  .name,
+            status:         .status,
+            conclusion:     .conclusion,
+            branch:         .head_branch,
+            commit_sha:     .head_sha[:7],
+            commit_message: (.head_commit.message // "" | split("\n")[0]),
+            created_at:     .created_at,
+            updated_at:     .updated_at,
+            html_url:       .html_url
+          }]')
+
+          # Write JSON report
+          jq -n \
+            --arg target_repo "$TARGET_REPO" \
+            --arg checked_at  "$CHECKED_AT" \
+            --arg executed_by "$EXECUTED_BY" \
+            --argjson run_limit   "$RUN_LIMIT" \
+            --arg workflow_filter "${WORKFLOW_FILE:-null}" \
+            --argjson total       "$TOTAL" \
+            --argjson success     "$SUCCESS" \
+            --argjson failure     "$FAILURE" \
+            --argjson cancelled   "$CANCELLED" \
+            --argjson in_progress "$IN_PROGRESS" \
+            --argjson runs        "$RUNS" \
+            '{
+              meta: {
+                target_repo:     $target_repo,
+                checked_at:      $checked_at,
+                executed_by:     $executed_by,
+                run_limit:       $run_limit,
+                workflow_filter: (if $workflow_filter == "null" then null else $workflow_filter end)
+              },
+              summary: {
+                total:       $total,
+                success:     $success,
+                failure:     $failure,
+                cancelled:   $cancelled,
+                in_progress: $in_progress
+              },
+              runs: $runs
+            }' > "${OUT_DIR}/ci_runs_report.json"
+
+          echo "==> Report written to: ${OUT_DIR}/ci_runs_report.json"
+
+          # Stdout table
+          echo ""
+          echo "=== CI RUNS SUMMARY: ${TARGET_REPO} ==="
+          printf "    %-15s %s\n" "Total:"       "$TOTAL"
+          printf "    %-15s %s\n" "✅ Success:"  "$SUCCESS"
+          printf "    %-15s %s\n" "❌ Failure:"  "$FAILURE"
+          printf "    %-15s %s\n" "⚠️  Cancelled:" "$CANCELLED"
+          printf "    %-15s %s\n" "🔄 In Progress:" "$IN_PROGRESS"
+          echo ""
+          echo "=== LAST ${RUN_LIMIT} RUNS ==="
+          echo "$RUNS" | jq -r \
+            '.[] | "\(.created_at)  \(.conclusion // .status | ascii_upcase | .[0:10])  [\(.branch)]  \(.commit_sha)  \(.workflow_name)"'
+
+          # GitHub Actions Job Summary
+          {
+            echo "## CI Runs: \`${TARGET_REPO}\`"
+            echo ""
+            echo "> Checked at: \`${CHECKED_AT}\`  |  Limit: **${RUN_LIMIT}**"
+            echo ""
+            echo "| | Count |"
+            echo "|---|---|"
+            echo "| ✅ Success | ${SUCCESS} |"
+            echo "| ❌ Failure | ${FAILURE} |"
+            echo "| ⚠️ Cancelled | ${CANCELLED} |"
+            echo "| 🔄 In Progress | ${IN_PROGRESS} |"
+            echo "| **Total** | **${TOTAL}** |"
+            echo ""
+            echo "### Run Details"
+            echo ""
+            echo "| # | Workflow | Status | Branch | Commit | Time |"
+            echo "|---|----------|--------|--------|--------|------|"
+            echo "$RUNS" | jq -r 'to_entries[] |
+              "| \(.key + 1) | \(.value.workflow_name) | \(if .value.conclusion != null then .value.conclusion else .value.status end) | `\(.value.branch)` | `\(.value.commit_sha)` \(.value.commit_message | .[0:40]) | \(.value.created_at) |"'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          # Fail if requested and there are failures
+          if [[ "$FAIL_ON_ERROR" == "1" && "$FAILURE" -gt 0 ]]; then
+            echo "ERROR: ${FAILURE} workflow run(s) failed in ${TARGET_REPO}" >&2
+            exit 1
+          fi
+
+      - name: Upload report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-gitapi-runs-${{ github.run_id }}
+          path: ci_runs_out/
+          retention-days: 7

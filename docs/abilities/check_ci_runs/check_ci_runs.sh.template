@@ -1,0 +1,185 @@
+#!/usr/bin/env bash
+# =============================================================================
+# check_ci_runs.sh.template
+#
+# TEMPLATE ONLY — READ-ONLY REFERENCE
+# This file lives in Ihorog/ciwiki as the canonical template.
+# Consumer repos should copy this to scripts/check_ci_runs.sh and adapt.
+#
+# Purpose: Fetch and report the last N GitHub Actions workflow runs
+#          for a target repository.
+#
+# Required env vars:
+#   GH_TOKEN      — GitHub token with repo:read scope
+#   TARGET_REPO   — owner/repo to check (e.g. "Ihorog/ci_gitapi")
+#   RUN_LIMIT     — number of runs to fetch (default: 7)
+#   WORKFLOW_FILE — (optional) specific workflow file to filter by
+#   OUT_DIR       — (optional) directory for JSON report (default: ci_runs_out)
+# =============================================================================
+
+set -euo pipefail
+
+# ---------------------------------------------------------------------------
+# Configuration (overridable via env)
+# ---------------------------------------------------------------------------
+TARGET_REPO="${TARGET_REPO:?TARGET_REPO is required (e.g. Ihorog/ci_gitapi)}"
+RUN_LIMIT="${RUN_LIMIT:-7}"
+WORKFLOW_FILE="${WORKFLOW_FILE:-}"
+OUT_DIR="${OUT_DIR:-ci_runs_out}"
+EXECUTED_BY="${EXECUTED_BY:-manual}"
+
+# ---------------------------------------------------------------------------
+# Validate dependencies
+# ---------------------------------------------------------------------------
+for cmd in gh jq date; do
+  if ! command -v "$cmd" &>/dev/null; then
+    echo "ERROR: Required command not found: $cmd" >&2
+    exit 1
+  fi
+done
+
+# ---------------------------------------------------------------------------
+# Create output directory
+# ---------------------------------------------------------------------------
+mkdir -p "$OUT_DIR"
+
+CHECKED_AT=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+echo "==> Checking last ${RUN_LIMIT} workflow runs for: ${TARGET_REPO}"
+echo "    Checked at: ${CHECKED_AT}"
+if [[ -n "$WORKFLOW_FILE" ]]; then
+  echo "    Workflow filter: ${WORKFLOW_FILE}"
+fi
+
+# ---------------------------------------------------------------------------
+# Fetch workflow runs via GitHub CLI
+# ---------------------------------------------------------------------------
+if [[ -n "$WORKFLOW_FILE" ]]; then
+  RAW_RUNS=$(gh api \
+    --paginate \
+    "repos/${TARGET_REPO}/actions/workflows/${WORKFLOW_FILE}/runs?per_page=${RUN_LIMIT}" \
+    --jq ".workflow_runs[:${RUN_LIMIT}]")
+else
+  RAW_RUNS=$(gh api \
+    "repos/${TARGET_REPO}/actions/runs?per_page=${RUN_LIMIT}" \
+    --jq ".workflow_runs[:${RUN_LIMIT}]")
+fi
+
+if [[ -z "$RAW_RUNS" || "$RAW_RUNS" == "null" ]]; then
+  echo "WARNING: No workflow runs found for ${TARGET_REPO}" >&2
+  RAW_RUNS="[]"
+fi
+
+# ---------------------------------------------------------------------------
+# Build summary statistics
+# ---------------------------------------------------------------------------
+TOTAL=$(echo "$RAW_RUNS" | jq 'length')
+SUCCESS=$(echo "$RAW_RUNS" | jq '[.[] | select(.conclusion == "success")] | length')
+FAILURE=$(echo "$RAW_RUNS" | jq '[.[] | select(.conclusion == "failure")] | length')
+CANCELLED=$(echo "$RAW_RUNS" | jq '[.[] | select(.conclusion == "cancelled")] | length')
+IN_PROGRESS=$(echo "$RAW_RUNS" | jq '[.[] | select(.status == "in_progress")] | length')
+
+# ---------------------------------------------------------------------------
+# Build normalized runs array
+# ---------------------------------------------------------------------------
+NORMALIZED_RUNS=$(echo "$RAW_RUNS" | jq '[.[] | {
+  run_id: .id,
+  workflow_name: .name,
+  status: .status,
+  conclusion: .conclusion,
+  branch: .head_branch,
+  commit_sha: .head_sha[:7],
+  commit_message: (.head_commit.message // "" | split("\n")[0]),
+  created_at: .created_at,
+  updated_at: .updated_at,
+  html_url: .html_url
+}]')
+
+# ---------------------------------------------------------------------------
+# Assemble full JSON report
+# ---------------------------------------------------------------------------
+REPORT=$(jq -n \
+  --arg target_repo "$TARGET_REPO" \
+  --arg checked_at "$CHECKED_AT" \
+  --arg executed_by "$EXECUTED_BY" \
+  --argjson run_limit "$RUN_LIMIT" \
+  --arg workflow_filter "${WORKFLOW_FILE:-null}" \
+  --argjson total "$TOTAL" \
+  --argjson success "$SUCCESS" \
+  --argjson failure "$FAILURE" \
+  --argjson cancelled "$CANCELLED" \
+  --argjson in_progress "$IN_PROGRESS" \
+  --argjson runs "$NORMALIZED_RUNS" \
+  '{
+    meta: {
+      target_repo: $target_repo,
+      checked_at: $checked_at,
+      executed_by: $executed_by,
+      run_limit: $run_limit,
+      workflow_filter: (if $workflow_filter == "null" then null else $workflow_filter end)
+    },
+    summary: {
+      total: $total,
+      success: $success,
+      failure: $failure,
+      cancelled: $cancelled,
+      in_progress: $in_progress
+    },
+    runs: $runs
+  }')
+
+# ---------------------------------------------------------------------------
+# Write report to file
+# ---------------------------------------------------------------------------
+REPORT_FILE="${OUT_DIR}/ci_runs_report.json"
+echo "$REPORT" > "$REPORT_FILE"
+echo "==> Report written to: ${REPORT_FILE}"
+
+# ---------------------------------------------------------------------------
+# Print human-readable summary to stdout
+# ---------------------------------------------------------------------------
+echo ""
+echo "=== CI RUNS SUMMARY: ${TARGET_REPO} ==="
+echo "    Total : ${TOTAL}"
+echo "    ✅ Success    : ${SUCCESS}"
+echo "    ❌ Failure    : ${FAILURE}"
+echo "    ⚠️  Cancelled  : ${CANCELLED}"
+echo "    🔄 In Progress: ${IN_PROGRESS}"
+echo ""
+echo "=== LAST ${RUN_LIMIT} RUNS ==="
+echo "$NORMALIZED_RUNS" | jq -r '.[] | "\(.created_at)  \(.conclusion // .status | ascii_upcase | .[0:10])  [\(.branch)]  \(.commit_sha)  \(.workflow_name)"'
+
+# ---------------------------------------------------------------------------
+# GitHub Actions Job Summary (if running in GitHub Actions)
+# ---------------------------------------------------------------------------
+if [[ -n "${GITHUB_STEP_SUMMARY:-}" ]]; then
+  {
+    echo "## CI Runs: \`${TARGET_REPO}\`"
+    echo ""
+    echo "> Checked at: \`${CHECKED_AT}\`  |  Limit: **${RUN_LIMIT}**"
+    echo ""
+    echo "| | Count |"
+    echo "|---|---|"
+    echo "| ✅ Success | ${SUCCESS} |"
+    echo "| ❌ Failure | ${FAILURE} |"
+    echo "| ⚠️ Cancelled | ${CANCELLED} |"
+    echo "| 🔄 In Progress | ${IN_PROGRESS} |"
+    echo "| **Total** | **${TOTAL}** |"
+    echo ""
+    echo "### Run Details"
+    echo ""
+    echo "| # | Workflow | Status | Branch | Commit | Time |"
+    echo "|---|----------|--------|--------|--------|------|"
+    echo "$NORMALIZED_RUNS" | jq -r 'to_entries[] | "| \(.key + 1) | \(.value.workflow_name) | \(if .value.conclusion != null then .value.conclusion else .value.status end) | `\(.value.branch)` | `\(.value.commit_sha)` \(.value.commit_message | .[0:40]) | \(.value.created_at) |"'
+  } >> "$GITHUB_STEP_SUMMARY"
+fi
+
+# ---------------------------------------------------------------------------
+# Exit with failure if any runs failed (optional — controlled by FAIL_ON_ERROR)
+# ---------------------------------------------------------------------------
+if [[ "${FAIL_ON_ERROR:-0}" == "1" && "$FAILURE" -gt 0 ]]; then
+  echo "ERROR: ${FAILURE} workflow run(s) failed in ${TARGET_REPO}" >&2
+  exit 1
+fi
+
+exit 0

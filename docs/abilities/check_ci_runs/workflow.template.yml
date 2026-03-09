@@ -1,0 +1,93 @@
+# =============================================================================
+# workflow.template.yml
+#
+# TEMPLATE ONLY — READ-ONLY REFERENCE
+# This file lives in Ihorog/ciwiki as the canonical template.
+# Consumer repos should copy this to .github/workflows/check-ci-runs.yml
+# and adapt TARGET_REPO, RUN_LIMIT, and secrets as needed.
+#
+# DO NOT place this file directly in ciwiki's .github/workflows/
+# =============================================================================
+#
+# name: Check CI Runs
+#
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       target_repo:
+#         description: "Repository to check (owner/repo)"
+#         required: false
+#         default: "Ihorog/ci_gitapi"
+#       run_limit:
+#         description: "Number of recent runs to check"
+#         required: false
+#         default: "7"
+#       workflow_file:
+#         description: "Specific workflow file to filter (leave empty for all)"
+#         required: false
+#         default: ""
+#   schedule:
+#     - cron: "0 * * * *"        # Optional: run hourly
+#
+# jobs:
+#   check:
+#     name: Check CI Runs
+#     runs-on: ubuntu-latest
+#
+#     steps:
+#       # 1. Checkout repository
+#       - name: Checkout
+#         uses: actions/checkout@v4
+#
+#       # 2. Run check script
+#       #    GH_TOKEN is available automatically in GitHub Actions.
+#       #    For private repos, use a PAT stored in secrets (CI_READ_TOKEN).
+#       - name: Check CI runs
+#         env:
+#           GH_TOKEN: ${{ secrets.CI_READ_TOKEN || secrets.GITHUB_TOKEN }}
+#           TARGET_REPO: ${{ inputs.target_repo || 'Ihorog/ci_gitapi' }}
+#           RUN_LIMIT: ${{ inputs.run_limit || '7' }}
+#           WORKFLOW_FILE: ${{ inputs.workflow_file || '' }}
+#           OUT_DIR: ci_runs_out
+#           EXECUTED_BY: github-actions
+#         run: |
+#           bash scripts/check_ci_runs.sh
+#
+#       # 3. Upload report artifact
+#       - name: Upload report
+#         if: always()
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: ci-runs-report-${{ github.run_id }}
+#           path: ci_runs_out/
+#           retention-days: 7
+#
+# =============================================================================
+# NOTES FOR CONSUMER REPOS
+# =============================================================================
+#
+# 1. SECRETS
+#    If TARGET_REPO is private and belongs to a different owner, add a PAT:
+#    Settings → Secrets and variables → Actions → New repository secret
+#    Name: CI_READ_TOKEN
+#    Value: ghp_... (PAT with repo:read scope)
+#
+#    If TARGET_REPO is in the same org/owner and is public, GITHUB_TOKEN suffices.
+#
+# 2. SCRIPT LOCATION
+#    Copy check_ci_runs.sh.template to scripts/check_ci_runs.sh in your repo.
+#    Make it executable: chmod +x scripts/check_ci_runs.sh
+#
+# 3. FAIL_ON_ERROR
+#    Set env var FAIL_ON_ERROR=1 to fail the workflow if any runs failed.
+#    Default is 0 (report only, do not fail).
+#
+# 4. JOB SUMMARY
+#    The script automatically populates GITHUB_STEP_SUMMARY when running in
+#    GitHub Actions, providing a formatted table in the workflow run UI.
+#
+# 5. ARTIFACT
+#    The JSON report is uploaded as an artifact (ci-runs-report-<run-id>)
+#    retained for 7 days. Increase retention_days for audit/compliance.
+#
+# =============================================================================
