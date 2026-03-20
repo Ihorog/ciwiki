@@ -63,10 +63,10 @@ devDependencies:
     version: 5.9.3
   webpack:
     specifier: ^5.105.4
-    version: 5.105.4(webpack-cli@7.0.0)
+    version: 5.105.4(webpack-cli@7.0.2)
   webpack-cli:
-    specifier: ^7.0.0
-    version: 7.0.0(webpack@5.105.4)
+    specifier: ^7.0.2
+    version: 7.0.2(webpack@5.105.4)
 
 packages:
 
@@ -657,7 +657,7 @@ packages:
       schema-utils: 4.3.3
       serialize-javascript: 7.0.4
       tinyglobby: 0.2.15
-      webpack: 5.105.4(webpack-cli@7.0.0)
+      webpack: 5.105.4(webpack-cli@7.0.2)
     dev: true
 
   /cors@2.8.6:
@@ -696,7 +696,7 @@ packages:
       postcss-modules-values: 4.0.0(postcss@8.5.6)
       postcss-value-parser: 4.2.0
       semver: 7.7.4
-      webpack: 5.105.4(webpack-cli@7.0.0)
+      webpack: 5.105.4(webpack-cli@7.0.2)
     dev: true
 
   /css-select@4.3.0:
@@ -1230,7 +1230,7 @@ packages:
       lodash: 4.17.23
       pretty-error: 4.0.0
       tapable: 2.3.0
-      webpack: 5.105.4(webpack-cli@7.0.0)
+      webpack: 5.105.4(webpack-cli@7.0.2)
     dev: true
 
   /htmlparser2@6.1.0:
@@ -2244,7 +2244,7 @@ packages:
     peerDependencies:
       webpack: ^5.27.0
     dependencies:
-      webpack: 5.105.4(webpack-cli@7.0.0)
+      webpack: 5.105.4(webpack-cli@7.0.2)
     dev: true
 
   /supports-color@8.1.1:
@@ -2284,7 +2284,7 @@ packages:
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       terser: 5.46.0
-      webpack: 5.105.4(webpack-cli@7.0.0)
+      webpack: 5.105.4(webpack-cli@7.0.2)
     dev: true
 
   /terser@5.46.0:
@@ -2477,8 +2477,8 @@ packages:
       graceful-fs: 4.2.11
     dev: true
 
-  /webpack-cli@7.0.0(webpack@5.105.4):
-    resolution: {integrity: sha512-NbM62WodkUPXQGR/Ip3pSFsFUKJSseDIFr2H5Z1+4fHwB9X4cO10knPShIopFqAHZa8a5Q8pdtmtE6C12/mlMQ==}
+  /webpack-cli@7.0.2(webpack@5.105.4):
+    resolution: {integrity: sha512-dB0R4T+C/8YuvM+fabdvil6QE44/ChDXikV5lOOkrUeCkW5hTJv2pGLE3keh+D5hjYw8icBaJkZzpFoaHV4T+g==}
     engines: {node: '>=20.9.0'}
     hasBin: true
     peerDependencies:
@@ -2499,7 +2499,7 @@ packages:
       import-local: 3.2.0
       interpret: 3.1.1
       rechoir: 0.8.0
-      webpack: 5.105.4(webpack-cli@7.0.0)
+      webpack: 5.105.4(webpack-cli@7.0.2)
       webpack-merge: 6.0.1
     dev: true
 
@@ -2517,7 +2517,7 @@ packages:
     engines: {node: '>=10.13.0'}
     dev: true
 
-  /webpack@5.105.4(webpack-cli@7.0.0):
+  /webpack@5.105.4(webpack-cli@7.0.2):
     resolution: {integrity: sha512-jTywjboN9aHxFlToqb0K0Zs9SbBoW4zRUlGzI2tYNxVYcEi/IPpn+Xi4ye5jTLvX2YeLuic/IvxNot+Q1jMoOw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
@@ -2551,7 +2551,7 @@ packages:
       tapable: 2.3.0
       terser-webpack-plugin: 5.3.17(webpack@5.105.4)
       watchpack: 2.5.1
-      webpack-cli: 7.0.0(webpack@5.105.4)
+      webpack-cli: 7.0.2(webpack@5.105.4)
       webpack-sources: 3.3.4
     transitivePeerDependencies:
       - '@swc/core'
