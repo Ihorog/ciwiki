@@ -8,6 +8,33 @@ This file defines system architecture, UI invariants, and infrastructure rules t
 
 ---
 
+## 0. OPERATOR PROTOCOL — AUTHOR ↔ COPILOT DIVISION OF RESPONSIBILITY
+
+**Effective: 2026-03-23. Canonical. Applies to all Cimeika repositories.**
+
+See full documentation: [`docs/processes/operator-protocol.md`](docs/processes/operator-protocol.md)
+
+### Quick Reference
+
+| Role | Who | Domain |
+|------|-----|--------|
+| **Author** | Ihorog | Ideas · Content · Approval |
+| **Copilot** | GitHub Copilot | Code · Structure · GitHub ops |
+
+**Author interface:** Chat conversation only. No GitHub operations.  
+**Copilot interface:** Branches, PRs, commits, file structure, manifests.
+
+### Flow
+```
+Author (chat idea) → Copilot (implement) → PR → Author (review) → Merge
+```
+
+**Copilot escalates only for:** permanent data deletion · frozen repo changes · ambiguous user-visible outcomes · security/legal boundaries.
+
+All other decisions: Copilot decides and documents in `SYSTEM_WILL.md`.
+
+---
+
 ## 1. System Overview
 
 Cimeika is not a menu-driven application.
