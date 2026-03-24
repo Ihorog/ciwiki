@@ -3,3 +3,13 @@
 
 # MkDocs build output (deployed to gh-pages, not committed)
 site/
+
+# Node.js dependencies
+node_modules/
+
+# Webpack build output
+dist/
+
+# Python cache
+__pycache__/
+*.pyc

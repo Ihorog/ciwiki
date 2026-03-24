@@ -68,15 +68,62 @@ jobs:
             // Add triage label
             labels.push('needs-triage');
 
-            if (labels.length > 0) {
-              await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue.number,
-                labels: labels
-              });
+            // Ensure all required labels exist before applying them
+            const labelColors = {
+              'bug': 'd73a4a',
+              'enhancement': 'a2eeef',
+              'documentation': '0075ca',
+              'security': 'e11d48',
+              'performance': '7c3aed',
+              'priority:high': 'b91c1c',
+              'component:legend-ci': '8b5cf6',
+              'component:ci-cd': '0ea5e9',
+              'component:docs': '22c55e',
+              'needs-triage': 'ededed',
+              'stale': 'cccccc',
+              'pinned': '0052cc',
+              'master-issue': '1d76db',
+              'epic': '7057ff',
+              'work-in-progress': 'fbca04',
+              'possible-duplicate': 'cfd3d7',
+            };
 
-              console.log(`Added labels: ${labels.join(', ')}`);
+            const existingLabels = await github.rest.issues.listLabelsForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 100,
+            });
+            const existingNames = new Set(existingLabels.data.map(l => l.name));
+
+            const allNeeded = Object.keys(labelColors);
+            for (const labelName of allNeeded) {
+              if (!existingNames.has(labelName)) {
+                try {
+                  await github.rest.issues.createLabel({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    name: labelName,
+                    color: labelColors[labelName],
+                  });
+                  console.log(`Created label: ${labelName}`);
+                } catch (err) {
+                  console.log(`Could not create label '${labelName}': ${err.message}`);
+                }
+              }
+            }
+
+            if (labels.length > 0) {
+              try {
+                await github.rest.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  labels: labels
+                });
+                console.log(`Added labels: ${labels.join(', ')}`);
+              } catch (err) {
+                console.log(`Warning: could not add labels: ${err.message}`);
+              }
             }
 
       - name: Add welcome comment for first-time contributors
@@ -280,10 +327,14 @@ ${duplicatesList}
                 body: message
               });
 
-              await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue.number,
-                labels: ['possible-duplicate']
-              });
+              try {
+                await github.rest.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  labels: ['possible-duplicate']
+                });
+              } catch (err) {
+                console.log(`Warning: could not add 'possible-duplicate' label: ${err.message}`);
+              }
             }

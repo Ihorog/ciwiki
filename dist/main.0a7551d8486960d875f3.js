@@ -1,1 +1,0 @@
-(self.webpackChunkcimeika=self.webpackChunkcimeika||[]).push([[792],{44(){console.log("Cimeika build OK")}},e=>{e(e.s=44)}]);
