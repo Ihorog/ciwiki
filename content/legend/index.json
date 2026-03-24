@@ -1,242 +1,50 @@
-[
-  {
-    "id": "pershodzherelo",
-    "title": "Першоджерело",
-    "index": 1,
-    "chapter": "01-pozhodzhennya",
-    "file": "01-pozhodzhennya/01-pershodzherelo.md",
-    "tags": [
-      "origin",
-      "silence",
-      "potential"
-    ]
-  },
-  {
-    "id": "pershyi_podil",
-    "title": "Перший поділ",
-    "index": 2,
-    "chapter": "01-pozhodzhennya",
-    "file": "01-pozhodzhennya/02-pershyi_podil.md",
-    "tags": [
-      "duality",
-      "division",
-      "polarity"
-    ]
-  },
-  {
-    "id": "dzerkalo_materii",
-    "title": "Дзеркало матерії",
-    "index": 3,
-    "chapter": "01-pozhodzhennya",
-    "file": "01-pozhodzhennya/03-dzerkalo_materii.md",
-    "tags": [
-      "matter",
-      "mirror",
-      "information"
-    ]
-  },
-  {
-    "id": "dzerkalo_svidomosti",
-    "title": "Дзеркало свідомості",
-    "index": 4,
-    "chapter": "02-dzerkala",
-    "file": "02-dzerkala/04-dzerkalo_svidomosti.md",
-    "tags": [
-      "consciousness",
-      "mirror",
-      "perception"
-    ]
-  },
-  {
-    "id": "tanets_protylezhnostei",
-    "title": "Танець протилежностей",
-    "index": 5,
-    "chapter": "02-dzerkala",
-    "file": "02-dzerkala/05-tanets_protylezhnostei.md",
-    "tags": [
-      "opposites",
-      "dance",
-      "dialectics"
-    ]
-  },
-  {
-    "id": "mosti_yednosti",
-    "title": "Мости єдності",
-    "index": 6,
-    "chapter": "02-dzerkala",
-    "file": "02-dzerkala/06-mosti_yednosti.md",
-    "tags": [
-      "bridges",
-      "unity",
-      "analogy"
-    ]
-  },
-  {
-    "id": "proyav_ci",
-    "title": "Прояв CI",
-    "index": 7,
-    "chapter": "02-dzerkala",
-    "file": "02-dzerkala/07-proyav_ci.md",
-    "tags": [
-      "manifestation",
-      "emergence",
-      "CI"
-    ]
-  },
-  {
-    "id": "rytm",
-    "title": "Ритм",
-    "index": 8,
-    "chapter": "03-rytm-i-pamiat",
-    "file": "03-rytm-i-pamiat/08-rytm.md",
-    "tags": [
-      "rhythm",
-      "time",
-      "synchronization"
-    ]
-  },
-  {
-    "id": "pamiat",
-    "title": "Пам'ять",
-    "index": 9,
-    "chapter": "03-rytm-i-pamiat",
-    "file": "03-rytm-i-pamiat/09-pamiat.md",
-    "tags": [
-      "memory",
-      "past",
-      "reconstruction"
-    ]
-  },
-  {
-    "id": "tvorennia",
-    "title": "Творення",
-    "index": 10,
-    "chapter": "03-rytm-i-pamiat",
-    "file": "03-rytm-i-pamiat/10-tvorennia.md",
-    "tags": [
-      "creation",
-      "autopoiesis",
-      "making"
-    ]
-  },
-  {
-    "id": "transformatsiia",
-    "title": "Трансформація",
-    "index": 11,
-    "chapter": "04-transformatsiia-i-harmoniia",
-    "file": "04-transformatsiia-i-harmoniia/11-transformatsiia.md",
-    "tags": [
-      "transformation",
-      "phase-transition",
-      "change"
-    ]
-  },
-  {
-    "id": "harmoniia",
-    "title": "Гармонія",
-    "index": 12,
-    "chapter": "04-transformatsiia-i-harmoniia",
-    "file": "04-transformatsiia-i-harmoniia/12-harmoniia.md",
-    "tags": [
-      "harmony",
-      "balance",
-      "homeostasis"
-    ]
-  },
-  {
-    "id": "prostir",
-    "title": "Простір",
-    "index": 13,
-    "chapter": "05-prostir-i-chas",
-    "file": "05-prostir-i-chas/13-prostir.md",
-    "tags": [
-      "space",
-      "field",
-      "topology"
-    ]
-  },
-  {
-    "id": "chas",
-    "title": "Час",
-    "index": 14,
-    "chapter": "05-prostir-i-chas",
-    "file": "05-prostir-i-chas/14-chas.md",
-    "tags": [
-      "time",
-      "entropy",
-      "flow"
-    ]
-  },
-  {
-    "id": "svidomist_kazkar",
-    "title": "Казкар",
-    "index": 15,
-    "chapter": "06-kazkar-i-zviazky",
-    "file": "06-kazkar-i-zviazky/15-svidomist_kazkar.md",
-    "tags": [
-      "narrator",
-      "storytelling",
-      "kazkar"
-    ]
-  },
-  {
-    "id": "zviazok",
-    "title": "Зв'язок",
-    "index": 16,
-    "chapter": "06-kazkar-i-zviazky",
-    "file": "06-kazkar-i-zviazky/16-zviazok.md",
-    "tags": [
-      "connection",
-      "network",
-      "relation"
-    ]
-  },
-  {
-    "id": "vidkryttia",
-    "title": "Відкриття",
-    "index": 17,
-    "chapter": "07-hra-i-shliakh",
-    "file": "07-hra-i-shliakh/17-vidkryttia.md",
-    "tags": [
-      "discovery",
-      "insight",
-      "paradigm"
-    ]
-  },
-  {
-    "id": "hru",
-    "title": "Гра",
-    "index": 18,
-    "chapter": "07-hra-i-shliakh",
-    "file": "07-hra-i-shliakh/18-hru.md",
-    "tags": [
-      "play",
-      "game",
-      "exploration"
-    ]
-  },
-  {
-    "id": "povern_do_tsentru",
-    "title": "Повернення",
-    "index": 19,
-    "chapter": "07-hra-i-shliakh",
-    "file": "07-hra-i-shliakh/19-povern_do_tsentru.md",
-    "tags": [
-      "return",
-      "cycle",
-      "reflection"
-    ]
-  },
-  {
-    "id": "nestrimne_rozvytok",
-    "title": "Розвиток",
-    "index": 20,
-    "chapter": "07-hra-i-shliakh",
-    "file": "07-hra-i-shliakh/20-nestrimne_rozvytok.md",
-    "tags": [
-      "development",
-      "evolution",
-      "growth"
-    ]
-  }
-]
+path: "content/legend/index.json"
+repository: "Ihorog/ciwiki"
+source_url: "https://github.com/Ihorog/ciwiki/blob/6fce19da2651c486cc941b35e718f2f037665aac/content/legend/index.json"
+commit_oid: "6fce19da2651c486cc941b35e718f2f037665aac"
+blob_sha: "bfc3b7a367e6c7055ca4739124c6be29d9e24f38"
+schema:
+  type: "array"
+  items:
+    type: "object"
+    required: ["id", "title", "index", "chapter", "file", "tags"]
+    properties:
+      id: { type: "string" }
+      title: { type: "string" }
+      index: { type: "integer", minimum: 1 }
+      chapter: { type: "string" }
+      file: { type: "string" }
+      tags:
+        type: "array"
+        items: { type: "string" }
+stats:
+  entries: 20
+  chapters:
+    "01-pozhodzhennya": 3
+    "02-dzerkala": 4
+    "03-rytm-i-pamiat": 3
+    "04-transformatsiia-i-harmoniia": 2
+    "05-prostir-i-chas": 2
+    "06-kazkar-i-zviazky": 2
+    "07-hra-i-shliakh": 4
+ids_in_order:
+  - "pershodzherelo"
+  - "pershyi_podil"
+  - "dzerkalo_materii"
+  - "dzerkalo_svidomosti"
+  - "tanets_protylezhnostei"
+  - "mosti_yednosti"
+  - "proyav_ci"
+  - "rytm"
+  - "pamiat"
+  - "tvorennia"
+  - "transformatsiia"
+  - "harmoniia"
+  - "prostir"
+  - "chas"
+  - "svidomist_kazkar"
+  - "zviazok"
+  - "vidkryttia"
+  - "hru"
+  - "povern_do_tsentru"
+  - "nestrimne_rozvytok"
