@@ -24,7 +24,8 @@ Ci = Подія + Настрій + Історія + Пам'ять
 ```mermaid
 graph TD
     S[System] --> CI[Ci]
-    CI --> CM[Cimeika]
+    CI --> GITAPI[CI GitAPI Gateway]
+    GITAPI --> CM[Cimeika]
     CM --> PD[ПоДія / Podija]
     CM --> KZ[Казкар / Kazkar]
     CM --> MD[Настрій / Mood]
@@ -32,6 +33,8 @@ graph TD
     CM --> CL[Календар / Calendar]
     CM --> GL[Галерея / Gallery]
 ```
+
+**CI GitAPI** — єдина адміністративна одиниця. Усі сервіси екосистеми взаємодіють між собою виключно через CI GitAPI Gateway. Докладніше: [CI GitAPI](../ci-gitapi/index.md).
 
 ---
 
@@ -163,6 +166,7 @@ POST /api/kazkar/generate
 
 ## Посилання
 
+- [CI GitAPI](../ci-gitapi/index.md) — єдина адміністративна одиниця, Authorization & Coordination Gateway
 - [Виробнича структура](./production-structure.md) — повна структура папок
 - [UI Рефакторинг](./ui-refactoring-plan.md) — план уніфікації інтерфейсу
 - [Legend Ci](../kazkar/legend-ci/index.md) — канонічна документація концепцій

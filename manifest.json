@@ -20,6 +20,17 @@
   ],
   "modules": [
     {
+      "id": "ci-gitapi",
+      "name": "CI GitAPI",
+      "version": "1.0.0",
+      "description": "Єдина адміністративна одиниця Cimeika: Authorization & Coordination Gateway для всієї екосистеми.",
+      "status": "active",
+      "repo": "Ihorog/ci_gitapi",
+      "spec": "docs/ci-gitapi/spec.md",
+      "integration": "docs/ci-gitapi/integration.md",
+      "routes": ["/health", "/webhooks", "/dashboard", "/api/v1", "/v1/status", "/v1/git/*", "/v1/logic/*", "/v1/ecosystem", "/memory/*", "/todo"]
+    },
+    {
       "id": "legend-ci",
       "name": "Legend CI",
       "version": "1.0.0",
