@@ -6,7 +6,9 @@
     "test": "echo \"No tests yet\"",
     "build": "webpack --mode production",
     "dev": "webpack --mode development --watch",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
   },
   "keywords": [],
   "author": "",
@@ -37,6 +39,7 @@
     "style-loader": "^4.0.0",
     "typescript": "^5.9.3",
     "webpack": "^5.105.4",
-    "webpack-cli": "^7.0.2"
+    "webpack-cli": "^7.0.2",
+    "wrangler": "^4.77.0"
   }
 }
