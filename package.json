@@ -40,6 +40,6 @@
     "typescript": "^6.0.2",
     "webpack": "^5.105.4",
     "webpack-cli": "^7.0.2",
-    "wrangler": "^4.77.0"
+    "wrangler": "^4.78.0"
   }
 }
