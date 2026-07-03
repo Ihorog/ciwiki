@@ -39,7 +39,7 @@
     "style-loader": "^4.0.0",
     "typescript": "^6.0.3",
     "webpack": "^5.107.1",
-    "webpack-cli": "^7.0.2",
+    "webpack-cli": "^7.1.0",
     "wrangler": "^4.94.0"
   }
 }
